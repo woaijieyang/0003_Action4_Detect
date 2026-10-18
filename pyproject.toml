@@ -1,0 +1,27 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "template-code-repository"
+version = "0.1.0"
+description = "Minimal AI research repository structure and collaboration conventions"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = []
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = false
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["eval", "eval.*", "model", "model.*", "data", "data.*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+eval = ["README.md"]
+model = ["README.md"]
+data = ["README.md"]
