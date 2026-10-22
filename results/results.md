@@ -55,3 +55,10 @@ Benchmark SHA:791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34eã€
 B0 online80epochs/4000steps/best2200; A0 GDRv00280epochs/15120steps/best13350 with predicted-surface PnP. Dev bboxAP50=.979111,AP50:95=.548464,F1=.982781,dual177/184; fixedID all8=222/378,heavy48/164. Historicaltest bboxAP50=.973173,AP50:95=.561451,F1=.986233,dual194/200; all8=245/400,heavy38/142. Test is not new blind acceptance. Raw grouped reports: outputs/action4_final_test_v001/REPORT.json and outputs/action4_final_selection_v001/joint_pnp/REPORT.json.
 
 Real demo-reference6frames: B0 both2/6 vsoldbaseline5/6, not certifiedGT. Full2850frame comparison completed but visually FAILED; 828/5688 detections invalid pose across771frames. No production promotion. See stage conclusion and outputs/action4_final_video_v001/ROOT_VISUAL_REVIEW.json.
+
+
+## 2026-10-23 frozen B0 center-scoring candidate and protocol correction
+
+No new training; B0step2200/A0step13350 unchanged. Refined boxes +center score: dev dual171/184,AP50:95=.529753099,F1=.973333333,all8=221/378,heavy45/164. Full2850video complete, invalid poses332 across319frames. Same2773 eligible demo-reference envelopes: oldB0step5220 both1367 (49.30%), learnedscore732 (26.40%), centerscore1862 (67.15%).77referenceframes unscorable; NOT certifiedGT/realrecall/mAP; no production acceptance.
+
+AP caller now retains low-score candidates separately from operating0.3 threshold. Original sealed learned-score historicaltest recheck unchanged AP50:95=.5614511313 and sameTP/FP/FN. New center candidate NOT selected ontest. Box-translation anchoring rejected (all8 221â†’93); GT pose substitutions are oraclediagnostics only. Full receipts instageconclusion.

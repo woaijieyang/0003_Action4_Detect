@@ -1,0 +1,103 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r060",
+  "status": "FROZEN_SCORING_CANDIDATE_VERIFIED_TASK_INCOMPLETE",
+  "phase": "b0_scoring_factor_and_ap_protocol",
+  "updated_at": "2026-10-23T05:13:46.472617+08:00",
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "parent_authority_ref": {
+    "path": "configs/execution/action4_execution_r059.json",
+    "sha256": "96bd79c0d7ae5ca4d435b822536861a1d72f0240baff7aa325b312f90bc3909a"
+  },
+  "resource_policy": {
+    "cpu_total": 72,
+    "prohibited_gpu_indices": [
+      0
+    ],
+    "authorized_training_gpu_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "eval_gpu1_max_workers": 8,
+    "no_other_process_interference": true
+  },
+  "render": {
+    "enabled": false,
+    "reason": "published2000 immutable; independent400visualfailed"
+  },
+  "training": {
+    "new_runs_enabled": false,
+    "all_existing_runs_complete": true,
+    "auxiliary_all_eval_reconciled": true
+  },
+  "completed": {
+    "B0": {
+      "epochs": 80,
+      "steps": 4000,
+      "eval_count": 201,
+      "best_step": 2200
+    },
+    "A0_GDR_v002": {
+      "epochs": 80,
+      "steps": 15120,
+      "best_step": 13350
+    }
+  },
+  "selected_bundles": {
+    "A0": "models/A0/best.pt",
+    "B0": "models/B0/best.pt",
+    "scope": "development-selected research candidate, real acceptance failed",
+    "independent_load_update_receipt": "outputs/action4_release_bundle_check_v001/REPORT.json"
+  },
+  "final_test": "outputs/action4_final_test_v001/REPORT.json",
+  "full_video": "outputs/action4_final_video_v001/COMPLETE.json",
+  "visual_review": "outputs/action4_final_video_v001/ROOT_VISUAL_REVIEW.json",
+  "auxiliary_pending_reconciliation": "outputs/action4_aux_eval_acceleration_v001/COMPLETE.json",
+  "cleanup": {
+    "status": "APPLIED_POST_CHECK_PASSED",
+    "archive_root": "archive/legacy",
+    "output": "outputs/action4_release_preparation_v001",
+    "must_wait_for_all_consumers": true,
+    "receipt": "outputs/action4_release_preparation_v001/CLEANUP_APPLIED.json"
+  },
+  "publish": {
+    "authorized_target": "https://github.com/woaijieyang/0003_Action4_Detect",
+    "contents": "source/config/docs; no assets",
+    "state_source": "outputs/action4_release_preparation_v001/PUBLISHED.json",
+    "note": "Commit/push outcome is established only by that receipt and remote main"
+  },
+  "remaining": [
+    "real reference agreement67.15% still below target",
+    "A0 rotation and translation errors unresolved",
+    "new robust training/dataflow improvement required; no job currently running"
+  ],
+  "accuracy_accepted": false,
+  "monitoring": {
+    "action4": "deleted after all training/eval completed; no active GPU task"
+  },
+  "candidate": {
+    "config": "configs/eval/action4_center_scoring_candidate_v001.json",
+    "weights_unchanged": true,
+    "production_promoted": false,
+    "development_output": "outputs/action4_b0_center_scoring_candidate_v001/development",
+    "video_output": "outputs/action4_center_scoring_video_v001",
+    "status": "FULL_VIDEO_REVIEWED_NOT_ACCEPTED",
+    "full_demo_reference_both": 1862,
+    "full_demo_reference_eligible": 2773
+  },
+  "AP_protocol_fix": {
+    "bug": "operating0.3 cutoff before full-image AP",
+    "training_best_selection_affected": false,
+    "historical_test_baseline_only_recheck": "outputs/action4_frozen_test_ap_correction_v001"
+  },
+  "evidence": {
+    "review": "outputs/action4_b0_center_scoring_candidate_v001/ROOT_REVIEW.json",
+    "pose_decomposition": "outputs/action4_pose_error_decomposition_v001/REPORT.json",
+    "reference": "outputs/action4_full_demo_reference_v001/MODEL_REFERENCE_COMPARISON.json",
+    "rejected_box_anchor": "outputs/action4_box_anchor_candidate_v001/REPORT.json"
+  }
+}

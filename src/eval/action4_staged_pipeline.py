@@ -69,13 +69,21 @@ class StagedPipeline:
             raise ValueError("Stages share parameter storage")
         return self
 
+    def _detect(self,rgb):
+        policy=getattr(self,"b0_scoring_policy","learned")
+        if policy=="learned":return detect(self.b0,rgb,self.bcfg,self.device)
+        from eval.action4_b0_scoring import predict
+        return predict(self.b0,rgb,self.bcfg,self.device,policy)
+
     @torch.inference_mode()
-    def predict(self,rgb,K,canonical):
+    def predict(self,rgb,K,canonical,*,return_box_candidates=False):
         K=np.asarray(K,dtype=float);canonical=np.asarray(canonical,dtype=float)
         if K.shape!=(3,3) or canonical.shape!=(8,3) or not np.isfinite(K).all() or not np.isfinite(canonical).all():
             raise ValueError("Finite capture intrinsics and fixed eight CAD points required")
-        detections=[p for p in detect(self.b0,rgb,self.bcfg,self.device) if p["score"]>=.3]
-        if not detections:return {"identity":self.identity,"detections":[],"instances":[]}
+        box_candidates=self._detect(rgb)
+        detections=[p for p in box_candidates if p["score"]>=.3]
+        extra={"box_candidates":box_candidates} if return_box_candidates else {}
+        if not detections:return dict(identity=self.identity,detections=[],instances=[],**extra)
         rois,affines=prepare_rois([rgb],[p["bbox_full_xyxy"] for p in detections],[0]*len(detections),
                                   roi_size=448,expansion=2.25,device=self.device)
         down,_=DataAdapter.letterbox_affine((448,448),(112,112));transforms=[down@a for a in affines]
@@ -106,10 +114,16 @@ class StagedPipeline:
             rows.append(dict(p,instance_id=i,object_id=1,corner_ids=list(range(8)),
                              corners_px=DataAdapter.transform_points(uv,np.linalg.inv(transforms[i])).tolist() if valid else None,
                              pose_valid=valid,pose_diagnostic=diagnostic))
-        return {"identity":self.identity,"detections":detections,"instances":rows,"scope":"numeric pose validity is not accuracy"}
+        return {"identity":self.identity,"detections":detections,"instances":rows,"scope":"numeric pose validity is not accuracy",**extra}
 
 
 def load_pipeline(cfg,device="cuda:0"):
     if "a0_bundle" in cfg:
-        return StagedPipeline.from_bundles(cfg["a0_bundle"],cfg["b0_bundle"],device)
-    return StagedPipeline(cfg["b0_config"],cfg["b0_checkpoint"],cfg["a0_config"],cfg["a0_checkpoint"],cfg["a0_backbone"],device=device,pose_method=cfg["pose_method"],a0_kind=cfg.get("a0_kind","joint_pose"))
+        pipeline=StagedPipeline.from_bundles(cfg["a0_bundle"],cfg["b0_bundle"],device)
+    else:
+        pipeline=StagedPipeline(cfg["b0_config"],cfg["b0_checkpoint"],cfg["a0_config"],cfg["a0_checkpoint"],cfg["a0_backbone"],device=device,pose_method=cfg["pose_method"],a0_kind=cfg.get("a0_kind","joint_pose"))
+    policy=cfg.get("b0_scoring_policy","learned")
+    if policy not in ("learned","center","product"):raise ValueError("Unknown B0 scoring policy")
+    pipeline.b0_scoring_policy=policy
+    if policy!="learned":pipeline.identity["B0_scoring_policy"]=policy
+    return pipeline

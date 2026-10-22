@@ -1,0 +1,18 @@
+{
+  "b0_config": "configs/model/action4_online_b0_v001.json",
+  "b0_checkpoint": "outputs/action4_online_b0_v001/selected_step_00002200.pt",
+  "a0_config": "configs/model/action4_gdr_pose_v002_resolved.json",
+  "a0_checkpoint": "outputs/action4_gdr_pose_candidate_v002/selected_step_00013350.pt",
+  "a0_backbone": "outputs/action4_gdr_surface_candidate_v001/base_best.pt",
+  "pose_method": "pnp",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "demo_reference": "data/action4_reference/demo_standard.mp4",
+  "scope": "isolated postrelease candidate; keep frozen learned box refinement, bypass learned ranking; no real acceptance",
+  "training_completion_receipts": [
+    "outputs/action4_online_b0_v001/TRAIN_COMPLETE.json",
+    "outputs/action4_gdr_pose_candidate_v002/TRAIN_COMPLETE.json"
+  ],
+  "a0_bundle": "models/A0/best.pt",
+  "b0_bundle": "models/B0/best.pt",
+  "b0_scoring_policy": "center"
+}
