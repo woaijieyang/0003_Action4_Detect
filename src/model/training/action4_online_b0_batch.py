@@ -23,8 +23,12 @@ def match_targets(boxes,record):
     if len(ignored):valid=~((overlaps(ignored).max(-1).values>=.3)&(~matched))
     return targets,matched,valid
 
-def batch_losses(model,items,base_cfg,device):
+def batch_losses(model,items,base_cfg,device,augmentation_seeds=None):
     x,affines=prepare_full_images([item["image"] for item in items],size=tuple(base_cfg["preprocess"]["full_size"]),device=device)
+    if augmentation_seeds is not None:
+        from data.action4_photometric import augment_prepared
+        sizes=[(int(item["image"].shape[2]),int(item["image"].shape[1])) for item in items]
+        x,_=augment_prepared(x,sizes,augmentation_seeds,base_cfg["photometric"])
     dense_batch,features=model(x);aggregate={}
     for index,item in enumerate(items):
         dense={k:v[index:index+1] for k,v in dense_batch.items()};feature=features[index:index+1];affine=affines[index]

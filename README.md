@@ -6,6 +6,8 @@
 
 本轮追加了显式研究候选 `configs/eval/action4_center_scoring_candidate_v001.json`：权重不变，保留框修正、改用center评分。完整视频2773个可提取demo包络的帧上，双机参考一致性从26.40%升至67.15%；77帧参考不可判定。它仍未达标，demo包络也不是认证GT。原封存配置保留，新候选不自动覆盖默认策略。
 
+当前进一步完成摄影增强80轮候选：`configs/eval/action4_photometric_best_v001.json`，历史test双机196/200，完整视频demo参考一致性81.79%。新A0候选在实际预测ROI仅42/378，未采用；已定位GT裁剪与预测裁剪分布差异，在线RGB裁剪修复接口已验证，训练尚待推进。当前仍未通过真实锚定验收。
+
 ## 当前入口
 
 - [阶段计划](docs/stages/2026-10-19-1-plan-Action4角点复现增补.md)、[阶段结论](docs/stages/2026-10-19-1-conclusion-Action4角点复现增补.md)。

@@ -62,3 +62,10 @@ Real demo-reference6frames: B0 both2/6 vsoldbaseline5/6, not certifiedGT. Full28
 No new training; B0step2200/A0step13350 unchanged. Refined boxes +center score: dev dual171/184,AP50:95=.529753099,F1=.973333333,all8=221/378,heavy45/164. Full2850video complete, invalid poses332 across319frames. Same2773 eligible demo-reference envelopes: oldB0step5220 both1367 (49.30%), learnedscore732 (26.40%), centerscore1862 (67.15%).77referenceframes unscorable; NOT certifiedGT/realrecall/mAP; no production acceptance.
 
 AP caller now retains low-score candidates separately from operating0.3 threshold. Original sealed learned-score historicaltest recheck unchanged AP50:95=.5614511313 and sameTP/FP/FN. New center candidate NOT selected ontest. Box-translation anchoring rejected (all8 221→93); GT pose substitutions are oraclediagnostics only. Full receipts instageconclusion.
+
+
+## 2026-10-23 photometric80 and frozen-surface-pose80 closure
+
+B0best3220: dev AP50:95=.6162104443,F1=.9867374005,dual178/184; historicaltest AP50:95=.6493924639,F1=.9937264743,dual196/200. With retained A0PnP: devall8=221/378,heavy45/164; historicaltest253/400,heavy36/142.
+Full2850video, demo-reference IoU0.5 both2268/2773=81.79% (77unscorable), not certifiedGT/realrecall. Visual acceptance still FAILED.
+A0frozen-surface80 best8625: GTROI196/378,heavy36/164; actual predictedROI42/378,heavy4/164. REJECTED for deployment.

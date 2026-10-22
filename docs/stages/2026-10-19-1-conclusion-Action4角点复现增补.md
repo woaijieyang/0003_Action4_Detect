@@ -1884,3 +1884,39 @@ action4的30分钟自动监控已删除：所有相关训练/异步eval已经结
 随后仅作oracle诊断，在已保存预测后替换GT旋转或GT平移：359个有效匹配目标中，原八点221；仅替换旋转变283，仅替换平移变265。失败组旋转误差中位数9.70度、平移误差41.16mm；其PnP重投影中位数仍只有0.627px，说明对自己预测的表面重投影较小不能证明真实姿态正确。**oracle数字不属于可部署精度或实际改进成绩**。旋转及平移均须继续改进，不能依靠简单框约束补救。
 
 证据：outputs/action4_b0_frozen_factor_review_v001、action4_b0_center_scoring_candidate_v001、action4_center_scoring_video_v001、action4_full_demo_reference_v001、action4_frozen_test_ap_correction_v001、action4_pose_error_decomposition_v001。失败约束位于archive/legacy/postrelease_box_anchor_v001。A0/B0权重保持原封存身份，任务仍未完成。
+
+### 2026-10-23 摄影增强续训前验证
+
+新增摄影增强在8张真实训练RGB上实际改变模型输入（归一化RGB平均绝对差0.29216），原始图像、padding与全部标签记录保持不变；实际反向传播和参数更新通过，峰值显存13493MiB。四rank样本覆盖、persistent epoch更新、断点后缀与seed复现验证通过。这些是工程证据，没有新的精度结论。
+
+同时复现并修复best硬链接别名的临时文件残留：同inode两个名字的POSIX rename可能无操作，旧helper重复4次残留3个临时硬链接。新代码先判断samefile并用finally清理；重复别名与非获胜eval均不残留temp，已有故障重放6项回归通过。第一次旧回归因历史固定fixture目录已存在退出，原fixture保留，新增显式测试目录后成功；未跳过回归。
+
+新正式配置configs/model/action4_b0_photometric_v001.json；输出outputs/action4_b0_photometric_v001。训练效果待后续实际完成。
+
+A0已完成3024train/378eval的预测表面输入缓存。2个实际ROI的重构前向最大差0，几何损失等价；XYZ/相机射线/区域/掩码输入及R/t头均有实际梯度。16个实际ROI的优化器更新、保存加载后下一更新逐参数完全相同。上述是数据流与恢复工程检查，不是新准确率；正式80轮效果仍待训练评估。仅pose分支训练，冻结表面头不承担新梯度，边界明确。
+
+
+摄影增强与冻结表面姿态两项均已进入实际训练。截至2026-10-23T06:35:13.022923+08:00：B0 step2214、第45轮，完成110次eval；从全部worker报告核对的临时最佳step1700，开发mAP50:95=0.613484，双机179/184。初始化同协议mAP=.529753、双机171/184。A0 step11711、第62轮，best8625为196/378、高遮挡36/164；本试验初始化166/378、27/164。均为训练中间结果，最终还需全量eval闭合及真实视频验证。
+
+B0原GPU1评估落后，已增GPU6/7各一独占claim辅助worker，原训练源码未动；辅助只写done、不并发写BEST，最终ALL_EVAL_SELECTION必须核对201次评估。原GPU1初始两供数worker已实际退出。B0稳态compute67+A0compute3=70，控制器/监控预算2，总72；30分钟监控action4已更新。新增推理导出工具没有改动运行绑定源码，两个配置的source_identity逐项匹配。
+
+完成阶段导出门禁与A0组合包接口：训练未完成时禁止正式导出；用一次实际中间pose权重作临时组合检查，冻结surface11300/原backbone6300与pose头完整键形一致、冷加载成功，cached-feature到RGB-head预测差2.67e-5px，临时权重已删除。此检查没有重跑raw RGB backbone，也不是最终准确率；最终选优后仍须完整RGB/视频检查。当前新训练代码及结果尚未作为完成阶段推送。
+
+
+## 2026-10-23T07:49:42.983420+08:00 本轮80轮闭合与实际链路结论
+
+B0摄影增强完成80轮/4000step，201次评估全部成功并由ALL_EVAL_SELECTION统一核对，最终best3220（不是中间最高双机率的快照）。开发集mAP50:95=.6162104443、框F1=.9867374005、双机178/184；历史test mAP50:95=.6493924639、F1=.9937264743、双机196/200。同一保留A0PnP组合的八点开发221/378、高遮挡45/164；历史test253/400、高遮挡36/142。历史test仍非新盲测。
+
+完整2850帧新视频已完成时间轴/模型身份核查。全片5695个检测，303个位姿无效，涉及291帧。独立demo包络的同2773帧、IoU0.5双机参考一致性2268/2773=81.79%，比上一center策略67.15%提高；0.45/0.55阈值为84.31%/77.21%。77帧参考不可判定，未删除失败。12帧实际视觉复核仍看到1699漏检/误检、2473巨大错误cuboid、1163/1963无效或偏移角点，因此**真实任务仍未达标**。证据outputs/action4_photometric_validation_v001。
+
+A0冻结surface试验完成80轮/15120step、606eval，best8625在GTROI为196/378、heavy36/164；完整RGB预测ROI评估仅42/378、heavy4/164，拒绝替换保留A0。已导出完整研究候选验证链路，裸pose-only权重没有误用。评估profile此前含被bundle分支忽略的旧pose_method字段，实际REPORT身份为network；完成后保存原profile并去掉无效旧字段，预测未改。
+
+### 明确的A0训练/推理裁剪差异
+
+3024训练目标都经精确GT框裁剪，真实机身最大边在ROI中的比例固定44.4444%。365个匹配的B0预测ROI中，该比例1%–99%为35.43%–61.97%；283/365的真实中心落在训练中心1%–99%范围之外。训练GT框中心/尺度先验过强，不能把GTROI指标当作实际锚定。证据outputs/action4_training_domain_audit_v001/CROP_CONTRACT.json。
+
+已复用原A0的center±15%、scale0.65–1.35裁剪扰动，实现真实RGB输入、K矩阵、八角点同步变换。实际2ROI投影一致误差5.72e-5px；R/t/visibility不变，身份不重排；与生产prepare_rois完全一致。新RGB工作集每epoch改变裁剪，冻结backbone/surface且只更新pose头，实际前向等价与更新验证通过。这个在线裁剪训练尚未启动，不能声明已改善精度。
+
+新固定B0best3220的预测ROI验证输入已从实际RGB生成：GT仅供目标关联/计分；后续须把B0漏检/FP保留在联合分母里，不再只用GTROI选优。准备代码和输入位于src/data/action4_pose_rgb_batch.py、action4_online_pose_data.py、action4_prepare_predicted_pose_maps.py、src/model/action4_online_pose_rgb.py及outputs/action4_a0_roi_contract_v001。
+
+两个已结束运行的非best快照/last及重复视频分片已按清单清理，保留best及同inode不可变别名、完整预测/视频和后续需用输入。旧封存父模型未覆盖。当前研究选择见models/CURRENT_RESEARCH.json；新B0候选仅是当前较优研究模型，不是最终验收通过模型。

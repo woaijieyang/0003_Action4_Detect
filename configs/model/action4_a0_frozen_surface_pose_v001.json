@@ -1,0 +1,37 @@
+{
+  "output": "outputs/action4_a0_frozen_surface_pose_v001/train_run",
+  "cache_output": "outputs/action4_a0_frozen_surface_pose_v001",
+  "parent_bundle": "models/A0/best.pt",
+  "parent_expected_step": 13350,
+  "frozen_surface_checkpoint": "outputs/action4_gdr_surface_candidate_v001/train_run_v001/best.pt",
+  "frozen_surface_step": 11300,
+  "epochs": 80,
+  "batch": 16,
+  "lr": 0.0002,
+  "seed": 20261023,
+  "eval_every": 25,
+  "train_threads": 2,
+  "eval_threads": 1,
+  "device": "cpu",
+  "loss_weights": {
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0
+  },
+  "scope": "frozen stronger surface predictions, adapt existing ConvPnP only; GTROI diagnostic until full predicted-ROI/real validation",
+  "input_contract": "predicted XYZ/rays/regions/masks; GT rotation,translation,corners,visibility used only by losses and scoring",
+  "export_contract": "pose-only snapshot MUST combine with frozen surface11300 and original backbone6300 before RGB inference; never replace sealed A0 with bare head",
+  "source_identity": {
+    "src/model/action4_pose_maps.py": "8e83f8c7469aa1a8f930383dd8c7924ecbb15fa2959a6c2909c6a56ac62a4f36",
+    "src/model/heads/gdr_conv_pnp.py": "3ca9a666fca4c3bf41f67e9fbb170bd3005166d2870b168fc68e0ec464f5f9fe",
+    "src/model/heads/gdr_rotation.py": "e598291ca0969e53b3d966db55090d4b34bb2e67e1b68b0a1b8f1a3236c841c6",
+    "src/data/action4_pose_map_dataset.py": "c24a8537abcf69cbe52239fdd8f3b2264edaec3a0f969cd9788aeb217eeb87c8",
+    "src/model/training/action4_pose_maps_train.py": "b230a3451411ae20f9e72c4f8854e900591ba2ffeba046192d33045f2d97e67f",
+    "src/eval/action4_pose_maps_eval.py": "725f85dd8b983d4f45c1483e2bfca2607bed4222ed42b12ea456f4d908f55481",
+    "src/model/training/action4_runtime.py": "62c8f4c0a75238cc32dc1b29408b6dbb770f965e9220a418f8c1d1d6a9941784",
+    "src/model/training/action4_async_recovery.py": "14f658c20aa71cc8728762e3855ea8a69cadadc7f97156cba0112fcc99b68bad"
+  }
+}

@@ -1,0 +1,99 @@
+{
+  "output": "outputs/action4_b0_photometric_v001",
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 2.25
+  },
+  "validation_receipt": "outputs/required/DATA_VALIDATED_ALL_SPLITS.json",
+  "epochs": 80,
+  "batch": 32,
+  "micro": 8,
+  "loader_workers": 14,
+  "eval_every": 20,
+  "seed": 20261023,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "source_identity": {
+    "src/model/action4_online_b0.py": "2af5cff0bf1553027ecf43cc451140f9a735c5a052c742e3cb3ca48a2c9d8db4",
+    "src/model/action4_proposal_pool.py": "db2bf501ab29ba8859c98836cf190953c844d5969a442729831342a00e9cb3f2",
+    "src/model/action4_box_refinement.py": "ff696c8de9f43bd38790d7a5e458e1be7197f79dbb4212fbe783b1404bd7f6e1",
+    "src/model/action4_box_quality.py": "0e47541a00bafac62324e1e090192005150eae3241ee743bf6ba63b18816e653",
+    "src/model/action4_component_experiments.py": "273bd675807d24dd53c7c273417491c8e03f3116c5df874448cdb4a084dfaa20",
+    "src/model/training/action4_online_b0_batch.py": "511d05442779502643444edab81e55f7ab4ebf20da143baf81f3d3da6b92649e",
+    "src/model/training/action4_online_b0_train.py": "4ae3a0a317cbd3a4604f1e7eeaaeeb0933242df8b431034796bc4a2727ea0897",
+    "src/eval/action4_online_b0_eval.py": "c30eb0691dbaebabd47160b33026ebf870dc597380d6e5a457c91d889a244903",
+    "src/eval/action4_online_b0_pipeline.py": "e04394b93a115e77d6365fc9e19fa9516df853d8dcca2e25bba6e4aa80cbb321",
+    "src/eval/action4_soft_nms.py": "a8c823ea717bd45bcc8e551458120a296d060ca869622c4510aa5bd076f1a0a4",
+    "src/eval/action4_bbox_metrics.py": "1bc8ab4758880a08c8e08494531a24a6bc722f491e304cc516a48e9a4d89b80c",
+    "src/model/training/action4_async_recovery.py": "14f658c20aa71cc8728762e3855ea8a69cadadc7f97156cba0112fcc99b68bad",
+    "src/model/training/action4_online_b0_dispatch.py": "c094bce2205d4ec2f5ae9577a7978bc10b1de1515925419c0a86caec16033ed2",
+    "src/model/action4_release_bundle.py": "3aa76123f6ccf6ba4bbfbaa3491b228dfa7e9d959f98f9b9e3ee89ffb9b9547d",
+    "src/data/action4_photometric.py": "03a1781e491993b2ee511d3ab7d8bfdd04c62caf491f3516bd2e9e0043bbaa66",
+    "src/data/action4_epoch_batches.py": "33c06d4442b0ae0f63947e26dc35dbb684da194750b28fd82f78693f6006b728",
+    "src/eval/action4_b0_scoring.py": "465a77e4cffaae00320f23ae9a3c2226544cf0d8c6315343e2d16b5a80941e19",
+    "src/model/training/action4_photometric_dispatch.py": "e556fd31884798abfeed9dee537704a0ee8cbc614df3f65b5853e080854d3658",
+    "src/data/action4_component_data.py": "5f0fc284908110f4612e47379a1da28133609db43b850138a799c3fa60f0e988",
+    "src/data/action4_dataset.py": "101d754b29ff16df61c0e4cf63f3350da05d85e3ade389ae223f0c7e4546bf0e",
+    "src/data/action4_adapter.py": "df78347afbf0a3bb2ab004b4b80fbd76e99760c03d0f39450c24f5902f89fa7c",
+    "src/model/training/action4_runtime.py": "62c8f4c0a75238cc32dc1b29408b6dbb770f965e9220a418f8c1d1d6a9941784"
+  },
+  "data_identity": {
+    "data/train/annotations.jsonl": "f0e7b5d2de6b721101d9aee8069e828f5f03c6f1bf97572d5e44ad4829f6e03b",
+    "data/eval/annotations.jsonl": "791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34e",
+    "outputs/required/DATA_VALIDATED_ALL_SPLITS.json": "f8c6ca615b00290abbc16d980cfb831af32ff7837cc1e99e6a5c95b2f759691f"
+  },
+  "objective": "image-balanced dense detection+quality and refined GIoU/SmoothL1/Varifocal; feature gradient reaches B0 backbone; discrete proposal coordinates/priors detached",
+  "selection": "mAP50:95 then bboxF1; >90% dual +real verification mandatory acceptance",
+  "training_scope": "1600 train RGB,200dev eval,test unchanged; no extra augmentation in first controlled online comparison",
+  "production_accepted": false,
+  "world_size": 4,
+  "training_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "cpu_added_budget": 67,
+  "best_bundle": "models/B0/best.pt",
+  "parent_best_step": 2200,
+  "scope": "independent80epoch continuation from sealed best2200; photometry only; same global batch32/LR/loss and center-score evaluation; no data file mutation",
+  "persistent_workers": true,
+  "collective_timeout_seconds": 180,
+  "evaluation_scoring_policy": "center",
+  "photometric": {
+    "probability": 0.8,
+    "operation_probability": 0.5,
+    "add_range": [
+      -0.09803921568627451,
+      0.09803921568627451
+    ],
+    "multiply_range": [
+      0.6,
+      1.4
+    ],
+    "contrast_range": [
+      0.5,
+      2.2
+    ],
+    "blur_sigma_max": 1.2
+  },
+  "hypothesis": "train-time appearance variation may reduce synthetic-to-real domain sensitivity; must be tested, not assumed",
+  "augmentation_source": "https://github.com/THU-DA-6D-Pose-Group/GDR-Net/blob/1be9fe73292fd748087aa88d7bf987434f271ebb/configs/gdrn/lmo/a6_cPnP_AugAAETrunc_BG0.5_lmo_real_pbr0.1_40e.py",
+  "intentionally_not_reused": [
+    "CoarseDropout would require visibility/center target updates",
+    "Invert and background replacement omitted",
+    "not full GDR-Net augmentation or training reproduction"
+  ],
+  "deterministic_eval": true
+}

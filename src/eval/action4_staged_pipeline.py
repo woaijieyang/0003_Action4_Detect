@@ -59,12 +59,15 @@ class StagedPipeline:
         self.b0,_,bs=load_bundle(b0_bundle,"B0",device)
         self.a0,self.base,az=load_bundle(a0_bundle,"A0",device)
         self.bcfg=bs["config"];self.acfg=az["config"]
+        self.b0_scoring_policy=bs.get("inference_scoring_policy",self.bcfg.get("evaluation_scoring_policy","learned"))
         self.a0_kind=az["architecture"];self.pose_method=az["pose_method"]
         if self.a0_kind not in ("surface","joint_pose") or (self.a0_kind=="surface" and self.pose_method!="pnp"):
             raise ValueError("Invalid bundled architecture/decoder")
         self.identity={"B0_step":bs["selected_step"],"B0_config_id":bs["config_id"],"A0_step":az["selected_step"],
             "A0_kind":self.a0_kind,"A0_config_id":az["config_id"],"score_threshold":.3,"pose_method":self.pose_method,
             "deterministic_algorithms":True,"cublas_workspace":os.environ["CUBLAS_WORKSPACE_CONFIG"]}
+        if self.b0_scoring_policy not in ("learned","center","product"):raise ValueError("Unknown bundled scoring policy")
+        if self.b0_scoring_policy!="learned":self.identity["B0_scoring_policy"]=self.b0_scoring_policy
         if {p.data_ptr() for p in self.b0.parameters()} & {p.data_ptr() for p in self.a0.parameters()}:
             raise ValueError("Stages share parameter storage")
         return self
@@ -122,8 +125,9 @@ def load_pipeline(cfg,device="cuda:0"):
         pipeline=StagedPipeline.from_bundles(cfg["a0_bundle"],cfg["b0_bundle"],device)
     else:
         pipeline=StagedPipeline(cfg["b0_config"],cfg["b0_checkpoint"],cfg["a0_config"],cfg["a0_checkpoint"],cfg["a0_backbone"],device=device,pose_method=cfg["pose_method"],a0_kind=cfg.get("a0_kind","joint_pose"))
-    policy=cfg.get("b0_scoring_policy","learned")
+    policy=cfg.get("b0_scoring_policy",getattr(pipeline,"b0_scoring_policy","learned"))
     if policy not in ("learned","center","product"):raise ValueError("Unknown B0 scoring policy")
     pipeline.b0_scoring_policy=policy
     if policy!="learned":pipeline.identity["B0_scoring_policy"]=policy
+    else:pipeline.identity.pop("B0_scoring_policy",None)
     return pipeline

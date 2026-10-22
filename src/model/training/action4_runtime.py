@@ -212,6 +212,13 @@ def link_checkpoint_atomic(source: Path, target: Path) -> None:
     import uuid
     if source.resolve().parent != target.resolve(strict=False).parent:
         raise ValueError("Checkpoint aliases must stay in one run model directory")
+    if target.exists() and os.path.samefile(source, target):
+        return
     temporary = target.parent / (target.name + "." + uuid.uuid4().hex + ".tmp")
-    os.link(source, temporary)
-    os.replace(temporary, target)
+    try:
+        os.link(source, temporary)
+        os.replace(temporary, target)
+    finally:
+        # POSIX rename of two hard links to the same inode may be a no-op.
+        if temporary.exists():
+            temporary.unlink()

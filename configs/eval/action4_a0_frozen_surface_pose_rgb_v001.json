@@ -1,0 +1,12 @@
+{
+  "a0_bundle": "models/candidates/a0_frozen_surface_pose_v001/best.pt",
+  "b0_bundle": "models/B0/best.pt",
+  "b0_scoring_policy": "center",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "demo_reference": "data/action4_reference/demo_standard.mp4",
+  "training_completion_receipts": [
+    "outputs/action4_online_b0_v001/TRAIN_COMPLETE.json",
+    "outputs/action4_a0_frozen_surface_pose_v001/train_run/TRAIN_COMPLETE.json"
+  ],
+  "scope": "completed A0 trial versus same frozen B0center; predicted ROI evaluation, no test"
+}

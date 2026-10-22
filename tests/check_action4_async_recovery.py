@@ -2,7 +2,9 @@
 import json,os
 from pathlib import Path
 from model.training import action4_async_recovery as recovery
-root=Path("outputs/action4_gdr_pose_candidate_v002/recovery_fixture");root.mkdir(exist_ok=False)
+from data.action4_paths import PROJECT_ROOT,contained_path
+root=contained_path(PROJECT_ROOT,os.environ.get("ACTION4_RECOVERY_TEST_ROOT","outputs/action4_gdr_pose_candidate_v002/recovery_fixture"),exists=False)
+root.mkdir(exist_ok=False)
 for mode in ("before_done","before_alias"):
     out=root/mode;out.mkdir();queue=out/"eval";queue.mkdir()
     request=queue/"step_00000025.json";request.write_text("{}")

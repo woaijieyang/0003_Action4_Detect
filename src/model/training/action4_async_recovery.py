@@ -35,9 +35,14 @@ def commit_result(out,request,snapshot,result,rank):
         best=result
     if best is not None:
         selected=Path(best["checkpoint"])
-        temp=out/f"best_alias_{os.getpid()}.tmp"
-        if temp.exists():temp.unlink()
-        os.link(selected,temp);os.replace(temp,out/"best.pt")
+        target=out/"best.pt"
+        if not target.exists() or not os.path.samefile(selected,target):
+            temp=out/f"best_alias_{os.getpid()}.tmp"
+            try:
+                if temp.exists():temp.unlink()
+                os.link(selected,temp);os.replace(temp,target)
+            finally:
+                if temp.exists():temp.unlink()
     # Done is LAST. A crash before it replays this original snapshot safely.
     atomic_json(request.with_suffix(".done.json"),result)
     snapshot.unlink()

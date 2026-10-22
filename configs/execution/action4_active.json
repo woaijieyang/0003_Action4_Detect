@@ -1,7 +1,7 @@
 {
   "schema": "action4.active_execution_pointer.v1",
   "active_ref": {
-    "path": "configs/execution/action4_execution_r060.json",
-    "sha256": "accb7d4b7176ca4095488fe3c0413ffcdebdd7cf67e97fb2bd3211e6fc17b2d5"
+    "path": "configs/execution/action4_execution_r064.json",
+    "sha256": "51d51fa03699bed5458243c76fe7b8f8e5449d38c7b5accdb2d21a64ed19ebd1"
   }
 }

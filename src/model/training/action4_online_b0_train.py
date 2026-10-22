@@ -1,5 +1,5 @@
 """End-to-end B0 continuation; best parents,80epochs,20step async eval."""
-import json,os,math,time,fcntl,hashlib,traceback
+import json,os,math,time,fcntl,hashlib,traceback,datetime
 import numpy as np
 import torch
 import torch.distributed as dist
@@ -26,8 +26,8 @@ def publish(model,cfg,step,out):
 def train(config,resume=None,stop_after=None):
     attempt=current_attempt();cfg=json.loads((R/config).read_text());out=R/cfg["output"]
     rank=int(os.environ["RANK"]);world=int(os.environ["WORLD_SIZE"]);local=int(os.environ["LOCAL_RANK"])
-    if world!=2:raise ValueError("This run requires exactly2ranks")
-    torch.cuda.set_device(local);device=f"cuda:{local}";dist.init_process_group("nccl")
+    if world!=cfg.get("world_size",2):raise ValueError("Configured DDP world size mismatch")
+    torch.cuda.set_device(local);device=f"cuda:{local}";dist.init_process_group("nccl",timeout=datetime.timedelta(seconds=cfg.get("collective_timeout_seconds",600)))
     guard=(out/"train.lock").open("a")
     if rank==0:fcntl.flock(guard,fcntl.LOCK_EX|fcntl.LOCK_NB)
     if rank==0:
@@ -36,12 +36,12 @@ def train(config,resume=None,stop_after=None):
     dist.barrier()
     torch.set_num_threads(2);seed(cfg["seed"]);rng=np.random.default_rng(cfg["seed"]+91)
     data=ComponentData(cfg["validation_receipt"],"train","B0");assert len(data)==1600
-    model=OnlineB0(cfg["network"]).to(device)
     if cfg.get("best_bundle"):
         from model.action4_release_bundle import load_bundle
         model,_,parent=load_bundle(cfg["best_bundle"],"B0",device)
         if parent["selected_step"]!=cfg["parent_best_step"]:raise ValueError("Selected best step mismatch")
     else:
+        model=OnlineB0(cfg["network"]).to(device)
         base=torch.load(R/cfg["base_best"],map_location="cpu",weights_only=True)
         head=torch.load(R/cfg["adapter_best"],map_location="cpu",weights_only=True)
         if base["step"]!=5220 or head["step"]!=6300:raise ValueError("Unexpected selected parent step")
@@ -69,19 +69,22 @@ def train(config,resume=None,stop_after=None):
         atomic_json(out/"TRAIN_PROCESS.json",{"pids":pids,"attempt_id":attempt,"world_size":world})
         publish(model.module,cfg,step,out)
     dist.barrier()
+    from data.action4_epoch_batches import EpochRankBatches
+    sampler=EpochRankBatches(len(data),cfg["batch"],world,rank,cfg["seed"])
+    loader=DataLoader(data,batch_sampler=sampler,collate_fn=list,num_workers=cfg["loader_workers"],
+                      persistent_workers=bool(cfg.get("persistent_workers",False)),prefetch_factor=2,
+                      generator=torch.Generator().manual_seed(cfg["seed"]))
+    image_indices={record["sample_id"]:i for i,record in enumerate(data.records)}
     for ep in range(epoch,cfg["epochs"]):
-        order=np.random.default_rng(cfg["seed"]+ep*1000003).permutation(len(data)).tolist()
         start=cursor if ep==epoch else 0
-        if len(order)%cfg["batch"] or cfg["batch"]%world:raise ValueError("No padded/duplicated training samples allowed")
-        local_batch=cfg["batch"]//world
-        batches=[order[i+rank*local_batch:i+(rank+1)*local_batch] for i in range(start,len(order),cfg["batch"])]
-        loader=DataLoader(data,batch_sampler=batches,collate_fn=list,num_workers=cfg["loader_workers"],
-                          prefetch_factor=2,generator=torch.Generator().manual_seed(cfg["seed"]+ep))
+        sampler.set_epoch(ep,start)
         seen=start
         for items in loader:
             begin=time.monotonic();model.train();opt.zero_grad(set_to_none=True);logged={}
             for first in range(0,len(items),cfg["micro"]):
-                mini=items[first:first+cfg["micro"]];losses=batch_losses(model,mini,cfg,device)
+                mini=items[first:first+cfg["micro"]]
+                aug_seeds=[cfg["seed"]+ep*1000003+image_indices[item["record"]["sample_id"]]*104729 for item in mini] if cfg.get("photometric") else None
+                losses=batch_losses(model,mini,cfg,device,augmentation_seeds=aug_seeds)
                 fraction=len(mini)/len(items);loss=sum(losses.values())*fraction
                 if not torch.isfinite(loss):raise FloatingPointError("Nonfinite B0 loss")
                 loss.backward()
@@ -91,7 +94,7 @@ def train(config,resume=None,stop_after=None):
             ne,nc=(ep+1,0) if seen==len(data) else (ep,seen)
             values=torch.tensor([logged[k] for k in sorted(logged)],device=device);dist.all_reduce(values);values/=world
             logged=dict(zip(sorted(logged),values.cpu().tolist()))
-            status={"step":step,"epoch":ep+1,"cursor":seen,"losses":logged,"gradient_norm":float(norm),"seconds":time.monotonic()-begin,"peak_memory_mib":torch.cuda.max_memory_allocated()/1048576}
+            status={"step":step,"epoch":ep+1,"cursor":seen,"losses":logged,"gradient_norm":float(norm),"seconds":time.monotonic()-begin,"peak_memory_mib":torch.cuda.max_memory_allocated()/1048576,"photometric_enabled":bool(cfg.get("photometric")),"world_size":world}
             if rank==0:
                 atomic_json(out/"STATUS.json",status)
                 with (out/"train.jsonl").open("a") as f:f.write(json.dumps(status)+"\n")
