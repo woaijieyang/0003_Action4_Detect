@@ -1,0 +1,47 @@
+{
+  "schema": "action4.skin_colour_diagnostic.v1",
+  "mode": "single_variable_diagnostic",
+  "dataset_generation_allowed": false,
+  "shot_id": "left_wrist",
+  "variants": [
+    "original_photo",
+    "constant_linear_mean"
+  ],
+  "threads": 2,
+  "gpu_uuid": "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+  "mix_factor": 0.65,
+  "sources": {
+    "preview_config": {
+      "path": "configs/data/action4_global_preview_v001.json",
+      "sha256": "01cc55a4e731dad647d63613b7bd0178c28a99bcc4ee5a97537480e6cb7419fb"
+    },
+    "renderer_module": {
+      "path": "src/data/action4_global_render.py",
+      "sha256": "6b775689f43ba1b23e0a8a0b8c7a860a43f31b37d259daa53c19773dc47bcc68"
+    },
+    "foundation_module": {
+      "path": "src/data/action4_blender_foundation.py",
+      "sha256": "bcfb7915d4fa28c9cbbce656c047670fac675435196f46558aef67605fb60bf8"
+    },
+    "photo": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/skin_forearm.png",
+      "sha256": "c08be03fee99e49061fe67ab9f68c688af8881c34daf579b349b25e9403f4d16"
+    },
+    "patch_audit": {
+      "path": "outputs/action4_realism_reassessment_v001/skin_appearance_audit_v001/patch_audit.json",
+      "sha256": "e6d38486015dc9ca7aa91def6eee0d32271c1c7b55a51d7200414e5331050a6f"
+    },
+    "mean_evidence": {
+      "path": "outputs/action4_realism_reassessment_v001/skin_appearance_audit_v001/implementation_v001/linear_mean.json",
+      "sha256": "be2fbbb6d6855c74c11345d93fd2a8bbde3fd2256beac7cbc1ab4ceb8f9a5e4a"
+    },
+    "diagnostic_module": {
+      "path": "src/data/action4_skin_diagnostic.py",
+      "sha256": "9bce39572a544ef32cad703f459af836753235ab3f60dee9e7c8b6783b4c6310"
+    },
+    "diagnostic_cli": {
+      "path": "scripts/action4_skin_diagnostic.py",
+      "sha256": "52ebf99e6398817378e49cd78b1c530078859fa9021f69bc9a6da8e184e1ee7b"
+    }
+  }
+}

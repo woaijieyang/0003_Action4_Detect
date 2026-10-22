@@ -1,6 +1,8 @@
 # 模型资产
 
-本目录保存模型权重、checkpoint、adapter 及其本地资产。正式模型代码位于 [src/model](../src/model/README.md)，测评时的加载和设备设置位于 [src/eval](../src/eval/README.md)。
-
-根据真实模型需求建立子目录，记录来源、版本和校验状态。已有 checkpoint 不覆盖，新训练输出使用新身份；不自动下载模型或修改共享权重。
-除本 README 外，全部内容默认被 Git 忽略。目录骨架不代表已有模型或完成模型验证。
+正式保留位置为A0/best.pt和B0/best.pt，阶段权重独立。
+当前包是开发集选择的研究候选，真实视频验收未通过，禁止自动升级为生产模型。
+A0包内有冻结RGB backbone与几何任务头；B0包内有检测器与框/质量修正头。
+load_bundle和warm_start位于src/model/action4_release_bundle.py。后者从best重新初始化优化器。
+历史各运行best及必要父模型按archive/legacy清单归档；非最佳过程快照不保留。
+pretrained保留原预训练资产及其来源。权重不会进入普通Git提交。

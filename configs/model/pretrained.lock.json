@@ -1,0 +1,11 @@
+{
+  "schema_version": "action4.pretrained.v1",
+  "model": "torchvision.models.resnet50",
+  "weights": "IMAGENET1K_V2",
+  "torchvision_version": "0.23.0",
+  "url": "https://download.pytorch.org/models/resnet50-11ad3fa6.pth",
+  "path": "models/pretrained/resnet50-11ad3fa6.pth",
+  "sha256": "11ad3fa62ca79e40addfd354a8ec4b7c75143b3038b8d2a807fbc68deab379ca",
+  "bytes": 102540417,
+  "task_trained_checkpoint": false
+}

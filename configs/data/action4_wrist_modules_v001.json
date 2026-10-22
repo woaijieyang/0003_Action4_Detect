@@ -1,0 +1,41 @@
+{
+  "schema": "action4.wrist_modules.v1",
+  "sources": {
+    "design": {
+      "path": "outputs/action4_realism_reassessment_v001/modular_wrist_assembly_design_v001/design.json",
+      "sha256": "5927631620520faa5202a6f92deff2747cd682a974ccadb00a22b3a8256daa6a"
+    },
+    "design_handoff": {
+      "path": "outputs/action4_realism_reassessment_v001/modular_wrist_assembly_design_v001/handoff.json",
+      "sha256": "430a3379e86b45a4817d46f0f4151801c290fe6d0d677b419924465414c04236"
+    },
+    "asset": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "snapshot": {
+      "path": "outputs/action4_realism_reassessment_v001/full_rig_forward_v001/snapshot_v002.json",
+      "sha256": "ab11d0349d21a838db3c08e729ae715fcb97fabcb78175492db2674f83a740a3"
+    },
+    "neutral_cache": {
+      "path": "outputs/action4_realism_reassessment_v001/wrist_motion_fk_actual_v001/neutral_preflight/actual_skin.npz",
+      "sha256": "ff66a61852404d22eaa70018146e6b7d69ebb5bc4b9e9e45552247503ab2c703"
+    },
+    "scene_module": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "environment_module": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    }
+  },
+  "dataset_generation_allowed": false,
+  "source_object": "global_source_anatomy",
+  "selection": "frozen_forearm_and_natural_hand",
+  "frame_policy": "body_data_rigid_child_in_brace_root"
+}

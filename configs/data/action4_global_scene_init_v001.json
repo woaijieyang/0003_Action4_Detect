@@ -1,0 +1,125 @@
+{
+  "schema": "action4.global_scene_init.v1",
+  "status": "initialization_pending_fit",
+  "dataset_generation_allowed": false,
+  "sources": {
+    "finger_asset": {
+      "path": "data/action4_scene_assets/finger_rig_init_v001/build_v007/finger_rig_initial.blend",
+      "sha256": "9e04944c022cfb7e14f688d1a60541f368a16f7318af85e1a38e0cc034eaee12"
+    },
+    "finger_contract": {
+      "path": "data/action4_scene_assets/finger_rig_init_v001/build_v007/finger_contract.json",
+      "sha256": "63981db76437a499c821ed9a9d74e947d9b539ed9a458ef8ee892332dd901981"
+    },
+    "environment_config": {
+      "path": "configs/data/action4_global_environment_init_v001.json",
+      "sha256": "0b13b38d0869950bf3f033f9445069f5110620c329c1aa38cc1ed24fddcf24c2"
+    },
+    "environment_asset": {
+      "path": "data/action4_scene_assets/global_environment_init_v001/build_v005/initial.blend",
+      "sha256": "4a9d33c75bd070aee535cecc455ab53abef9287e8b58b5c04f78a26eea3492af"
+    },
+    "environment_module": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "finger_module": {
+      "path": "src/data/action4_finger_rig.py",
+      "sha256": "842f677f913c88f1785c61a92d2addbb1aa5cbb1f6a34b483911ccc3d1240479"
+    },
+    "rig_module": {
+      "path": "src/data/action4_global_rig.py",
+      "sha256": "050bfb65eec1a6b5b1b493b62e67b3cec96eeb6a541c1eebe0744b601f3090f1"
+    },
+    "synthesis_module": {
+      "path": "src/data/action4_synthesis.py",
+      "sha256": "549c2d4887211d1d5d0c49d19a8887d68661e1797ba86c6e23d0fba09db42549"
+    },
+    "foundation_module": {
+      "path": "src/data/action4_blender_foundation.py",
+      "sha256": "bcfb7915d4fa28c9cbbce656c047670fac675435196f46558aef67605fb60bf8"
+    },
+    "render_module": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "photo_manifest": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/source_photo_manifest.json",
+      "sha256": "eeef640293fcee95c4e014be4cbdc771c4fd8dad80d7bc0f9d76d5b3b634782a"
+    },
+    "skin_forearm": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/skin_forearm.png",
+      "sha256": "c08be03fee99e49061fe67ab9f68c688af8881c34daf579b349b25e9403f4d16"
+    },
+    "wristband_weave": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/wristband_weave.png",
+      "sha256": "624c6b107c0636f3f2da301ff998a40e6348a6c364f8be0db0c926a4705673ce"
+    },
+    "canonical_manifest": {
+      "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+      "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+    }
+  },
+  "initial_priors": {
+    "claim": "All accessory dimensions, placement, colors and photo tiling are unmeasured design/source priors, not fitted measurements or sampling ranges.",
+    "skin_linear_rgb": [
+      0.48,
+      0.27,
+      0.17
+    ],
+    "skin_photo_tile_m": 0.06,
+    "skin_photo_strength": 0.65,
+    "brace_linear_rgb": [
+      0.15,
+      0.18,
+      0.18
+    ],
+    "brace_photo_tile_m": 0.022,
+    "green_linear_rgb": [
+      0.24,
+      0.4,
+      0.025
+    ],
+    "green_edge_radius_m": 0.0012,
+    "white_linear_rgb": [
+      0.55,
+      0.58,
+      0.57
+    ],
+    "white_module_dimensions_m": [
+      0.041,
+      0.031,
+      0.015
+    ],
+    "white_module_surface_gap_m": 0.001,
+    "black_linear_rgb": [
+      0.008,
+      0.01,
+      0.012
+    ],
+    "ball_radius_m": 0.006,
+    "link_radius_m": 0.004,
+    "quick_release_dimensions_m": [
+      0.043,
+      0.026,
+      0.009
+    ],
+    "usb_dimensions_m": [
+      0.008,
+      0.012,
+      0.023
+    ],
+    "usb_cad_yz_m": [
+      0.003,
+      -0.004
+    ],
+    "cable_radius_m": 0.0017,
+    "cable_proximal_offsets_m": [
+      0.03,
+      0.1,
+      0.2,
+      0.3
+    ],
+    "collision_claim": "Unfitted assembly/contact priors; no collision-free or dynamic cloth claim"
+  }
+}

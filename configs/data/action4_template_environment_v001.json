@@ -1,0 +1,54 @@
+{
+  "schema": "action4.template_environment_layout.v1",
+  "reason": "Original wall at z=.85m and table/cloth z=.45.. .8m hide wide-depth .4..1.4m targets. Move fixed background behind target centre domain once per worker. Preserve actor CAD dimensions and garment/table relative geometry.",
+  "wall": {
+    "object": "modular_preview_wall",
+    "translation_capture_m": [
+      0,
+      0,
+      1.5
+    ],
+    "dimensions_world_m": [
+      3.6,
+      2.8,
+      0.02
+    ]
+  },
+  "templates": {
+    "wall": {
+      "roots": [
+        "modular_preview_table"
+      ],
+      "translation_capture_m": [
+        0,
+        0.15,
+        1.05
+      ]
+    },
+    "table_full_garment": {
+      "roots": [
+        "modular_environment_v002_table",
+        "wearing_garment_table_garment_frame"
+      ],
+      "translation_capture_m": [
+        0,
+        0.15,
+        1.05
+      ]
+    },
+    "cloth_lift10_full_garment": {
+      "roots": [
+        "modular_environment_v002_table",
+        "wearing_garment_table_garment_frame"
+      ],
+      "translation_capture_m": [
+        0,
+        0.15,
+        1.05
+      ]
+    }
+  },
+  "applied_once_per_worker": true,
+  "safe_for_all_actor_poses": false,
+  "final_collision_and_mask_check_required": true
+}

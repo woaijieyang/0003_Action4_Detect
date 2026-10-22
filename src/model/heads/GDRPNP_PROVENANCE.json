@@ -1,0 +1,12 @@
+{
+  "upstream_commit": "1be9fe73292fd748087aa88d7bf987434f271ebb",
+  "source": "upstream/gdr_net/core/gdrn_modeling/models/conv_pnp_net.py",
+  "source_sha256": "ab830d8281895cb9bcf90b96abef3745a8dc40edea12abc62d083ae0a4944002",
+  "license": "GDRNET_LICENSE.txt",
+  "changes": [
+    "replace mmcv initialization and normalization with existing equivalent torch functions",
+    "drop_prob=0 only; unused DropBlock dependency removed",
+    "clone correspondence input before upstream in-place unit conversion"
+  ],
+  "architecture": "ConvPnP layers unchanged; application selects rot6d, mask concatenation,64regions; no full GDRNPP claim"
+}

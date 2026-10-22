@@ -1,0 +1,20 @@
+{
+  "schema": "action4.template_worker.v1",
+  "plan_path": "configs/data/action4_independent_acceptance_v001.json",
+  "template": "table_full_garment",
+  "indices": [
+    25,
+    28,
+    31,
+    34,
+    37,
+    40,
+    43,
+    46
+  ],
+  "gpu_uuid": "GPU-8dfd78d1-6a27-4292-3338-9d33fffee9ef",
+  "threads": 2,
+  "max_attempts": 32,
+  "data_out": "data/action4_synth/acceptance_v001_candidate/batch_018",
+  "runtime_out": "outputs/action4_independent_acceptance_v001/batch_018"
+}

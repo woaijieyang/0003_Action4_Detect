@@ -1,0 +1,61 @@
+{
+  "output": "outputs/action4_online_b0_v001",
+  "base_best": "outputs/action4_box_quality_candidate_v001/base_B0_best.pt",
+  "adapter_best": "outputs/action4_box_refinement_v001/final_best_frozen.pt",
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 2.25
+  },
+  "validation_receipt": "outputs/action4_independent_trials_v001/DATA_VALIDATED.json",
+  "epochs": 80,
+  "batch": 32,
+  "micro": 16,
+  "loader_workers": 6,
+  "eval_every": 20,
+  "seed": 20261026,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "source_identity": {
+    "src/model/action4_online_b0.py": "2af5cff0bf1553027ecf43cc451140f9a735c5a052c742e3cb3ca48a2c9d8db4",
+    "src/model/action4_proposal_pool.py": "db2bf501ab29ba8859c98836cf190953c844d5969a442729831342a00e9cb3f2",
+    "src/model/action4_box_refinement.py": "ff696c8de9f43bd38790d7a5e458e1be7197f79dbb4212fbe783b1404bd7f6e1",
+    "src/model/action4_box_quality.py": "0e47541a00bafac62324e1e090192005150eae3241ee743bf6ba63b18816e653",
+    "src/model/action4_component_experiments.py": "273bd675807d24dd53c7c273417491c8e03f3116c5df874448cdb4a084dfaa20",
+    "src/model/training/action4_online_b0_batch.py": "c5aa8b8d09ebcb4f5bcb0cf48948ade007e269207dbbef7632006eb160f643ba",
+    "src/model/training/action4_online_b0_train.py": "e54a0fd98a2c3b335c3811317e09a13417df2ecd2041561193a4b9ea68c0245a",
+    "src/eval/action4_online_b0_eval.py": "5770207fa2db3bc7579d30804cb8d6847b5ffbbafabe53accba60a858d6229d1",
+    "src/eval/action4_online_b0_pipeline.py": "e04394b93a115e77d6365fc9e19fa9516df853d8dcca2e25bba6e4aa80cbb321",
+    "src/eval/action4_soft_nms.py": "a8c823ea717bd45bcc8e551458120a296d060ca869622c4510aa5bd076f1a0a4",
+    "src/eval/action4_bbox_metrics.py": "1bc8ab4758880a08c8e08494531a24a6bc722f491e304cc516a48e9a4d89b80c",
+    "src/model/training/action4_async_recovery.py": "1fddd000397b5a20fa8bcc08e2df62a1307e3a8e1917a1f57381cc0eae499753",
+    "src/model/training/action4_online_b0_dispatch.py": "c094bce2205d4ec2f5ae9577a7978bc10b1de1515925419c0a86caec16033ed2"
+  },
+  "data_identity": {
+    "data/train/annotations.jsonl": "f0e7b5d2de6b721101d9aee8069e828f5f03c6f1bf97572d5e44ad4829f6e03b",
+    "data/eval/annotations.jsonl": "791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34e",
+    "outputs/action4_independent_trials_v001/DATA_VALIDATED.json": "b9fdf08b822aaa56221c60dcf4cdecb0b951804a840da9394f2010a8fa134da3",
+    "outputs/action4_box_quality_candidate_v001/base_B0_best.pt": "6c5fb9c2ad77477204e3cbec88d7f58f698414dbd58d8620b043fb99429031d7",
+    "outputs/action4_box_refinement_v001/final_best_frozen.pt": "ef9020665229b6602e21b1e38a93207351f7867341c692297519bcdf173af9af"
+  },
+  "objective": "image-balanced dense detection+quality and refined GIoU/SmoothL1/Varifocal; feature gradient reaches B0 backbone; discrete proposal coordinates/priors detached",
+  "selection": "mAP50:95 then bboxF1; >90% dual +real verification mandatory acceptance",
+  "training_scope": "1600 train RGB,200dev eval,test unchanged; no extra augmentation in first controlled online comparison",
+  "production_accepted": false,
+  "world_size": 2,
+  "training_gpus": [
+    5,
+    6
+  ],
+  "cpu_added_budget": 19
+}

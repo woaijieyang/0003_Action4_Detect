@@ -1,0 +1,132 @@
+{
+  "schema_version": "action4.global_rig_init.v1",
+  "status": "initialization_pending_fit",
+  "dataset_generation_allowed": false,
+  "architecture": {
+    "path": "outputs/action4_realism_reassessment_v001/global_scene_architecture_v001.json",
+    "sha256": "a687c808adaaf6864f37ad1d64c5bbea93cd8ce2f0df07b8c726a8bad3dc901f"
+  },
+  "body": {
+    "path": "data/action4_scene_assets/blender_human_base_v1_0_0/human_base_meshes_bundle.blend",
+    "sha256": "660e245812ef56768bc71293bd4c8bc1fd19a63710e16aafc8258a7351cbc35e",
+    "object": "GEO-body_male_realistic",
+    "collection": "Body Male - Realistic",
+    "source_scale": 1.0,
+    "region_ids": {
+      "shoulder": 3,
+      "upper_arm": 12,
+      "forearm": 102,
+      "palm": 93,
+      "digits": [
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        77,
+        78,
+        79,
+        88,
+        89,
+        90,
+        91,
+        92
+      ]
+    },
+    "side_sign": {
+      "left": 1,
+      "right": -1
+    }
+  },
+  "camera": {
+    "asset_dir": "data/DJI_Action4_construct/r3_v001",
+    "asset_manifest": {
+      "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+      "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+    },
+    "foundation": {
+      "path": "data/DJI_Action4_construct/server_r4_realism_v002/DJI_Action4_Editable_Foundation_R4_realism_v002.blend",
+      "sha256": "c43de54aa76bc1127f30e54dd17a1b07957da96a91bf51ea0c650fdbfc69197c"
+    }
+  },
+  "brace": {
+    "proximal_offset_m": 0.035,
+    "width_m": 0.028,
+    "clearance_m": 0.003,
+    "thickness_m": 0.0012,
+    "radial_reference_world": [
+      0,
+      -1,
+      0
+    ]
+  },
+  "attachment": {
+    "camera_rotation_xyz_deg": [
+      90,
+      0,
+      0
+    ],
+    "support_height_m": 0.012,
+    "support_width_m": 0.025,
+    "support_depth_m": 0.015,
+    "claim": "source_geometry_initialization_not_video_fit"
+  },
+  "pose_limit_degrees": 25,
+  "validation_poses": [
+    {
+      "name": "bounded_bilateral_arm",
+      "joints": {
+        "left_upper_arm": [
+          5,
+          0,
+          0
+        ],
+        "right_upper_arm": [
+          -5,
+          0,
+          0
+        ],
+        "left_forearm": [
+          0,
+          0,
+          12
+        ],
+        "right_forearm": [
+          0,
+          0,
+          -12
+        ],
+        "left_hand": [
+          10,
+          0,
+          0
+        ],
+        "right_hand": [
+          -10,
+          0,
+          0
+        ]
+      }
+    },
+    {
+      "name": "hand_only",
+      "joints": {
+        "left_hand": [
+          20,
+          0,
+          0
+        ],
+        "right_hand": [
+          -20,
+          0,
+          0
+        ]
+      }
+    }
+  ]
+}

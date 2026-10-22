@@ -1,0 +1,19 @@
+{
+  "schema": "action4.quality_job.v1",
+  "mode": "smoke",
+  "workers": 1,
+  "threads_per_worker": 2,
+  "gpu_uuid": "GPU-510dc520-5a9d-1317-019d-de5ed02c1b37",
+  "plan_ref": {
+    "path": "outputs/action4_pilot2000_candidate_plan_v006/plan.json",
+    "sha256": "f0f3aec5619272df82ec5b2ff262e6a857abffae981d417eaeb87f872addde2c"
+  },
+  "accepted128_ref": {
+    "path": "outputs/action4_fast_pipeline_repair_v001/ROOT_ACCEPTED128.json",
+    "sha256": "146a5d4a1b09d4f5604ccb795da79e134fe7db6acb663a8330a25cafed116880"
+  },
+  "fixture_manifests": [
+    "data/action4_synth/pilot2000_v006_candidate/preview_shard_01_fast_v001/manifest.jsonl",
+    "data/action4_synth/pilot2000_v006_candidate/preview_shard_21_fast_v001/manifest.jsonl"
+  ]
+}

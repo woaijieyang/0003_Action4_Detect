@@ -1,0 +1,45 @@
+{
+  "schema": "action4.fast_execution_policy.v1",
+  "plan_ref": {
+    "path": "outputs/action4_pilot2000_candidate_plan_v006/plan.json",
+    "sha256": "f0f3aec5619272df82ec5b2ff262e6a857abffae981d417eaeb87f872addde2c"
+  },
+  "handoff_ref": {
+    "path": "outputs/action4_pilot2000_candidate_plan_v006/HANDOFF.json",
+    "sha256": "60447dea6de1b98619aced80237c34d60a89c1777f03981a69f44cd1c6413b9f"
+  },
+  "implementation_refs": [
+    {
+      "path": "src/data/action4_fast_generation.py",
+      "sha256": "c4fa1668383b633e232ecefafcc3a1ff68c13247330f9406e8c370feb9e75cf6"
+    },
+    {
+      "path": "src/data/action4_fast_launcher.py",
+      "sha256": "0114dbf22a2f39c9804da784edc91aa4851431392b420f9e016d89d8ec014fcb"
+    },
+    {
+      "path": "src/data/action4_runtime_memo.py",
+      "sha256": "53722c1d4deb65ffa5d7deb6671f55eef431834a41bbfc243054a714e2ce2712"
+    },
+    {
+      "path": "src/data/action4_persistent_base.py",
+      "sha256": "736e2cff6bf3d1f9b94561e6dd8e2eca7f23f51ac88559b62f512c0e50030e07"
+    },
+    {
+      "path": "src/data/action4_execution_cache.py",
+      "sha256": "f27a713df100b302012c0f1626f6afd0effa4d833d2b0e02c64389e61e21b37a"
+    },
+    {
+      "path": "src/data/action4_execution_authority.py",
+      "sha256": "b545bc4a903ef2adc8d2c7635d67e01d8ae3803fca98761be2b74f05a0dc9001"
+    },
+    {
+      "path": "scripts/action4_render_fast.py",
+      "sha256": "db770a994c8434737ce5617eeef6d5709ae47d8edbe83735401c6096791b20cd"
+    }
+  ],
+  "scope": "execution only; original physical assets, parameters, ordered8 and image checks unchanged",
+  "persistent_base": "one base per worker; per-entry restore to template; final original-base restore",
+  "runtime_memo": "fresh binary mesh fingerprint and immutable input stat guard, fresh SHA close",
+  "training_accepted": false
+}

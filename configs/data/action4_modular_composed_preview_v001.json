@@ -1,0 +1,166 @@
+{
+  "schema": "action4.modular_composed_right_f0.v1",
+  "status": "estimated_diagnostic_pending_RGB",
+  "dataset_generation_allowed": false,
+  "frame_id": 0,
+  "instance_id": 2,
+  "threads": 2,
+  "resolution_wh": [
+    3248,
+    2464
+  ],
+  "render": {
+    "device": "CUDA",
+    "denoiser": "OPTIX",
+    "samples": 64,
+    "mask_samples": 1,
+    "amodal_mode": "crop",
+    "amodal_margin_px": 16,
+    "seed": 20261020
+  },
+  "environment": {
+    "claim": "One scalar illumination balance after v002 wall/forearm measured appearance: same broad wall-directed source, geometry and materials unchanged. Estimated photometric candidate, not measured physical illumination.",
+    "wall_front_capture_z_m": 0.85,
+    "wall_size_xy_m": [
+      1.4,
+      1.2
+    ],
+    "wall_thickness_m": 0.02,
+    "wall_linear_rgb": [
+      0.22,
+      0.23,
+      0.25
+    ],
+    "roughness": 0.9,
+    "table_front_capture_z_m": 0.6,
+    "table_back_edge_native_y_px": 2365,
+    "table_width_m": 1.4,
+    "table_thickness_m": 0.025,
+    "grid_pitch_m": 0.025,
+    "grid_line_fraction": 0.04,
+    "grid_cell_linear_rgb": [
+      0.4,
+      0.42,
+      0.43
+    ],
+    "grid_line_linear_rgb": [
+      0.008,
+      0.012,
+      0.015
+    ],
+    "world_linear_rgb": [
+      0.45,
+      0.46,
+      0.47
+    ],
+    "world_strength": 1.12,
+    "area_location_capture_m": [
+      0,
+      -0.25,
+      0.6
+    ],
+    "area_target_capture_m": [
+      0,
+      -0.25,
+      0.85
+    ],
+    "area_energy_w": 3.5,
+    "area_size_m": 1.4,
+    "area_color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "view_transform": "Standard",
+    "look": "Medium High Contrast",
+    "exposure": 0.0,
+    "gamma": 1.0
+  },
+  "review_crop_xyxy": [
+    1800,
+    450,
+    3100,
+    2464
+  ],
+  "pending": [
+    "HANDY25 is source-local diagnostic, not GT pose or wearing acceptance",
+    "mount nominal design joints/ports unmeasured; zero intersections not containment",
+    "single rightf0 only; environmentdepth/material/light estimated",
+    "no calibration, batch generation or training acceptance"
+  ],
+  "output_scope": "outputs/action4_modular_composed_prepare_v001/runs",
+  "sources": {
+    "neutral_config": {
+      "path": "configs/data/action4_modular_preview_photometry_v003.json",
+      "sha256": "0cee89dad752c58826e77cf941526e5be2242a69c2ae336dcc342a2b3bdd9a73"
+    },
+    "composed_module": {
+      "path": "src/data/action4_modular_composed_render.py",
+      "sha256": "6d70fa25273b0f515cdbead5427e1b5c0a6fa0c1ec514b55838e8bfe22b0dae5"
+    },
+    "entrypoint": {
+      "path": "scripts/action4_modular_composed_render.py",
+      "sha256": "7843af010cc74c64ed6af8d5efa821c77672d065a3a845687fd9fa69e85aeaf0"
+    },
+    "registry_v003": {
+      "path": "configs/data/action4_frozen_modules_v003.json",
+      "sha256": "dae2b36351009060159f2885c6d4258c02da0c87333b57c6919df1109a553ef5"
+    },
+    "y25_result": {
+      "path": "outputs/action4_local_hand_y25_v001/actual_once/result.json",
+      "sha256": "0e7fe1756dfd6f35d33dd24cbd8238cdedc2dcb14075fde3ef39fc55e38b6994"
+    },
+    "y25_row": {
+      "path": "outputs/action4_local_hand_y25_v001/actual_once/y_plus25.json",
+      "sha256": "632c8ea71e6d578dbf70228b67423923cc1d2fcc30c9ded196d5f1e6b26c38ce"
+    },
+    "y25_geometry": {
+      "path": "outputs/action4_local_hand_y25_v001/actual_once/y_plus25.npz",
+      "sha256": "4ca3850205ac4464c257de80f59bc6eb4583ba3ebc8b4131a1667e557edd53ef"
+    },
+    "y25_review": {
+      "path": "outputs/action4_local_hand_y25_spec_review_v001/result_review.json",
+      "sha256": "0f4800e44bb0ea9babf8ad034d8b6859577341f7f6629d9d6a350f8748eb4835"
+    },
+    "mount_asset": {
+      "path": "outputs/action4_mount_modules_v001/actual_build_v001/right_mount_components.blend",
+      "sha256": "0ab44be68da5a60e8c34637fce1c6d662a814f31ed8d1d76d2c6c1e3a4e2fb8d"
+    },
+    "mount_contract": {
+      "path": "outputs/action4_mount_modules_v001/actual_build_v001/module_contract.json",
+      "sha256": "1c535c1c801c0b23dcb2571d00dd2e8a3a38fe631f017163194511b7a7b5f908"
+    },
+    "mount_geometry": {
+      "path": "outputs/action4_mount_modules_v001/actual_build_v001/actual_geometry.npz",
+      "sha256": "b49dbd955bbb909220267d274c38464434e25d4f38cc2fdf91d24a10ae38252f"
+    },
+    "mount_collision": {
+      "path": "outputs/action4_mount_modules_v001/actual_build_v001/collision_diagnostics.json",
+      "sha256": "0680ebed9f66141bea7fd1bab0c51babe6e8af71b4c218ff9ffd6ce55fae5617"
+    },
+    "mount_receipt": {
+      "path": "outputs/action4_mount_modules_v001/actual_build_v001/build_receipt.json",
+      "sha256": "9ebf824b735bc0f3ae0b79d6402ad2f45a5b882fe7f0e9f72a16f4ffc172fe6f"
+    },
+    "wrist_geometry": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_geometry.npz",
+      "sha256": "f282c4d8af79c48fcc488588519c0f685a9882089110709a575fd9133f26d582"
+    },
+    "wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_contract.json",
+      "sha256": "6a05530fb88d7a868988e2e4036fb7ec38b98176104a05b05805e50e462edc9e"
+    },
+    "source_neutral_geometry": {
+      "path": "outputs/action4_realism_reassessment_v001/wrist_motion_fk_actual_v001/neutral_preflight/actual_skin.npz",
+      "sha256": "ff66a61852404d22eaa70018146e6b7d69ebb5bc4b9e9e45552247503ab2c703"
+    },
+    "mount_helper": {
+      "path": "src/data/action4_mount_modules.py",
+      "sha256": "d787812f57ac92615bf3a5f22f0c4da44d60219d63bf5dddd87007499ca1e8e3"
+    },
+    "mount_y25_contact": {
+      "path": "outputs/action4_modular_composed_prepare_v001/mount_Y25_cache_contacts.json",
+      "sha256": "5420475720209f98ebb8e5f7ab2508ec3b111a70c01cfa04b191c4b10b3c0ff2"
+    }
+  }
+}

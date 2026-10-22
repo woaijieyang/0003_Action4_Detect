@@ -1,0 +1,501 @@
+{
+  "schema_version": "action4.synthesis.v2",
+  "recipe_version": "server_r4_preview_v001_cuda",
+  "source_video_sha256": "016628eca2887220080d823f65d4f9c520ded71be363dbbbee95e175df7bd3e8",
+  "asset_dir": "data/DJI_Action4_construct/r3_v001",
+  "hand_asset": "data/action4_scene_assets/hand_r3_v001/hand_realistic_cc0.blend",
+  "resolution_wh": [
+    812,
+    616
+  ],
+  "render": {
+    "samples": 16,
+    "mask_samples": 1,
+    "device": "CUDA",
+    "gpu_uuids": [
+      "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f",
+      "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+      "GPU-b1ae5be6-1dba-7343-e233-59df41402f33",
+      "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e"
+    ]
+  },
+  "instance_weights": [
+    0.05,
+    0.15,
+    0.8
+  ],
+  "position_jitter_m": [
+    0.004,
+    0.004,
+    0.004
+  ],
+  "rotation_jitter_deg": 8,
+  "skin_linear_rgb": [
+    0.24,
+    0.16,
+    0.105
+  ],
+  "quality_gate": {
+    "minimum_reviewed_candidates": 128,
+    "native_resolution_pending": true,
+    "minimum_visible_fraction": 0.1,
+    "minimum_visible_fullinput_area_px": 16,
+    "all_geometry_valid": true,
+    "complete_family_coverage": true,
+    "anatomy_material_wrist_contact_visual_review": true,
+    "native_resolution_review_status": "preview_not_native_accepted"
+  },
+  "families": [
+    {
+      "camera_location_m": [
+        0,
+        0.365,
+        0.12
+      ],
+      "camera_target_m": [
+        0,
+        0,
+        0.01
+      ],
+      "light_location_m": [
+        -0.35,
+        0.45,
+        0.65
+      ],
+      "light_size_m": 1,
+      "area_light_energy_w": 8,
+      "exposure_ev": 0.2,
+      "environment": "wall",
+      "finger_curl_rad": 3.4,
+      "name": "wall_rear",
+      "weight": 10,
+      "evidence_frames": [
+        0,
+        105
+      ],
+      "anchor_positions_m": [
+        [
+          -0.095,
+          0,
+          0
+        ],
+        [
+          0.095,
+          0,
+          0
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          0,
+          0,
+          -9
+        ],
+        [
+          0,
+          0,
+          9
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "table_fastening",
+      "weight": 22,
+      "evidence_frames": [
+        540,
+        960
+      ],
+      "anchor_positions_m": [
+        [
+          -0.14,
+          -0.11,
+          0.2
+        ],
+        [
+          0.14,
+          -0.11,
+          0.2
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -90,
+          -65,
+          -19
+        ],
+        [
+          -90,
+          65,
+          19
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "table_turn",
+      "weight": 20,
+      "evidence_frames": [
+        1080,
+        1590,
+        1770
+      ],
+      "anchor_positions_m": [
+        [
+          -0.12,
+          -0.1,
+          0.2
+        ],
+        [
+          0.12,
+          -0.1,
+          0.2
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -90,
+          -85,
+          -18
+        ],
+        [
+          -90,
+          85,
+          18
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "near_double",
+      "weight": 16,
+      "evidence_frames": [
+        1200,
+        1290
+      ],
+      "anchor_positions_m": [
+        [
+          -0.019999999552965164,
+          -0.1599999964237213,
+          0.2199999988079071
+        ],
+        [
+          0.008853930979967117,
+          -0.16523325443267822,
+          0.28879737854003906
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -78,
+          -62,
+          -10
+        ],
+        [
+          -82,
+          63,
+          13
+        ]
+      ],
+      "anchor_search": {
+        "path": "outputs/synthesis_r3_v007/near_double_search.json",
+        "sha256": "bafafea2e6e3ac1a6a0f197fab406e72f588fd928e91e42662976ac1a3ed5581",
+        "trial_index": 5,
+        "ray_estimate_other_camera_occlusion": 0.46134020618556704,
+        "status": "geometry_candidate_pending_new_hand_shape_and_rgb_validation"
+      }
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "self_forearm_occlusion",
+      "weight": 16,
+      "evidence_frames": [
+        1980
+      ],
+      "anchor_positions_m": [
+        [
+          -0.12,
+          -0.11,
+          0.2
+        ],
+        [
+          0.13,
+          -0.11,
+          0.2
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -145,
+          -10,
+          -10
+        ],
+        [
+          -90,
+          85,
+          15
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "cloth_lift",
+      "weight": 4,
+      "evidence_frames": [
+        2550
+      ],
+      "anchor_positions_m": [
+        [
+          -0.14,
+          -0.13,
+          0.26
+        ],
+        [
+          0.14,
+          -0.13,
+          0.26
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -85,
+          -62,
+          -15
+        ],
+        [
+          -85,
+          62,
+          15
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        0.365,
+        0.12
+      ],
+      "camera_target_m": [
+        0,
+        0,
+        0.01
+      ],
+      "light_location_m": [
+        -0.35,
+        0.45,
+        0.65
+      ],
+      "light_size_m": 1,
+      "area_light_energy_w": 8,
+      "exposure_ev": 0.2,
+      "environment": "wall",
+      "finger_curl_rad": 3.4,
+      "name": "wall_transition_truncation",
+      "weight": 7,
+      "evidence_frames": [
+        2820,
+        2849
+      ],
+      "anchor_positions_m": [
+        [
+          -0.095,
+          0,
+          -0.16
+        ],
+        [
+          0.095,
+          0.01,
+          -0.055
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -15,
+          -10,
+          -25
+        ],
+        [
+          10,
+          10,
+          25
+        ]
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.33,
+        0.9
+      ],
+      "camera_target_m": [
+        0,
+        0.13,
+        0.06
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "hard_negative",
+      "weight": 5,
+      "evidence_frames": [
+        1980,
+        2550
+      ],
+      "anchor_positions_m": [
+        [
+          -0.12,
+          -0.11,
+          0.2
+        ],
+        [
+          0.12,
+          -0.11,
+          0.2
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -90,
+          -70,
+          -19
+        ],
+        [
+          -90,
+          70,
+          19
+        ]
+      ]
+    }
+  ],
+  "limitations": [
+    "No calibrated capture intrinsics or uniquely recovered lighting",
+    "Generic anatomical hand mesh with bounded analytic curl; not a scan of source person",
+    "Procedural garment panels and folds are not solved cloth dynamics",
+    "This recipe is a review candidate and cannot be promoted by schema checks alone",
+    "Current 812x616 previews require separate native-resolution detail acceptance before formal S0",
+    "Native dimensions and 64 samples are configured, but no native candidate has been rendered or accepted in this run."
+  ],
+  "provenance": {
+    "human_asset_license": "CC0",
+    "human_asset_author": "Dan Ulrich",
+    "human_asset_archive_sha256": "46a912c0524072ac3b78c35d5d2471df7b8df102394a050ca8cd7184e3393648",
+    "human_asset_metadata_object": "Hand  - Realistic",
+    "human_asset_official_url": "https://download.blender.org/demo/asset-bundles/human-base-meshes/human-base-meshes-bundle-v1.0.0.zip"
+  },
+  "parent_recipe_sha256": "4e43414e3d9a76debe4b0e862dd9ed3c92cdba6d25caa6339da3051adf4da156",
+  "revision_notes": {
+    "hand": "Centerline and cross-section now bend together to avoid flattened finger ends; remains generic anatomy with no measured joint pose.",
+    "near_double": "Bounded geometric search candidate; requires actual RGB/mask review, not an accepted realistic sample.",
+    "wall_transition": "Wrist pitch reduced to keep forearms descending toward the source image lower boundary; no limb length or STL size change.",
+    "zero_jitter_scope": "The parent preview isolates exact anchors. This native candidate recipe restores bounded position/rotation/light variation and requires new native-resolution review.",
+    "curl_selection": "Bounded search 2.6..3.9 rejected 3.9 for target/hand surface intersections; 3.4 selected with conservative margin. This controls geometric bend and is not a measured joint angle."
+  },
+  "asset_backend": "blend_r4",
+  "foundation_blend": "data/DJI_Action4_construct/foundation_r4/DJI_Action4_Editable_Foundation_R4.blend",
+  "server_extension": {
+    "schema_version": "action4.server_extension.v1",
+    "scope": "asset_and_worker_preview_only"
+  }
+}

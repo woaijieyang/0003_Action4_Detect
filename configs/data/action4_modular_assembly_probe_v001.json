@@ -1,0 +1,119 @@
+{
+  "schema": "action4.modular_assembly_probe.v1",
+  "status": "FAILED_CALIBRATION_INITIALIZATION_ONLY",
+  "dataset_generation_allowed": false,
+  "frame_id": 960,
+  "instance_id": "image_track_R",
+  "source_anatomical_side": "right",
+  "K_ratio": 0.8125,
+  "native_resolution_wh": [
+    3248,
+    2464
+  ],
+  "W_from_capture": [
+    [
+      1,
+      0,
+      0,
+      0.25
+    ],
+    [
+      0,
+      -1,
+      0,
+      -0.15
+    ],
+    [
+      0,
+      0,
+      -1,
+      1.2
+    ],
+    [
+      0,
+      0,
+      0,
+      1
+    ]
+  ],
+  "sources": {
+    "registry": {
+      "path": "configs/data/action4_frozen_modules_v002.json",
+      "sha256": "207d1dfcee7d17459d9dcc2c8323ebf87daee2296bf3ef82386397b3cf23af53"
+    },
+    "camera_source": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "camera_source_contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "wrist_asset": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right.blend",
+      "sha256": "88080140e0e63d89c6f6f0ab7d051eec85fb0026eba358344f8fdd6c5696fc4d"
+    },
+    "wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_contract.json",
+      "sha256": "6a05530fb88d7a868988e2e4036fb7ec38b98176104a05b05805e50e462edc9e"
+    },
+    "wrist_geometry": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_geometry.npz",
+      "sha256": "f282c4d8af79c48fcc488588519c0f685a9882089110709a575fd9133f26d582"
+    },
+    "brace_asset": {
+      "path": "data/action4_scene_assets/modular_brace_v001/build_v002/brace_module_right.blend",
+      "sha256": "ffac667db18fd09174755d75cdccddfd6d42addd7690fd766a664592429a7786"
+    },
+    "brace_contract": {
+      "path": "data/action4_scene_assets/modular_brace_v001/build_v002/module_contract.json",
+      "sha256": "19c5e5fd6ff85197601c46573f100a6633c517d009d1968dff5aac8a8b13dc84"
+    },
+    "brace_config": {
+      "path": "configs/data/action4_brace_module_v002.json",
+      "sha256": "a5faf74f626f1ddf6267e09df27c786e376e5da79a2646f8a51bd6cc9393b284"
+    },
+    "pose_candidate": {
+      "path": "outputs/action4_realism_reassessment_v001/shared_attachment_threeframe_v001/actual_fit_v001/A3_K0p8125_c11_front_patch_inner.json",
+      "sha256": "0aff86ecb3d9afb61cad1331562f271eba0efc767b5b362465f46c84b1cdf921"
+    },
+    "canonical_manifest": {
+      "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+      "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+    },
+    "CAD_geometry": {
+      "path": "data/DJI_Action4_construct/r3_v001/mesh_v001.npz",
+      "sha256": "295d14e8dc7e802c6382b75806805fe325196c340b72ea788d4843cd1b3f787c"
+    },
+    "scene_validator": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "wrist_validator": {
+      "path": "src/data/action4_wrist_modules.py",
+      "sha256": "f8247aada1c3ffb613878722fd30802ae479d3073590724f8670468c330d7b2a"
+    },
+    "brace_validator": {
+      "path": "src/data/action4_brace_module.py",
+      "sha256": "1d406139841343f5e521997bfa439360f7379df13ce516e0e9279a6671a296f7"
+    },
+    "material_state_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "registry_validator": {
+      "path": "scripts/action4_verify_frozen_modules.py",
+      "sha256": "d07482aca844707b8613de24045b5bbf44c6919bee22d8d0712d35b0b8d92e2d"
+    }
+  },
+  "output_dir": "outputs/action4_realism_reassessment_v001/modular_assembly_probe_v001",
+  "pending_components": [
+    "white wrist module",
+    "mount/quick-release support and connecting structure",
+    "validated environment/occlusion"
+  ],
+  "allowed_camera_object_names": [
+    "right_Action4_core",
+    "right_Action4_core_top_id_decal"
+  ]
+}

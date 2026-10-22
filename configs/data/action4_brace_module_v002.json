@@ -1,0 +1,61 @@
+{
+  "schema": "action4.modular_brace.v1",
+  "status": "diagnostic_unassembled",
+  "dataset_generation_allowed": false,
+  "side": "right",
+  "width_m": 0.034,
+  "proximal_offset_from_wrist_m": 0.032,
+  "segments": 72,
+  "sources": {
+    "rig_contract": {
+      "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/rig_contract.json",
+      "sha256": "e544d7ec896a8f73746a984b88f9a972c741def272e32e20788fe92dad94e614"
+    },
+    "G1_config": {
+      "path": "configs/data/action4_global_rig_init_v001.json",
+      "sha256": "bf622de052d4deb18f50230e9598476e202795c8d69b49a88ce473d60edba997"
+    },
+    "scene_config": {
+      "path": "configs/data/action4_global_scene_init_v001.json",
+      "sha256": "c14f3df1175774b1053e853e4fc7de4d46d11a0c9985c83f82994b6c70de3b93"
+    },
+    "analytic34_reference": {
+      "path": "outputs/action4_realism_reassessment_v001/shared_attachment_threeframe_v001/fixed_geometry_and_observations.json",
+      "sha256": "16d0b6de5ab96f41de1dd9b250e64911a91d9f367c128cb4e0d037bdfad066b3"
+    },
+    "projection_hypotheses": {
+      "path": "outputs/action4_realism_reassessment_v001/shared_attachment_threeframe_v001/config.json",
+      "sha256": "1fc90a63365159fce4b55f93c0cc17d2679940c007d2df92b36951b23c025ded"
+    },
+    "weave_photo": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/wristband_weave.png",
+      "sha256": "624c6b107c0636f3f2da301ff998a40e6348a6c364f8be0db0c926a4705673ce"
+    },
+    "G1_mesh_helper": {
+      "path": "src/data/action4_global_rig.py",
+      "sha256": "050bfb65eec1a6b5b1b493b62e67b3cec96eeb6a541c1eebe0744b601f3090f1"
+    },
+    "material_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "photo_material_helper": {
+      "path": "src/data/action4_blender_foundation.py",
+      "sha256": "bcfb7915d4fa28c9cbbce656c047670fac675435196f46558aef67605fb60bf8"
+    },
+    "original_green_assembly": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "original28_asset": {
+      "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/Action4_Global_Rig_Initialization_v001.blend",
+      "sha256": "084bd1e5afdda619b785eb7a35213782acd3dc5a918d718f840646eef1017890"
+    },
+    "material_state_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    }
+  },
+  "output_dir": "data/action4_scene_assets/modular_brace_v001/build_v002",
+  "report_dir": "outputs/action4_realism_reassessment_v001/modular_brace_build_v001/verifier_fix_v002/build_v002"
+}

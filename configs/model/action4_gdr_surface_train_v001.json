@@ -1,0 +1,29 @@
+{
+  "output": "outputs/action4_gdr_surface_candidate_v001/train_run_v001",
+  "cache_output": "outputs/action4_gdr_surface_candidate_v001",
+  "epochs": 80,
+  "batch": 16,
+  "micro": 4,
+  "lr": 0.001,
+  "seed": 20261022,
+  "eval_every": 25,
+  "loss_weights": {
+    "xyz": 1.0,
+    "region": 0.1,
+    "mask": 1.0
+  },
+  "base_step": 6300,
+  "base_frozen": true,
+  "initialization": "new GDR-derived task head on fixed selected-best A0 backbone; does not reset backbone",
+  "source_identity": {
+    "src/model/training/action4_surface_train.py": "476573649d3b0df63c502897309ccfb88a65cce59e51c445eddd83d9e07b0112",
+    "src/eval/action4_surface_eval.py": "1587e79437e57bea2c57772f0de1c9d0fd87dc3a7c9dab110b1579d2c2f3a313",
+    "src/model/action4_surface_head.py": "5b74c15429faeae6df2067d26b60d38c36b5cef1dd046f64f56d28f7ae49a766",
+    "src/model/heads/gdr_region_head.py": "7cd314ab7ddce8a90b97503322d353b1f025f447a115f69c0ae2258226ead53d",
+    "src/model/action4_surface_pnp.py": "921f76b318bd4685c4d562770a5b936c77bd13145f007851e71eb58a38229988",
+    "src/data/action4_cached_surface_dataset.py": "acda1c5d2e355a32e481910d5dceb38e358d698d0d85f523dd456d6f669fcb4d"
+  },
+  "opencv": "4.13.0.92 in runtime/surface_deps; base venv unchanged",
+  "crop_policy": "fixed GT ROIs no jitter, first controlled candidate",
+  "production_accepted": false
+}

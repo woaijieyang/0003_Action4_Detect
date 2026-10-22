@@ -1,0 +1,20 @@
+{
+  "schema": "action4.template_worker.v1",
+  "plan_path": "configs/data/action4_independent_acceptance_v001.json",
+  "template": "wall",
+  "indices": [
+    264,
+    267,
+    270,
+    273,
+    276,
+    279,
+    282,
+    285
+  ],
+  "gpu_uuid": "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e",
+  "threads": 2,
+  "max_attempts": 32,
+  "data_out": "data/action4_synth/acceptance_v001_candidate/batch_011",
+  "runtime_out": "outputs/action4_independent_acceptance_v001/batch_011"
+}

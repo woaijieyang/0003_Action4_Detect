@@ -1,0 +1,117 @@
+{
+  "schema": "action4.modular_bilateral_scene.v1",
+  "status": "diagnostic_pending_scene_review",
+  "dataset_generation_allowed": false,
+  "frame_id": 0,
+  "instance_ids": [
+    1,
+    2
+  ],
+  "resolution_wh": [
+    3248,
+    2464
+  ],
+  "sources": {
+    "composed_config": {
+      "path": "configs/data/action4_modular_composed_preview_v002.json",
+      "sha256": "f6e048a0b1d1fd5a23b934b91ed5d69f05e49d33224812018d95dd1c89bb5003"
+    },
+    "bilateral_module": {
+      "path": "src/data/action4_modular_bilateral_scene.py",
+      "sha256": "f8a2e7ebe0d52466a31a0b9199ef637e2681a60e24dd393923efb190018bb1ee"
+    },
+    "left_assembly": {
+      "path": "outputs/action4_left_hand_y25_v001/assembly.json",
+      "sha256": "e3a5b6bc2b3f67081294af2c33f518c20d90e77816e50c08d6f63ecb67729ea3"
+    },
+    "left_axes": {
+      "path": "outputs/action4_left_wearing_axes_analysis_v001/analysis.json",
+      "sha256": "1ef21191d01d67f618fb5187295fb1114052c73e0d01c81baf2069a6e4fd862f"
+    },
+    "left_neutral_row": {
+      "path": "outputs/action4_left_hand_y25_v001/neutral_baseline.json",
+      "sha256": "a10d16a3df3705e7928b8ee2f5073610694ad1c6f8a0928ea1f4a4b4fd3d1dc6"
+    },
+    "left_neutral_geometry": {
+      "path": "outputs/action4_left_hand_y25_v001/neutral_baseline.npz",
+      "sha256": "5f3d74b923cfb869f2ca73dd38fb6e912f438d3d7eb11903026bfe5c4aff56ae"
+    },
+    "left_wrist_asset": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left.blend",
+      "sha256": "e4943c199b721e4025fb7b687197dcc50e4fca3db96a32106b01d878f9949f2c"
+    },
+    "left_wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left_contract.json",
+      "sha256": "a8d4af2e269644507fc759129da1e06d706de3373ae2d2739c351759a1d1128f"
+    },
+    "left_wrist_geometry": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left_geometry.npz",
+      "sha256": "552b80b79c680e0e4b52785293cc049a1d2d79cc209bd736ee91ebd0f5e1c69a"
+    },
+    "left_band_asset": {
+      "path": "data/action4_scene_assets/modular_left_brace_v001/build_v001/brace_module_left.blend",
+      "sha256": "e9cd128083ffe92c8765fef9d3d2b92fc396ab14664812589ff136011185cfe5"
+    },
+    "left_band_contract": {
+      "path": "data/action4_scene_assets/modular_left_brace_v001/build_v001/module_contract.json",
+      "sha256": "c5a3a376e70b82c1d4d634046c944f6911c3e29cc63abfac101d87a8df7b0c5a"
+    },
+    "left_band_geometry": {
+      "path": "data/action4_scene_assets/modular_left_brace_v001/build_v001/mesh_geometry.npz",
+      "sha256": "a2f16f972124d5bf70e21af7be2986f35640d4d1d6eb85306fc71a6ddd10857e"
+    },
+    "source_asset": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "source_contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "registry_v003": {
+      "path": "configs/data/action4_frozen_modules_v003.json",
+      "sha256": "dae2b36351009060159f2885c6d4258c02da0c87333b57c6919df1109a553ef5"
+    },
+    "assembly_helper": {
+      "path": "src/data/action4_modular_assembly.py",
+      "sha256": "cbf876357c61ccbbe0db3c356a12545593b2ec1c4acbf4f4c9b37c3fcd59d886"
+    },
+    "wrist_helper": {
+      "path": "src/data/action4_wrist_modules.py",
+      "sha256": "f8247aada1c3ffb613878722fd30802ae479d3073590724f8670468c330d7b2a"
+    },
+    "source_scene_helper": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "environment_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "mount_algorithms": {
+      "path": "src/data/action4_mount_modules.py",
+      "sha256": "d787812f57ac92615bf3a5f22f0c4da44d60219d63bf5dddd87007499ca1e8e3"
+    },
+    "left_mount_asset": {
+      "path": "outputs/action4_left_mount_modules_v003/actual_build_v001/left_mount_components.blend",
+      "sha256": "d301bcdb95f4a675ae7a4e8b35f8a3fbb0ad5530f0d22e756e28e28ffb6ac3f0"
+    },
+    "left_mount_contract": {
+      "path": "outputs/action4_left_mount_modules_v003/actual_build_v001/module_contract.json",
+      "sha256": "5145b625efc58b8602c98376393e9beefffe209a826abb7bd910777fad3431e0"
+    },
+    "left_mount_geometry": {
+      "path": "outputs/action4_left_mount_modules_v003/actual_build_v001/actual_geometry.npz",
+      "sha256": "27a4e0d8284b3ca30f0935f68ce8de8ef94099e227cee9e3c27fe87d397c325c"
+    },
+    "left_mount_collision": {
+      "path": "outputs/action4_left_mount_modules_v003/actual_build_v001/collision_diagnostics.json",
+      "sha256": "63f5a95f48c24294d15e0c530c85a5a996579d924959810a338b485eb346b661"
+    },
+    "left_mount_receipt": {
+      "path": "outputs/action4_left_mount_modules_v003/actual_build_v001/build_receipt.json",
+      "sha256": "0cf2cafa582627c8679f11425f6950d78d7b0d51c407948d007dbdcff8bcf0e0"
+    }
+  },
+  "output_scope": "outputs/action4_modular_bilateral_prepare_v003/runs"
+}

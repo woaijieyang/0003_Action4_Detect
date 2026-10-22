@@ -3,14 +3,20 @@ requires = ["setuptools>=77", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "template-code-repository"
-version = "0.1.0"
-description = "Minimal AI research repository structure and collaboration conventions"
+name = "action4-detect"
+version = "0.2.0"
+description = "Independent DJI Action4 body detection and canonical eight-corner research pipeline"
 readme = "README.md"
 license = "Apache-2.0"
 license-files = ["LICENSE"]
 requires-python = ">=3.10"
 dependencies = []
+
+[project.optional-dependencies]
+data = ["numpy>=1.26,<3", "Pillow>=10,<13"]
+train = ["torch==2.8.0", "torchvision==0.23.0", "PyYAML>=6,<7"]
+# Projection fitting extra: tested with Python 3.12; SciPy 1.18 requires Python >=3.12.
+calibration = ["scipy==1.18.1", "opencv-python-headless==4.13.0.92"]
 
 [tool.setuptools]
 package-dir = {"" = "src"}
@@ -25,3 +31,5 @@ namespaces = false
 eval = ["README.md"]
 model = ["README.md"]
 data = ["README.md"]
+
+"model.heads" = ["GDRNET_LICENSE.txt", "*PROVENANCE.json"]

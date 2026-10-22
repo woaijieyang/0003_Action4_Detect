@@ -1,0 +1,14 @@
+{
+  "output": "outputs/action4_gdr_surface_candidate_v001",
+  "base_checkpoint": "outputs/action4_gdr_surface_candidate_v001/base_best.pt",
+  "base_step": 6300,
+  "base_sha256": "dd5533d4c478aac91af3be1a148560c362c3aa6634b1e607533c3e4c6b2112a0",
+  "validation_receipt": "outputs/action4_independent_trials_v001/DATA_VALIDATED.json",
+  "surface_labels": "v002",
+  "epochs": 80,
+  "eval_every": 25,
+  "base_frozen": true,
+  "status": "FEATURE_CACHE_PREPARATION_NOT_TRAINING_YET",
+  "head": "GDR-Net no-concat adapted 64channels GN8,XYZ+visible/amodal mask+64regions",
+  "production_accepted": false
+}

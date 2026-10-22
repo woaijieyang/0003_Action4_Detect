@@ -10,3 +10,13 @@
 .gitignore text eol=lf
 .gitattributes text eol=lf
 .env.example text eol=lf
+
+# Preserve byte identities of frozen source assets (mixed historic CRLF).
+scripts/action4_mount_modules.py -text
+scripts/action4_skin_diagnostic.py -text
+scripts/action4_wrist_modules.py -text
+src/data/action4_modular_geometric_effects_v002.py -text
+tests/test_action4_modular_geometric_effects.py -text
+tests/test_action4_modular_geometric_effects_v002.py -text
+tests/test_action4_skin_diagnostic.py -text
+tests/test_action4_wrist_modules.py -text

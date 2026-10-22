@@ -1,0 +1,14 @@
+{
+  "schema_version": "action4.eval_protocol.v1",
+  "matching": "maximum_cardinality_bipartite",
+  "success": "all_8_same_index_corner_distances <= threshold * complete_GT_box_diagonal",
+  "thresholds": [0.02, 0.05],
+  "selection_order": ["F1@5% descending", "F1@2% descending", "successful-corner mean EPE ascending"],
+  "ignore": "valid successful matches first; remaining predictions one-to-one against ignored GT with complete-box IoU >= 0.5",
+  "undefined_ratio": null,
+  "bad_corners": "spatially localized but failed ordered-corner instances remain both FP and FN",
+  "gt_roi": "separate diagnostic, excluded from full-system F1",
+  "test": "requires prior final_selection.json matching checkpoint, inference settings, code and test manifest",
+  "real_video_role": "development_video",
+  "video_accuracy": "human coverage review is pending until every frame has reviewed evidence; temporal heuristic events are candidates, not GT"
+}

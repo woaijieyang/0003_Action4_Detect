@@ -1,0 +1,60 @@
+{
+  "schema": "action4.left_brace_preparation.v1",
+  "status": "PREPARED_NOT_BUILT",
+  "dataset_generation_allowed": false,
+  "side": "left",
+  "width_m": 0.034,
+  "proximal_offset_from_wrist_m": 0.032,
+  "segments": 72,
+  "sources": {
+    "rig_contract": {
+      "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/rig_contract.json",
+      "sha256": "e544d7ec896a8f73746a984b88f9a972c741def272e32e20788fe92dad94e614"
+    },
+    "G1_config": {
+      "path": "configs/data/action4_global_rig_init_v001.json",
+      "sha256": "bf622de052d4deb18f50230e9598476e202795c8d69b49a88ce473d60edba997"
+    },
+    "scene_config": {
+      "path": "configs/data/action4_global_scene_init_v001.json",
+      "sha256": "c14f3df1175774b1053e853e4fc7de4d46d11a0c9985c83f82994b6c70de3b93"
+    },
+    "weave_photo": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/wristband_weave.png",
+      "sha256": "624c6b107c0636f3f2da301ff998a40e6348a6c364f8be0db0c926a4705673ce"
+    },
+    "G1_mesh_helper": {
+      "path": "src/data/action4_global_rig.py",
+      "sha256": "050bfb65eec1a6b5b1b493b62e67b3cec96eeb6a541c1eebe0744b601f3090f1"
+    },
+    "material_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "photo_material_helper": {
+      "path": "src/data/action4_blender_foundation.py",
+      "sha256": "bcfb7915d4fa28c9cbbce656c047670fac675435196f46558aef67605fb60bf8"
+    },
+    "material_state_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "analytic34_reference": {
+      "path": "outputs/action4_bilateral_f0_prepare_v001/analytic_left34_reference.json",
+      "sha256": "35a523a2efc432dc05d3421156bde18fabaa8ff326a64ec9bc2638c1594bdcb7"
+    },
+    "left_fit_config": {
+      "path": "outputs/shared_left_attachment_fit_v001/config.json",
+      "sha256": "3296068bd8ca5ac4d9d73dba76e8d554ed6408cfdfc529f0e27119872284fff5"
+    },
+    "left_fit_source": {
+      "path": "outputs/shared_left_attachment_fit_v001/diagnostic.py",
+      "sha256": "56156abf1041d89d4b86ea9c78aa074b6786f5950db7895020108af3a1f4bea0"
+    },
+    "right_brace_helper": {
+      "path": "src/data/action4_brace_module.py",
+      "sha256": "1d406139841343f5e521997bfa439360f7379df13ce516e0e9279a6671a296f7"
+    }
+  },
+  "build_authorized": false
+}

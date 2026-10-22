@@ -1,0 +1,77 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r056",
+  "status": "ACTIVE_DELIVERY_REAL_ACCEPTANCE_FAILED",
+  "phase": "training_closure_video_archive_publish",
+  "updated_at": "2026-10-23T04:29:27.466958+08:00",
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "parent_authority_ref": {
+    "path": "configs/execution/action4_execution_r055.json",
+    "sha256": "0a286907476b41e5e8b9de1a68e2949d2645a9ffab591ae3393e931067123ccd"
+  },
+  "resource_policy": {
+    "cpu_total": 72,
+    "prohibited_gpu_indices": [
+      0
+    ],
+    "authorized_training_gpu_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "eval_gpu1_max_workers": 8,
+    "no_other_process_interference": true
+  },
+  "render": {
+    "enabled": false,
+    "reason": "published2000 immutable; independent400visualfailed"
+  },
+  "training": {
+    "new_runs_enabled": false,
+    "pending": "only existing pooled auxiliary finishes80; no duplicate D0 or new scientific branch"
+  },
+  "completed": {
+    "B0": {
+      "epochs": 80,
+      "steps": 4000,
+      "eval_count": 201,
+      "best_step": 2200
+    },
+    "A0_GDR_v002": {
+      "epochs": 80,
+      "steps": 15120,
+      "best_step": 13350
+    }
+  },
+  "selected_bundles": {
+    "A0": "models/A0/best.pt",
+    "B0": "models/B0/best.pt",
+    "scope": "development-selected research candidate, real acceptance failed",
+    "independent_load_update_receipt": "outputs/action4_release_bundle_check_v001/REPORT.json"
+  },
+  "final_test": "outputs/action4_final_test_v001/REPORT.json",
+  "full_video": "outputs/action4_final_video_v001/COMPLETE.json",
+  "visual_review": "outputs/action4_final_video_v001/ROOT_VISUAL_REVIEW.json",
+  "auxiliary_pending_reconciliation": "outputs/action4_aux_eval_acceleration_v001/COMPLETE.json",
+  "cleanup": {
+    "status": "PREPARED_NOT_APPLIED",
+    "archive_root": "archive/legacy",
+    "output": "outputs/action4_release_preparation_v001",
+    "must_wait_for_all_consumers": true
+  },
+  "publish": {
+    "authorized_target": "https://github.com/woaijieyang/0003_Action4_Detect",
+    "status": "NOT_PUSHED",
+    "contents": "source configuration docs only"
+  },
+  "remaining": [
+    "final auxiliary reconciliation",
+    "manifested cleanup after consumers exit",
+    "post-cleanup standalone check",
+    "final commit and push"
+  ],
+  "accuracy_accepted": false
+}

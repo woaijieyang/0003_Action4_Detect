@@ -1,0 +1,42 @@
+{
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 2.25
+  },
+  "decode": {
+    "score_threshold": 0.3,
+    "topk": 20,
+    "max_detections": 2,
+    "duplicate_iou": 0.95,
+    "duplicate_center_ratio": 0.05,
+    "corner_topk": 20
+  },
+  "role": "A0",
+  "variant": "baseline",
+  "epochs": 80,
+  "seed": 20261022,
+  "units": 3024,
+  "batch": 16,
+  "micro": 8,
+  "loader_workers": 8,
+  "lr_backbone": 3e-06,
+  "lr_new": 3e-05,
+  "eval_every": 25,
+  "initialization": "models/action4/independent_components_v001/A0.pt",
+  "validation_receipt": "outputs/action4_independent_trials_v001/DATA_VALIDATED.json",
+  "output": "outputs/action4_independent_trials_v001/a0_baseline",
+  "gpu": 5,
+  "comparison": "paired finetuning from frozen best component, new optimizer, not exact continuation of legacy run",
+  "validation_sha256": "b9fdf08b822aaa56221c60dcf4cdecb0b951804a840da9394f2010a8fa134da3",
+  "initialization_sha256": "8298effbdee1b0d985a00b8c281b7f0bfff0e53bcdd5499eab1df381bf4bd499"
+}

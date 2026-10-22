@@ -1,0 +1,103 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r010",
+  "status": "ACTIVE",
+  "phase": "fixed_template_full_pilot",
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "render": {
+    "enabled": true,
+    "scope": "Remaining1872 candidate generation; reuse root-approved128; full2000 publication/training still gated",
+    "entrypoint": "scripts/action4_render_template.py",
+    "plan_ref": {
+      "path": "configs/data/action4_template_pilot2000_v009.json",
+      "sha256": "adc4a794b4bb5aa7ea869ba8df9970f3cdac48338af50c1987af298cb8b22031"
+    },
+    "index_range": [
+      128,
+      2000
+    ],
+    "config_directory": "configs/execution/action4_template_full2000_v001",
+    "profile_launcher": "outputs/action4_template_preview128_v001/launch_profiles.py",
+    "compatible_positive_parent_plan_ref": {
+      "path": "configs/data/action4_template_pilot2000_v007.json",
+      "sha256": "8e9fd625ab05212e1ee726f04b654d31c02094654f4a3444b090491c54c72b32"
+    },
+    "preview_acceptance_ref": {
+      "path": "outputs/action4_template_preview128_v001/ROOT_ACCEPTED128.json",
+      "sha256": "3abf3e82e59a0a861a825dd5e12da60ad2d88d543599b21d3e467c2a3ef14eed"
+    },
+    "schedule_ref": {
+      "path": "outputs/action4_template_full2000_v001/SCHEDULE.json",
+      "sha256": "4ea0089d8b77eaebc73397e0f792e39c3031df34753c2754bd2e121749b54424"
+    }
+  },
+  "training": {
+    "enabled": false,
+    "reason": "Accepted2000 and D0/A0/B0 gates pending"
+  },
+  "quality": {
+    "enabled": true,
+    "entrypoint": "scripts/action4_template_quality.py",
+    "gpu_uuid": "GPU-510dc520-5a9d-1317-019d-de5ed02c1b37",
+    "max_workers": 8,
+    "cpu_threads_per_worker": 2,
+    "output_root": "outputs/action4_diverse_sampling_v007/template_quality_v001",
+    "scope": "All fixed-template candidate batches, no formal training acceptance without final assembly"
+  },
+  "resource_policy": {
+    "cpu_total": 72,
+    "render_threads_per_process": 2,
+    "render_max_processes": 28,
+    "render_gpu_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "quality_gpu_index": 3,
+    "quality_cpu_reservation": 16,
+    "extra_gpu_headroom_mib": 3072,
+    "minimum_render_reservation_mib": 6266,
+    "measured_peak_multiplier": 1.25
+  },
+  "source_refs": [
+    {
+      "path": "src/data/action4_template_runtime.py",
+      "sha256": "ef0efa95bc6f0398b338f1a730b20a7f943b1f0b33abc9c15af7ad50473b8b23"
+    },
+    {
+      "path": "src/data/action4_parameter_sampling.py",
+      "sha256": "e1c5c1b2f1f6be1b33c529d8764253e272d9269233bc9e57bed656c649b26e82"
+    },
+    {
+      "path": "src/data/action4_template_collision.py",
+      "sha256": "77fdf749ef00d202f88b3cd75b5be64d7ee9f75eedb94f39c124df7d7d870e0d"
+    },
+    {
+      "path": "src/data/action4_template_batch.py",
+      "sha256": "b2effd89b4a6bb8eeb921bc34b829fbfe0d28d8dabe990d8ea63fbde29090167"
+    },
+    {
+      "path": "scripts/action4_render_template.py",
+      "sha256": "b25a1b1bccdac02ab2f7ba5d8a02022b65609394379db824ea5c3829211fd19b"
+    },
+    {
+      "path": "configs/data/action4_random_sampling_v005.json",
+      "sha256": "83dd63a6ee33f55007b8a851d998215335eeb247c20e1ed49326563901013dca"
+    },
+    {
+      "path": "configs/data/action4_template_environment_v001.json",
+      "sha256": "0af47d403dc29e88942bf9b62bf2977f3557df12164f5621b09894cb722f340d"
+    },
+    {
+      "path": "src/eval/action4_template_quality.py",
+      "sha256": "194e8fef3b86d8c2637db3e3d5d7ac5313c509825dc24a726953acb05a982e13"
+    },
+    {
+      "path": "scripts/action4_template_quality.py",
+      "sha256": "613d253556670c23a0ea033a5616b210e76770853409f52b8749b1e6b1ba68d3"
+    }
+  ],
+  "legacy_policy": "r006 and all v006 broad-generation jobs remain stopped. Old144 data and evidence retained, not accepted into v007. No temporal training.",
+  "updated_at": "2026-10-21T21:17:03.411802+08:00"
+}

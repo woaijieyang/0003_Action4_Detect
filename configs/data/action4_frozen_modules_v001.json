@@ -1,0 +1,35 @@
+{
+  "schema": "action4.frozen_components.v1",
+  "created_at": "2026-10-20T11:55:08.574997+08:00",
+  "policy": "Do not modify locked artifact bytes. Adjust assembly transforms/configuration separately. Necessary component corrections require a new version, preserved parent, evidence review and explicit reference update. Hash pass alone does not authorize production.",
+  "canonical_semantics": "Original 0..7 order and mm-to-m conversion fixed. No per-frame body scale or relabeling.",
+  "components": [
+    {
+      "id": "dji_body_and_canonical8",
+      "status": "LOCKED_VERIFIED_COMPONENT",
+      "scope": "Original Action4 core geometry, metric dimensions and fixed canonical8 order; no claim full scene is calibrated",
+      "files": {
+        "data/DJI_Action4_construct/r3_v001/mesh_v001.npz": "295d14e8dc7e802c6382b75806805fe325196c340b72ea788d4843cd1b3f787c",
+        "data/DJI_Action4_construct/r3_v001/asset_manifest.json": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+      }
+    },
+    {
+      "id": "v007_verified_component_source",
+      "status": "LOCKED_ANCESTOR_SOURCE",
+      "scope": "Immutable source for previously checked camera/material and smooth/periodic anatomy components; wholebody scene is NOT production accepted",
+      "files": {
+        "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f",
+        "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+      }
+    },
+    {
+      "id": "periodic_skin_texture",
+      "status": "LOCKED_VERIFIED_TEXTURE",
+      "scope": "Verified source-derived Linear EXR; not measured albedo or skin reconstruction",
+      "files": {
+        "data/action4_scene_assets/skin_texture_periodic_v001/linear32_zip_v001/skin_forearm_periodic_linear32_zip.exr": "ab52d6d0466299be03ef53fb866a94b770a0719709bb1cb300b6c38cf9b8650e"
+      }
+    }
+  ],
+  "whole_scene_training_accepted": false
+}

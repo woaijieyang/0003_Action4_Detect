@@ -1,0 +1,7 @@
+{
+  "configs": [
+    "configs/model/component_trials_v001/b0_baseline.json",
+    "configs/model/component_trials_v001/b0_giou.json",
+    "configs/model/component_trials_v001/b0_giou_quality.json"
+  ]
+}

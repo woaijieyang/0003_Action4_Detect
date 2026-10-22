@@ -1,0 +1,210 @@
+{
+  "schema_version": "action4.global_environment_init.v1",
+  "status": "initial_prior_fit_pending",
+  "dataset_generation_allowed": false,
+  "units": "metres",
+  "world_frame": "G1 source body front -Y, up +Z; no per-scenario world rescaling",
+  "sources": {
+    "architecture": {
+      "path": "outputs/action4_realism_reassessment_v001/global_scene_architecture_v001.json",
+      "sha256": "a687c808adaaf6864f37ad1d64c5bbea93cd8ce2f0df07b8c726a8bad3dc901f"
+    },
+    "rig_asset": {
+      "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/Action4_Global_Rig_Initialization_v001.blend",
+      "sha256": "084bd1e5afdda619b785eb7a35213782acd3dc5a918d718f840646eef1017890"
+    },
+    "rig_contract": {
+      "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/rig_contract.json",
+      "sha256": "e544d7ec896a8f73746a984b88f9a972c741def272e32e20788fe92dad94e614"
+    },
+    "synthesis_helper": {
+      "path": "src/data/action4_synthesis.py",
+      "sha256": "549c2d4887211d1d5d0c49d19a8887d68661e1797ba86c6e23d0fba09db42549"
+    },
+    "render_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "material_helper": {
+      "path": "src/data/action4_blender_foundation.py",
+      "sha256": "bcfb7915d4fa28c9cbbce656c047670fac675435196f46558aef67605fb60bf8"
+    },
+    "denim_manifest": {
+      "path": "data/DJI_Action4_construct/server_textures_v001/polyhaven_denim_manifest.json",
+      "sha256": "75573fa64a79bf8ceb87b5694e0ebf3a605789bf49008f1c726bb0f4c9e3cc6c"
+    }
+  },
+  "native_image": {
+    "resolution_wh": [
+      3248,
+      2464
+    ],
+    "evidence_status": "measured_input_video_dimensions",
+    "pixel_convention": "integer_centres"
+  },
+  "initial_priors": {
+    "claim": "EVERY numeric parameter below is an unmeasured initial prior, not video fit or real physical measurement",
+    "geometry": {
+      "table_size_xy_m": [
+        1.12,
+        0.8
+      ],
+      "table_center_xy_m": [
+        0,
+        -0.9
+      ],
+      "table_top_z_m": 0.75,
+      "table_thickness_m": 0.03,
+      "table_leg_width_m": 0.04,
+      "table_leg_inset_m": 0.08,
+      "floor_size_xy_m": [
+        3,
+        4
+      ],
+      "floor_center_xy_m": [
+        0,
+        -0.5
+      ],
+      "floor_top_z_m": -0.005,
+      "floor_thickness_m": 0.05,
+      "wall_center_y_m": -1.65,
+      "wall_width_m": 3,
+      "wall_height_m": 2.4,
+      "wall_thickness_m": 0.05,
+      "body_table_clearance_m": 0.05,
+      "table_wall_clearance_m": 0.05
+    },
+    "garment": {
+      "rest_outline_size_xy_m": [
+        0.9,
+        0.5
+      ],
+      "phase_radians": 0,
+      "support_clearance_m": 0.001,
+      "orientation_z_deg": 180,
+      "source_nominal_outline_xy_m": [
+        0.9,
+        0.5
+      ],
+      "source_outline_center_xy_m": [
+        0,
+        0.15
+      ],
+      "claim": "Existing continuous analytic garment rest mesh and licensed denim reused; shape/thickness/UV/support are initial priors, no cloth equilibrium or fit"
+    },
+    "materials": {
+      "wall_linear_rgb": [
+        0.23,
+        0.245,
+        0.255
+      ],
+      "floor_linear_rgb": [
+        0.13,
+        0.12,
+        0.105
+      ],
+      "table_leg_linear_rgb": [
+        0.13,
+        0.12,
+        0.105
+      ],
+      "roughness": 0.9,
+      "grid_cell_linear_rgb": [
+        0.4,
+        0.42,
+        0.43
+      ],
+      "grid_line_linear_rgb": [
+        0.008,
+        0.012,
+        0.015
+      ],
+      "grid_pitch_m": 0.04,
+      "grid_line_fraction": 0.04,
+      "claim": "Linear shader inputs inherited design priors, not measured albedo/BRDF; display statistics await G2 fit"
+    },
+    "lighting": {
+      "area_location_m": [
+        -0.5,
+        -0.6,
+        2.2
+      ],
+      "area_target_m": [
+        0,
+        -0.9,
+        0.75
+      ],
+      "area_energy_w": 18,
+      "area_size_m": 1.1,
+      "area_color_linear_rgb": [
+        1,
+        1,
+        1
+      ],
+      "world_linear_rgb": [
+        0.45,
+        0.46,
+        0.47
+      ],
+      "world_strength": 1,
+      "exposure_ev": 0,
+      "gamma": 1,
+      "view_transform": "Standard",
+      "look": "Medium High Contrast",
+      "claim": "Single fixed world-space area light plus world illumination; all values initial priors, not measured lighting"
+    },
+    "capture": {
+      "focal_mm": 26,
+      "sensor_width_mm": 32,
+      "clip_start_m": 0.001,
+      "clip_end_m": 100,
+      "initial_location_m": [
+        0,
+        -0.28,
+        1.65
+      ],
+      "initial_target_m": [
+        0,
+        -0.9,
+        0.75
+      ],
+      "initial_roll_deg": 0,
+      "distortion_initial": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "claim": "Shared observing-camera prior inherited26mm/sensor32, NOT Action4 opticalFOV; distortion zero is unverified initial assumption"
+    }
+  },
+  "engineering_capture_poses": [
+    {
+      "location_m": [
+        0.03,
+        -0.3,
+        1.62
+      ],
+      "target_m": [
+        0,
+        -0.9,
+        0.75
+      ],
+      "roll_deg": 5
+    },
+    {
+      "location_m": [
+        0,
+        -0.28,
+        1.65
+      ],
+      "target_m": [
+        0,
+        -1.65,
+        1.55
+      ],
+      "roll_deg": 0
+    }
+  ]
+}

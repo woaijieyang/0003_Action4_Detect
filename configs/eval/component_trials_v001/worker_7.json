@@ -1,0 +1,7 @@
+{
+  "configs": [
+    "configs/model/component_trials_v001/a0_baseline.json",
+    "configs/model/component_trials_v001/a0_joint_noedges.json",
+    "configs/model/component_trials_v001/a0_joint.json"
+  ]
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "action4.frozen_components.v1",
+  "created_at": "2026-10-20T13:47:24.377521+08:00",
+  "policy": "Do not modify locked artifact bytes. Adjust assembly transforms/configuration separately. Necessary component corrections require a new version, preserved parent, evidence review and explicit reference update. Hash pass alone does not authorize production.",
+  "canonical_semantics": "Original 0..7 order and mm-to-m conversion fixed. No per-frame body scale or relabeling.",
+  "components": [
+    {
+      "id": "dji_body_and_canonical8",
+      "status": "LOCKED_VERIFIED_COMPONENT",
+      "scope": "Original Action4 core geometry, metric dimensions and fixed canonical8 order; no claim full scene is calibrated",
+      "files": {
+        "data/DJI_Action4_construct/r3_v001/mesh_v001.npz": "295d14e8dc7e802c6382b75806805fe325196c340b72ea788d4843cd1b3f787c",
+        "data/DJI_Action4_construct/r3_v001/asset_manifest.json": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+      }
+    },
+    {
+      "id": "v007_verified_component_source",
+      "status": "LOCKED_ANCESTOR_SOURCE",
+      "scope": "Immutable source for previously checked camera/material and smooth/periodic anatomy components; wholebody scene is NOT production accepted",
+      "files": {
+        "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f",
+        "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+      }
+    },
+    {
+      "id": "periodic_skin_texture",
+      "status": "LOCKED_VERIFIED_TEXTURE",
+      "scope": "Verified source-derived Linear EXR; not measured albedo or skin reconstruction",
+      "files": {
+        "data/action4_scene_assets/skin_texture_periodic_v001/linear32_zip_v001/skin_forearm_periodic_linear32_zip.exr": "ab52d6d0466299be03ef53fb866a94b770a0719709bb1cb300b6c38cf9b8650e"
+      }
+    },
+    {
+      "id": "bilateral_wrist_source_libraries",
+      "status": "LOCKED_VERIFIED_LIBRARY_INITIALIZATION",
+      "scope": "Fixed source-derived neutral forearm/hand geometry and materials; proportions remain source estimates, not measured subject anatomy. Root poses and assembly calibrated separately; elbow opening visibility must be checked.",
+      "files": {
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/left.blend": "e4943c199b721e4025fb7b687197dcc50e4fca3db96a32106b01d878f9949f2c",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/left_contract.json": "a8d4af2e269644507fc759129da1e06d706de3373ae2d2739c351759a1d1128f",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/left_geometry.npz": "552b80b79c680e0e4b52785293cc049a1d2d79cc209bd736ee91ebd0f5e1c69a",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/modules_manifest.json": "70742c2b33066126917cbc31f264da85e79565d6411561ff18e31eecc99a4655",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/right.blend": "88080140e0e63d89c6f6f0ab7d051eec85fb0026eba358344f8fdd6c5696fc4d",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/right_contract.json": "6a05530fb88d7a868988e2e4036fb7ec38b98176104a05b05805e50e462edc9e",
+        "data/action4_scene_assets/modular_wrist_v001/build_v003/right_geometry.npz": "f282c4d8af79c48fcc488588519c0f685a9882089110709a575fd9133f26d582"
+      }
+    },
+    {
+      "id": "right_brace_34mm",
+      "status": "LOCKED_VERIFIED_MODULE_INITIALIZATION",
+      "scope": "Fixed34mm right band/rims, non-target. No accepted mountingA, actual subject-size or complete-scene claim.",
+      "files": {
+        "data/action4_scene_assets/modular_brace_v001/build_v002/brace_module_right.blend": "ffac667db18fd09174755d75cdccddfd6d42addd7690fd766a664592429a7786",
+        "data/action4_scene_assets/modular_brace_v001/build_v002/mesh_geometry.npz": "013865d9d2cffd454695e3f7a031394baf84c3db7610f57ec66aabf66301845e",
+        "data/action4_scene_assets/modular_brace_v001/build_v002/module_contract.json": "19c5e5fd6ff85197601c46573f100a6633c517d009d1968dff5aac8a8b13dc84"
+      }
+    },
+    {
+      "id": "left34_brace_library_initialization",
+      "status": "LOCKED_VERIFIED_MODULE_INITIALIZATION",
+      "scope": "Original left radii; 34mm width/32mm wrist reference/72facets, packed source weave/active material graph and actual geometry/reopen verified. Original exit1 preserved; separate readonly recovery passed. No A/S/wearing/scene/training acceptance.",
+      "files": {
+        "data/action4_scene_assets/modular_left_brace_v001/build_v001/brace_module_left.blend": "e9cd128083ffe92c8765fef9d3d2b92fc396ab14664812589ff136011185cfe5",
+        "data/action4_scene_assets/modular_left_brace_v001/build_v001/module_contract.json": "c5a3a376e70b82c1d4d634046c944f6911c3e29cc63abfac101d87a8df7b0c5a",
+        "data/action4_scene_assets/modular_left_brace_v001/build_v001/mesh_geometry.npz": "a2f16f972124d5bf70e21af7be2986f35640d4d1d6eb85306fc71a6ddd10857e"
+      },
+      "quality_evidence": {
+        "path": "outputs/action4_left_brace_reopen_recovery_v001/controller_quality.json",
+        "sha256": "60868fcbaddf4bd3434f5abdbbd5de905e8050606a188a867aa0c3d0eab4e38e"
+      }
+    }
+  ],
+  "whole_scene_training_accepted": false,
+  "parent_registry": {
+    "path": "configs/data/action4_frozen_modules_v002.json",
+    "sha256": "207d1dfcee7d17459d9dcc2c8323ebf87daee2296bf3ef82386397b3cf23af53"
+  }
+}

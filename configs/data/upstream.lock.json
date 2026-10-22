@@ -1,0 +1,41 @@
+{
+  "base_repository": "https://github.com/woaijieyang/0003_Action4_Detect.git",
+  "base_commit": "d88d61eede18382b788fa452054a19450bc5e19a",
+  "repositories": [
+    {
+      "name": "HCCEPose",
+      "url": "https://github.com/WangYuLin-SEU/HCCEPose.git",
+      "commit": "f75cc4d5db2fc298fc7b853f8c75273757872382",
+      "path": "upstream/HCCEPose",
+      "mode": "read_only_source_reference"
+    },
+    {
+      "name": "BoxDreamer",
+      "url": "https://github.com/zju3dv/BoxDreamer.git",
+      "commit": "106f3c16c746770cbad80720ce4a557eb31f30f5",
+      "path": "upstream/BoxDreamer",
+      "mode": "read_only_source_reference"
+    },
+    {
+      "name": "CenterNet",
+      "url": "https://github.com/xingyizhou/CenterNet.git",
+      "commit": "4c50fd3a46bdf63dbf2082c5cbb3458d39579e6c",
+      "path": "upstream/CenterNet",
+      "mode": "read_only_source_reference"
+    },
+    {
+      "name": "BlenderProc",
+      "url": "https://github.com/DLR-RM/BlenderProc.git",
+      "commit": "76bd8b82ee19489843578ff045298642197bf883",
+      "path": "upstream/BlenderProc",
+      "mode": "read_only_source_reference"
+    },
+    {
+      "name": "bop_toolkit",
+      "url": "https://github.com/thodan/bop_toolkit.git",
+      "commit": "cea62d651c7e395b2e1962b9749e4e89693c6ac4",
+      "path": "upstream/bop_toolkit",
+      "mode": "read_only_source_reference"
+    }
+  ]
+}

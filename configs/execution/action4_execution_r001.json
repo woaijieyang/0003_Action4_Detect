@@ -1,0 +1,30 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r001",
+  "status": "PREPARATION_ONLY",
+  "phase": "preparation",
+  "source_context_ref": {
+    "path": "outputs/action4_execution_source_release_v006/source_context.json",
+    "sha256": "301cf3056532ae5a325d75bc09b46ea796b6d9d6282f0c9c993dc0e6a378afd6"
+  },
+  "parameters_release_ref": {
+    "path": "outputs/action4_pilot2000_candidate_plan_v006/parameters_release.json",
+    "sha256": "4c128aa82cad091adacc5c719d8adc3fc36fd25307b930a05e3c2c1bec2cf93c"
+  },
+  "geometry_ref": {
+    "path": "outputs/action4_prefreeze128_scaleout_v001/AGGREGATED128.json",
+    "sha256": "af919e881872cbd594ab8b3eeb66b2420af78cfb7986c222890b1162dc23e8bc"
+  },
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4角点复现增补.md",
+  "render": {
+    "enabled": false,
+    "entrypoint": "scripts/action4_render_cached.py",
+    "plan_ref": null,
+    "reason": "Full2000 frozen plan still building; no active128 or bulk render yet"
+  },
+  "training": {
+    "enabled": false,
+    "reason": "No accepted2000 dataset yet"
+  },
+  "legacy_policy": "Historical runs/plans are inactive. Only immutable source ancestors explicitly bound by current source/plan remain dependencies. No latest-file search or fallback."
+}

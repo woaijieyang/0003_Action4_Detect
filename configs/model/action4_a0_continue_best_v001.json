@@ -1,0 +1,52 @@
+{
+  "output": "outputs/action4_a0_continuation_v001",
+  "cache_output": "outputs/action4_gdr_surface_candidate_v001",
+  "base_A0_step": 6300,
+  "epochs": 80,
+  "warmup_epochs": 0,
+  "batch": 16,
+  "micro": 4,
+  "lr": 0.0002,
+  "surface_lr": 5e-05,
+  "seed": 20261025,
+  "eval_every": 25,
+  "loss_weights": {
+    "xyz": 1.0,
+    "region": 0.1,
+    "mask": 1.0,
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0
+  },
+  "source_identity": {
+    "src/model/action4_gdr_pose.py": "227d79ad1f97710389eafbc250aab2ef7cd9b865608fc1a5bfd928062d5abc47",
+    "src/model/heads/gdr_conv_pnp.py": "3ca9a666fca4c3bf41f67e9fbb170bd3005166d2870b168fc68e0ec464f5f9fe",
+    "src/model/heads/gdr_rotation.py": "e598291ca0969e53b3d966db55090d4b34bb2e67e1b68b0a1b8f1a3236c841c6",
+    "src/data/action4_gdr_pose_data.py": "e315cf37291938f777f2f2dd4bb20bd9c4c0935f58292664afc2caf9df0a596c",
+    "src/model/action4_surface_head.py": "5b74c15429faeae6df2067d26b60d38c36b5cef1dd046f64f56d28f7ae49a766",
+    "src/model/heads/gdr_region_head.py": "7cd314ab7ddce8a90b97503322d353b1f025f447a115f69c0ae2258226ead53d",
+    "src/model/action4_gdr_pose_losses_v002.py": "008bb61c976691ddc4d24ca2d25aec47485dd5b5c9146a8e5b2c6658e0c5135b",
+    "src/model/training/action4_gdr_pose_train_v002.py": "cca5bacd6951802beb6391ae3a947977526bec05a13a013402e27ca9c011def7",
+    "src/eval/action4_gdr_pose_eval_v002.py": "eb97b848d50714e4ffd1becb47f2ff21d5f4f79ae5ebc1936ff248c612e96a09",
+    "src/model/training/action4_async_recovery.py": "1fddd000397b5a20fa8bcc08e2df62a1307e3a8e1917a1f57381cc0eae499753",
+    "src/data/action4_cached_surface_dataset.py": "acda1c5d2e355a32e481910d5dceb38e358d698d0d85f523dd456d6f669fcb4d",
+    "src/model/training/action4_gdr_pose_dispatch_v002.py": "ece558d830f4bb1deca58b49c9d7fcdd280ecd8cbd88b1878728e1b6e21f630e",
+    "src/model/action4_release_bundle.py": "3aa76123f6ccf6ba4bbfbaa3491b228dfa7e9d959f98f9b9e3ee89ffb9b9547d"
+  },
+  "scope": "NOT_LAUNCHED: fresh optimizer warm start from sealed stage best; historic last optimizer never combined with selected weights",
+  "inference_inputs": "RGB backbone feature, camera crop K,fixed canonical CAD; no target masks/pose/corners",
+  "pose_convention": "ego6d rotation; crop centroid,softplus relative positive depth",
+  "production_accepted": false,
+  "recovery_policy": "OS hard-exit orphan claims recover under exclusive worker lock; recorded failures remain fail-closed and require explicit --resume --retry-failed after diagnosis",
+  "data_identity": {
+    "data/train/annotations.jsonl": "f0e7b5d2de6b721101d9aee8069e828f5f03c6f1bf97572d5e44ad4829f6e03b",
+    "data/eval/annotations.jsonl": "791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34e",
+    "outputs/action4_gdr_surface_candidate_v001/CACHE_COMPLETE.json": "f599c799a271b8b10d9b9eae4426cd1cbf859e4f8b00a2493fdfd066ce5d3fca"
+  },
+  "best_bundle": "models/A0/best.pt",
+  "parent_best_step": 13350,
+  "validation_receipt": "outputs/required/DATA_VALIDATED_ALL_SPLITS.json"
+}

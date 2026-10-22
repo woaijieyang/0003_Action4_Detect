@@ -1,0 +1,188 @@
+{
+  "schema": "action4.modular_right_f0_preview.v1",
+  "status": "estimated_diagnostic_pending_RGB",
+  "dataset_generation_allowed": false,
+  "frame_id": 0,
+  "instance_id": 2,
+  "threads": 2,
+  "resolution_wh": [
+    3248,
+    2464
+  ],
+  "sources": {
+    "baseline_config": {
+      "path": "configs/data/action4_modular_assembly_probe_v001.json",
+      "sha256": "5e57694ec43115ab100b944f64e1f22ab4e6bdaa9a7125aa0d1d1c69553293b5"
+    },
+    "baseline_asset": {
+      "path": "outputs/action4_realism_reassessment_v001/modular_assembly_probe_v001/diagnostic_scene.blend",
+      "sha256": "e39c096e9ac33b1a1d4e0ae01947c14d80cd5fec70f077f36d58887542085d56"
+    },
+    "baseline_contract": {
+      "path": "outputs/action4_realism_reassessment_v001/modular_assembly_probe_v001/assembly_contract.json",
+      "sha256": "5323a2e9ab2ee1a7598062177797d97918e8826f116162eb7d29dac2f915c0b7"
+    },
+    "relation_adapter": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_relation.py",
+      "sha256": "373ab36ded3fe3940f5e970e2b3ccb2abe5ae28a7e789bfd2963f17cf7662cf6"
+    },
+    "relation_config": {
+      "path": "outputs/action4_modular_relation_actual_v001/config.json",
+      "sha256": "26139531b0dd0dd98aa14572ef9d723f1adfbb16c03fecfe1e0180a4ed79c666"
+    },
+    "relation_result": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/result.json",
+      "sha256": "17a248a05ad8b791faedb33a7c439afac8718b1dcda185826b0c63db1d375858"
+    },
+    "relation_actual_frame": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/frame_0_geometry.json",
+      "sha256": "0638690b2e07fa1ccf2d11691dcc021e8765756457f042fe88c48acdde944619"
+    },
+    "relation_actual_geometry": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/frame_0_actual_world_geometry.npz",
+      "sha256": "48e5633056cb72ec06fd9dce8c849a78d3963b4df0da41e9b08544a05a5663fb"
+    },
+    "raw_frame": {
+      "path": "data/action4_real/cache_v001/frames/frame_00000000.png",
+      "sha256": "954e4d84543ba392363772dacebee70737a08fa1575e7da091335e6752c44249"
+    },
+    "environment_observation": {
+      "path": "outputs/action4_modular_render_prepare_v001/f0_environment_observation.json",
+      "sha256": "03a4fe6a855910313095dfb0d9c44a88d3f465a5ac9ce295e2054116338df5b9"
+    },
+    "global_render_helper": {
+      "path": "src/data/action4_global_render.py",
+      "sha256": "40584a0665b5d9173ce64446d39bd79bf2bb8e0b187ed1e8bdbcae4036223392"
+    },
+    "render_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "environment_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "synthesis_helper": {
+      "path": "src/data/action4_synthesis.py",
+      "sha256": "549c2d4887211d1d5d0c49d19a8887d68661e1797ba86c6e23d0fba09db42549"
+    },
+    "amodal_helper": {
+      "path": "src/data/action4_amodal.py",
+      "sha256": "35b5eb56f7e1effdc2f14ebde8a79bd228ba852785c023fc262562d26669cabf"
+    },
+    "canonical_helper": {
+      "path": "src/data/action4_canonical_export.py",
+      "sha256": "dabf2ec2d43454b838aeb6ef2a88645fb4d2042546d86ab33e4ae46af867f8b8"
+    },
+    "assembly_helper": {
+      "path": "src/data/action4_modular_assembly.py",
+      "sha256": "cbf876357c61ccbbe0db3c356a12545593b2ec1c4acbf4f4c9b37c3fcd59d886"
+    },
+    "devices_helper": {
+      "path": "src/data/action4_devices.py",
+      "sha256": "2e6560e6134db20ff5af86cc57a580c500bff15899c08d84c407654c37d5246e"
+    },
+    "blender": {
+      "path": "runtime/blender-3.6.23-linux-x64/blender",
+      "sha256": "b2e55515b04b8c445191f07069371ec11790106756c8b7a2c70fe12fd6cd140c"
+    },
+    "modular_render_module": {
+      "path": "src/data/action4_modular_render.py",
+      "sha256": "af919427554861f8d5aa6c12f75d55a797f79a1c09a118d1c90e610b6f6799bc"
+    },
+    "entrypoint": {
+      "path": "scripts/action4_modular_render.py",
+      "sha256": "de09015380a37dca4c3894bdae1919f96ccf5e02ab57534f12384ecdb4070102"
+    },
+    "joint_result": {
+      "path": "outputs/action4_realism_reassessment_v001/joint_body_attachment_threeframe_v003/actual_fit_v001/result.json",
+      "sha256": "4e25ba6e93898bd03d44113e820a8936e7923ba832ae7595ecf8c3fe2db2e086"
+    },
+    "relation_spec": {
+      "path": "outputs/action4_modular_relation_result_review_v001/spec_review.json",
+      "sha256": "70b90307093c664cba0562a5a570cac159e8ac2563ac9b3e69edbb82efa68a4b"
+    }
+  },
+  "render": {
+    "device": "CUDA",
+    "denoiser": "OPTIX",
+    "samples": 64,
+    "mask_samples": 1,
+    "amodal_mode": "crop",
+    "amodal_margin_px": 16,
+    "seed": 20261020
+  },
+  "environment": {
+    "claim": "One bounded photometric candidate after measured firstRGB overbrightness: broad wall-directed source behind foreground modules. Light parameters estimated, not calibrated; all geometry/material/source and K remain fixed.",
+    "wall_front_capture_z_m": 0.85,
+    "wall_size_xy_m": [
+      1.4,
+      1.2
+    ],
+    "wall_thickness_m": 0.02,
+    "wall_linear_rgb": [
+      0.22,
+      0.23,
+      0.25
+    ],
+    "roughness": 0.9,
+    "table_front_capture_z_m": 0.6,
+    "table_back_edge_native_y_px": 2365,
+    "table_width_m": 1.4,
+    "table_thickness_m": 0.025,
+    "grid_pitch_m": 0.025,
+    "grid_line_fraction": 0.04,
+    "grid_cell_linear_rgb": [
+      0.4,
+      0.42,
+      0.43
+    ],
+    "grid_line_linear_rgb": [
+      0.008,
+      0.012,
+      0.015
+    ],
+    "world_linear_rgb": [
+      0.45,
+      0.46,
+      0.47
+    ],
+    "world_strength": 0.35,
+    "area_location_capture_m": [
+      0,
+      -0.25,
+      0.6
+    ],
+    "area_target_capture_m": [
+      0,
+      -0.25,
+      0.85
+    ],
+    "area_energy_w": 5.0,
+    "area_size_m": 1.4,
+    "area_color": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "view_transform": "Standard",
+    "look": "Medium High Contrast",
+    "exposure": 0.0,
+    "gamma": 1.0
+  },
+  "review_crop_xyxy": [
+    1800,
+    450,
+    3100,
+    2464
+  ],
+  "pending": [
+    "mount/quickrelease/white module/cable absent",
+    "coarse wrist/hand pose not matched to actualf0",
+    "f0 upperleft fullCAD outline mismatch remains",
+    "single rightonly diagnostic; leftobject not present",
+    "environmentdepth/material/light are estimated priors",
+    "wearing/scene/training not accepted"
+  ],
+  "output_scope": "outputs/action4_modular_render_prepare_v001/runs"
+}

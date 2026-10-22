@@ -1,0 +1,83 @@
+{
+  "schema": "action4.presence_quota_policy.v1",
+  "version": "pilot2000_test_dual_only_v003",
+  "status": "USER_REQUEST_PLAN_UPDATED_IMPLEMENTATION_PENDING",
+  "updated": "2026-10-20T20:36:23.586086+08:00",
+  "user_requirement": "Formal test split contains only paired cameras; train/eval retain92 percent paired and total paired remains above90 percent.",
+  "total_samples": 2000,
+  "instance_count_order": [
+    0,
+    1,
+    2
+  ],
+  "instance_weights": [
+    0.03,
+    0.05,
+    0.92
+  ],
+  "expected_counts_by_split": {
+    "train": {
+      "total": 1600,
+      "0": 48,
+      "1": 80,
+      "2": 1472
+    },
+    "eval": {
+      "total": 200,
+      "0": 6,
+      "1": 10,
+      "2": 184
+    },
+    "test": {
+      "total": 200,
+      "0": 0,
+      "1": 0,
+      "2": 200
+    }
+  },
+  "expected_counts_total": {
+    "0": 54,
+    "1": 90,
+    "2": 1856
+  },
+  "dual_fraction": 0.928,
+  "nondual_fraction": 0.072,
+  "group_split_policy_unchanged": true,
+  "eight_scene_families_required": true,
+  "hard_negative_uses_zero_target_quota_only": true,
+  "hard_negative_count": 54,
+  "accepted_dual_definition": "Actual paired instance IDs1/2, visible target support and complete canonical8 per existing acceptance rules; planned presence flags alone do not count. Ignored/excluded single targets cannot silently count as accepted dual images.",
+  "reference_augmentation_partition_is_independent": "Existing proposed 90/10 reference/augmentation is a separate dimension, not the dual-camera ratio.",
+  "historical_recipe_not_for_new_generation": "configs/data/action4_realism_pilot2000_v015_candidate.json",
+  "created_dataset_or_training": false,
+  "instance_weights_by_split": {
+    "train": [
+      0.03,
+      0.05,
+      0.92
+    ],
+    "eval": [
+      0.03,
+      0.05,
+      0.92
+    ],
+    "test": [
+      0.0,
+      0.0,
+      1.0
+    ]
+  },
+  "aggregate_instance_fractions": [
+    0.027,
+    0.045,
+    0.928
+  ],
+  "formal_test_dual_only": true,
+  "test_forbids_ignored_or_missing_instances": true,
+  "instance_weights_semantics": "Default train/eval weights; explicit per-split override is mandatory for test. Do not allocate every split from aggregate fractions.",
+  "supersedes": {
+    "path": "configs/data/action4_pilot2000_presence_quota_v002.json",
+    "sha256": "7866f16b44706c7519b39c3a4a0007c574b0fb3ef343618cb89a9ceed6b0d242"
+  },
+  "diagnostic_presence_cases_are_not_formal_test": true
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "action4.presence_quota_policy.v1",
+  "version": "pilot2000_double92_v002",
+  "status": "USER_REQUEST_IMPLEMENTATION_PLAN_NOT_GENERATED_DATA",
+  "updated": "2026-10-20T20:18:22.557216+08:00",
+  "user_requirement": "Two-camera simultaneous synthetic samples must occupy more than 90 percent; retain a small non-dual subset.",
+  "total_samples": 2000,
+  "instance_count_order": [
+    0,
+    1,
+    2
+  ],
+  "instance_weights": [
+    0.03,
+    0.05,
+    0.92
+  ],
+  "expected_counts_by_split": {
+    "train": {
+      "total": 1600,
+      "0": 48,
+      "1": 80,
+      "2": 1472
+    },
+    "eval": {
+      "total": 200,
+      "0": 6,
+      "1": 10,
+      "2": 184
+    },
+    "test": {
+      "total": 200,
+      "0": 6,
+      "1": 10,
+      "2": 184
+    }
+  },
+  "expected_counts_total": {
+    "0": 60,
+    "1": 100,
+    "2": 1840
+  },
+  "dual_fraction": 0.92,
+  "nondual_fraction": 0.08,
+  "group_split_policy_unchanged": true,
+  "eight_scene_families_required": true,
+  "hard_negative_uses_zero_target_quota_only": true,
+  "hard_negative_count": 60,
+  "accepted_dual_definition": "Actual paired instance IDs1/2, visible target support and complete canonical8 per existing acceptance rules; planned presence flags alone do not count. Ignored/excluded single targets cannot silently count as accepted dual images.",
+  "reference_augmentation_partition_is_independent": "Existing proposed 90/10 reference/augmentation is a separate dimension, not the dual-camera ratio.",
+  "historical_recipe_not_for_new_generation": "configs/data/action4_realism_pilot2000_v015_candidate.json",
+  "created_dataset_or_training": false
+}

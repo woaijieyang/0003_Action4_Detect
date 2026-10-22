@@ -1,0 +1,125 @@
+{
+  "schema": "action4.global_diagnostic_preview.v1",
+  "mode": "diagnostic_only",
+  "dataset_generation_allowed": false,
+  "sources": {
+    "integrated_asset": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "integrated_contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "integrated_config": {
+      "path": "configs/data/action4_global_scene_periodic_skin_v001.json",
+      "sha256": "5512b0112e894359228ca7459da2fcdae8090b9c6498b80cc646e76a3c643789"
+    },
+    "integrated_module": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "environment_module": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "render_module": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "synthesis_module": {
+      "path": "src/data/action4_synthesis.py",
+      "sha256": "549c2d4887211d1d5d0c49d19a8887d68661e1797ba86c6e23d0fba09db42549"
+    },
+    "amodal_module": {
+      "path": "src/data/action4_amodal.py",
+      "sha256": "35b5eb56f7e1effdc2f14ebde8a79bd228ba852785c023fc262562d26669cabf"
+    },
+    "devices_module": {
+      "path": "src/data/action4_devices.py",
+      "sha256": "2e6560e6134db20ff5af86cc57a580c500bff15899c08d84c407654c37d5246e"
+    },
+    "adapter_module": {
+      "path": "src/data/action4_adapter.py",
+      "sha256": "df78347afbf0a3bb2ab004b4b80fbd76e99760c03d0f39450c24f5902f89fa7c"
+    },
+    "blender": {
+      "path": "runtime/blender-3.6.23-linux-x64/blender",
+      "sha256": "b2e55515b04b8c445191f07069371ec11790106756c8b7a2c70fe12fd6cd140c"
+    }
+  },
+  "resolution_wh": [
+    3248,
+    2464
+  ],
+  "threads": 2,
+  "render": {
+    "device": "CUDA",
+    "denoiser": "OPTIX",
+    "samples": 64,
+    "mask_samples": 1,
+    "amodal_mode": "crop",
+    "amodal_margin_px": 16,
+    "seed": 20261020
+  },
+  "inspection_poses": [
+    {
+      "id": "whole_table",
+      "pose": {
+        "location_m": [
+          0,
+          -1.35,
+          1.6
+        ],
+        "target_m": [
+          0,
+          -0.9,
+          0.75
+        ],
+        "roll_deg": 0
+      },
+      "derivation": "Frozen table centre/top/extents; observer 0.05m beyond far edge and 0.85m above top. Engineering inspection, not real observing-camera fit.",
+      "required_visible_target_ids": []
+    },
+    {
+      "id": "left_wrist",
+      "pose": {
+        "location_m": [
+          0.3992900550365448,
+          -0.5999393910169601,
+          1.2379232358932495
+        ],
+        "target_m": [
+          0.3992900550365448,
+          -0.09993939101696014,
+          1.0179232358932495
+        ],
+        "roll_deg": 0
+      },
+      "derivation": "Frozen neutral core world centre plus observer (0,-0.50,+0.22)m. Engineering inspection, not real observing-camera fit.",
+      "required_visible_target_ids": [
+        1
+      ]
+    },
+    {
+      "id": "right_wrist",
+      "pose": {
+        "location_m": [
+          -0.3994399905204773,
+          -0.6002029776573181,
+          1.2370319080352783
+        ],
+        "target_m": [
+          -0.3994399905204773,
+          -0.10020297765731812,
+          1.0170319080352783
+        ],
+        "roll_deg": 0
+      },
+      "derivation": "Frozen neutral core world centre plus observer (0,-0.50,+0.22)m. Engineering inspection, not real observing-camera fit.",
+      "required_visible_target_ids": [
+        2
+      ]
+    }
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "schema": "action4.left_mount_modules.v1",
+  "status": "diagnostic_pending_build_review",
+  "dataset_generation_allowed": false,
+  "sources": {
+    "source_asset": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "source_contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "source_scene_helper": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "render_tube_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "material_state_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "assembly_helper": {
+      "path": "src/data/action4_modular_assembly.py",
+      "sha256": "cbf876357c61ccbbe0db3c356a12545593b2ec1c4acbf4f4c9b37c3fcd59d886"
+    },
+    "registry_validator": {
+      "path": "scripts/action4_verify_frozen_modules.py",
+      "sha256": "d07482aca844707b8613de24045b5bbf44c6919bee22d8d0712d35b0b8d92e2d"
+    },
+    "CAD_geometry": {
+      "path": "data/DJI_Action4_construct/r3_v001/mesh_v001.npz",
+      "sha256": "295d14e8dc7e802c6382b75806805fe325196c340b72ea788d4843cd1b3f787c"
+    },
+    "inventory": {
+      "path": "outputs/action4_mount_module_inventory_v001/actual_inventory.json",
+      "sha256": "4355779811dce854db68870f3b4986f80ffd7fbc62a399fa6b719269d90eda60"
+    },
+    "parent_mount_helper": {
+      "path": "src/data/action4_mount_modules.py",
+      "sha256": "d787812f57ac92615bf3a5f22f0c4da44d60219d63bf5dddd87007499ca1e8e3"
+    },
+    "joint_result": {
+      "path": "outputs/action4_left_hand_y25_v001/assembly.json",
+      "sha256": "e3a5b6bc2b3f67081294af2c33f518c20d90e77816e50c08d6f63ecb67729ea3"
+    },
+    "registry": {
+      "path": "configs/data/action4_frozen_modules_v003.json",
+      "sha256": "dae2b36351009060159f2885c6d4258c02da0c87333b57c6919df1109a553ef5"
+    },
+    "wrist_geometry": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left_geometry.npz",
+      "sha256": "552b80b79c680e0e4b52785293cc049a1d2d79cc209bd736ee91ebd0f5e1c69a"
+    },
+    "wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left_contract.json",
+      "sha256": "a8d4af2e269644507fc759129da1e06d706de3373ae2d2739c351759a1d1128f"
+    },
+    "brace_geometry": {
+      "path": "data/action4_scene_assets/modular_left_brace_v001/build_v001/mesh_geometry.npz",
+      "sha256": "a2f16f972124d5bf70e21af7be2986f35640d4d1d6eb85306fc71a6ddd10857e"
+    },
+    "brace_contract": {
+      "path": "data/action4_scene_assets/modular_left_brace_v001/build_v001/module_contract.json",
+      "sha256": "c5a3a376e70b82c1d4d634046c944f6911c3e29cc63abfac101d87a8df7b0c5a"
+    },
+    "left_axes": {
+      "path": "outputs/action4_left_wearing_axes_analysis_v001/analysis.json",
+      "sha256": "1ef21191d01d67f618fb5187295fb1114052c73e0d01c81baf2069a6e4fd862f"
+    },
+    "left_S_review": {
+      "path": "outputs/action4_left_band_skin_relation_spec_review_v001/spec_review.json",
+      "sha256": "a191c8af479652260fea13ea01d3130e4a6dafc70dee99e274bfd029549a708f"
+    },
+    "neutral_baseline": {
+      "path": "outputs/action4_left_hand_y25_v001/neutral_baseline.json",
+      "sha256": "a10d16a3df3705e7928b8ee2f5073610694ad1c6f8a0928ea1f4a4b4fd3d1dc6"
+    },
+    "neutral_geometry": {
+      "path": "outputs/action4_left_hand_y25_v001/neutral_baseline.npz",
+      "sha256": "5f3d74b923cfb869f2ca73dd38fb6e912f438d3d7eb11903026bfe5c4aff56ae"
+    },
+    "neutral_full_geometry": {
+      "path": "outputs/action4_realism_reassessment_v001/wrist_motion_fk_actual_v001/neutral_preflight/actual_skin.npz",
+      "sha256": "ff66a61852404d22eaa70018146e6b7d69ebb5bc4b9e9e45552247503ab2c703"
+    },
+    "left_band_reopen": {
+      "path": "outputs/action4_left_brace_reopen_recovery_v001/controller_quality.json",
+      "sha256": "60868fcbaddf4bd3434f5abdbbd5de905e8050606a188a867aa0c3d0eab4e38e"
+    }
+  },
+  "routing": {
+    "quick_approach_clearance_m": 0.001,
+    "cable_exit_extra_clearance_m": 0.003,
+    "nominal_joint_zone_margin_m": 0.001,
+    "source_reference_shift_m": 0.003,
+    "route_policy": "preserve_band_ball_anchor_and_CAD_negativeZ_approach; cable_source_station_magnitudes_on_USB_lateral_side"
+  },
+  "output_dir": "outputs/action4_left_mount_modules_v001"
+}

@@ -1,0 +1,230 @@
+{
+  "version": "action4_video_recipe_v001",
+  "status": "observed_video_profile_and_proposed_synthesis_prior",
+  "source_video": "data/final_test_data/head_left_rgb_raw.mp4",
+  "source_sha256": "016628eca2887220080d823f65d4f9c520ded71be363dbbbee95e175df7bd3e8",
+  "media": {
+    "width": 3248,
+    "height": 2464,
+    "frame_count": 2850,
+    "fps": "2997/100",
+    "time_base": "1/11988",
+    "pts_step": 400,
+    "first_pts": 0,
+    "last_pts": 1139600,
+    "audio": false
+  },
+  "observation_scope": {
+    "decoded_all_frame_timestamps": true,
+    "chronological_keyframes": 96,
+    "interval_frames": 30,
+    "additional_native_detail_frames": 20,
+    "claim": "Chronological keyframe review and selected native detail review, not all-frame visual accuracy verification"
+  },
+  "observations": [
+    {
+      "frames": [
+        0,
+        90
+      ],
+      "times_s": [
+        0,
+        3.003003
+      ],
+      "scene": "wall_rear",
+      "evidence": [
+        0,
+        30,
+        60,
+        90
+      ],
+      "finding": "Two wrist-mounted cameras: large rear screens, left-side black-white markers, top ID stickers, cables, neutral gray wall."
+    },
+    {
+      "frames": [
+        105,
+        150
+      ],
+      "times_s": [
+        3.503503,
+        5.005005
+      ],
+      "scene": "wrist_turn_transition",
+      "evidence": [
+        105,
+        120,
+        150
+      ],
+      "finding": "Wrists turn over; devices change from rear-facing to strong side/top views; mounts and cables move with wrists."
+    },
+    {
+      "frames": [
+        150,
+        1140
+      ],
+      "times_s": [
+        5.005005,
+        38.038038
+      ],
+      "scene": "tabletop_small",
+      "evidence": [
+        150,
+        540,
+        960,
+        1080
+      ],
+      "finding": "Manipulating denim jacket on grid cloth. Cameras mostly lower/inner wrist, smaller than opening view; side details and partial rear-screen visibility."
+    },
+    {
+      "frames": [
+        1170,
+        1410
+      ],
+      "times_s": [
+        39.039039,
+        47.047047
+      ],
+      "scene": "near_pair_dark_background",
+      "evidence": [
+        1200,
+        1290
+      ],
+      "finding": "Cameras converge above dark clothing; projected bodies and mounts nearly touch, with varying tilt and partial obscuration."
+    },
+    {
+      "frames": [
+        1440,
+        2310
+      ],
+      "times_s": [
+        48.048048,
+        77.077077
+      ],
+      "scene": "raised_denim_wrist_occlusion",
+      "evidence": [
+        1590,
+        1770,
+        1980,
+        2250
+      ],
+      "finding": "Fastening front buttons and raising garment. Own forearm/mount can hide a substantial part of one camera (frame 1980); cloth proximity does not establish pervasive cloth occlusion."
+    },
+    {
+      "frames": [
+        2340,
+        2760
+      ],
+      "times_s": [
+        78.078078,
+        92.092092
+      ],
+      "scene": "folding",
+      "evidence": [
+        2370,
+        2490,
+        2550,
+        2640
+      ],
+      "finding": "Folding sleeves/body changes background and hand pose. Cloth edges pass between hands; sampled camera bodies are often still visible."
+    },
+    {
+      "frames": [
+        2790,
+        2849
+      ],
+      "times_s": [
+        93.093093,
+        95.061728
+      ],
+      "scene": "wall_truncation",
+      "evidence": [
+        2820,
+        2849
+      ],
+      "finding": "Wrists rise against wall; large side/front oblique cameras, right camera truncated by bottom frame edge at frame 2849."
+    }
+  ],
+  "occlusion_rules": {
+    "mount_forearm": {
+      "priority": "high",
+      "placement": "Attach camera to wrist rig; occlude at attachment-facing side and its changing projected edge; depth order determined in 3D."
+    },
+    "cable": {
+      "priority": "high",
+      "placement": "Start at the camera connector and bend alongside/across forearm; preserve small cable thickness; no arbitrary full-screen stripe."
+    },
+    "other_camera": {
+      "priority": "high_for_close_pair",
+      "placement": "Bring both wrists toward center with feasible separation; preserve depth order and distinguish two instances."
+    },
+    "fabric": {
+      "priority": "low_initial_weight",
+      "placement": "Use actual grasped/folded cloth edge outside camera, entering silhouette only if depth supports it; avoid blanket coverage."
+    },
+    "negative_distractors": {
+      "placement": "Wrist strap, round light gray wrist module, black mount, connector, grid lines, denim buttons and dark clothes, with no Action4 body."
+    }
+  },
+  "proposed_s0": {
+    "note": "These are training-design weights, not empirical video frequencies or fitted 6D pose measurements.",
+    "count_train": 8000,
+    "count_eval": 1000,
+    "count_test": 1000,
+    "instance_proportions": {
+      "0": 0.05,
+      "1": 0.15,
+      "2": 0.8
+    },
+    "scene_proportions": {
+      "tabletop_and_dark_clothing": 0.8,
+      "wall_rear": 0.1,
+      "wrist_transition_and_frame_edge": 0.1
+    },
+    "rotation": {
+      "method": "Sample around evidence-matched 3D anchor poses; move wrist and device as a rigid assembly.",
+      "local_view_rotation_deg": [
+        -10,
+        10
+      ],
+      "in_plane_perturbation_deg": [
+        -15,
+        15
+      ],
+      "unrestricted_SO3": false
+    },
+    "appearance": {
+      "light_intensity_factor": [
+        0.9,
+        1.1
+      ],
+      "exposure_ev_delta": [
+        -0.15,
+        0.15
+      ],
+      "white_balance_gain": [
+        0.98,
+        1.02
+      ],
+      "target_backgrounds": [
+        "neutral_gray_wall",
+        "white_black_grid_tablecloth",
+        "blue_denim",
+        "dark_clothing"
+      ],
+      "extreme_colored_light": false
+    },
+    "blur": {
+      "native_motion_length_px": [
+        0,
+        6
+      ],
+      "fraction_upper_bound": 0.1,
+      "label_time": "exposure_midpoint",
+      "status": "proposed_bound_pending_target_edge_check"
+    },
+    "intrinsics": {
+      "status": "capture_K_unknown; synthesis_K_is_an_explicit_prior",
+      "target_K_from_DJI_spec": false
+    }
+  }
+}

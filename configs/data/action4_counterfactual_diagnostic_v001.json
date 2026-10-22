@@ -1,0 +1,88 @@
+{
+  "schema": "action4.counterfactual_diagnostic.v1",
+  "status": "WAIT_FOR_RELEASED_RENDER_SLOT",
+  "cases": [
+    {
+      "template": "wall",
+      "sample_id": "s209005_0000744_a00",
+      "parameters_ref": {
+        "path": "outputs/action4_template_full2000_v001/full075_v001/samples/s209005_0000744_a00/parameters.json",
+        "sha256": "d6153fe767d6bf9be345f8e3d61c27aaa5a90fe24fdc6a8a3efc820cecf638a1"
+      },
+      "source_seed": 209749,
+      "reference_boxes": [
+        [
+          1560.113706111908,
+          1495.269588470459,
+          1733.2915182113647,
+          1619.8140277862549
+        ],
+        [
+          160.25073486566544,
+          1242.4711723327637,
+          536.9366998672485,
+          1528.9745655059814
+        ]
+      ]
+    },
+    {
+      "template": "table_full_garment",
+      "sample_id": "s209005_0000709_a00",
+      "parameters_ref": {
+        "path": "outputs/action4_template_full2000_v001/full073_v001/samples/s209005_0000709_a00/parameters.json",
+        "sha256": "9a6da3dc9052cc8d47ee305eadd42a82964cfd0a87ab1808e28c072e3dd6e3d9"
+      },
+      "source_seed": 209714,
+      "reference_boxes": [
+        [
+          2422.970474243164,
+          1393.3547525405884,
+          2748.120185852051,
+          1676.3045063018799
+        ],
+        [
+          1898.414095878601,
+          321.37045097351074,
+          2029.0686683654785,
+          420.5938968658447
+        ]
+      ]
+    },
+    {
+      "template": "cloth_lift10_full_garment",
+      "sample_id": "s209005_0001031_a06",
+      "parameters_ref": {
+        "path": "outputs/action4_template_full2000_v001/full113_v001/samples/s209005_0001031_a06/parameters.json",
+        "sha256": "9ce126c3af6185f78c9e39e136d4414c7dd250b4b095931eac72a209375cf3e7"
+      },
+      "source_seed": 222036,
+      "reference_boxes": [
+        [
+          1548.287998199463,
+          1745.0508661270142,
+          1792.7566242218018,
+          1883.9579038619995
+        ],
+        [
+          2519.164978981018,
+          1659.7127046585083,
+          2840.1504430770874,
+          1947.5520997047424
+        ]
+      ]
+    }
+  ],
+  "interventions": [
+    "camera1_cloth1",
+    "camera1_cloth0",
+    "camera0_cloth1",
+    "camera0_cloth0"
+  ],
+  "output": "outputs/action4_scene_domain_audit_v001/counterfactual_v001",
+  "samples": 64,
+  "threads": 2,
+  "gpu_uuid": "GPU-8dfd78d1-6a27-4292-3338-9d33fffee9ef",
+  "source_selection": "nearest mean occlusion .35 per template, dual nonignored, truncation <.05, no prediction scores used",
+  "dataset_publication": false,
+  "training_use": false
+}

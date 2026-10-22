@@ -1,0 +1,50 @@
+{
+  "job_id": "template2000_b0_refine_v001",
+  "kind": "train",
+  "cwd": ".",
+  "argv": [
+    ".venv/bin/python",
+    "scripts/action4_train.py",
+    "--config",
+    "configs/model/action4_joint_refinement_v001.json",
+    "--stage",
+    "B0",
+    "--run-id",
+    "template2000_b0_refine_v001",
+    "--d0-gate",
+    "outputs/action4/template2000_d0_v005/d0_gate.json",
+    "--init-weights",
+    "models/action4/template2000_a0_refine_v002/best.pt"
+  ],
+  "output_dir": "outputs/action4_template_training_v001/dispatch_b0_refine_v001",
+  "result_dirs": [
+    "outputs/action4/template2000_b0_refine_v001",
+    "models/action4/template2000_b0_refine_v001"
+  ],
+  "allowed_gpu_uuids": [
+    "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f",
+    "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+    "GPU-b1ae5be6-1dba-7343-e233-59df41402f33",
+    "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e"
+  ],
+  "gpu_count": 4,
+  "reservation_mib_by_gpu": {
+    "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f": 32768,
+    "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8": 32768,
+    "GPU-b1ae5be6-1dba-7343-e233-59df41402f33": 32768,
+    "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e": 32768
+  },
+  "cpu_threads": 48,
+  "profile_key": "same2000_B0fiveepoch_improvedA0_FP32_world4_micro2",
+  "estimated_remaining_bytes": 34359738368,
+  "code": {
+    "scripts/action4_train.py": "a3f333c361bb56fda0b1485625a440c27f402455c9f3ea88d50aa432fff96bd3"
+  },
+  "configs": {
+    "configs/model/action4_joint_refinement_v001.json": "3f7b4aec16c135ab3b4e035ecc600ce7448fe52b27c11298a628bf3d89b9aaa2"
+  },
+  "inputs": {
+    "outputs/action4/template2000_d0_v005/d0_gate.json": "8949438cebb7d473e68bbacfd3393dc5f55eb247fbf8385083a3989ca3f5b0fa",
+    "models/action4/template2000_a0_refine_v002/best.pt": "b64ebd2484f026e32bf846c142fc46007c7818957dbf4f148904c8114ec0900b"
+  }
+}

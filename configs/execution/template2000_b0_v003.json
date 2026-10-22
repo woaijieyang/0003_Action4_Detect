@@ -1,0 +1,54 @@
+{
+  "job_id": "template2000_b0_v003",
+  "kind": "train",
+  "cwd": ".",
+  "argv": [
+    ".venv/bin/python",
+    "scripts/action4_train.py",
+    "--config",
+    "configs/model/action4_pilot2000_v006.json",
+    "--stage",
+    "B0",
+    "--run-id",
+    "template2000_b0_v003",
+    "--d0-gate",
+    "outputs/action4/template2000_d0_v004/d0_gate.json",
+    "--init-weights",
+    "models/action4/template2000_a0_v002/best.pt"
+  ],
+  "output_dir": "outputs/action4_template_training_v001/dispatch_template2000_b0_v003",
+  "result_dirs": [
+    "outputs/action4/template2000_b0_v003",
+    "models/action4/template2000_b0_v003"
+  ],
+  "allowed_gpu_uuids": [
+    "GPU-8dfd78d1-6a27-4292-3338-9d33fffee9ef",
+    "GPU-510dc520-5a9d-1317-019d-de5ed02c1b37",
+    "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f",
+    "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+    "GPU-b1ae5be6-1dba-7343-e233-59df41402f33",
+    "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e"
+  ],
+  "gpu_count": 6,
+  "reservation_mib_by_gpu": {
+    "GPU-8dfd78d1-6a27-4292-3338-9d33fffee9ef": 24576,
+    "GPU-510dc520-5a9d-1317-019d-de5ed02c1b37": 24576,
+    "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f": 24576,
+    "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8": 24576,
+    "GPU-b1ae5be6-1dba-7343-e233-59df41402f33": 24576,
+    "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e": 24576
+  },
+  "cpu_threads": 72,
+  "profile_key": "template2000_B0_six_gpu_v005",
+  "estimated_remaining_bytes": 34359738368,
+  "code": {
+    "scripts/action4_train.py": "a3f333c361bb56fda0b1485625a440c27f402455c9f3ea88d50aa432fff96bd3"
+  },
+  "configs": {
+    "configs/model/action4_pilot2000_v006.json": "59ae883ae7c09fcd43a39545bf368540a99fe767e1e5d79384d1ca916bc1a95f"
+  },
+  "inputs": {
+    "outputs/action4/template2000_d0_v004/d0_gate.json": "208c3da8a2da22c287271d28e00256845857ed04583b14d354f0941a09f3257e",
+    "models/action4/template2000_a0_v002/best.pt": "ae8291cd2594b8699f8387eb73a462450bf7bed89b344b60200b0c86a9057222"
+  }
+}

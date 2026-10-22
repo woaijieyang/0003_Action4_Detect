@@ -1,0 +1,20 @@
+{
+  "schema": "action4.template_worker.v1",
+  "plan_path": "configs/data/action4_template_pilot2000_v009.json",
+  "template": "wall",
+  "indices": [
+    1545,
+    1548,
+    1551,
+    1554,
+    1557,
+    1560,
+    1563,
+    1566
+  ],
+  "gpu_uuid": "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+  "threads": 2,
+  "max_attempts": 32,
+  "data_out": "data/action4_synth/pilot2000_v007_candidate/full177_v001",
+  "runtime_out": "outputs/action4_template_full2000_v001/full177_v001"
+}

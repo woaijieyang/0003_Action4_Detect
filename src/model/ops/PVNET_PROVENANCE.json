@@ -1,0 +1,13 @@
+{
+  "repository": "https://github.com/zju3dv/pvnet",
+  "commit": "e5c74f73c31f2b3f50bb10f02292a4dcb01e649a",
+  "python_function": "ransac_voting_layer_v2",
+  "kernel_reference": "lib/ransac_voting_gpu_layer/src/ransac_voting_kernel.cu",
+  "changes": [
+    "device-explicit zero/arange",
+    "bool mask indexing",
+    "fresh random pair hypotheses per round",
+    "tensor port of two CUDA kernels"
+  ],
+  "deployment": "auxiliary evidence only, not accepted corner replacement"
+}

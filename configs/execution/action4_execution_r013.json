@@ -1,0 +1,99 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r013",
+  "status": "ACTIVE",
+  "phase": "training",
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "render": {
+    "enabled": false,
+    "reason": "All2000 formally published; no rerender"
+  },
+  "quality": {
+    "enabled": false,
+    "reason": "All272 batch checks and final publication closed"
+  },
+  "training": {
+    "enabled": true,
+    "stages": [
+      "D0",
+      "A0",
+      "B0"
+    ],
+    "dataset_protocol": "fixed_template_commit_v1",
+    "config_ref": {
+      "path": "configs/model/action4_pilot2000_v005.json",
+      "sha256": "8bdd3840b19b7cef018f3baecd4cdc3c308357ea533ba17e2a28d67fb14e3056"
+    },
+    "dataset_manifest_ref": {
+      "path": "data/action4_dataset_commit.json",
+      "sha256": "915d620fbd7640b4e5e0ba579ef45112cbb262e203175a95e39acd7baad8fbd0"
+    },
+    "plan_ref": {
+      "path": "configs/data/action4_template_pilot2000_v009.json",
+      "sha256": "adc4a794b4bb5aa7ea869ba8df9970f3cdac48338af50c1987af298cb8b22031"
+    },
+    "release_ref": {
+      "path": "outputs/action4_template_publication_v001/release.json",
+      "sha256": "7feecc7e053482f93352a11f4a5508bd02a124c8c4bad9b4abd36874ed5ffdc8"
+    },
+    "split_protocol_ref": {
+      "path": "outputs/action4_template_publication_v001/split_protocol.json",
+      "sha256": "a8eea35e037a3b9faf4f62a75f03c4209b959955f71b5cf448a65d1c84f3727f"
+    },
+    "split_refs": {
+      "train": {
+        "path": "data/train/annotations.jsonl",
+        "sha256": "f0e7b5d2de6b721101d9aee8069e828f5f03c6f1bf97572d5e44ad4829f6e03b"
+      },
+      "eval": {
+        "path": "data/eval/annotations.jsonl",
+        "sha256": "791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34e"
+      },
+      "test": {
+        "path": "data/test/annotations.jsonl",
+        "sha256": "3d57791df01bcd61da593499dd10778e211f22107d3743b2b2f6ac61445d5ec3"
+      }
+    },
+    "scope": "Fresh D0 after actual AMP ROI geometry correction; identical v005 method/data budget. A0/B0 only after new matching gate."
+  },
+  "resource_policy": {
+    "cpu_total": 72,
+    "training_gpu_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "training_world_size": 6,
+    "cpu_threads_per_rank": 2,
+    "validation_threads_per_rank": 10,
+    "loader_workers_per_rank": {
+      "D0": 0,
+      "A0": 10,
+      "B0": 10
+    },
+    "cpu_reservation": 72,
+    "micro_batches": {
+      "D0": 6,
+      "A0": 6,
+      "B0": 1
+    },
+    "unchanged_global_batches": {
+      "D0": 32,
+      "A0": 32,
+      "B0": 8
+    },
+    "batch_accounting": "ceil microstep count; exact real coverage; zero-weight empty ranks; weighted loss preserves effective global mean",
+    "nccl_p2p_disable": true,
+    "reason": "User expanded GPUs2-7; default communication reproduced timeout, P2P-disabled4/6card actual allreduce passed; original D0 interrupted before recorded updates; retain complete validation with thread parallelism and fixed-input decode cache"
+  },
+  "legacy_policy": "Old generation routes disabled; published dataset immutable; no exact resume of historic checkpoints",
+  "updated_at": "2026-10-21T16:28:23.856745+00:00",
+  "repair_evidence": {
+    "before": "outputs/action4_training_performance_v001/amp_geometry/REPORT.json",
+    "after": "outputs/action4_training_performance_v001/amp_geometry_fixed/REPORT.json",
+    "change": "Only ROI coordinate/grid_sample computations disable outer autocast; network AMP unchanged"
+  }
+}

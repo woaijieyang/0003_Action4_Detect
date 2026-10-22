@@ -1,0 +1,20 @@
+{
+  "schema": "action4.template_worker.v1",
+  "plan_path": "configs/data/action4_template_pilot2000_v009.json",
+  "template": "table_full_garment",
+  "indices": [
+    202,
+    205,
+    208,
+    211,
+    214,
+    217,
+    220,
+    223
+  ],
+  "gpu_uuid": "GPU-b1ae5be6-1dba-7343-e233-59df41402f33",
+  "threads": 2,
+  "max_attempts": 32,
+  "data_out": "data/action4_synth/pilot2000_v007_candidate/full010_v001",
+  "runtime_out": "outputs/action4_template_full2000_v001/full010_v001"
+}

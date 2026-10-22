@@ -1,0 +1,99 @@
+{
+  "schema": "action4.mount_modules.v1",
+  "status": "diagnostic_pending_build_review",
+  "dataset_generation_allowed": false,
+  "sources": {
+    "source_asset": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/initial.blend",
+      "sha256": "99c45c17ed4cb7333e6da67b58403a02d37535298094eb4bc248be8ef5c8367f"
+    },
+    "source_contract": {
+      "path": "data/action4_scene_assets/global_scene_init_v001/build_v007/integrated_contract.json",
+      "sha256": "c10177de904db235b4d9a824014d14d93efe0f55f15119eea940c0f11127ec95"
+    },
+    "source_scene_helper": {
+      "path": "src/data/action4_global_scene.py",
+      "sha256": "53f999014786aa7ad3bd8db970d2ba0f46484a403ff710875219730e1ae693a9"
+    },
+    "render_tube_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "material_state_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "assembly_helper": {
+      "path": "src/data/action4_modular_assembly.py",
+      "sha256": "cbf876357c61ccbbe0db3c356a12545593b2ec1c4acbf4f4c9b37c3fcd59d886"
+    },
+    "joint_result": {
+      "path": "outputs/action4_realism_reassessment_v001/joint_body_attachment_threeframe_v003/actual_fit_v001/result.json",
+      "sha256": "4e25ba6e93898bd03d44113e820a8936e7923ba832ae7595ecf8c3fe2db2e086"
+    },
+    "registry": {
+      "path": "configs/data/action4_frozen_modules_v002.json",
+      "sha256": "207d1dfcee7d17459d9dcc2c8323ebf87daee2296bf3ef82386397b3cf23af53"
+    },
+    "registry_validator": {
+      "path": "scripts/action4_verify_frozen_modules.py",
+      "sha256": "d07482aca844707b8613de24045b5bbf44c6919bee22d8d0712d35b0b8d92e2d"
+    },
+    "wrist_geometry": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_geometry.npz",
+      "sha256": "f282c4d8af79c48fcc488588519c0f685a9882089110709a575fd9133f26d582"
+    },
+    "wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_contract.json",
+      "sha256": "6a05530fb88d7a868988e2e4036fb7ec38b98176104a05b05805e50e462edc9e"
+    },
+    "brace_geometry": {
+      "path": "data/action4_scene_assets/modular_brace_v001/build_v002/mesh_geometry.npz",
+      "sha256": "013865d9d2cffd454695e3f7a031394baf84c3db7610f57ec66aabf66301845e"
+    },
+    "brace_contract": {
+      "path": "data/action4_scene_assets/modular_brace_v001/build_v002/module_contract.json",
+      "sha256": "19c5e5fd6ff85197601c46573f100a6633c517d009d1968dff5aac8a8b13dc84"
+    },
+    "CAD_geometry": {
+      "path": "data/DJI_Action4_construct/r3_v001/mesh_v001.npz",
+      "sha256": "295d14e8dc7e802c6382b75806805fe325196c340b72ea788d4843cd1b3f787c"
+    },
+    "inventory": {
+      "path": "outputs/action4_mount_module_inventory_v001/actual_inventory.json",
+      "sha256": "4355779811dce854db68870f3b4986f80ffd7fbc62a399fa6b719269d90eda60"
+    },
+    "right_relation_config": {
+      "path": "outputs/action4_modular_relation_actual_v001/config.json",
+      "sha256": "26139531b0dd0dd98aa14572ef9d723f1adfbb16c03fecfe1e0180a4ed79c666"
+    },
+    "right_relation_roll_report": {
+      "path": "outputs/modular_band_skin_roll_feasibility_v001/feasible_bvh_checks.json",
+      "sha256": "d2bf9cdfc702e2a6975f6e49f18ee55d37572d6fd53cf65bd9ea2e7534f9ea96"
+    },
+    "right_relation_root_quality": {
+      "path": "outputs/modular_band_skin_roll_feasibility_v001/controller_quality.json",
+      "sha256": "6903e1eb6f4e889cddfb59929c2e93fc905b11b6089fb7feab0bbba437365d6c"
+    },
+    "right_relation_actual_frame": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/frame_960_geometry.json",
+      "sha256": "b8cffd283f5dd95dbf84d8249cb8862e37c0c16b3e46bf043941e1c60d562f29"
+    },
+    "right_relation_actual_geometry": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/frame_960_actual_world_geometry.npz",
+      "sha256": "167621769c10d12eda5f0d9322e7c1ae138d10d8bf3e11f5c5b3998c011eba8a"
+    },
+    "right_relation_actual_result": {
+      "path": "outputs/action4_modular_relation_actual_v001/actual_threeframes_v001/result.json",
+      "sha256": "17a248a05ad8b791faedb33a7c439afac8718b1dcda185826b0c63db1d375858"
+    }
+  },
+  "routing": {
+    "quick_approach_clearance_m": 0.001,
+    "cable_exit_extra_clearance_m": 0.003,
+    "nominal_joint_zone_margin_m": 0.001,
+    "source_reference_shift_m": 0.003,
+    "route_policy": "preserve_band_ball_anchor_and_CAD_negativeZ_approach; cable_source_station_magnitudes_on_USB_lateral_side"
+  },
+  "output_dir": "outputs/action4_mount_modules_v001"
+}

@@ -1,0 +1,696 @@
+{
+  "schema_version": "action4.synthesis.v2",
+  "recipe_version": "realism_pilot2000_v009_preview",
+  "source_video_sha256": "016628eca2887220080d823f65d4f9c520ded71be363dbbbee95e175df7bd3e8",
+  "asset_dir": "data/DJI_Action4_construct/r3_v001",
+  "hand_asset": "data/action4_scene_assets/hand_r3_v001/hand_realistic_cc0.blend",
+  "resolution_wh": [
+    812,
+    616
+  ],
+  "render": {
+    "samples": 16,
+    "mask_samples": 1,
+    "device": "CUDA",
+    "gpu_uuids": [
+      "GPU-1648afa2-3e25-b1c7-b149-38b07306eb8f",
+      "GPU-8c93aadc-2a0a-665c-46c3-dbd3f063e0d8",
+      "GPU-b1ae5be6-1dba-7343-e233-59df41402f33",
+      "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e"
+    ],
+    "amodal_mode": "crop",
+    "denoiser": "OPTIX"
+  },
+  "instance_weights": [
+    0.05,
+    0.15,
+    0.8
+  ],
+  "position_jitter_m": [
+    0,
+    0,
+    0
+  ],
+  "rotation_jitter_deg": 0,
+  "skin_linear_rgb": [
+    0.24,
+    0.16,
+    0.105
+  ],
+  "quality_gate": {
+    "minimum_reviewed_candidates": 128,
+    "native_resolution_pending": true,
+    "minimum_visible_fraction": 0.1,
+    "minimum_visible_fullinput_area_px": 16,
+    "all_geometry_valid": true,
+    "complete_family_coverage": true,
+    "anatomy_material_wrist_contact_visual_review": true,
+    "native_resolution_review_status": "low_cost_representative_preview_not_accepted"
+  },
+  "families": [
+    {
+      "camera_location_m": [
+        0,
+        0.34,
+        0.12
+      ],
+      "camera_target_m": [
+        0,
+        0,
+        0.01
+      ],
+      "light_location_m": [
+        -0.35,
+        0.45,
+        0.65
+      ],
+      "light_size_m": 1,
+      "area_light_energy_w": 8,
+      "exposure_ev": 0.2,
+      "environment": "wall",
+      "finger_curl_rad": 3.0,
+      "name": "wall_rear",
+      "weight": 10,
+      "evidence_frames": [
+        0,
+        105
+      ],
+      "anchor_positions_m": [
+        [
+          -0.08,
+          0,
+          0
+        ],
+        [
+          0.08,
+          0,
+          0
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          0,
+          6,
+          -9
+        ],
+        [
+          0,
+          -18,
+          9
+        ]
+      ],
+      "rig_options": {
+        "forearm_width_gain": 1.15,
+        "forearm_proximal_reach_m": 0.28,
+        "hand_offset_m": [
+          0,
+          0,
+          -0.02
+        ],
+        "finger_pose": "closed",
+        "palm_roll_deg": 0,
+        "hand_pitch_deg": 15
+      },
+      "rig_options_by_side": [
+        {
+          "forearm_proximal_splay_m": -0.14,
+          "mirror_hand": true
+        },
+        {
+          "forearm_proximal_splay_m": 0.14,
+          "mirror_hand": false
+        }
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.74
+      ],
+      "camera_target_m": [
+        0,
+        0.12,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "table_fastening",
+      "weight": 22,
+      "evidence_frames": [
+        540
+      ],
+      "anchor_positions_m": [
+        [
+          -0.02,
+          -0.085,
+          0.29
+        ],
+        [
+          0.09,
+          -0.07,
+          0.29
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -90,
+          -65,
+          -19
+        ],
+        [
+          -90,
+          65,
+          19
+        ]
+      ],
+      "contact_mode": "held_left_cuff",
+      "condition_claim": "local geometric fingertip/cloth contact; not exact button fastening or measured grip pose",
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": 10,
+      "rig_options_by_side": [
+        {
+          "camera_head_rotation_xyz_deg": [
+            -105,
+            0,
+            0
+          ]
+        },
+        {
+          "camera_head_rotation_xyz_deg": [
+            -110,
+            0,
+            0
+          ]
+        }
+      ],
+      "garment_state": "laid_open",
+      "table_grid_frequency_per_m": 25
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.74
+      ],
+      "camera_target_m": [
+        0,
+        0.12,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "table_turn",
+      "weight": 20,
+      "evidence_frames": [
+        960
+      ],
+      "anchor_positions_m": [
+        [
+          -0.055,
+          -0.07,
+          0.29
+        ],
+        [
+          0.09,
+          -0.07,
+          0.29
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -85,
+          -60,
+          -25
+        ],
+        [
+          -95,
+          60,
+          25
+        ]
+      ],
+      "contact_mode": "held_right_cuff",
+      "condition_claim": "local geometric fingertip/cloth contact; not exact button fastening or measured grip pose",
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": -7,
+      "rig_options_by_side": [
+        {
+          "camera_head_rotation_xyz_deg": [
+            -75,
+            0,
+            0
+          ]
+        },
+        {
+          "camera_head_rotation_xyz_deg": [
+            -65,
+            0,
+            0
+          ]
+        }
+      ],
+      "garment_state": "laid_open",
+      "table_grid_frequency_per_m": 25
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.74
+      ],
+      "camera_target_m": [
+        0,
+        0.04,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "near_double",
+      "weight": 16,
+      "evidence_frames": [
+        1200,
+        1290
+      ],
+      "anchor_positions_m": [
+        [
+          -0.019999999552965164,
+          -0.1599999964237213,
+          0.2199999988079071
+        ],
+        [
+          0.025,
+          -0.172,
+          0.33
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -78,
+          -62,
+          -10
+        ],
+        [
+          -82,
+          63,
+          13
+        ]
+      ],
+      "anchor_search": {
+        "path": "outputs/synthesis_r3_v007/near_double_search.json",
+        "sha256": "bafafea2e6e3ac1a6a0f197fab406e72f588fd928e91e42662976ac1a3ed5581",
+        "trial_index": 5,
+        "ray_estimate_other_camera_occlusion": 0.46134020618556704,
+        "status": "geometry_candidate_pending_new_hand_shape_and_rgb_validation"
+      },
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": 5,
+      "table_grid_frequency_per_m": 25,
+      "capture_focal_mm": 22
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.74
+      ],
+      "camera_target_m": [
+        0,
+        0.12,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "self_forearm_occlusion",
+      "weight": 16,
+      "evidence_frames": [
+        1980
+      ],
+      "anchor_positions_m": [
+        [
+          -0.1,
+          -0.03,
+          0.3
+        ],
+        [
+          0.08,
+          -0.03,
+          0.3
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -145,
+          -10,
+          -10
+        ],
+        [
+          -90,
+          85,
+          15
+        ]
+      ],
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": -2,
+      "table_grid_frequency_per_m": 25,
+      "rig_options_by_side": [
+        {
+          "camera_head_rotation_xyz_deg": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "camera_head_rotation_xyz_deg": [
+            -75,
+            0,
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.78
+      ],
+      "camera_target_m": [
+        0,
+        0.02,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "cloth_lift",
+      "weight": 4,
+      "evidence_frames": [
+        2550
+      ],
+      "anchor_positions_m": [
+        [
+          -0.15,
+          -0.2,
+          0.12
+        ],
+        [
+          0.15,
+          -0.2,
+          0.12
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -85,
+          -62,
+          -15
+        ],
+        [
+          -85,
+          62,
+          15
+        ]
+      ],
+      "contact_mode": "grasped_hem",
+      "condition_claim": "local geometric fingertip/cloth contact; not exact button fastening or measured grip pose",
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": 5,
+      "garment_state": "folded_lift",
+      "table_grid_frequency_per_m": 25,
+      "capture_focal_mm": 20,
+      "table_center_xy_m": [
+        0,
+        0.02
+      ],
+      "table_size_xy_m": [
+        1.12,
+        0.7
+      ],
+      "foreground_cloth_center_y_m": -0.62,
+      "foreground_cloth_z_m": -0.06
+    },
+    {
+      "camera_location_m": [
+        0,
+        0.365,
+        0.12
+      ],
+      "camera_target_m": [
+        0,
+        0,
+        0.01
+      ],
+      "light_location_m": [
+        -0.35,
+        0.45,
+        0.65
+      ],
+      "light_size_m": 1,
+      "area_light_energy_w": 8,
+      "exposure_ev": 0.2,
+      "environment": "wall",
+      "finger_curl_rad": 3.8,
+      "name": "wall_transition_truncation",
+      "weight": 7,
+      "evidence_frames": [
+        2820,
+        2849
+      ],
+      "anchor_positions_m": [
+        [
+          -0.1,
+          0,
+          -0.085
+        ],
+        [
+          0.1,
+          0,
+          -0.04
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          15,
+          20,
+          -12
+        ],
+        [
+          15,
+          -20,
+          12
+        ]
+      ],
+      "rig_options": {
+        "forearm_width_gain": 1.15,
+        "forearm_proximal_reach_m": 0.28,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "closed",
+        "palm_roll_deg": 0
+      },
+      "rig_options_by_side": [
+        {
+          "forearm_proximal_splay_m": -0.14,
+          "mirror_hand": true
+        },
+        {
+          "forearm_proximal_splay_m": 0.14,
+          "mirror_hand": false
+        }
+      ]
+    },
+    {
+      "camera_location_m": [
+        0,
+        -0.3,
+        0.74
+      ],
+      "camera_target_m": [
+        0,
+        0.12,
+        0.035
+      ],
+      "light_location_m": [
+        -0.28,
+        -0.2,
+        1.05
+      ],
+      "light_size_m": 1.1,
+      "area_light_energy_w": 18,
+      "exposure_ev": -0.9,
+      "environment": "table",
+      "finger_curl_rad": 3.4,
+      "name": "hard_negative",
+      "weight": 5,
+      "evidence_frames": [
+        1980,
+        2550
+      ],
+      "anchor_positions_m": [
+        [
+          -0.12,
+          -0.11,
+          0.2
+        ],
+        [
+          0.12,
+          -0.11,
+          0.2
+        ]
+      ],
+      "anchor_rotations_xyz_deg": [
+        [
+          -90,
+          -70,
+          -19
+        ],
+        [
+          -90,
+          70,
+          19
+        ]
+      ],
+      "rig_options": {
+        "forearm_width_gain": 1.12,
+        "camera_head_rotation_xyz_deg": [
+          -105,
+          0,
+          0
+        ],
+        "finger_pose": "contact"
+      },
+      "capture_roll_deg": 0,
+      "table_grid_frequency_per_m": 25
+    }
+  ],
+  "limitations": [
+    "812x616 RGB16 bounded appearance preview; not128 or2000 generation/acceptance.",
+    "Capture roll, anchor and camera-head pose are appearance priors, not measured real pose.",
+    "Existing R4 core/corners/crop/OPTIX pipeline preserved; material asset update pending."
+  ],
+  "provenance": {
+    "human_asset_license": "CC0",
+    "human_asset_author": "Dan Ulrich",
+    "human_asset_archive_sha256": "46a912c0524072ac3b78c35d5d2471df7b8df102394a050ca8cd7184e3393648",
+    "human_asset_metadata_object": "Hand  - Realistic",
+    "human_asset_official_url": "https://download.blender.org/demo/asset-bundles/human-base-meshes/human-base-meshes-bundle-v1.0.0.zip"
+  },
+  "parent_recipe_sha256": "4e43414e3d9a76debe4b0e862dd9ed3c92cdba6d25caa6339da3051adf4da156",
+  "asset_backend": "blend_r4",
+  "foundation_blend": "data/DJI_Action4_construct/server_r4_realism_v002/DJI_Action4_Editable_Foundation_R4_realism_v002.blend",
+  "server_extension": {
+    "schema_version": "action4.server_extension.v1",
+    "scope": "representative_realism_increment_no_formal_generation",
+    "parent_recipe_sha256": "b368744c1b1040f0ae62b8b4c5cfc0c7bbd4e2babb3d0d50744a161fdde0ea8b",
+    "source_code_sha256": "1ca28594b0bf667c0fb9a0b5637ce33969f144a7373e30bf366a0e9a6af257e1",
+    "helper_code_sha256": "74d86f98bf06e698f3c0acfbbfda6fd64e059581d5ba4964881f7a9b6854d0d4",
+    "backend_selection": "CUDA_renderer_OPTIX_denoiser_after_paired_native_checks",
+    "dispatcher_profile_status": "pending_new_measured_profile"
+  },
+  "material_evidence": {
+    "photo_manifest": "data/DJI_Action4_construct/server_textures_v002/source_photo_manifest.json",
+    "denim_manifest": "data/DJI_Action4_construct/server_textures_v001/polyhaven_denim_manifest.json"
+  },
+  "wrist_skin_union": true,
+  "connected_garment": true,
+  "historical_revision_notes": {
+    "hand": "Centerline and cross-section now bend together to avoid flattened finger ends; remains generic anatomy with no measured joint pose.",
+    "near_double": "Bounded geometric search candidate; requires actual RGB/mask review, not an accepted realistic sample.",
+    "wall_transition": "Wrist pitch reduced to keep forearms descending toward the source image lower boundary; no limb length or STL size change.",
+    "zero_jitter_scope": "The parent preview isolates exact anchors. This native candidate recipe restores bounded position/rotation/light variation and requires new native-resolution review.",
+    "curl_selection": "Bounded search 2.6..3.9 rejected 3.9 for target/hand surface intersections; 3.4 selected with conservative margin. This controls geometric bend and is not a measured joint angle.",
+    "contact_geometry": "Continuous garment hem constrained to evaluated fingertip surfaces; f540/f960 observed grasp action informs bounded anchors, not measured pose.",
+    "truncation": "v005 measured only 0.12% truncation despite the family name; move one wrist lower by 3cm for a bounded measurable edge crop. Still design prior, not measured pose.",
+    "scope": "Consolidated continuous garment, local touch/contact and measured edge truncation. Legacy family names do not assert exact fastening/grasping actions. Failed thumb deformation v007 rejected and removed."
+  },
+  "revision_notes": {
+    "scope": "Incremental RG01/RG03 nearfield view and existing ball-joint camera-head pose; zero jitter isolates representative changes.",
+    "parent_recipe": "configs/data/action4_server_s0_native_v003.json",
+    "current_geometry": "Existing R4 ball-joint pose, local forearm reach, finite hand modes, source-aware cuff/fold state, explicit capture roll/focal with actualK. Prototype review only; no2000/128 accepted."
+  },
+  "foundation_source_manifest": "data/DJI_Action4_construct/server_r4_realism_v002/source_manifest.json",
+  "foundation_source_manifest_sha256": "b20fa3db08855868bb4dc26c787b24fdd39c78ab4edaff5ad1723fd770b4dc71"
+}

@@ -1,0 +1,123 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r006",
+  "status": "ACTIVE",
+  "phase": "diversity_repair",
+  "source_context_ref": {
+    "path": "outputs/action4_execution_source_release_v006/source_context.json",
+    "sha256": "301cf3056532ae5a325d75bc09b46ea796b6d9d6282f0c9c993dc0e6a378afd6"
+  },
+  "parameters_release_ref": {
+    "path": "outputs/action4_pilot2000_candidate_plan_v006/parameters_release.json",
+    "sha256": "4c128aa82cad091adacc5c719d8adc3fc36fd25307b930a05e3c2c1bec2cf93c"
+  },
+  "geometry_ref": {
+    "path": "outputs/action4_prefreeze128_scaleout_v001/AGGREGATED128.json",
+    "sha256": "af919e881872cbd594ab8b3eeb66b2420af78cfb7986c222890b1162dc23e8bc"
+  },
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "render": {
+    "enabled": false,
+    "entrypoint": "scripts/action4_render_fast.py",
+    "plan_ref": {
+      "path": "outputs/action4_pilot2000_candidate_plan_v006/plan.json",
+      "sha256": "f0f3aec5619272df82ec5b2ff262e6a857abffae981d417eaeb87f872addde2c"
+    },
+    "index_range": [
+      128,
+      2000
+    ],
+    "output_parent": "data/action4_synth/pilot2000_v006_candidate",
+    "output_name_prefix": "remaining_",
+    "geometry_ref": {
+      "path": "outputs/action4_prefreeze128_scaleout_v001/AGGREGATED128.json",
+      "sha256": "af919e881872cbd594ab8b3eeb66b2420af78cfb7986c222890b1162dc23e8bc"
+    },
+    "execution_policy_ref": {
+      "path": "configs/execution/action4_fast_execution_v002.json",
+      "sha256": "15b6ff7e8b080661ec304bb41afb044b5d30d22829da8d80cbc0e12e4da67055"
+    },
+    "accepted128_ref": {
+      "path": "outputs/action4_fast_pipeline_repair_v001/ROOT_ACCEPTED128.json",
+      "sha256": "146a5d4a1b09d4f5604ccb795da79e134fe7db6acb663a8330a25cafed116880"
+    }
+  },
+  "training": {
+    "enabled": false,
+    "reason": "Full accepted2000 dataset and stage gates required"
+  },
+  "legacy_policy": "Historical runs/plans are inactive. Only immutable source ancestors explicitly bound by current source/plan remain dependencies. No latest-file search or fallback.",
+  "approval_evidence": [
+    {
+      "path": "outputs/action4_cached_launcher_checks_v001/ROOT_QUALITY.json",
+      "sha256": "f46935ec57ea072f71ef460566f3de7c51795f708ec34ec5684c37328ebde09f"
+    },
+    {
+      "path": "outputs/action4_integrated_validation_checks_v001/ROOT_QUALITY.json",
+      "sha256": "e9b92ceb7fcb83e087df2819e927d19437d587135c0ae2c59365f3ff310f78e6"
+    },
+    {
+      "path": "outputs/action4_pilot2000_candidate_plan_v006/PREFREEZE128_MATCH.json",
+      "sha256": "508ba24d185e388cbf3679fef2c2ba1b576312f77487beb4ef2bfb95d0030cd0"
+    },
+    {
+      "path": "outputs/action4_cached_launcher_checks_v001/ACTUAL2000_IDENTITY_PREFLIGHT.json",
+      "sha256": "57e0869fe9b218f3681603ba80ba2bb16318f7ca75be1b9de92a670197297552"
+    },
+    {
+      "path": "outputs/action4_fast_pipeline_repair_v001/HOST_PUBLICATION_REPORT.json",
+      "sha256": "ea73d65c6dec5233fca294d503bd3ee7fddafe73f4d8831c695eeb6d5f7599c5"
+    },
+    {
+      "path": "outputs/action4_fast_pipeline_repair_v001/ROOT_ACCEPTED128.json",
+      "sha256": "146a5d4a1b09d4f5604ccb795da79e134fe7db6acb663a8330a25cafed116880"
+    },
+    {
+      "path": "outputs/action4_gpu3_quality_component_v001/REPORT.json",
+      "sha256": "11900562a7993d071772e0e4349e0b3f1ea6f1133d8f7f1d83073a89d4533bed"
+    },
+    {
+      "path": "outputs/action4_fast_pipeline_repair_v001/QUALITY_STREAM_CPU_PREFLIGHT.json",
+      "sha256": "e4227966d3a4dbbce631ea9b51a86db7426d115aa8b32adcf591979f0c3b1473"
+    }
+  ],
+  "quality": {
+    "enabled": false,
+    "plan_ref": {
+      "path": "outputs/action4_pilot2000_candidate_plan_v006/plan.json",
+      "sha256": "f0f3aec5619272df82ec5b2ff262e6a857abffae981d417eaeb87f872addde2c"
+    },
+    "accepted128_ref": {
+      "path": "outputs/action4_fast_pipeline_repair_v001/ROOT_ACCEPTED128.json",
+      "sha256": "146a5d4a1b09d4f5604ccb795da79e134fe7db6acb663a8330a25cafed116880"
+    },
+    "gpu_uuid": "GPU-510dc520-5a9d-1317-019d-de5ed02c1b37",
+    "config_refs": [
+      {
+        "path": "configs/execution/action4_quality_stream_v001.json",
+        "sha256": "f8e4d31fc9a965c0641b9f5568ecf5b98aa0dc6a4b40e8e1e457d381f362c464"
+      }
+    ]
+  },
+  "resource_policy": {
+    "cpu_total": 72,
+    "render_threads": 2,
+    "render_target_processes": 32,
+    "quality_cpu_threads": 8,
+    "quality_gpu_index": 3,
+    "render_gpu_indices": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "additional_gpu_headroom_mib": 3072,
+    "per_job_margin": 1.25
+  },
+  "scope": "Single-frame detection and ordered8 only; no temporal training or postprocessing in pilot",
+  "reason": "User-required broad spatial/depth/occlusion diversity repair; numerical128 is not sufficient production qualification",
+  "diversity_hold_ref": {
+    "path": "outputs/action4_fast_pipeline_repair_v001/DIVERSITY_ACCEPTANCE_WITHDRAWAL.json",
+    "sha256": "db6e2e5aaa4de5963d3aa7f4111643d0d48a5ea6f022de2a3662362bf8fca718"
+  }
+}

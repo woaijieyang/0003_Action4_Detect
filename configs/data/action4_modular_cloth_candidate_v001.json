@@ -1,0 +1,154 @@
+{
+  "schema": "action4.modular_cloth_candidate.v1",
+  "status": "ESTIMATED_FINITE_BACKGROUND_CLOTH_PENDING_ACTUAL_PROBE_RGB",
+  "estimated": true,
+  "dataset_generation_allowed": false,
+  "training_accepted": false,
+  "sources": {
+    "cloth_module": {
+      "path": "src/data/action4_modular_cloth_effects.py",
+      "sha256": "f1bb7e46c71f10347b439332f48220fb85de37d5e9fefe16f92f90abe895078e"
+    },
+    "render_helper": {
+      "path": "src/data/action4_render.py",
+      "sha256": "3f8642c173fea04ae617d5fca0859bce15c49595865c600b26f70c660553364e"
+    },
+    "synthesis_cloth_reference": {
+      "path": "src/data/action4_synthesis.py",
+      "sha256": "549c2d4887211d1d5d0c49d19a8887d68661e1797ba86c6e23d0fba09db42549"
+    },
+    "sampling_helper": {
+      "path": "src/data/action4_modular_scene_sampling.py",
+      "sha256": "7c040c5255bb61139a582263eeff12d584b2fab07743d368861c24c9a7537ec4"
+    },
+    "bilateral_helper": {
+      "path": "src/data/action4_modular_bilateral_scene.py",
+      "sha256": "f8a2e7ebe0d52466a31a0b9199ef637e2681a60e24dd393923efb190018bb1ee"
+    },
+    "assembly_helper": {
+      "path": "src/data/action4_modular_assembly.py",
+      "sha256": "cbf876357c61ccbbe0db3c356a12545593b2ec1c4acbf4f4c9b37c3fcd59d886"
+    },
+    "environment_helper": {
+      "path": "src/data/action4_global_environment.py",
+      "sha256": "ee9b5a00494b690bc286a48d461f8713dbf20946289314b1880ae7478ce90f20"
+    },
+    "base_scene_config": {
+      "path": "configs/data/action4_modular_bilateral_preview_v003.json",
+      "sha256": "a9326028ee4e293a1e9490acb5f9020e21dbd1f6f54305a7df389d3f0c1ad84d"
+    },
+    "legacy_recipe": {
+      "path": "configs/data/action4_realism_pilot2000_v015_candidate.json",
+      "sha256": "912dc60b0446d96519930b017a868ecb1e28b59a8aff4e1d9ce39c1cee356dc1"
+    },
+    "frame_manifest": {
+      "path": "data/action4_real/cache_v001/frames_manifest.json",
+      "sha256": "4569006ba45e533ea665ed990e4bdf86e7112e4b8d8782e9d00ed942fe3c3326"
+    },
+    "source_video": {
+      "path": "data/final_test_data/head_left_rgb_raw.mp4",
+      "sha256": "016628eca2887220080d823f65d4f9c520ded71be363dbbbee95e175df7bd3e8"
+    },
+    "frame540": {
+      "path": "data/action4_real/cache_v001/frames/frame_00000540.png",
+      "sha256": "c788c291fe45c98fe3010a625cd045bc95eb057c4096ed717e2cf9c4ae77a61e"
+    },
+    "frame960": {
+      "path": "data/action4_real/cache_v001/frames/frame_00000960.png",
+      "sha256": "0509b5d01d881a3c6c7238a637eba10f7367aacb5260c9b9f096e4fca65bd424"
+    },
+    "frame2550": {
+      "path": "data/action4_real/cache_v001/frames/frame_00002550.png",
+      "sha256": "c3fa27bb89ab0d0afa8a308fe42c83a3daee1bed6b8061282ee076f87bec66e9"
+    },
+    "neutral_helper": {
+      "path": "src/data/action4_modular_render.py",
+      "sha256": "af919427554861f8d5aa6c12f75d55a797f79a1c09a118d1c90e610b6f6799bc"
+    }
+  },
+  "profiles": {
+    "table_fastening": {
+      "parent_side": "left",
+      "anchor_mode": "parent_brace",
+      "anchor_offset_capture_xy_m": [
+        0,
+        -0.1
+      ],
+      "dimensions_m": [
+        0.12,
+        0.09,
+        0.0012
+      ],
+      "fold_lift_m": 0,
+      "capture_roll_deg": 0,
+      "source_frames": [
+        540
+      ],
+      "claim": "Estimated local LEFT cuff/denim operation context; no exact fastening or skin contact claim"
+    },
+    "table_turn": {
+      "parent_side": "right",
+      "anchor_mode": "parent_brace",
+      "anchor_offset_capture_xy_m": [
+        0,
+        -0.1
+      ],
+      "dimensions_m": [
+        0.12,
+        0.09,
+        0.0012
+      ],
+      "fold_lift_m": 0.008,
+      "capture_roll_deg": 12,
+      "source_frames": [
+        960
+      ],
+      "claim": "Estimated RIGHT local folded cuff/denim patch; patch roll does not rotate the arm or camera"
+    },
+    "cloth_lift": {
+      "parent_side": "left",
+      "anchor_mode": "bilateral_midpoint",
+      "anchor_offset_capture_xy_m": [
+        0,
+        -0.1
+      ],
+      "dimensions_m": [
+        0.22,
+        0.12,
+        0.0012
+      ],
+      "fold_lift_m": 0.025,
+      "capture_roll_deg": 0,
+      "source_frames": [
+        2550
+      ],
+      "claim": "Finite lifted new-cloth near edge; brace-rigid anchor, no fingertip grasp constraint or equilibrium claim"
+    }
+  },
+  "depth_policy": {
+    "clearance_m": 0.012,
+    "original_cloth_wave_bound_m": 0.008,
+    "claim": "estimated behind-actor initial candidate; no physical contact or measured depth"
+  },
+  "effect_limits": {
+    "occlusion_layer_covered": false,
+    "foreground_fold_variant_pending": true,
+    "cloth_self_collision_verified": false,
+    "family_table_semantics_verified": false,
+    "original_f0_table_is_narrow_bottom_strip": true,
+    "future_controls_needed": [
+      "finite foreground fold placement + actual visible/amodal mask delta",
+      "table capture pose/back-edge coverage candidate preserving grid pitch and proportions; actual table mask coverage"
+    ]
+  },
+  "geometry_sources": {
+    "grid": "action4_render._cloth20x24/437quads",
+    "material": "action4_render._denim_material existing procedural palette",
+    "thickness": "action4_synthesis._garment_panel .0012m prior",
+    "lift": "bounded near-edge analytic displacement inspired by _lift_garment_edge, new cloth only"
+  },
+  "not_applied_helpers": {
+    "_pin_grasped_hem": "Hardcoded legacy local fingertip axes and global garment/seam/button side effects do not match frozen modular source skin. Not invoked to avoid changing source or inventing pin contact.",
+    "_connected_garment": "Full garment and detail creation exceeds this finite local patch scope; rectangular local helper reused instead."
+  }
+}

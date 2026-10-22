@@ -1,0 +1,10 @@
+{
+  "source": "https://github.com/THU-DA-6D-Pose-Group/GDR-Net/blob/1be9fe73292fd748087aa88d7bf987434f271ebb/core/gdrn_modeling/models/cdpn_rot_head_region.py",
+  "source_sha256": "073694d4a51b322c29b5dd4e761ae9353fb363ddb70d357800ba850ac0725d03",
+  "changes": [
+    "retain no-concat branch only",
+    "replace mmcv initialization and norm helpers with torch equivalents",
+    "application selects64filters/GN8/two independent mask outputs/64regions"
+  ],
+  "claim": "adapted upstream prediction head, not full GDRNPP reproduction"
+}

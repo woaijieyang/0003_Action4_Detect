@@ -1,0 +1,6 @@
+import argparse,json,sys,unittest,importlib.util
+from pathlib import Path
+R=Path('/data/zy/vln/a-test')
+def main():
+ p=argparse.ArgumentParser();p.add_argument('--config',required=True);p.add_argument('--output',required=True);a=p.parse_args();cfg=json.loads((R/a.config).read_text());sys.path[:0]=[str(R/cfg['overlay']),str(R/'src'),str(R/'tests')];spec=importlib.util.spec_from_file_location('roi_adaptation_tests',R/cfg['test']);m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);suite=unittest.defaultTestLoader.loadTestsFromModule(m);suite.addTests(unittest.defaultTestLoader.loadTestsFromNames(['test_action4_stage_policy','test_action4_independent_roi','test_action4_training_eval','test_action4_checkpoint','test_action4_gate']));result=unittest.TextTestRunner(verbosity=2).run(suite);out=R/a.output;out.mkdir(exist_ok=False);(out/'REPORT.json').write_text(json.dumps({'passed':result.wasSuccessful(),'tests':result.testsRun,'failures':len(result.failures),'errors':len(result.errors),'skips':len(result.skipped),'scope':'candidate warmstart/jitter/checkpoint and legacy CPU regression, no accuracy claim'},indent=2));return 0 if result.wasSuccessful() else 1
+if __name__=='__main__':sys.exit(main())

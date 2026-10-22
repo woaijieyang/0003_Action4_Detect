@@ -1,0 +1,255 @@
+{
+  "schema": "action4.coarse_pose_search_policy.v2",
+  "status": "ENGINEERING_SEARCH_DOMAIN_NOT_ACTUALLY_VALIDATED",
+  "canonical_source_ref": {
+    "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+    "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+  },
+  "canonical8_ordered_sha256": "2e0e5fcbdde624aed2affc0af5e097ee0a341a1585b2194f2cb338e5b24a761f",
+  "image_size_wh": [
+    3248,
+    2464
+  ],
+  "near_plane_m": 0.0010000000474974513,
+  "depth_m": [
+    0.4,
+    1.4
+  ],
+  "centre_u_fraction": {
+    "left": [
+      0.08,
+      0.92
+    ],
+    "right": [
+      0.08,
+      0.92
+    ]
+  },
+  "centre_v_fraction": [
+    0.12,
+    0.9
+  ],
+  "brace_local_rotation_deg": [
+    -20.0,
+    20.0
+  ],
+  "occlusion_bins": {
+    "clear": [
+      0.0,
+      0.1
+    ],
+    "light": [
+      0.1,
+      0.3
+    ],
+    "medium": [
+      0.3,
+      0.55
+    ],
+    "heavy": [
+      0.55,
+      0.75
+    ]
+  },
+  "background_templates": [
+    "wall",
+    "table_full_garment",
+    "cloth_lift10_full_garment"
+  ],
+  "backgrounds_by_family": {
+    "wall_rear": [
+      "wall"
+    ],
+    "near_double": [
+      "wall"
+    ],
+    "self_forearm_occlusion": [
+      "wall"
+    ],
+    "wall_transition_truncation": [
+      "wall"
+    ],
+    "hard_negative": [
+      "wall"
+    ],
+    "table_fastening": [
+      "table_full_garment"
+    ],
+    "table_turn": [
+      "table_full_garment"
+    ],
+    "cloth_lift": [
+      "cloth_lift10_full_garment"
+    ]
+  },
+  "prior": {
+    "minimum_bbox_area_fraction": 0.0001,
+    "maximum_bbox_area_fraction": 0.25,
+    "minimum_bbox_inside_fraction": 0.01,
+    "require_separated_camera_envelopes": true
+  },
+  "descriptor": {
+    "translation_step_m": 0.01,
+    "rotation_matrix_step": 0.05,
+    "projection_near_threshold_px": 24.0,
+    "projection_near_mode": "pixels",
+    "projection_near_diagonal_fraction": 0.05
+  },
+  "ranges_actual_boundary_validated": false,
+  "training_accepted": false,
+  "dataset_generation_allowed": false,
+  "distance_sampling_note": {
+    "source": "user explicit 0.40..1.40m request",
+    "depth_semantics": "optical-axis depth of fixed-size body centre in capture camera coordinates; Euclidean range must also be reported",
+    "stratification": "Production uses independent per-index uniform streams; Latin hypercube remains explicitly optional.",
+    "evaluation_bins_m": [
+      [
+        0.4,
+        0.7
+      ],
+      [
+        0.7,
+        1.0
+      ],
+      [
+        1.0,
+        1.4
+      ]
+    ],
+    "actual_scene_safe_range": null,
+    "intrinsics_and_object_scale_unchanged": true
+  },
+  "revision": "broad_joint_v004",
+  "area_light_gain": [
+    0.5,
+    1.8
+  ],
+  "exposure_offset_ev": [
+    -0.7,
+    0.7
+  ],
+  "randomize_absent_actors": true,
+  "effective_change_thresholds": {
+    "centre_fraction": 0.01,
+    "depth_m": 0.02,
+    "orientation_deg": 2.0,
+    "area_light_gain": 0.02,
+    "exposure_offset_ev": 0.03
+  },
+  "production_sampling": {
+    "method": "src.data.action4_parameter_sampling.sample_uniform(sample_index,master_seed)",
+    "joint_dimensions": 29,
+    "continuous_pose_photometry_dimensions": 26,
+    "LHS_optional_only": true,
+    "difference_counts_default": false,
+    "expensive_prior_diagnostics_default": false,
+    "actual_scene_mask_acceptance_pending": true
+  },
+  "policy_update_from": {
+    "path": "outputs/action4_diverse_sampling_v007/search_policy_joint_depth040_140_v003.json",
+    "revision": "joint_uniform_depth040_140_v003"
+  },
+  "brace_local_rotation_xyz_deg": {
+    "rx": [
+      -55.0,
+      55.0
+    ],
+    "ry": [
+      -75.0,
+      75.0
+    ],
+    "rz": [
+      -60.0,
+      60.0
+    ]
+  },
+  "background_sampling": "independent_three_templates",
+  "occluder_controls": {
+    "edge_deg": [
+      -180.0,
+      180.0
+    ],
+    "width_ratio": [
+      1.2,
+      2.5
+    ],
+    "height_ratio": [
+      1.2,
+      2.5
+    ],
+    "tangent_offset": [
+      -0.35,
+      0.35
+    ],
+    "depth_fraction": [
+      0.03,
+      0.2
+    ]
+  },
+  "pair_relationship": {
+    "mode": "derived_from_two_independent_rigid_actors",
+    "report": [
+      "delta_x_m",
+      "delta_y_m",
+      "delta_z_m",
+      "euclidean_distance_m",
+      "relative_rotation",
+      "area_ratio"
+    ],
+    "allow_projected_overlap": true,
+    "allow_physical_intersection": false,
+    "enforced_by_sampler": false,
+    "final_checker_integration_pending": true,
+    "distance_and_depth_gap": "derived_without_additional_gate"
+  },
+  "mount_variation": {
+    "status": "FIXED_VERIFIED_MOUNT",
+    "offset_deg": [
+      0,
+      0,
+      0
+    ],
+    "future_candidate_xyz_deg": [
+      [
+        -5,
+        5
+      ],
+      [
+        -8,
+        8
+      ],
+      [
+        -5,
+        5
+      ]
+    ],
+    "enabled": false,
+    "reason": "Small mount offsets require verified pivot and attachment clearance; do not rotate whole wrist to impersonate mount variation."
+  },
+  "occlusion_semantics": {
+    "formula": "1 - visible_inframe_target_mask_pixels / amodal_inframe_target_mask_pixels",
+    "zero_denominator": "reject",
+    "truncation": "record independently, never count outside-image pixels as occlusion",
+    "target_fraction_is_not_actual_mask_fraction": true,
+    "maximum_fraction_is_engineering_limit_not_recognition_threshold": false,
+    "target_sampling_upper_fraction": 0.75,
+    "target_bin_match_required_for_acceptance": false,
+    "actual_fraction_may_exceed_requested_interval": true
+  },
+  "consumer_status": "NUMERICAL_GEOMETRY_READY_TEMPLATE_RENDERER_ADAPTER_PENDING",
+  "geometric_safety_contract": {
+    "required": [
+      "no_forbidden_interpenetration_between_modules",
+      "finite_correctly_ordered_projectable_canonical8_for_present_targets"
+    ],
+    "not_safety_gates": [
+      "resemblance_to_reference_frame",
+      "pair_distance_interval",
+      "occlusion_target_bin_match",
+      "pairwise_diversity_comparison"
+    ],
+    "final_image_label_consistency_required": true,
+    "intended_mount_contacts_allowed": true,
+    "mask_statistics_are_measurements_not_safe_range_proof": true
+  }
+}

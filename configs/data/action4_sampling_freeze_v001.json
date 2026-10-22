@@ -1,0 +1,293 @@
+{
+  "schema": "action4.sampling_freeze.v1",
+  "status": "DOCUMENTED_FREEZE_OF_ALREADY_SOURCE_BOUND_CURRENT2000",
+  "documented_at": "2026-10-21T22:32:58.851619+08:00",
+  "effective_scope": "current2000 pilot candidates and their formal admission; policy/source were already bound by worker execution_sources at launch",
+  "policy_ref": {
+    "path": "configs/data/action4_random_sampling_v005.json",
+    "sha256": "83dd63a6ee33f55007b8a851d998215335eeb247c20e1ed49326563901013dca"
+  },
+  "sampler_ref": {
+    "path": "src/data/action4_parameter_sampling.py",
+    "sha256": "e1c5c1b2f1f6be1b33c529d8764253e272d9269233bc9e57bed656c649b26e82"
+  },
+  "full_plan_ref": {
+    "path": "configs/data/action4_template_pilot2000_v009.json",
+    "sha256": "adc4a794b4bb5aa7ea869ba8df9970f3cdac48338af50c1987af298cb8b22031"
+  },
+  "layout_ref": {
+    "path": "configs/data/action4_template_environment_v001.json",
+    "sha256": "0af47d403dc29e88942bf9b62bf2977f3557df12164f5621b09894cb722f340d"
+  },
+  "method": {
+    "name": "independent_joint_uniform_per_sample_and_attempt",
+    "master_seed": 209005,
+    "draw_index": "plan_index + generation_attempt * 2000",
+    "stream_seed": "int(SHA256(canonical JSON of sampler=broad_joint_v005, sample_index=draw_index, master_seed),16)",
+    "generator": "Python random.Random(stream_seed); 28 independent draws on [0,1)",
+    "dimensions": [
+      "left.u",
+      "left.v",
+      "left.depth",
+      "left.rx",
+      "left.ry",
+      "left.rz",
+      "left.occlusion_bin",
+      "right.u",
+      "right.v",
+      "right.depth",
+      "right.rx",
+      "right.ry",
+      "right.rz",
+      "right.occlusion_bin",
+      "area_light_gain",
+      "exposure_offset_ev",
+      "left.occlusion_fraction",
+      "left.occluder_edge_deg",
+      "left.occluder_width_ratio",
+      "left.occluder_height_ratio",
+      "left.occluder_tangent_offset",
+      "left.occluder_depth_fraction",
+      "right.occlusion_fraction",
+      "right.occluder_edge_deg",
+      "right.occluder_width_ratio",
+      "right.occluder_height_ratio",
+      "right.occluder_tangent_offset",
+      "right.occluder_depth_fraction"
+    ],
+    "dimension_count": 28,
+    "continuous_dimension_count": 26,
+    "categorical_occlusion_dimensions": 2,
+    "draw_every_variable_each_attempt": true,
+    "pose_bank_selection_only": false,
+    "LHS_required": false,
+    "quantized_perturbation_step": null,
+    "scene_is_random_dimension": false,
+    "same_seed_and_index_replays_parameters": true,
+    "cross_hardware_bitwise_RGB_guaranteed": false
+  },
+  "ranges": {
+    "depth_m": [
+      0.4,
+      1.4
+    ],
+    "centre_u_fraction": {
+      "left": [
+        0.08,
+        0.92
+      ],
+      "right": [
+        0.08,
+        0.92
+      ]
+    },
+    "centre_v_fraction": [
+      0.12,
+      0.9
+    ],
+    "brace_local_rotation_xyz_deg": {
+      "rx": [
+        -55.0,
+        55.0
+      ],
+      "ry": [
+        -75.0,
+        75.0
+      ],
+      "rz": [
+        -60.0,
+        60.0
+      ]
+    },
+    "area_light_gain": [
+      0.5,
+      1.8
+    ],
+    "exposure_offset_ev": [
+      -0.7,
+      0.7
+    ],
+    "occlusion_bins": {
+      "clear": [
+        0.0,
+        0.1
+      ],
+      "light": [
+        0.1,
+        0.3
+      ],
+      "medium": [
+        0.3,
+        0.55
+      ],
+      "heavy": [
+        0.55,
+        0.75
+      ]
+    },
+    "occluder_controls": {
+      "edge_deg": [
+        -180.0,
+        180.0
+      ],
+      "width_ratio": [
+        1.2,
+        2.5
+      ],
+      "height_ratio": [
+        1.2,
+        2.5
+      ],
+      "tangent_offset": [
+        -0.35,
+        0.35
+      ],
+      "depth_fraction": [
+        0.03,
+        0.2
+      ]
+    }
+  },
+  "scene_schedule": {
+    "templates": [
+      "wall",
+      "table_full_garment",
+      "cloth_lift10_full_garment"
+    ],
+    "choice": "fixed_by_worker_assignment",
+    "load_count_per_Blender_process": 1,
+    "samples_per_full_worker_process": 8,
+    "scope": "3 scene types; no per-image scene reload"
+  },
+  "fixed_assets_and_intrinsics": {
+    "canonical_source_ref": {
+      "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+      "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+    },
+    "canonical_corner_order": [
+      "xmin_ymin_zmin",
+      "xmax_ymin_zmin",
+      "xmax_ymax_zmin",
+      "xmin_ymax_zmin",
+      "xmin_ymin_zmax",
+      "xmax_ymin_zmax",
+      "xmax_ymax_zmax",
+      "xmin_ymax_zmax"
+    ],
+    "K_native": [
+      [
+        2639.0,
+        0,
+        1623.5
+      ],
+      [
+        0,
+        2639.0,
+        1231.5
+      ],
+      [
+        0,
+        0,
+        1
+      ]
+    ],
+    "W_from_capture": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.25
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        -0.15
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        1.2
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "native_resolution_wh": [
+      3248,
+      2464
+    ],
+    "metric_CAD_and_wrist_installation_A_S_F_fixed": true,
+    "camera_body_mesh_scaling_allowed": false,
+    "camera_relative_mount_angle_randomization_enabled": false,
+    "mount_offset_deg": [
+      0,
+      0,
+      0
+    ]
+  },
+  "derived_not_independently_rescaled": [
+    "per-camera apparent image size",
+    "left-right apparent size ratio",
+    "pair delta_x/delta_y/delta_z/distance/relative rotation",
+    "actual visible/amodal occlusion ratio"
+  ],
+  "occlusion_semantics": {
+    "formula": "1 - visible_inframe_target_mask_pixels / amodal_inframe_target_mask_pixels",
+    "zero_denominator": "reject",
+    "truncation": "record independently, never count outside-image pixels as occlusion",
+    "target_fraction_is_not_actual_mask_fraction": true,
+    "maximum_fraction_is_engineering_limit_not_recognition_threshold": false,
+    "target_sampling_upper_fraction": 0.75,
+    "target_bin_match_required_for_acceptance": false,
+    "actual_fraction_may_exceed_requested_interval": true
+  },
+  "ids": {
+    "corner_ids": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "physical_instance_ids": {
+      "1": "left source wearing assembly",
+      "2": "right source wearing assembly"
+    },
+    "physical_id_is_not_image_left_right_order": true,
+    "right_only_instance_id": 2,
+    "absent_target_has_no_instance_GT_or_mask": true,
+    "hidden_corner_keeps_original_id": true,
+    "inference_detection_order_not_claimed_as_physical_identity": true,
+    "temporal_identity_training_enabled": false
+  },
+  "acceptance": {
+    "geometry": "reject forbidden module interpenetration or unresolved geometry; require finite correctly ordered projected8",
+    "image": "native actual masks and byte identity; currentconsumer10percent/16px support for presenttargets",
+    "supervision": "all valid projected8 channels; visibility does not erase hidden corners",
+    "no_pairwise_similarity_or_global_dedup_scan": true,
+    "no_target_occlusion_bin_match_gate": true,
+    "accepted_distribution": "conditional on actual geometry/image validity, not claimed mathematically uniform after rejection"
+  },
+  "version_change_rule": "No hot edits to policy, range, sampling source or seed within current run. Any future expanded domain must have a new explicit version and gate; preserve prior identities/results.",
+  "final_data_layout": {
+    "train": "data/train",
+    "eval": "data/eval",
+    "test": "data/test",
+    "each_split": [
+      "images/",
+      "masks/",
+      "annotations.jsonl"
+    ],
+    "dataset_commit": "data/action4_dataset_commit.json",
+    "runtime_outputs": "outputs/",
+    "live_candidate_paths_not_moved_until_closed": true
+  }
+}

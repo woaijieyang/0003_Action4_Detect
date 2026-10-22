@@ -1,7 +1,7 @@
-# 原始运行产物
+# 运行输出
 
-每次运行使用独立且不复用的 run_id 子目录，保存运行身份清单、最终生效配置、逐样本预测、原始指标、日志及其他实际产物。
-仅创建本次运行需要的文件，不覆盖旧运行或为了汇总成绩移动、修改原始证据。
-
-除本 README 外，全部内容默认被 Git 忽略。经核实的模型测评成绩登记到 [results/results.md](../results/results.md)，阶段过程保存到 docs/stages；不要把原始输出复制进成绩或文档目录。
-格式与身份要求见 [实验规范](../docs/EXPERIMENTS.md)。Git 忽略不构成删除授权。
+当前最终证据：action4_final_selection_v001、action4_final_test_v001、action4_final_video_v001、action4_final_proposal_audit_v001。
+action4_release_preparation_v001记录封存、清理、打包和发布；action4_release_bundle_check_v001记录独立包验证。
+required与当前训练仍依赖的特征/元数据缓存保留。历史输出移到archive/legacy，按cleanup_journal.jsonl查找原路径。
+原始视频、标注和Blender资产在data，运行可视化/日志在outputs。
+文件生成成功、非有限值检查通过与模型精度通过是不同结论。当前视频真实定位验收失败。

@@ -1,0 +1,1001 @@
+{
+  "schema": "action4.modular_parameter_bounds.v1",
+  "version": "modular_parameters_v001_candidate",
+  "status": "candidate_engineering_preview_only",
+  "dataset_generation_allowed": false,
+  "sampling_mode": "candidate_proposal",
+  "source_refs": {
+    "source_plan": {
+      "path": "data/action4_synth/pilot2000_v015_candidate/plan.json",
+      "sha256": "2958b5fc39688cd1e30f2bbdc4c82886481e905bcb9dba9d3eab38c8c874e87d"
+    },
+    "scene_config": {
+      "path": "configs/data/action4_modular_bilateral_preview_v003.json",
+      "sha256": "a9326028ee4e293a1e9490acb5f9020e21dbd1f6f54305a7df389d3f0c1ad84d"
+    },
+    "actual_actor_geometry": {
+      "path": "outputs/action4_modular_bilateral_prepare_v003/runs/cpu_probe_v003/actual_geometry.npz",
+      "sha256": "3cd762d2ef96e8822a99a2a784ea904f29ac5abc763302c388596c7d9cef1e0f"
+    },
+    "actual_scene_contract": {
+      "path": "outputs/action4_modular_bilateral_prepare_v003/runs/cpu_probe_v003/scene_contract.json",
+      "sha256": "81ba29b07b670566f91b4c8af14b5100aba870f9bd60a39cfd201218c75030b6"
+    },
+    "actual_scene_result": {
+      "path": "outputs/action4_modular_bilateral_prepare_v003/runs/cpu_probe_v003/result.json",
+      "sha256": "9a3466a12cf587592f59d34828483911647ad52333c49cd9a94bb1271fb06faa"
+    },
+    "canonical_source": {
+      "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+      "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+    },
+    "right_anchor_relation": {
+      "path": "outputs/action4_modular_relation_actual_v001/config.json",
+      "sha256": "26139531b0dd0dd98aa14572ef9d723f1adfbb16c03fecfe1e0180a4ed79c666"
+    },
+    "left_assembly": {
+      "path": "outputs/action4_left_hand_y25_v001/assembly.json",
+      "sha256": "e3a5b6bc2b3f67081294af2c33f518c20d90e77816e50c08d6f63ecb67729ea3"
+    },
+    "left_wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/left_contract.json",
+      "sha256": "a8d4af2e269644507fc759129da1e06d706de3373ae2d2739c351759a1d1128f"
+    },
+    "right_wrist_contract": {
+      "path": "data/action4_scene_assets/modular_wrist_v001/build_v003/right_contract.json",
+      "sha256": "6a05530fb88d7a868988e2e4036fb7ec38b98176104a05b05805e50e462edc9e"
+    },
+    "reference_image_layout_audit": {
+      "path": "outputs/action4_reference_envelope_audit_v001/report.json",
+      "sha256": "b86a591267f943c47413efed0531ec69ec51200e50b7d3ff524206785976f840"
+    },
+    "parameters_module": {
+      "path": "src/data/action4_modular_parameters.py",
+      "sha256": "907c04640368405313f8b932def323f806be2a98df1f227cdf7cbcd3ccd136fe"
+    }
+  },
+  "fixed": {
+    "W_from_capture": [
+      [
+        1.0,
+        0.0,
+        0.0,
+        0.25
+      ],
+      [
+        0.0,
+        -1.0,
+        0.0,
+        -0.15
+      ],
+      [
+        0.0,
+        0.0,
+        -1.0,
+        1.2
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "K_native": [
+      [
+        2639.0,
+        0.0,
+        1623.5
+      ],
+      [
+        0.0,
+        2639.0,
+        1231.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "baseline_environment": {
+      "claim": "One scalar illumination balance after v002 wall/forearm measured appearance: same broad wall-directed source, geometry and materials unchanged. Estimated photometric candidate, not measured physical illumination.",
+      "wall_front_capture_z_m": 0.85,
+      "wall_size_xy_m": [
+        1.4,
+        1.2
+      ],
+      "wall_thickness_m": 0.02,
+      "wall_linear_rgb": [
+        0.22,
+        0.23,
+        0.25
+      ],
+      "roughness": 0.9,
+      "table_front_capture_z_m": 0.6,
+      "table_back_edge_native_y_px": 2365,
+      "table_width_m": 1.4,
+      "table_thickness_m": 0.025,
+      "grid_pitch_m": 0.025,
+      "grid_line_fraction": 0.04,
+      "grid_cell_linear_rgb": [
+        0.4,
+        0.42,
+        0.43
+      ],
+      "grid_line_linear_rgb": [
+        0.008,
+        0.012,
+        0.015
+      ],
+      "world_linear_rgb": [
+        0.45,
+        0.46,
+        0.47
+      ],
+      "world_strength": 1.12,
+      "area_location_capture_m": [
+        0,
+        -0.25,
+        0.6
+      ],
+      "area_target_capture_m": [
+        0,
+        -0.25,
+        0.85
+      ],
+      "area_energy_w": 3.5,
+      "area_size_m": 1.4,
+      "area_color": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "view_transform": "Standard",
+      "look": "Medium High Contrast",
+      "exposure": 0.0,
+      "gamma": 1.0
+    },
+    "sides": {
+      "left": {
+        "A_brace_from_CAD": [
+          [
+            0.9718376282940293,
+            -0.0026924118806502736,
+            0.23563610748376745,
+            -0.001232040978644672
+          ],
+          [
+            -0.12281841565680296,
+            -0.8591740638848944,
+            0.49672483803718626,
+            0.03611147729579353
+          ],
+          [
+            0.20111504420950077,
+            -0.5116763419054873,
+            -0.8353083622991153,
+            -0.06923876277868914
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "S_skin_relative_to_brace": [
+          [
+            0.9978589232386035,
+            0.0,
+            0.06540312923014306,
+            -0.0005725564536302429
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -0.006
+          ],
+          [
+            -0.06540312923014306,
+            0.0,
+            0.9978589232386035,
+            -0.0006534823815373715
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "F_body_from_brace": [
+          [
+            -0.9338243323285825,
+            0.3467223968951556,
+            -0.08806642857727265,
+            0.4057913785874844
+          ],
+          [
+            2.0920342680419424e-09,
+            -0.2461799612564234,
+            -0.9692241364492458,
+            -0.04057444728910923
+          ],
+          [
+            -0.357731905693464,
+            -0.9050850822807011,
+            0.229888837227601,
+            1.0009520996809005
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "anchor_C_capture_by_frame": {
+          "0": [
+            [
+              -0.9221690294511374,
+              0.17366472502387342,
+              0.345607934520504,
+              -0.037112935590193546
+            ],
+            [
+              -0.24738101554531355,
+              0.42206688417947064,
+              -0.8721594913929459,
+              -0.004817803380555025
+            ],
+            [
+              -0.297333002320489,
+              -0.8897753135266314,
+              -0.3462556529064447,
+              0.40898740756302787
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      },
+      "right": {
+        "A_brace_from_CAD": [
+          [
+            -0.9629035816717256,
+            -0.10291570878246703,
+            0.24944949246203105,
+            0.01126771242272251
+          ],
+          [
+            0.22403790561965387,
+            -0.8201668040998481,
+            0.5264346401009344,
+            0.022789977763002654
+          ],
+          [
+            0.15041179890328257,
+            0.5627919423183346,
+            0.8127985730869823,
+            0.08197440441814514
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "S_skin_relative_to_brace": [
+          [
+            0.9961946980917455,
+            0.0,
+            -0.08715574274765817,
+            0.0005370858824665708
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            -0.006
+          ],
+          [
+            0.08715574274765817,
+            0.0,
+            0.9961946980917455,
+            -0.0008072648809310744
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "F_body_from_brace": [
+          [
+            -0.9301290089569292,
+            -0.3560162463809578,
+            0.09006919012411352,
+            -0.4060902528464794
+          ],
+          [
+            7.905366361526944e-09,
+            -0.24526448824900687,
+            -0.9694562036543748,
+            -0.04085469269752502
+          ],
+          [
+            0.36723293247855704,
+            -0.9017193372201604,
+            0.2281276182018162,
+            1.0001880512833596
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "anchor_C_capture_by_frame": {
+          "0": [
+            [
+              -0.9806481156389645,
+              -0.17450039736323436,
+              -0.0887630813673219,
+              0.09463132739872888
+            ],
+            [
+              -0.06003050399485171,
+              0.6995556598625458,
+              -0.7120521170141991,
+              -0.0037879831298015688
+            ],
+            [
+              0.18634809331965965,
+              -0.6929440742760934,
+              -0.6964932864297947,
+              0.3291075243903443
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "540": [
+            [
+              -0.3650436214528282,
+              -0.08382692570854694,
+              -0.9272088227378222,
+              0.07950552950014105
+            ],
+            [
+              0.42041086324264954,
+              0.8737669506894957,
+              -0.24451180329454653,
+              0.10484114212018973
+            ],
+            [
+              0.8306610984656586,
+              -0.4790661357360115,
+              -0.28372130178538063,
+              0.48631740668796997
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "960": [
+            [
+              0.3101910735128599,
+              0.04521153432546483,
+              -0.94959855469397,
+              0.10308119531978444
+            ],
+            [
+              -0.10284004076702473,
+              0.9946027147199586,
+              0.013761027822271196,
+              0.11544587450170192
+            ],
+            [
+              0.9450954575745119,
+              0.093388206084205,
+              0.3131664398309592,
+              0.5813114154304929
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ]
+        }
+      }
+    },
+    "canonical8_m": [
+      [
+        -0.03525027084350586,
+        -0.016211891174316408,
+        -0.022276109218597413
+      ],
+      [
+        0.03525027084350586,
+        -0.016211891174316408,
+        -0.022276109218597413
+      ],
+      [
+        0.03525027084350586,
+        0.016211891174316408,
+        -0.022276109218597413
+      ],
+      [
+        -0.03525027084350586,
+        0.016211891174316408,
+        -0.022276109218597413
+      ],
+      [
+        -0.03525027084350586,
+        -0.016211891174316408,
+        0.022276109218597413
+      ],
+      [
+        0.03525027084350586,
+        -0.016211891174316408,
+        0.022276109218597413
+      ],
+      [
+        0.03525027084350586,
+        0.016211891174316408,
+        0.022276109218597413
+      ],
+      [
+        -0.03525027084350586,
+        0.016211891174316408,
+        0.022276109218597413
+      ]
+    ],
+    "corner_order": [
+      "xmin_ymin_zmin",
+      "xmax_ymin_zmin",
+      "xmax_ymax_zmin",
+      "xmin_ymax_zmin",
+      "xmin_ymin_zmax",
+      "xmax_ymin_zmax",
+      "xmax_ymax_zmax",
+      "xmin_ymax_zmax"
+    ]
+  },
+  "fixed_sha256": "ca70da247cee53dadfa23ca8a394f2a37f4c6f8377f6ae7c76afd6e037e3b894",
+  "actor_bounds_by_side": {
+    "left": {
+      "min_m": [
+        -0.047571333946818437,
+        -0.30300000309944153,
+        -0.10037315774375677
+      ],
+      "max_m": [
+        0.06421195303553019,
+        0.20813020772543783,
+        0.10145614731555808
+      ],
+      "background_only": {
+        "min_m": [
+          -0.047571333946818437,
+          -0.22930867173857072,
+          -0.05165146493940587
+        ],
+        "max_m": [
+          0.06421195303553019,
+          0.20813020772543783,
+          0.10145614731555808
+        ]
+      },
+      "frame": "source_f0_brace",
+      "normalization_world_from_brace": [
+        [
+          -0.8152285218238831,
+          0.13572315871715546,
+          -0.5630114674568176,
+          0.1679992973804474
+        ],
+        [
+          0.4470628798007965,
+          0.7654691934585571,
+          -0.4628084599971771,
+          -0.20431791245937347
+        ],
+        [
+          0.3681541085243225,
+          -0.6289961338043213,
+          -0.6847091317176819,
+          0.7667717337608337
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "claim": "Conservative transformed bounds prior from actual9piece actor or retained2piece background; no contact/containment acceptance"
+    },
+    "right": {
+      "min_m": [
+        -0.08609577382110628,
+        -0.3030000030994416,
+        -0.049765213552972254
+      ],
+      "max_m": [
+        0.04985640197143615,
+        0.2053372198617538,
+        0.11179771941378813
+      ],
+      "background_only": {
+        "min_m": [
+          -0.08609577382110628,
+          -0.22997648111652585,
+          -0.048116817460587824
+        ],
+        "max_m": [
+          0.049089651105363674,
+          0.2053372198617538,
+          0.10311164446797783
+        ]
+      },
+      "frame": "source_f0_brace",
+      "normalization_world_from_brace": [
+        [
+          0.9400864839553833,
+          -0.12331090122461319,
+          -0.31785500049591064,
+          0.36290493607521057
+        ],
+        [
+          0.19181275367736816,
+          0.9620503187179565,
+          0.19407996535301208,
+          -0.18620799481868744
+        ],
+        [
+          0.2818603515625,
+          -0.2434205859899521,
+          0.928063154220581,
+          0.7971866726875305
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "claim": "Conservative transformed bounds prior from actual9piece actor or retained2piece background; no contact/containment acceptance"
+    }
+  },
+  "bounds": {
+    "translation_capture_each_axis_m": [
+      -0.004,
+      0.004
+    ],
+    "rotation_brace_local_each_axis_deg": [
+      -8.0,
+      8.0
+    ],
+    "area_light_gain": [
+      0.9,
+      1.1
+    ],
+    "exposure_offset_ev": [
+      -0.15,
+      0.15
+    ]
+  },
+  "rotation_convention": "B.R @ Rz(rz) @ Ry(ry) @ Rx(rx); degrees; brace-origin pivot; capture-frame translation",
+  "reference_sampling": {
+    "status": "pending_evidence",
+    "bounds": null,
+    "evidence_refs": [],
+    "primary_control_choices": [
+      "whole_actor_translation",
+      "whole_actor_rotation",
+      "area_light_gain",
+      "exposure_offset_ev"
+    ],
+    "unknown_is_not_zero": true,
+    "zero_baseline_not1800_reference_coverage": true
+  },
+  "augmentation_indices": [
+    24,
+    29,
+    33,
+    42,
+    53,
+    104,
+    106,
+    117,
+    119,
+    127,
+    147,
+    148,
+    149,
+    150,
+    155,
+    157,
+    172,
+    183,
+    223,
+    242,
+    253,
+    257,
+    294,
+    297,
+    302,
+    303,
+    304,
+    334,
+    336,
+    338,
+    343,
+    344,
+    354,
+    363,
+    376,
+    379,
+    391,
+    413,
+    417,
+    429,
+    459,
+    467,
+    471,
+    474,
+    477,
+    478,
+    485,
+    487,
+    491,
+    492,
+    503,
+    508,
+    517,
+    522,
+    533,
+    570,
+    589,
+    592,
+    622,
+    627,
+    640,
+    645,
+    656,
+    660,
+    672,
+    675,
+    676,
+    694,
+    710,
+    720,
+    724,
+    764,
+    765,
+    788,
+    798,
+    799,
+    810,
+    843,
+    849,
+    851,
+    862,
+    863,
+    883,
+    888,
+    901,
+    903,
+    908,
+    909,
+    911,
+    924,
+    928,
+    966,
+    972,
+    979,
+    991,
+    994,
+    1003,
+    1006,
+    1010,
+    1017,
+    1022,
+    1024,
+    1049,
+    1050,
+    1061,
+    1083,
+    1085,
+    1088,
+    1096,
+    1097,
+    1123,
+    1133,
+    1136,
+    1145,
+    1147,
+    1149,
+    1150,
+    1159,
+    1181,
+    1189,
+    1201,
+    1212,
+    1219,
+    1251,
+    1256,
+    1269,
+    1274,
+    1294,
+    1298,
+    1327,
+    1329,
+    1337,
+    1339,
+    1343,
+    1352,
+    1362,
+    1367,
+    1372,
+    1392,
+    1399,
+    1400,
+    1406,
+    1410,
+    1431,
+    1436,
+    1463,
+    1464,
+    1467,
+    1468,
+    1486,
+    1487,
+    1492,
+    1494,
+    1495,
+    1531,
+    1539,
+    1544,
+    1560,
+    1579,
+    1602,
+    1611,
+    1613,
+    1624,
+    1654,
+    1667,
+    1699,
+    1700,
+    1705,
+    1708,
+    1711,
+    1730,
+    1731,
+    1748,
+    1756,
+    1765,
+    1772,
+    1776,
+    1782,
+    1790,
+    1814,
+    1841,
+    1842,
+    1852,
+    1857,
+    1863,
+    1867,
+    1885,
+    1901,
+    1904,
+    1911,
+    1929,
+    1940,
+    1943,
+    1947,
+    1948,
+    1962,
+    1964,
+    1966,
+    1977,
+    1979
+  ],
+  "family_profiles": {
+    "wall_rear": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [],
+      "declared_coarse_intent": "frozen wall/table and rigid actor preview"
+    },
+    "table_fastening": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset",
+        "coarse_cloth_patch"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "left_sleeve_coarse_cloth_consumer_missing"
+      ],
+      "declared_coarse_intent": "left sleeve patch at source brace; no mesh consumer yet"
+    },
+    "table_turn": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset",
+        "coarse_cloth_patch"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "right_sleeve_coarse_cloth_consumer_missing"
+      ],
+      "declared_coarse_intent": "right sleeve patch at source brace; no mesh consumer yet"
+    },
+    "near_double": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "same_f0_small_rigid_bounds_do_not_verify_near_pair_or_cross_target_occlusion"
+      ],
+      "declared_coarse_intent": "samef0 paired anchor; real proximity/occlusion effect pending"
+    },
+    "self_forearm_occlusion": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "whole_actor_view_change_not_yet_verified_to_produce_forearm_occlusion"
+      ],
+      "declared_coarse_intent": "whole actor view change with source forearm; actual occlusion pending"
+    },
+    "cloth_lift": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset",
+        "coarse_cloth_patch"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "coarse_cloth_lift_consumer_missing"
+      ],
+      "declared_coarse_intent": "finite lifted patch; no mesh consumer yet"
+    },
+    "wall_transition_truncation": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [
+        "body_boundary_truncation_control_effect_not_implemented_or_verified"
+      ],
+      "declared_coarse_intent": "whole actor body crossing image boundary; effect pending"
+    },
+    "hard_negative": {
+      "wall_visible": true,
+      "table_visible": true,
+      "required_capabilities": [
+        "whole_actor_rigid",
+        "target_presence",
+        "wall_table_visibility",
+        "area_light_gain",
+        "exposure_offset"
+      ],
+      "coarse_occluders": [],
+      "pending_reasons": [],
+      "declared_coarse_intent": "real core/decal and dedicatedmount omission; retain skin/band/table/wall negatives"
+    }
+  },
+  "near_plane_m": 0.001,
+  "quota_contract": {
+    "split_counts": {
+      "train": 1600,
+      "eval": 200,
+      "test": 200
+    },
+    "instance_counts_by_split": {
+      "train": {
+        "0": 80,
+        "1": 240,
+        "2": 1280
+      },
+      "eval": {
+        "0": 10,
+        "1": 30,
+        "2": 160
+      },
+      "test": {
+        "0": 10,
+        "1": 30,
+        "2": 160
+      }
+    },
+    "groups": 500,
+    "entries_per_group": 4
+  },
+  "evidence_refs": [
+    {
+      "path": "outputs/action4_modular_batch_integration_design_v001/design_zh.md",
+      "sha256": "afb74819f3023d08efb4ffd7273463e1dc3a5020381eeb7516a2cfb9c848b9b8"
+    },
+    {
+      "path": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+      "sha256": "701eaa017554ed5e92037117d95a93dd67742eb732950453893a80cccd95047c"
+    }
+  ],
+  "scope_claim": "Initial engineering caps only; unknown reference core is null/pending.1800/200 is planned identity, not accepted coverage.128 all8family coverage remains required.",
+  "reference_layout": {
+    "status": "image_proxy_audit_bound_conditional_pose_contract_pending",
+    "audit_ref": {
+      "path": "outputs/action4_reference_envelope_audit_v001/report.json",
+      "sha256": "b86a591267f943c47413efed0531ec69ec51200e50b7d3ff524206785976f840"
+    },
+    "conditional_capture_pose_bounds": null,
+    "reported_layout_not_all_unknown": true,
+    "raw_demo_boxes_are_not_3D_GT": true,
+    "conditional_proposal_solver_enabled": false
+  }
+}

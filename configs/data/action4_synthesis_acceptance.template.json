@@ -1,0 +1,15 @@
+{
+  "schema_version": "action4.synthesis_acceptance.v1",
+  "scope": "TEMPLATE ONLY: populate after real visual and geometric review; the values below cannot approve training",
+  "decision": "pending_review",
+  "plan_sha256": "REPLACE_WITH_ACTUAL_FROZEN_PLAN_SHA256",
+  "criteria": {
+    "anatomy_and_pose": false,
+    "mount_and_cable_attachment": false,
+    "cloth_contact": false,
+    "lighting_and_material": false,
+    "native_roi_detail": false,
+    "collision_and_masks": false
+  },
+  "reviewed_samples": []
+}

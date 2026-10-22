@@ -1,0 +1,187 @@
+{
+  "schema_version": "action4.finger_rig_init.v1",
+  "status": "initialization_pending_fit",
+  "dataset_generation_allowed": false,
+  "source_asset": {
+    "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/Action4_Global_Rig_Initialization_v001.blend",
+    "sha256": "084bd1e5afdda619b785eb7a35213782acd3dc5a918d718f840646eef1017890"
+  },
+  "source_contract": {
+    "path": "data/action4_scene_assets/global_rig_init_v001/validated_build_v002/rig_contract.json",
+    "sha256": "e544d7ec896a8f73746a984b88f9a972c741def272e32e20788fe92dad94e614"
+  },
+  "digits": {
+    "index": [
+      50,
+      49,
+      78,
+      79
+    ],
+    "middle": [
+      45,
+      47,
+      53,
+      77
+    ],
+    "ring": [
+      48,
+      44,
+      88,
+      89
+    ],
+    "little": [
+      52,
+      46,
+      90,
+      91
+    ],
+    "thumb": [
+      51,
+      92
+    ]
+  },
+  "palm_region": 93,
+  "thumb_split_closed_ring": 6,
+  "joint_blend_halfwidth_m": 0.004,
+  "root_transition_length_m": 0.008,
+  "diagnostic_input_limit_degrees": 25,
+  "calibrated_sampling_ranges": null,
+  "proxy_claim": "Source face-set boundary/ring centroids are initial control proxies, not measured anatomical joints",
+  "diagnostic_poses": [
+    {
+      "name": "left_index_isolation",
+      "pose": {
+        "left_index": [
+          12,
+          12,
+          8
+        ]
+      }
+    },
+    {
+      "name": "bilateral_natural_bend",
+      "pose": {
+        "left_index": [
+          10,
+          12,
+          8
+        ],
+        "left_middle": [
+          10,
+          12,
+          8
+        ],
+        "left_ring": [
+          10,
+          12,
+          8
+        ],
+        "left_little": [
+          10,
+          12,
+          8
+        ],
+        "left_thumb": [
+          5,
+          8,
+          0
+        ],
+        "right_index": [
+          10,
+          12,
+          8
+        ],
+        "right_middle": [
+          10,
+          12,
+          8
+        ],
+        "right_ring": [
+          10,
+          12,
+          8
+        ],
+        "right_little": [
+          10,
+          12,
+          8
+        ],
+        "right_thumb": [
+          5,
+          8,
+          0
+        ]
+      }
+    },
+    {
+      "name": "thumb_index_approach_candidate",
+      "pose": {
+        "left_index": [
+          20,
+          20,
+          15
+        ],
+        "left_thumb": [
+          10,
+          12,
+          12
+        ]
+      }
+    },
+    {
+      "name": "open_grasp_shape_candidate",
+      "pose": {
+        "left_index": [
+          15,
+          18,
+          12
+        ],
+        "left_middle": [
+          15,
+          18,
+          12
+        ],
+        "left_ring": [
+          15,
+          18,
+          12
+        ],
+        "left_little": [
+          15,
+          18,
+          12
+        ],
+        "left_thumb": [
+          8,
+          10,
+          10
+        ],
+        "right_index": [
+          15,
+          18,
+          12
+        ],
+        "right_middle": [
+          15,
+          18,
+          12
+        ],
+        "right_ring": [
+          15,
+          18,
+          12
+        ],
+        "right_little": [
+          15,
+          18,
+          12
+        ],
+        "right_thumb": [
+          8,
+          10,
+          10
+        ]
+      }
+    }
+  ]
+}

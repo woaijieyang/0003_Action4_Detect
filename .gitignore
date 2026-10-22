@@ -113,3 +113,7 @@ events.out.tfevents.*
 *.swp
 *.swo
 *~
+
+# Historical assets remain server-local; publish only the archive index.
+/archive/*
+!/archive/README.md

@@ -1,92 +1,55 @@
-# 通用 AI 科研代码仓库模板
+# DJI Action4 双机检测与八角点定位
 
-本仓库提供代码目录骨架与协作规范，适合以数据处理、模型实现和测评为主的 AI 科研项目。当前只有三个可安装的空包与文档，没有模型、训练器、测评命令、业务测试或已登记测评成绩。
+本项目从原始真实视频出发，利用固定尺寸 DJI Action4 模型生成合成数据，分别训练 B0 完整机身检测器和 A0 八角点/几何模型，输出逐帧标注与 demo 对照视频。
 
-## 从这里开始
+**当前状态：训练、合成集测评和完整视频链路已有实际结果，但真实画面验收未通过。** B0 开发集双机检出 177/184，历史 test 为 194/200；最终权重在 6 张真实参考帧中仅 2 张双机与 demo 参考框同时达到 IoU≥0.5。不得将合成集成绩表述为真实场景达到 90%。demo 是参考可视化，不是经过认证的真实 GT。
 
-1. 阅读 [工作规范](AGENTS.md) 与 [架构边界](docs/ARCHITECTURE.md)。
-2. 将 `pyproject.toml` 的项目名称、描述和版本改为实际项目元数据，更新本文定位；作者信息按实际填写，许可声明须与随附 LICENSE 一致。
-3. 使用独立环境安装骨架，再按实际实现添加依赖与测试。
-4. 复杂阶段按 [阶段规则](docs/stages/AGENTS.md) 创建计划和结论。训练、测评、下载与发布依当前任务授权执行。
-5. 完成有效测评后，按 [填写规则](results/README.md) 更新根目录的 [模型测评成绩总表](results/results.md)。
+## 当前入口
 
-## 安装与最小导入检查
+- [阶段计划](docs/stages/2026-10-19-1-plan-Action4角点复现增补.md)、[阶段结论](docs/stages/2026-10-19-1-conclusion-Action4角点复现增补.md)。
+- [代码与数据流](docs/ARCHITECTURE.md)、[模型接口及继续训练](docs/action4_model_interfaces.md)。
+- [结果表](results/results.md)、[发布记录](README_WORKFLOW.md)。
+- 当前执行身份由 `configs/execution/action4_active.json` 指向；不要按文件时间选择旧控制器。
 
-要求 Python 3.10 或更高版本。以下命令在仓库根目录执行；默认安装可能访问包索引获取构建依赖，离线环境应先准备已核验的工具包。
+## 目录职责
 
-Linux / macOS：
+| 目录 | 内容 |
+|---|---|
+| `src/data` | 合成、角点/掩码数据、划分校验、视频抽帧和数据接口 |
+| `src/model` | 独立 A0/B0、几何模块和自包含权重包 |
+| `src/model/training` | 损失、训练、异步评估队列和恢复 |
+| `src/eval` | 框指标、八点指标、实际视频与可视化 |
+| `configs` | 训练、评估、采样与执行配置 |
+| `data/train,eval,test` | 1600/200/200 张已发布数据；test 全双机 |
+| `models/A0/`、`models/B0/` | 实际以 `models/A0/best.pt`、`models/B0/best.pt` 两个独立包为准 |
+| `outputs` | 必要的运行证据、预测、视频与仍被消费的缓存 |
+| `archive/legacy` | 历史方案与失败证据，按原相对路径归档 |
+| `docs`、`results` | 方案、结论与可核对成绩 |
 
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -e .
-.venv/bin/python -c "import importlib; [importlib.import_module(name) for name in ('eval', 'model', 'data')]; print('package imports OK')"
+模型权重、数据、Blender 场景、视频、运行缓存和历史归档不进入普通 Git；服务器保留这些资产。仓库克隆只得到源码与配置，必须自行配置合法数据和权重，不能把缺失资产解释为可直接复现全部成绩。
+
+## 运行约定
+
+服务器项目根是 `/data/zy/vln/a-test`，以下命令均从该目录执行。项目输入输出必须留在项目内。现有运行时为 `.venv/bin/python`；OpenCV 补充依赖在 `runtime/surface_deps`，FFmpeg 在 `runtime/ffmpeg/bin`。
+
+```bash
+export PYTHONPATH=runtime/surface_deps:src
+export TMPDIR="$PWD/runtime"
+export PYTHONDONTWRITEBYTECODE=1
+export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1
+export CUBLAS_WORKSPACE_CONFIG=:4096:8
+# 先按最新授权选择有空闲资源的物理 GPU；GPU0 禁止使用。
+.venv/bin/python -m eval.action4_staged_eval \
+  --selection configs/eval/action4_release_candidate_v001.json \
+  --split eval --output outputs/new_development_evaluation
 ```
 
-Windows PowerShell：
+完整视频入口是 `eval.action4_staged_video_parallel`。它检查 2850 帧身份、顺序、时间戳、模型身份和合并后的帧数/时长；这些只证明视频工程完整性。当前真实相机内参仍为估计值，无跨帧训练或平滑。
 
-```powershell
-py -3 -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -e .
-.\.venv\Scripts\python.exe -c "import importlib; [importlib.import_module(name) for name in ('eval', 'model', 'data')]; print('package imports OK')"
-```
+## 权重语义
 
-`py -3` 所选版本须满足上述下限。导入检查只证明包可加载，不代表模型或测评功能已经实现。构建后端要求 setuptools 77 或更高版本，以支持 SPDX 许可声明；运行时不依赖 setuptools。配置示例 `.env.example` 不会自动加载，本版没有 CLI、网络服务或 GPU 依赖。
-
-## 实际目录
-
-```text
-src/
-  eval/                 测评加载、环境与计分代码
-  model/                模型与算法；training 按需建立
-  data/                 原始数据加工与数据集封装代码
-data/                   数据资产（只跟踪目录 README）
-models/                 模型权重（只跟踪目录 README）
-outputs/                原始运行产物（只跟踪目录 README）
-runtime/                隔离环境与构建（只跟踪目录 README）
-upstream/               第三方源码副本（只跟踪目录 README）
-configs/                配置组织说明
-scripts/                薄入口约定
-tests/                  工程测试约定
-results/
-  README.md             测评成绩填写规则
-  results.md            模型测评成绩总表
-docs/
-  ARCHITECTURE.md        架构与扩展边界
-  EXPERIMENTS.md         运行身份与证据规范
-  stages/AGENTS.md       阶段文档规则
-  templates/            计划、结论与单次测评详情模板
-.github/
-  pull_request_template.md
-```
-
-根目录同时提供 AGENTS、README、CONTRIBUTING、README_WORKFLOW、pyproject 和 Git/环境示例配置。目录中的 README 说明其职责，不代表已有对应业务功能。
-
-## 源码、资产和结果
-
-| 位置 | 保存内容 | Git |
-|---|---|---|
-| `src/data/`、`src/model/` | 数据处理代码、模型代码 | 跟踪 |
-| 根 `data/`、`models/` | 已预建数据与权重资产目录 | 仅跟踪目录 README，实际资产忽略 |
-| `outputs/` | 已预建；运行时按 run_id 保存逐样本输出、日志和身份清单 | 仅跟踪目录 README，运行产物忽略 |
-| `results/` | 经核实的测评成绩与必要小型摘要 | 跟踪 |
-| `docs/` | 架构、用法、阶段过程与结论 | 跟踪 |
-| `runtime/`、`upstream/` | 已预建隔离环境与第三方副本目录 | 仅跟踪目录 README，实际内容忽略 |
-| `.cache/`、`.venv/` | 工具按需生成的缓存与 Python 环境 | 全部忽略 |
-
-五个资产根目录通过各自 README 保留，因此克隆后可直接看到；真实资产不进入 Git。`data/` 是数据资产目录，`src/data/` 是处理代码，两者同时存在。
-
-外部共享数据默认只读。忽略目录不等于可以随意删除；新运行使用新 run_id，保留原始证据。测评总表不保存训练日志或原始预测。
-
-## 开发与记录入口
-
-- [协作指南](CONTRIBUTING.md)：代码、配置、依赖与验证。
-- [运行和实验规范](docs/EXPERIMENTS.md)：源码、模型、数据、配置及产物身份。
-- [阶段计划模板](docs/templates/PLAN_TEMPLATE.md) / [阶段结论模板](docs/templates/CONCLUSION_TEMPLATE.md)。
-- [单次测评详情模板](docs/templates/RESULT_TEMPLATE.md)：总表需要额外证据说明时使用。
-- [提交与发布流水](README_WORKFLOW.md)。
-
-目前没有业务测试和 CI 工作流，不能用零用例或导入通过替代业务验收。后续有真实代码与测试后再接入 CI。
+A0、B0 各自独立保存，A0 包含所需冻结 RGB backbone 和任务头，B0 包含检测器及质量/框修正头。继续改进以 best 权重初始化新实验；没有 best 时刻优化器状态的历史包只支持新优化器热启动，不能声称精确续接最后一次训练。示例配置 `action4_a0_continue_best_v001.json` / `action4_b0_continue_best_v001.json` 尚未启动，不能当作已完成的新实验。
 
 ## 许可
 
-本仓库采用已有的 [Apache License 2.0](LICENSE)。许可文本来自本仓库初始提交，完整保留。本模板没有附带第三方代码、权重或数据；其授权需分别核对。
+保留仓库 Apache-2.0 [LICENSE](LICENSE)。复用 GDR-Net 模块的许可证、来源及改动说明在 `src/model/heads/GDRNET_LICENSE.txt` 和相邻 provenance 文件中。第三方数据、模型与素材的授权不由本仓库代码许可证替代。

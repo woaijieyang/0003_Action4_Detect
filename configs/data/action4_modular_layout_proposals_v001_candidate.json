@@ -1,0 +1,50 @@
+{
+  "schema": "action4.modular_layout_proposal_config.v1",
+  "version": "layout_conditioned_v001_candidate",
+  "status": "engineering_layout_preview_only",
+  "dataset_generation_allowed": false,
+  "parameter_config_ref": {
+    "path": "configs/data/action4_modular_parameter_bounds_v001_candidate.json",
+    "sha256": "c61a24a5574cea269c98a8f6da7208e9a4ec4b55a03313cd6efe30bb395f59f2"
+  },
+  "audit_ref": {
+    "path": "outputs/action4_reference_envelope_audit_v001/report.json",
+    "sha256": "b86a591267f943c47413efed0531ec69ec51200e50b7d3ff524206785976f840"
+  },
+  "search_domain": {
+    "C_translation_z_m": [
+      0.15,
+      1.2
+    ],
+    "XY_from_report_guard": true,
+    "near_plane_m": 0.001,
+    "max_iterations_z": 32,
+    "max_iterations_xy": 32,
+    "max_orientation_proposals_per_cluster": 12
+  },
+  "image_target_perturbation": {
+    "center_each_axis_normalized": 0.01,
+    "bbox_linear_fraction": 0.05,
+    "claim": "engineering neighborhood around one paired observed cluster, not measured3D range"
+  },
+  "orientation_templates": {
+    "left_same_side_frames": [
+      0
+    ],
+    "right_same_side_frames": [
+      0,
+      540,
+      960
+    ],
+    "allow_left_cross_side_engineering": true,
+    "cross_side_fallback_only_after_all_same_side_fail": true
+  },
+  "acceptance": {
+    "center_tolerance_px": 0.01,
+    "area_relative_tolerance": 1e-06,
+    "bbox_guard": "usable_reference_bounds_proposal",
+    "require_actor_AABB_separation": true
+  },
+  "no_formal_coverage": true,
+  "no_actual_render_or_pose_GT_claim": true
+}
