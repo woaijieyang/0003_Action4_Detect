@@ -2,11 +2,13 @@
 
 本项目从原始真实视频出发，利用固定尺寸 DJI Action4 模型生成合成数据，分别训练 B0 完整机身检测器和 A0 八角点/几何模型，输出逐帧标注与 demo 对照视频。
 
-**当前状态：训练、合成集测评和完整视频链路已有实际结果，但真实画面验收未通过。** B0 开发集双机检出 177/184，历史 test 为 194/200；最终权重在 6 张真实参考帧中仅 2 张双机与 demo 参考框同时达到 IoU≥0.5。不得将合成集成绩表述为真实场景达到 90%。demo 是参考可视化，不是经过认证的真实 GT。
+**当前状态：本轮 A0/B0 训练、eval/test、完整真实视频、独立模型封存和文件整理已完成；真实画面精度仍未通过任务验收。** 当前执行登记为 r067，已结束运行不会自动重启。
 
-本轮追加了显式研究候选 `configs/eval/action4_center_scoring_candidate_v001.json`：权重不变，保留框修正、改用center评分。完整视频2773个可提取demo包络的帧上，双机参考一致性从26.40%升至67.15%；77帧参考不可判定。它仍未达标，demo包络也不是认证GT。原封存配置保留，新候选不自动覆盖默认策略。
+B0 摄影增强80轮候选 `configs/eval/action4_photometric_best_v001.json` 使用best3220：开发双机178/184、历史test196/200；完整视频中2773个可判定demo包络帧的双机参考一致性为2268/2773（81.79%），77帧不可评分。demo是参考可视化，不能把这个数当认证真实召回率或把合成成绩当真实达到90%。
 
-当前进一步完成摄影增强80轮候选：`configs/eval/action4_photometric_best_v001.json`，历史test双机196/200，完整视频demo参考一致性81.79%。新A0候选在实际预测ROI仅42/378，未采用；已定位GT裁剪与预测裁剪分布差异，在线RGB裁剪修复接口已验证，训练尚待推进。当前仍未通过真实锚定验收。
+A0 在线RGB裁剪训练已完成80轮/15120step/606次异步eval，best14000与B0组合的入口为 `configs/eval/action4_a0_online_rgb_best_v001.json`。完整RGB开发八点全部正确171/378、历史test201/400，低于保留PnP基线221/378、253/400；但真实视频双机投影包络一致性由273/2773升至1356/2773，减少巨大漂移，仍有角点方向与检测错误。包络一致性不能证明角点ID正确。因此两种A0研究选择分开保留，无全面达标模型。
+
+2850帧同帧对照视频在服务器 `outputs/action4_a0_online_rgb_validation_v001/video/comparison.mp4`，逐帧预测、模型身份、视觉审查及失败说明同目录上级可查。源码发布不包含模型、数据和视频资产。
 
 ## 当前入口
 
@@ -25,7 +27,7 @@
 | `src/eval` | 框指标、八点指标、实际视频与可视化 |
 | `configs` | 训练、评估、采样与执行配置 |
 | `data/train,eval,test` | 1600/200/200 张已发布数据；test 全双机 |
-| `models/A0/`、`models/B0/` | 实际以 `models/A0/best.pt`、`models/B0/best.pt` 两个独立包为准 |
+| `models` | CURRENT_RESEARCH登记独立A0/B0及候选；models/A0为合成基线，candidates/a0_online_rgb_v001为真实视频候选，candidates/b0_photometric_v001为当前B0 |
 | `outputs` | 必要的运行证据、预测、视频与仍被消费的缓存 |
 | `archive/legacy` | 历史方案与失败证据，按原相对路径归档 |
 | `docs`、`results` | 方案、结论与可核对成绩 |
@@ -44,7 +46,7 @@ export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
 # 先按最新授权选择有空闲资源的物理 GPU；GPU0 禁止使用。
 .venv/bin/python -m eval.action4_staged_eval \
-  --selection configs/eval/action4_release_candidate_v001.json \
+  --selection configs/eval/action4_photometric_best_v001.json \
   --split eval --output outputs/new_development_evaluation
 ```
 
