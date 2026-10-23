@@ -11,7 +11,8 @@ from model.training.action4_runtime import canonical_hash, save_checkpoint_atomi
 SCHEMA = "action4.stage_bundle.v1"
 
 def load_bundle(path, role, device="cpu"):
-    state = torch.load(contained_path(R, path, exists=True), map_location="cpu", weights_only=True)
+    from model.action4_checkpoint_paths import resolve_checkpoint
+    state = torch.load(resolve_checkpoint(path), map_location="cpu", weights_only=True)
     if state.get("schema") != SCHEMA or state.get("role") != role:
         raise ValueError("Stage bundle role/schema mismatch")
     cfg = state["config"]

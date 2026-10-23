@@ -279,3 +279,8 @@ A0每25step、B0每20step异步评估；初始和最终快照也评估。评估�
 
 configs/model/action4_best_registry_v001.json固定A0onlineRGB14000与B0photometric3220的绝对项目内位置、文件SHA、大小、角色、架构、包config_id和来源training_config_id。full_training构造默认调用model.action4_best_registry；显式parent_registry可用于后续经过选择的新版本，不能将旧PnP13350或B0 2200直接混入。
 configs/eval/action4_next_training_best_v001.json为绑定同一登记的固定模型推理入口。先核对字节身份再加载；实际CPU两角色构造及联合推理加载通过，七类错误身份反例拒绝。旧已完成训练的source_snapshot和配置不重写，不冒称按新guard重新训练。
+
+
+### 默认目录与历史命名更新
+
+用户最新布局要求已落实：默认两包为models/default/A0.pt、models/default/B0.pt；登记升级configs/model/action4_best_registry_v002.json，profile为configs/eval/action4_default_v001.json。历史权重按时间＋阶段名集中archive/legacy/checkpoints，旧best路径由action4_checkpoint_locations_v001.json精确映射；load_bundle和身份校验已接解析，默认目录不包含历史或说明文件。详见[action4_checkpoint_layout](action4_checkpoint_layout.md)。前文v001和旧路径仅代表历史布局，不作为新的直接文件入口。

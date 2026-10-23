@@ -117,3 +117,8 @@ A0在线RGB完成80轮15120step/606eval，缓存选优best14000；完整RGB开�
 ## 2026-10-23T13:16:33.622885+08:00 下一轮best身份固定与终态冗余清理
 
 用户要求防误加载和清除无用文件。固定A014000/B03220自包含包登记，正式训练构造和显式推理profile加入角色/路径/step/SHA/config校验；实际CPU加载与七个反例通过。CURRENT_RESEARCH按用途分组，保留旧PnP对照和必要父依赖。删除171空日志/锁、2重复权重硬链接别名；两份旧日志148310398→35721316字节，无损解压核验通过。数据及并行phrase2工作未动，后者的共享文件修改不纳入本提交。发布以outputs/action4_best_identity_v001/PUBLISHED.json为准。
+
+
+## 2026-10-23T13:39:03.225650+08:00 默认checkpoint与历史留档分离
+
+依用户要求将默认A014000/B03220单独放models/default/A0.pt、B0.pt，默认目录只有两文件。其余留档权重按时间＋阶段名归入archive/legacy/checkpoints，不再叫best；84条旧路径映射到80个文件位置（默认2、归档78），合并4个同inode重复别名，参数未改写。模型包加载器和身份校验显式解析历史路径；新默认登记v002、profile action4_default_v001。旧实验配置/权重身份不改，直接读旧物理路径的历史脚本重放前须使用迁移映射。默认及3历史包CPU加载、84条映射和七反例通过。并行任务的已改文档/源码/authority不混入本次提交。发布见outputs/action4_checkpoint_layout_v001/PUBLISHED.json。

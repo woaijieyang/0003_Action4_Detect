@@ -15,3 +15,5 @@ r069整理：document_snapshots/r069保留完整旧plan/conclusion/架构文档�
 r071整理：archive/legacy/organization_v002保存25组旧输出与60组旧合成预览/失败候选，原相对路径完整保留；outputs/action4_organization_v002/MOVED.jsonl提供精确迁移映射。8段已完成视频集中outputs/videos。冻结来源及phrase2并行任务依赖不搬动。当前模型以models/CURRENT_RESEARCH.json为准，历史“当前”描述不能作为启动依据。
 
 本轮无用空文件清理及两份旧大日志无损压缩见outputs/action4_best_identity_v001/CLEANED.jsonl；压缩日志保留同目录同名.log.gz，已验证解压内容一致。失败报告与历史模型未因清理删除。
+
+留档checkpoint已统一到archive/legacy/checkpoints，命名为原mtime时间＋阶段名，不保留best文件名。默认权重仅在models/default/A0.pt、B0.pt；完整旧路径映射为configs/model/action4_checkpoint_locations_v001.json。含工程夹具的归档不能作默认训练权重，迁移证据outputs/action4_checkpoint_layout_v001。

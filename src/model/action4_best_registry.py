@@ -4,8 +4,9 @@ import json
 from functools import lru_cache
 
 from data.action4_paths import PROJECT_ROOT as R, contained_path
+from model.action4_checkpoint_paths import resolve_checkpoint
 
-DEFAULT_REGISTRY = "configs/model/action4_best_registry_v001.json"
+DEFAULT_REGISTRY = "configs/model/action4_best_registry_v002.json"
 
 
 def _identity(path):
@@ -33,8 +34,8 @@ def verify_reference(role, checkpoint, expected_step=None, registry=DEFAULT_REGI
         raise ValueError("Best registry role mismatch")
     if expected_step is not None and expected_step != entry["selected_step"]:
         raise ValueError("Requested best step differs from selected parent")
-    expected = contained_path(R, entry["path"], exists=True)
-    actual = contained_path(R, checkpoint, exists=True)
+    expected = resolve_checkpoint(entry["path"])
+    actual = resolve_checkpoint(checkpoint)
     if actual != expected:
         raise ValueError("Checkpoint path differs from the explicitly selected stage best")
     identity = _identity(actual)

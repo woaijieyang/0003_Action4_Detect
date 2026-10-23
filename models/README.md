@@ -1,28 +1,35 @@
-# 独立模型资产与选择
+# Action4 权重位置
 
-**下一轮训练唯一父权重登记：configs/model/action4_best_registry_v001.json。A0=step14000，B0=step3220。models/A0与models/B0是保留的历史基线，不按这些短目录名推断当前选择。**
+## 默认加载目录
 
-当前登记见服务器 models/CURRENT_RESEARCH.json；所有模型均为研究候选，真实任务尚未验收通过。
-- 合成集较优的 A0：models/A0/best.pt，step13350，固定表面 PnP。
-- 真实视频改善的 A0 候选：models/candidates/a0_online_rgb_v001/best.pt，step14000，网络预测刚体位姿再投影八点。
-- 当前 B0：models/candidates/b0_photometric_v001/best.pt，step3220，refined boxes + center scoring。
-- models/B0/best.pt 保留旧step2200父模型，不是最新推荐B0。
-- models/candidates/a0_frozen_surface_pose_v001/best.pt 是在线RGB试验的必要父依赖，不能按“旧文件”直接删掉。
+服务器 /data/zy/vln/a-test/models/default 只存放两个checkpoint，不放日志、历史包或说明文件：
 
-各包包含推理所需参数、配置、阶段身份；A0/B0无共享参数存储。正式使用应通过configs/eval中的明确profile选择，不按mtime取最新文件。没有全面优于所有指标的A0，不把真实轮廓改善当成角点ID正确。
-继续训练从各实验best权重初始化新优化器；best不含完整优化器历史，不能冒称精确中断恢复。在线RGB冻结策略用src/model/action4_online_pose_rgb.py及其训练器。
-原输出目录只保留各run best、完成回执和评估证据；本次已移除当前A0/B0同inode选优别名，非最佳过程权重已清理。
-本轮封存清单：outputs/action4_online_rgb_release_v001/SEALED_MODELS.json。权重不进入普通Git提交。
+| 文件 | 阶段与来源 | 用途 |
+|---|---|---|
+| default/A0.pt | onlineRGB，step14000，joint_pose/network | 下一轮A0联合表面/位姿训练父权重及默认推理 |
+| default/B0.pt | photometric，step3220，online_b0/center | 下一轮B0训练父权重及默认推理 |
 
-本轮工程集成没有产生更优模型：A0/B0均选step0，与上述父best参数逐值一致。恢复last、非best控制快照、预检包与重复工程封装权重在所有消费者结束后删除；工程selection/SEALED历史回执由ARTIFACTS_RETIRED.json标明已退役，不能作为活动权重入口。正式新实验从best权重开始；同实验意外中断才使用临时完整状态做精确恢复，终态清理该临时状态。
+权威登记：configs/model/action4_best_registry_v002.json。
+显式默认推理profile：configs/eval/action4_default_v001.json。
+models/CURRENT_RESEARCH.json记录默认与历史比较用途；不要按目录mtime或搜索best.pt选择权重。
+默认训练从选定权重初始化新优化器，同run精确中断恢复是独立临时状态，不能把旧last优化器嫁接到这些权重。
 
+## 留档权重
 
-当前加载入口：
-- 下一轮训练A0：models/candidates/a0_online_rgb_v001/best.pt（step14000，joint_pose，network解码）。
-- 下一轮训练B0：models/candidates/b0_photometric_v001/best.pt（step3220，online_b0，center排序）。
-- 固定父权重推理profile：configs/eval/action4_next_training_best_v001.json。
-- CURRENT_RESEARCH.json使用next_training / synthetic_baseline / real_video_candidate明确用途，不再提供容易误读的顶层A0字段。
+留档集中archive/legacy/checkpoints，按原文件mtime（Asia/Singapore）＋阶段名命名，不再使用best文件名。mtime用于排序，不冒充未知训练完成时间。
 
-model.action4_best_registry核对路径、阶段、step、字节大小、SHA、包配置和来源训练配置。stage2_core在full_training构造时默认绑定该版本登记；改用新的best必须显式发布新登记，并在新配置中指定parent_registry，不能只改路径绕过。文件身份不变时同进程复用摘要，避免反复哈希。明确profile也在加载前校验两阶段身份。
-A0自包含包config_id与原在线训练training_config_id属于不同层次；登记同时绑定两者，实际17个训练pose张量与原best逐值相同，不能把这两个合法身份差异误判为权重混用。
-此选择为下一轮联合surface/pose训练的明确起点，真实精度尚未通过，合成PnP基线仍单独保留比较。
+主要历史包：
+- archive/legacy/checkpoints/20261023-041150-A0-PnP-step13350.pt
+- archive/legacy/checkpoints/20261023-041150-B0-historical-step2200.pt
+- archive/legacy/checkpoints/20261023-071308-A0-frozen-surface-pose-step8625.pt
+
+其他历史实验与工程测试夹具同样按时间和阶段标识留档，不能误作默认模型。预训练ResNet位于pretrained，不属于当前A0/B0默认权重。
+
+旧目录不留best软链或硬链。configs/model/action4_checkpoint_locations_v001.json提供84条原路径→实际位置映射；自包含包加载器使用model.action4_checkpoint_paths.resolve_checkpoint解析历史引用。已完成实验的配置和权重内原始来源字段保持原文，不重写旧实验身份。
+旧脚本若直接调用torch.load原物理路径而绕过加载器，重放前须按映射显式解析；不得因旧路径消失而自动重训。
+
+加载前校验角色、位置、step、文件大小、SHA与config身份。新默认目录只保留A014000/B03220，三份历史包实际CPU加载通过，七类防误加载反例通过。归档保留参数内容，4个重复硬链接合并，不是删除4份不同模型。
+默认只是明确的继续训练选择，真实精度仍未验收通过。
+
+迁移及核验：outputs/action4_checkpoint_layout_v001。
+详细说明：docs/action4_checkpoint_layout.md。
