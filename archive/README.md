@@ -8,3 +8,5 @@
 Git只跟踪本索引，历史资产和过程产物不上传。要恢复归档项，按清单原路径恢复并检查依赖，禁止覆盖当前代码。
 
 本轮在线RGB整理：archive/legacy/release_r067，保留原相对布局；逐项清单与日志在outputs/action4_online_rgb_release_v001。当前选择以models/CURRENT_RESEARCH.json与r067为准，前述models/B0/best.pt为历史父模型。已合并视频分片及过期claim、非best/last只在消费者退出和覆盖核对后删除；数据及模型父依赖未删。
+
+r069整理：document_snapshots/r069保留完整旧plan/conclusion/架构文档；rejected_box_constraint_v001保留用户撤回候选及预检；r069/outputs/action4_a0_roi_contract_v001/predicted_roi_maps保留旧CPU评估缓存。当前输出只留部署一致缓存和必要报告；恢复旧缓存只供历史重放，不得作为第二阶段默认输入。

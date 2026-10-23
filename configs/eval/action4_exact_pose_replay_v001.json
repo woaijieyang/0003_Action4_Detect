@@ -1,0 +1,20 @@
+{
+  "output": "outputs/action4_pose_decoder_audit_v001/exact_async_replay",
+  "cache_output": "outputs/action4_pose_decoder_audit_v001/development",
+  "cache_identity": {
+    "B0_step": 3220,
+    "B0_config_id": "8ec12448b24dddaaad27e0b2f5f70f646a52f1dcc844251241bdb665340215fd",
+    "A0_step": 14000,
+    "A0_kind": "joint_pose",
+    "A0_config_id": "91d3820781675f8a025e9401847959c0f1736b98fc363200e58f1b27fe4bb518",
+    "score_threshold": 0.3,
+    "pose_method": "network",
+    "deterministic_algorithms": true,
+    "cublas_workspace": ":4096:8",
+    "B0_scoring_policy": "center"
+  },
+  "eval_device": "cuda:0",
+  "scope": "existing sealed step14000 evaluation replay only; no new training",
+  "worker_module": "eval.action4_image_grouped_pose_eval",
+  "required_eval_interval_for_next_A0_training": 25
+}

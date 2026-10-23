@@ -238,3 +238,12 @@ GPU1当前原slot0-6七个cached评估加v002一个aux评估；原slot7有意退
 - A0训练入口model.training.action4_online_pose_dispatch，已有80轮运行已终态，不得直接再次启动相同输出。新实验复制配置并修改输出/父best/相应来源身份；默认不得拼接旧last优化器。
 - eval.action4_staged_eval用于完整预测ROI开发/test；eval.action4_staged_video_parallel用于完整同帧demo视频。旧候选只作证据，不能因目录名含best就覆盖当前选择。
 - 缓存开发173/378与完整RGB171/378数值不等价；实际RGB指标与视频独立报告。参数是否可加载、数值位姿有效、完整机身框正确、固定ID八点正确是四个不同验收层次。
+
+
+## r069：部署一致的异步角点评估
+
+新worker为eval.action4_image_grouped_pose_eval，队列仍采用原子snapshot请求、claim、done与best链接协议，兼容每25个optimizer step产生的pose快照。输入缓存按原图保留GPU裁剪/冻结网络得到的71通道maps、K、canonical；计分使用独立逆仿射、GT角点/visibility和匹配表。保持各图batch，不合并成32个ROI，FP/漏检进入分母。configs/eval/action4_exact_pose_replay_v001.json是封存step14000的真实队列回放配置，不能当作新训练配置；运行已终态。
+
+新数据集或冻结backbone/surface/B0变化时必须重建缓存并绑定新identity。若surface/backbone参与训练更新，应对每个checkpoint执行当前RGB网络，不使用冻结maps加速。旧model.training.action4_online_pose_dispatch为历史运行入口，不会自动切换新worker；第二阶段编排须显式配置并核对，避免暗改已完成实验。
+
+不加入“红色八点必须位于绿色检测框内”的硬规则。B0框提供ROI，A0保持固定CAD几何预测，框和角点的误差分别报告。

@@ -1,0 +1,23 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r069",
+  "status": "FINAL_REPAIR_CLOSED_STAGE2_NOT_STARTED",
+  "parent_authority": "configs/execution/action4_execution_r068.json",
+  "stage_plan": "docs/stages/2026-10-19-1-plan-Action4\u89d2\u70b9\u590d\u73b0\u589e\u8865.md",
+  "execution_index": "docs/action4_execution_index.md",
+  "training_active": false,
+  "synthesis_active": false,
+  "new_training_this_round": false,
+  "hard_box_containment_enabled": false,
+  "user_direction": "continue original geometric prediction; await next user stage2 data synthesis/retraining instruction",
+  "repair_receipt": "outputs/action4_pose_decoder_audit_v001/EXACT_EVAL_ACCEPTANCE.json",
+  "accuracy_accepted": false,
+  "retained_model_registry": "models/CURRENT_RESEARCH.json",
+  "resource_policy": {
+    "cpu": 72,
+    "GPU0": "prohibited",
+    "GPU1": "eval max8processes",
+    "GPU2_7": "training/work subject to actual availability"
+  },
+  "monitor_active": false
+}

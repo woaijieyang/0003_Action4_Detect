@@ -12,6 +12,8 @@ A0 在线RGB裁剪训练已完成80轮/15120step/606次异步eval，best14000与
 
 ## 当前入口
 
+本轮链路修复与整理已到r069，第二阶段尚未启动。新增[执行与第二阶段交接索引](docs/action4_execution_index.md)。A0/B0保持独立权重、串联推理；用户已撤回红框硬包含约束，正式模型不接入。新的按原图分组GPU特征评估与完整RGB的372目标逐点误差完全一致，旧CPU缓存已归档。几何迭代在合成提高但真实退步，未推广。
+
 - [阶段计划](docs/stages/2026-10-19-1-plan-Action4角点复现增补.md)、[阶段结论](docs/stages/2026-10-19-1-conclusion-Action4角点复现增补.md)。
 - [代码与数据流](docs/ARCHITECTURE.md)、[模型接口及继续训练](docs/action4_model_interfaces.md)。
 - [结果表](results/results.md)、[发布记录](README_WORKFLOW.md)。

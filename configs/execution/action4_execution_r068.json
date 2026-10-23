@@ -1,0 +1,17 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r068",
+  "status": "FIXED_WEIGHT_DECODER_AND_CACHE_CONTRACT_AUDIT",
+  "parent_authority": "configs/execution/action4_execution_r067.json",
+  "phase_plan": "outputs/action4_pose_decoder_audit_v001/PLAN.json",
+  "dispatch": "outputs/action4_pose_decoder_audit_v001/DISPATCH.json",
+  "GPU": [
+    4,
+    5
+  ],
+  "CPU": 4,
+  "GPU0_prohibited": true,
+  "new_training": false,
+  "selected_models_unchanged": true,
+  "accuracy_accepted": false
+}

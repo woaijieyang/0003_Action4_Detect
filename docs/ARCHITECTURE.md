@@ -9,7 +9,7 @@
 3. 对候选框在同一张特征图取 9 点双线性特征，结合框几何与已有分数，由独立 refiner 输出修正框和定位质量分数。
 4. Soft-NMS 排序抑制后，使用冻结阈值 0.3；训练和推理复用同一候选构造逻辑。
 5. B0 预测框扩大 2.25 倍形成 448×448 ROI。A0 冻结 backbone 提取 RGB 特征；XYZ、区域、visible/amodal mask 进入 GDR 派生姿态头。
-6. 目前完成的候选比较中，使用预测 XYZ＋可见 mask 的 PnP，在固定尺寸 canonical8 上投影输出八点。失效时标记 pose unavailable，不用 GT 补齐。
+6. A0网络根据预测XYZ、相机射线、区域和visible/amodal mask估计R/t，再将固定尺寸canonical8投影。保留预测表面PnP作为合成集基线，二者分别报告；不把红框硬限制在绿框内。失效时标记pose unavailable，不用GT补齐。
 7. 帧内 ID 是检测实例序号，角点 ID 是固定物体坐标系的 0–7；没有学习跨帧左右身份，不把序号当作物理左右相机标识。
 
 所有 GT 框、角点、可见性和位姿仅进入训练损失或评估计分；完整图像推理不接受这些答案。
@@ -20,7 +20,9 @@ B0 保留中心 focal、offset、框回归，在完整机身框上计算 GIoU；
 
 A0 表面头用可见表面 XYZ、区域与双掩码监督；姿态头使用 rotation-only point matching、crop centroid、相对深度和 fixed-ID 八角点投影误差。可见与隐藏点各按 optimizer batch 的有效点数归一化，微批次不再次缩放这两项。隐藏点仍有数值监督；不将不可见标签解释为忽略点。
 
-A0 backbone 在本次几何候选训练中冻结，使用固定 GT ROI 缓存，无 ROI jitter。这与上游完整 RGB 端到端训练存在差异；梯度联通验证不能证明真实隐藏点已可靠预测。网络直接姿态与 PnP 是分别评估的解码方法，当前选择不能冒称网络姿态头已经优于 PnP。
+最新A0在线RGB试验冻结backbone和surface，真实读取训练RGB并作中心±15%、尺度.65–1.35的ROI jitter，仅训练pose。更早的固定GT ROI缓存是历史对照。网络在真实视频包络上较稳、PnP在合成固定ID指标更强，无全面胜出的模型。
+
+评估新契约：按部署的GPU裁剪和冻结特征前向生成预测maps，保留每张图原有0/1/2目标batch形状；不把各图ROI重新拼成32目标batch。inputs仅maps/K/canonical，原图逆仿射与GT标签放在计分侧。每25optimizer step评估的队列语义保持，使用image_grouped_pose_eval；旧在线训练调度器是冻结历史实现，第二阶段调度配置必须显式选新worker并核对新的dataset/feature身份。B0每20step及框指标协议保持。
 
 ## 实现位置
 
@@ -30,8 +32,8 @@ A0 backbone 在本次几何候选训练中冻结，使用固定 GT ROI 缓存，
 | B0 主体/候选 | `model.action4_online_b0`、`action4_proposal_pool` |
 | B0 损失和训练 | `model.training.action4_online_b0_batch/train` |
 | A0 主体/损失 | `model.action4_gdr_pose`、`action4_gdr_pose_losses_v002` |
-| A0 训练 | `model.training.action4_gdr_pose_train_v002` |
-| 异步选优 | `eval.action4_online_b0_eval`、`action4_gdr_pose_eval_v002`、`model.training.action4_async_recovery` |
+| A0 训练 | `model.training.action4_online_pose_train`（已完成的在线RGB基线） |
+| 异步选优 | `eval.action4_online_b0_eval`、`eval.action4_image_grouped_pose_eval`、`model.training.action4_async_recovery` |
 | 权重包及 best 热启动 | `model.action4_release_bundle` |
 | 独立包组合推理 | `eval.action4_staged_pipeline` |
 | 完整 eval/test | `eval.action4_staged_eval`、`action4_bbox_metrics` |
