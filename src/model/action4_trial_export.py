@@ -42,7 +42,9 @@ def compose_pose_bundle(parent,surface,pose,cfg):
         training_config=cfg,training_config_id=canonical_hash(cfg),selected_step=pose["step"],
         pose_method="network",source_checkpoint=cfg["output"]+"/best.pt",
         surface_frozen=True,frozen_surface_step=surface["step"],
-        selection_scope="GTROI selected pose candidate; full predicted ROI and real video still required")
+        selection_scope=("fixed detector predicted-ROI development selection; full RGB and real video remain separate"
+                         if cfg.get("evaluation_heavy_GT") is not None else
+                         "GTROI selected pose candidate; full predicted ROI and real video still required"))
     return bundle
 
 def export(config,role,output):

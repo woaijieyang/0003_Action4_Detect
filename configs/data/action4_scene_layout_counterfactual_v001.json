@@ -1,0 +1,10 @@
+{
+  "sample_id": "s209005_0001819_a09",
+  "output": "outputs/action4_scene_layout_counterfactual_v001",
+  "asset_output": "data/action4_scene_candidates/layout_counterfactual_v001",
+  "restore_static_roots": [
+    "modular_environment_v002_table",
+    "wearing_garment_table_garment_frame"
+  ],
+  "scope": "independent paired preview only; actor geometry and poses immutable; no dataset publication or training"
+}

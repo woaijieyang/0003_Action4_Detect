@@ -1,0 +1,51 @@
+{
+  "output": "outputs/action4_a0_online_rgb_v001",
+  "parent_bundle": "models/candidates/a0_frozen_surface_pose_v001/best.pt",
+  "parent_expected_step": 8625,
+  "frozen_surface_checkpoint": "outputs/action4_gdr_surface_candidate_v001/train_run_v001/best.pt",
+  "frozen_surface_step": 11300,
+  "cache_output": "outputs/action4_a0_roi_contract_v001/predicted_roi_maps",
+  "validation_receipt": "outputs/required/DATA_VALIDATED_ALL_SPLITS.json",
+  "evaluation_heavy_GT": 164,
+  "eval_device": "cuda:0",
+  "epochs": 80,
+  "batch": 16,
+  "world_size": 4,
+  "loader_workers": 14,
+  "lr": 0.0002,
+  "seed": 20261024,
+  "eval_every": 25,
+  "roi_jitter": {
+    "center_fraction": 0.15,
+    "scale_range": [
+      0.65,
+      1.35
+    ]
+  },
+  "loss_weights": {
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0
+  },
+  "scope": "actual RGB crops change every epoch; frozen backbone/surface; train existing ConvPnP only; select on fixed B0 predicted-ROI validation",
+  "evaluation_B0_step": 3220,
+  "test_used": false,
+  "source_identity": {
+    "src/model/training/action4_online_pose_train.py": "db95f6b58ac39c30543b5d1fee97efff7b3541c1d5b2a6a128bd5980fcc25e68",
+    "src/eval/action4_online_pose_eval.py": "c4ef2da65a6821dac18e47797809776c0d1b0a483f61fd758f932695acd42a77",
+    "src/model/action4_online_pose_rgb.py": "74e7260093461675e67255c13c90343eefd04591fdc9cee67509bb404669cffc",
+    "src/model/action4_pose_maps.py": "8e83f8c7469aa1a8f930383dd8c7924ecbb15fa2959a6c2909c6a56ac62a4f36",
+    "src/data/action4_online_pose_data.py": "86c763484fab98ff4123e727287288f408182bf7c6cc7a63914a857808f3b37b",
+    "src/data/action4_pose_rgb_batch.py": "cc22ac2c2c8660e696307a737bc067af48ac8363f1a71c7bb0f0818073fa8f4f",
+    "src/data/action4_epoch_batches.py": "33c06d4442b0ae0f63947e26dc35dbb684da194750b28fd82f78693f6006b728",
+    "src/data/action4_dataset.py": "101d754b29ff16df61c0e4cf63f3350da05d85e3ade389ae223f0c7e4546bf0e",
+    "src/data/action4_component_data.py": "5f0fc284908110f4612e47379a1da28133609db43b850138a799c3fa60f0e988",
+    "src/data/action4_pose_map_dataset.py": "c24a8537abcf69cbe52239fdd8f3b2264edaec3a0f969cd9788aeb217eeb87c8",
+    "src/model/training/action4_runtime.py": "62c8f4c0a75238cc32dc1b29408b6dbb770f965e9220a418f8c1d1d6a9941784",
+    "src/model/training/action4_async_recovery.py": "14f658c20aa71cc8728762e3855ea8a69cadadc7f97156cba0112fcc99b68bad",
+    "src/model/training/action4_online_pose_dispatch.py": "631ee934e2e8ac384105339ce6a604b90b71c52c0b2a89ad8f21ac282c572b59"
+  }
+}

@@ -228,3 +228,13 @@ GPU1当前原slot0-6七个cached评估加v002一个aux评估；原slot7有意退
 完成的主训练器新增可选 `best_bundle` 配置分支，原始初始化分支保留。`configs/model/action4_a0_continue_best_v001.json` 与 `action4_b0_continue_best_v001.json` 使用封存 best、新实验目录和新优化器；分别每25/20步发布异步eval。它们只是后续入口，未启动额外80轮。精确故障恢复仍要求同一实验完整训练状态，不能将 last 的优化器嫁接到 best 参数。
 
 运行新实验时，为训练与相应 eval 进程设置相同的 ACTION4_ATTEMPT_ID，先创建独占输出目录，使用新配置启动 `eval.action4_gdr_pose_eval_v002` / `eval.action4_online_b0_eval` 与对应训练器；B0训练需2 rank torchrun，A0单卡。原历史调度器带有专属历史run/preflight约束，不作为新实验通用入口。每次运行前核算实际GPU显存与CPU≤72，GPU0禁止。完整训练调度接口的历史依据和退出/恢复语义见上述源码；没有启动新实验的权限判断仍按用户当次请求。
+
+
+## 在线RGB闭合后的模型入口（2026-10-23）
+
+- 合成基线：configs/eval/action4_photometric_best_v001.json。
+- 真实视频候选：configs/eval/action4_a0_online_rgb_best_v001.json。
+- load_pipeline读取独立A0、B0包；RGB→B0完整框→2.25扩展ROI→冻结backbone/表面预测→ConvPnP位姿→canonical8投影→逆裁剪变换。GT框/位姿/可见标记不进入实际推理。
+- A0训练入口model.training.action4_online_pose_dispatch，已有80轮运行已终态，不得直接再次启动相同输出。新实验复制配置并修改输出/父best/相应来源身份；默认不得拼接旧last优化器。
+- eval.action4_staged_eval用于完整预测ROI开发/test；eval.action4_staged_video_parallel用于完整同帧demo视频。旧候选只作证据，不能因目录名含best就覆盖当前选择。
+- 缓存开发173/378与完整RGB171/378数值不等价；实际RGB指标与视频独立报告。参数是否可加载、数值位姿有效、完整机身框正确、固定ID八点正确是四个不同验收层次。

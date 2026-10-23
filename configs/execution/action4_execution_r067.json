@@ -1,0 +1,76 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r067",
+  "status": "TRAIN_EVAL_VIDEO_CLOSED_REAL_ACCURACY_NOT_ACCEPTED",
+  "updated_at": "2026-10-23T09:10:45.239483+08:00",
+  "parent_authority_ref": {
+    "path": "configs/execution/action4_execution_r066.json",
+    "sha256": "2a6d5d623d97f2e94f764b89610973a61072e3b4451fc4b3164f63715813a4bd"
+  },
+  "canonical_stage_plan": "docs/stages/2026-10-19-1-plan-Action4角点复现增补.md",
+  "resource_policy": {
+    "cpu_total": 72,
+    "prohibited_gpu_indices": [
+      0
+    ],
+    "authorized_training_gpu_indices": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "eval_gpu1_max_workers": 8,
+    "active_owned_training": false
+  },
+  "training": {
+    "new_runs_enabled": false,
+    "current_runs_complete": true,
+    "A0": {
+      "config": "configs/model/action4_a0_online_rgb_v001.json",
+      "epochs": 80,
+      "optimizer_steps": 15120,
+      "eval_count": 606,
+      "best_step": 14000
+    },
+    "B0": {
+      "config": "configs/model/action4_b0_photometric_v001.json",
+      "epochs": 80,
+      "optimizer_steps": 4000,
+      "eval_count": 201,
+      "best_step": 3220
+    }
+  },
+  "selected_bundles": {
+    "synthetic_baseline_A0": "models/A0/best.pt",
+    "real_video_candidate_A0": "models/candidates/a0_online_rgb_v001/best.pt",
+    "B0": "models/candidates/b0_photometric_v001/best.pt",
+    "registry": "models/CURRENT_RESEARCH.json",
+    "accuracy_accepted": false
+  },
+  "validation": "outputs/action4_a0_online_rgb_validation_v001",
+  "visual_review": "outputs/action4_a0_online_rgb_validation_v001/ROOT_VISUAL_REVIEW.json",
+  "full_video": "outputs/action4_a0_online_rgb_validation_v001/video/comparison.mp4",
+  "cleanup": {
+    "receipt": "outputs/action4_online_rgb_release_v001/CLEANUP_APPLIED.json",
+    "archive_root": "archive/legacy"
+  },
+  "remaining": [
+    "B0 real dual detection does not yet reach90%; demo consistency81.79% is only a proxy",
+    "A0 fixed-ID eight corners and hidden accuracy remain insufficient",
+    "Unify cached feature and full RGB numeric path before next training selection",
+    "Scene candidate not collision/visual accepted; no new data publication"
+  ],
+  "accuracy_accepted": false,
+  "publish": {
+    "authorized_target": "https://github.com/woaijieyang/0003_Action4_Detect",
+    "contents": "source/config/docs/tests only",
+    "receipt": "outputs/action4_online_rgb_release_v001/PUBLISHED.json"
+  },
+  "monitoring": {
+    "automation_id": "action4",
+    "all_monitored_runs_terminal": true,
+    "delete_monitor_after_closure": true
+  }
+}

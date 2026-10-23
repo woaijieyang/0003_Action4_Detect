@@ -69,3 +69,10 @@ AP caller now retains low-score candidates separately from operating0.3 threshol
 B0best3220: dev AP50:95=.6162104443,F1=.9867374005,dual178/184; historicaltest AP50:95=.6493924639,F1=.9937264743,dual196/200. With retained A0PnP: devall8=221/378,heavy45/164; historicaltest253/400,heavy36/142.
 Full2850video, demo-reference IoU0.5 both2268/2773=81.79% (77unscorable), not certifiedGT/realrecall. Visual acceptance still FAILED.
 A0frozen-surface80 best8625: GTROI196/378,heavy36/164; actual predictedROI42/378,heavy4/164. REJECTED for deployment.
+
+
+## 2026-10-23 online RGB A0 completed80, fixed detector full-image evaluation
+
+All results use B0 photometric3220 center and A0 onlineRGB14000 network. Development200 images/378GT: all8=171/378,heavy20/164. Historicaltest200/400GT: all8=201/400,heavy21/142. Both are weaker than retained PnP221/378 and253/400; no synthetic promotion. Protocol is fixedID all8 normalized error≤.05 and unmatched objects fail. Code: src/eval/action4_staged_eval.py, src/model/action4_gdr_pose.py; data: data/eval/annotations.jsonl and data/test/annotations.jsonl, benchmark identities inherited unchanged from outputs/required/DATA_VALIDATED_ALL_SPLITS.json (eval SHA791ac3469dc4a05b3a07a6200dce8db6c11fc6af68205efdf41677fcd9cfe34e). Raw reports: outputs/action4_a0_online_rgb_validation_v001/{development,historical_test}/REPORT.json. Frozen profiles: configs/eval/action4_a0_online_rgb_best_v001.json.
+
+Auxiliary full-video reference consistency:2850 frames,2773eligible77unscorable, both boxes2268/2773, both projected corner envelopes1356/2773 vs retainedPnP273/2773. Envelope metric is NOT cornerID/pose accuracy or certifiedGT; real task still fails. Cached development selection173/378 differs from actualRGB171/378 at two threshold-near targets; full disclosure and paired numeric diagnosis in stage conclusion, thresholds unchanged.
