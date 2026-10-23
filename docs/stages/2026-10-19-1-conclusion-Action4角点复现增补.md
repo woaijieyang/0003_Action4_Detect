@@ -2025,3 +2025,11 @@ B0三图双机匹配3/3，6TP/0FP/0FN，IoU≥.5；这不是精准完整框已�
 主控查看全部3张标签/预测对照图，红色立体框仍有位置、范围或方向偏移，黑色侧面/衣物场景更明显。手臂外观/比例仍由另一任务继续审核，本诊断不代替其视觉准入。
 因此下一轮继续已实现的surface+pose联合更新与同步ROI监督，不采用仅重排ID、限制红框在绿框内或单靠增加PnP拟合的补丁。正式训练必须等待新数据完整准入及对应geometry标签绑定。新geometry目录需显式映射surface_source.label_roots、准入admission、规范regions和三份manifest_sha256，禁止回落旧phrase1标签。当前data/phrase2完整清单尚未发布，未启动正式新训练。
 证据outputs/action4_next_data_baseline_v001/REPORT.json、oracle_roi/REPORT.json、CAUSE_COMPARISON.json和VISUAL_REVIEW.json。新增可复用诊断入口eval.action4_candidate_record_eval，只允许非准入train预览；实际候选通过，test、已准入状态、canonical点序、位姿不一致及错误SHA共五类反例被拒绝。没有更改best、阈值或正式推理。
+
+
+## 2026-10-23T13:16:33.622885+08:00 下一轮最佳权重定位与冗余清理
+
+用户要求避免后续误加载，并允许删除整理后无用文件。本轮没有更换参数：明确下一轮父模型为A0 onlineRGBstep14000与B0 photometricstep3220，逐个严格CPU加载，并核对原输出best的训练张量及训练config身份。A0自包含包包含冻结surface/backbone与训练pose，包config_id与training_config_id不同，登记分别固定，不能混为一谈。模型文件SHA、角色、架构、step、大小和路径保存configs/model/action4_best_registry_v001.json；CURRENT_RESEARCH按用途分组，历史PnP13350与B02200保留作比较/依赖。
+正式full_training构造及明确推理profile已接model.action4_best_registry；正确A0/B0实际加载通过，角色互换、历史路径、错误step、错误SHA、加载元数据不符等共七项拒绝。摘要仅在必要加载时计算，同进程按文件stat身份复用。未运行训练或改推理数值。
+仅对本线程已终态运行和已完成依赖隔离的历史归档清理：删除171空日志/空锁，移除当前两run重复selected_step硬链接别名，保留best并更新BEST指针、保留旧指针来源。两份历史大日志无损gzip并对解压内容核验一致，148310398字节变为35721316字节，减少112589082字节文件内容（不是整盘实际释放量声明）。失败记录、唯一权重、正式数据和另一任务全部保留。
+当前另一任务r073已有活动生成进程，未改其authority、源码或产物，也未擅自启动训练。完整证据outputs/action4_best_identity_v001/IDENTITY_CHECK.json、CLEANUP_COMPLETE.json、CHECKPOINT_ALIAS_CLEANUP.json；发布身份以该目录PUBLISHED.json为准。

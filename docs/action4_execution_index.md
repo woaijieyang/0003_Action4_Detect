@@ -74,3 +74,8 @@ archive/legacy/organization_v002/outputs/action4_surface_domain_audit_v001记录
 
 outputs/action4_next_data_baseline_v001：只读3个已完成train预览，当前best双机框IoU≥.5为3/3，但固定ID八点0/6；GT框裁剪及任意角点重排诊断均未达到八点门槛。不要把3图成绩当总体精度或用GT ROI成绩代替真实推理。下一步是等待独立数据任务发布新清单和geometry准入，按既有stage2训练器显式绑定surface_source与manifest，再进行联合surface/pose训练。
 另一任务接口中的geometry目录与本线程默认phrase1/surface_v002不同，必须显式指定label_roots；同名/存在不表示身份绑定成功。正式launch gate还要求三split manifest SHA一致，不能只传一个admission布尔值。
+
+
+## 下一轮best的明确位置
+
+下一轮训练使用configs/model/action4_best_registry_v001.json：A0=models/candidates/a0_online_rgb_v001/best.pt（14000），B0=models/candidates/b0_photometric_v001/best.pt（3220）。固定模型profile为configs/eval/action4_next_training_best_v001.json。CURRENT_RESEARCH.json按next_training与synthetic_baseline分组，历史models/A0(13350)/models/B0(2200)不是本轮默认父模型。正式stage2训练构造已接身份guard，source和配置身份须在新的启动配置里冻结。

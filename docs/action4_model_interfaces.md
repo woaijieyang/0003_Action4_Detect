@@ -273,3 +273,9 @@ A0每25step、B0每20step异步评估；初始和最终快照也评估。评估�
 
 若生成器将每实例NPZ保存为data/phrase2/{split}/geometry/{sample_id}_i{instance_id}.npz，训练配置surface_source.label_roots必须显式指向这些目录；同时提供admission（candidate_training_allowed须通过真实审核）、regions（冻结64区域中心）、manifest_sha256（train/eval/test与validation_receipt一致）。NPZ字段xyz_object_m、native_pixels、K、object_to_capture按当前在线监督接口读取；不将深度/XYZ/GT mask作为模型推理输入。
 候选渲染结果尚未准入时，可用eval.action4_candidate_record_eval做独立train预览诊断，不借此生成正式训练gate。--gt-roi-baseline是显式oracle控制，仅供定因，不可混入B0框成绩或实际部署结果。
+
+
+### 下一轮父best防误加载（2026-10-23T13:16:33.622885+08:00）
+
+configs/model/action4_best_registry_v001.json固定A0onlineRGB14000与B0photometric3220的绝对项目内位置、文件SHA、大小、角色、架构、包config_id和来源training_config_id。full_training构造默认调用model.action4_best_registry；显式parent_registry可用于后续经过选择的新版本，不能将旧PnP13350或B0 2200直接混入。
+configs/eval/action4_next_training_best_v001.json为绑定同一登记的固定模型推理入口。先核对字节身份再加载；实际CPU两角色构造及联合推理加载通过，七类错误身份反例拒绝。旧已完成训练的source_snapshot和配置不重写，不冒称按新guard重新训练。

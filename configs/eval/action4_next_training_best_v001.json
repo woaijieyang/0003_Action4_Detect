@@ -1,0 +1,13 @@
+{
+  "a0_bundle": "models/candidates/a0_online_rgb_v001/best.pt",
+  "b0_bundle": "models/candidates/b0_photometric_v001/best.pt",
+  "b0_scoring_policy": "center",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "demo_reference": "data/action4_reference/demo_standard.mp4",
+  "training_completion_receipts": [
+    "outputs/action4_a0_online_rgb_v001/TRAIN_COMPLETE.json",
+    "outputs/action4_b0_photometric_v001/TRAIN_COMPLETE.json"
+  ],
+  "scope": "Explicit next-training parents A0 14000 / B0 3220; identity-pinned diagnostic inference; not accuracy approval",
+  "best_registry": "configs/model/action4_best_registry_v001.json"
+}

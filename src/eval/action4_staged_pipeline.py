@@ -121,6 +121,11 @@ class StagedPipeline:
 
 
 def load_pipeline(cfg,device="cuda:0"):
+    pinned={}
+    if "best_registry" in cfg:
+        from model.action4_best_registry import verify_reference
+        for role,key in [("A0","a0_bundle"),("B0","b0_bundle")]:
+            pinned[role]=verify_reference(role,cfg[key],registry=cfg["best_registry"])
     if "a0_bundle" in cfg:
         pipeline=StagedPipeline.from_bundles(cfg["a0_bundle"],cfg["b0_bundle"],device)
     else:
@@ -130,4 +135,7 @@ def load_pipeline(cfg,device="cuda:0"):
     pipeline.b0_scoring_policy=policy
     if policy!="learned":pipeline.identity["B0_scoring_policy"]=policy
     else:pipeline.identity.pop("B0_scoring_policy",None)
+    for role,entry in pinned.items():
+        if pipeline.identity[role+"_step"]!=entry["selected_step"] or pipeline.identity[role+"_config_id"]!=entry["config_id"]:
+            raise ValueError("Loaded pipeline differs from selected best registry")
     return pipeline

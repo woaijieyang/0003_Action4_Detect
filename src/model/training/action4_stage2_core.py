@@ -10,6 +10,10 @@ from model.training.action4_runtime import canonical_hash
 
 def construct(cfg,device):
     role=cfg["role"]
+    pinned=None
+    if cfg["mode"]=="full_training":
+        from model.action4_best_registry import verify_reference,DEFAULT_REGISTRY
+        pinned=verify_reference(role,cfg["parent_bundle"],cfg["parent_best_step"],cfg.get("parent_registry",DEFAULT_REGISTRY))
     if role=="A0":
         model=JointSurfaceRGB(cfg["parent_bundle"],cfg["train_backbone"],device)
         parent=model.parent
@@ -18,6 +22,9 @@ def construct(cfg,device):
     else:raise ValueError("Independent A0/B0 role required")
     if parent["selected_step"]!=cfg["parent_best_step"]:raise ValueError("Selected best parent mismatch")
     if role=="B0" and parent["config"]["network"]!=cfg["network"]:raise ValueError("B0 architecture changed")
+    if pinned is not None:
+        from model.action4_best_registry import verify_loaded
+        verify_loaded(pinned,parent)
     return model.to(device),parent
 
 def optimizer_for(model,cfg):
