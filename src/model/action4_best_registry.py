@@ -6,7 +6,7 @@ from functools import lru_cache
 from data.action4_paths import PROJECT_ROOT as R, contained_path
 from model.action4_checkpoint_paths import resolve_checkpoint
 
-DEFAULT_REGISTRY = "configs/model/action4_best_registry_v002.json"
+DEFAULT_REGISTRY = "configs/model/action4_best_registry_v003.json"
 
 
 def _identity(path):

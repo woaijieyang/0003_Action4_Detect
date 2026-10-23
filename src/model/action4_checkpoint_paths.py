@@ -4,7 +4,7 @@ from pathlib import Path
 
 from data.action4_paths import PROJECT_ROOT as R, contained_path
 
-LOCATION_MAP = "configs/model/action4_checkpoint_locations_v001.json"
+LOCATION_MAP = "configs/model/action4_checkpoint_locations_v002.json"
 
 
 def resolve_checkpoint(path):
@@ -18,6 +18,8 @@ def resolve_checkpoint(path):
         raise ValueError("Unsupported checkpoint location map")
     target = locations["locations"].get(relative)
     if target is None:
+        if relative in locations.get("deleted", {}):
+            raise FileNotFoundError("Checkpoint intentionally retired: " + relative + "; " + locations["deleted"][relative])
         raise FileNotFoundError("No checkpoint or explicit relocation for " + relative)
     actual = contained_path(R, target, exists=True)
     if not actual.is_file() or actual.suffix not in (".pt", ".pth", ".ckpt"):

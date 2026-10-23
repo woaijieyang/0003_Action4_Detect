@@ -122,3 +122,8 @@ A0在线RGB完成80轮15120step/606eval，缓存选优best14000；完整RGB开�
 ## 2026-10-23T13:39:03.225650+08:00 默认checkpoint与历史留档分离
 
 依用户要求将默认A014000/B03220单独放models/default/A0.pt、B0.pt，默认目录只有两文件。其余留档权重按时间＋阶段名归入archive/legacy/checkpoints，不再叫best；84条旧路径映射到80个文件位置（默认2、归档78），合并4个同inode重复别名，参数未改写。模型包加载器和身份校验显式解析历史路径；新默认登记v002、profile action4_default_v001。旧实验配置/权重身份不改，直接读旧物理路径的历史脚本重放前须使用迁移映射。默认及3历史包CPU加载、84条映射和七反例通过。并行任务的已改文档/源码/authority不混入本次提交。发布见outputs/action4_checkpoint_layout_v001/PUBLISHED.json。
+
+
+## 2026-10-23T13:55:42.593676+08:00 精选历史checkpoint留存及删除
+
+依用户新规则将9份完成阶段历史最优/有价值对照集中models/archive，默认A014000/B03220不动。删除其余109个历史checkpoint/重复别名/工程快照，逻辑文件大小15,280,224,282字节（含硬链，不代表实际释放量）。保留失败报告、基础预训练权重与非checkpoint特征缓存。更新默认登记v003、历史解析表v002与留存索引。9历史严格加载、默认加载、七反例及29保留/173退役引用检查通过；早期ROI架构审核脚本初始错误及修正原样记录。并行phrase2文件和共享修改不进入本提交。发布见outputs/action4_checkpoint_retention_v001/PUBLISHED.json。

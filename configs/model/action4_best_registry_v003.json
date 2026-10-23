@@ -1,0 +1,43 @@
+{
+  "schema": "action4.selected_parent_registry.v1",
+  "purpose": "next-training independent parent weights; explicit choice, not universal accuracy winner",
+  "entries": {
+    "A0": {
+      "path": "models/default/A0.pt",
+      "role": "A0",
+      "selected_step": 14000,
+      "architecture": "joint_pose",
+      "config_id": "91d3820781675f8a025e9401847959c0f1736b98fc363200e58f1b27fe4bb518",
+      "training_config_id": "8acfa950b4b807eefc383f1dfe508840dd8595075df9d5920a8a90e23d2a8acd",
+      "sha256": "d576655c7d9a4870e73033c1b7cd9886df1b0a61a5b8e6359403fa6c14d39d78",
+      "bytes": 178668705,
+      "pose_method": "network",
+      "source_checkpoint": null,
+      "source_best_parameters_equal": true,
+      "source_checkpoint_original": "outputs/action4_a0_online_rgb_v001/best.pt",
+      "source_checkpoint_retired": "archive/legacy/checkpoints/20261023-085141-action4_a0_online_rgb_v001-060.pt",
+      "source_parameters_verified_receipt": "outputs/action4_best_identity_v001/IDENTITY_CHECK.json"
+    },
+    "B0": {
+      "path": "models/default/B0.pt",
+      "role": "B0",
+      "selected_step": 3220,
+      "architecture": "online_b0",
+      "config_id": "8ec12448b24dddaaad27e0b2f5f70f646a52f1dcc844251241bdb665340215fd",
+      "training_config_id": "8ec12448b24dddaaad27e0b2f5f70f646a52f1dcc844251241bdb665340215fd",
+      "sha256": "dba8eefbcda8d30df348fcaa9aec8f2e9deaed375313b44a21d7c47784b64362",
+      "bytes": 139967757,
+      "pose_method": null,
+      "source_checkpoint": null,
+      "source_best_parameters_equal": true,
+      "source_checkpoint_original": "outputs/action4_b0_photometric_v001/best.pt",
+      "source_checkpoint_retired": "archive/legacy/checkpoints/20261023-070107-action4_b0_photometric_v001-061.pt",
+      "source_parameters_verified_receipt": "outputs/action4_best_identity_v001/IDENTITY_CHECK.json"
+    }
+  },
+  "A0_selection_note": "Online RGB best14000 selected for next joint surface/pose continuation. PnP13350 remains separate synthetic baseline; real acceptance not achieved.",
+  "resume_policy": "New work starts from selected best with fresh optimizer; same-run exact recovery requires matching complete state.",
+  "accuracy_accepted": false,
+  "layout_version": "default-plus-selected-history-v002",
+  "history_registry": "configs/model/action4_archive_registry_v001.json"
+}

@@ -1,0 +1,183 @@
+{
+  "schema": "action4.history_checkpoint_registry.v1",
+  "selection_policy": "Retain completed-stage winners and useful trained ablation references; remove engineering/recovery/initial/intermediate/redundant weights",
+  "entries": [
+    {
+      "original": "models/A0/best.pt",
+      "current": "archive/legacy/checkpoints/20261023-041150-A0-PnP-step13350.pt",
+      "destination": "models/archive/20261023-041150-A0-PnP-step13350.pt",
+      "reason": "Strong retained synthetic geometric baseline; independently loadable package",
+      "metadata": {
+        "schema": "action4.stage_bundle.v1",
+        "role": "A0",
+        "selected_step": 13350,
+        "config_id": "3ef4130f72ee4869c825540c6505df561697940cb56dd81bf851dcb3641cb4b0",
+        "architecture": "joint_pose"
+      },
+      "identity": [
+        64513,
+        34036424880,
+        178670881,
+        1792699910404891105,
+        1792733789008613132
+      ]
+    },
+    {
+      "original": "models/B0/best.pt",
+      "current": "archive/legacy/checkpoints/20261023-041150-B0-historical-step2200.pt",
+      "destination": "models/archive/20261023-041150-B0-online-step2200.pt",
+      "reason": "Previous completed online B0 stage best; photometric comparison parent",
+      "metadata": {
+        "schema": "action4.stage_bundle.v1",
+        "role": "B0",
+        "selected_step": 2200,
+        "config_id": "860528264ae0155436f9f9d7922981ca2cb1e04c8ed8c756ac4a61ceb7c1df44",
+        "architecture": "online_b0"
+      },
+      "identity": [
+        64513,
+        34036424888,
+        139965965,
+        1792699910498890729,
+        1792733789009613087
+      ]
+    },
+    {
+      "original": "models/candidates/a0_frozen_surface_pose_v001/best.pt",
+      "current": "archive/legacy/checkpoints/20261023-071308-A0-frozen-surface-pose-step8625.pt",
+      "destination": "models/archive/20261023-071308-A0-frozen-surface-pose-step8625.pt",
+      "reason": "Completed frozen-surface stage best and explicit online-RGB parent",
+      "metadata": {
+        "schema": "action4.stage_bundle.v1",
+        "role": "A0",
+        "selected_step": 8625,
+        "config_id": "8ec9ebc7548054a0e2c5dfc6c6acda06892d60a1f1e0a1a135f07537982636d2",
+        "architecture": "joint_pose"
+      },
+      "identity": [
+        64513,
+        15055796506,
+        178668065,
+        1792710788780694815,
+        1792733789009613087
+      ]
+    },
+    {
+      "original": "archive/legacy/models/action4/template2000_a0_roi_adapt_to80_v001/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-095743-action4-template2000_a0_roi_adapt_to80_v001-009.pt",
+      "destination": "models/archive/20261022-095743-A0-heatmap-through80-step1475.pt",
+      "reason": "Selected across cumulative80 epochs; older heatmap baseline",
+      "metadata": {
+        "schema_version": "action4.checkpoint.v1",
+        "stage": "A0",
+        "global_step": 1475
+      },
+      "identity": [
+        64513,
+        37914392421,
+        138700416,
+        1792634263678352540,
+        1792733788987614091
+      ]
+    },
+    {
+      "original": "archive/legacy/models/action4/template2000_b0_from_bestA0_bbox80_v001/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-122404-action4-template2000_b0_from_selectedA0_bbox80_v001-012.pt",
+      "destination": "models/archive/20261022-122404-B0-fromA0-box80-step4660.pt",
+      "reason": "First completed80-epoch bbox-protocol B0 stage best",
+      "metadata": {
+        "schema_version": "action4.checkpoint.v1",
+        "stage": "B0",
+        "global_step": 4660
+      },
+      "identity": [
+        64513,
+        33905312820,
+        275625724,
+        1792643044916633140,
+        1792733788988614045
+      ]
+    },
+    {
+      "original": "outputs/action4_independent_trials_v001/a0_baseline/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-193452-action4_gdr_surface_candidate_v001-075.pt",
+      "destination": "models/archive/20261022-193452-A0-independent-baseline-step6300.pt",
+      "reason": "Completed80-epoch baseline; frozen backbone provenance and method comparison",
+      "metadata": {
+        "schema_version": "action4.component_eval.v1",
+        "role": "A0",
+        "variant": "baseline",
+        "step": 6300,
+        "config_id": "f7d64d941f9d1923b3fc9002c56e8493fd4bf3b96542a73c1700bd3aa38c2f10"
+      },
+      "identity": [
+        64513,
+        33974118386,
+        136909573,
+        1792668892203558609,
+        1792733789057610898
+      ]
+    },
+    {
+      "original": "outputs/action4_independent_trials_v001/b0_baseline/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-170928-action4_independent_trials_v001-b0_baseline-080.pt",
+      "destination": "models/archive/20261022-170928-B0-ablation-baseline-step60.pt",
+      "reason": "Completed80-epoch ablation best; control for GIoU and quality changes",
+      "metadata": {
+        "schema_version": "action4.component_eval.v1",
+        "role": "B0",
+        "variant": "baseline",
+        "step": 60,
+        "config_id": "38698cfa03672c4c827758afe42fd2f7c88e363282be0c17952c108ec3413dbe"
+      },
+      "identity": [
+        64513,
+        33974113408,
+        138093655,
+        1792660168496043562,
+        1792733789057610898
+      ]
+    },
+    {
+      "original": "outputs/action4_independent_trials_v001/b0_giou/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-200702-action4_independent_trials_v001-b0_giou-081.pt",
+      "destination": "models/archive/20261022-200702-B0-ablation-GIoU-step9300.pt",
+      "reason": "Completed80-epoch GIoU ablation best",
+      "metadata": {
+        "schema_version": "action4.component_eval.v1",
+        "role": "B0",
+        "variant": "giou",
+        "step": 9300,
+        "config_id": "ce08bcb034baff31e9491b4f0b6c79a66ee14e35726eabb6445b30d65f9f913a"
+      },
+      "identity": [
+        64513,
+        33974333975,
+        138093655,
+        1792670822943968557,
+        1792733789057610898
+      ]
+    },
+    {
+      "original": "outputs/action4_independent_trials_v001/b0_giou_quality/best.pt",
+      "current": "archive/legacy/checkpoints/20261022-185434-action4_box_quality_candidate_v001-064.pt",
+      "destination": "models/archive/20261022-185434-B0-ablation-GIoU-quality-step5220.pt",
+      "reason": "Completed80-epoch GIoU plus quality ablation best",
+      "metadata": {
+        "schema_version": "action4.component_eval.v1",
+        "role": "B0",
+        "variant": "giou_quality",
+        "step": 5220,
+        "config_id": "7c1900f56344b738d5ba8f8a2f9f07a142714ecbe2de80e5beb4f05cbab726d6"
+      },
+      "identity": [
+        64513,
+        33974113464,
+        138685483,
+        1792666474360265222,
+        1792733789058610852
+      ]
+    }
+  ],
+  "all_models_accuracy_accepted": false
+}

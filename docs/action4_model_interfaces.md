@@ -284,3 +284,8 @@ configs/eval/action4_next_training_best_v001.json为绑定同一登记的固定�
 ### 默认目录与历史命名更新
 
 用户最新布局要求已落实：默认两包为models/default/A0.pt、models/default/B0.pt；登记升级configs/model/action4_best_registry_v002.json，profile为configs/eval/action4_default_v001.json。历史权重按时间＋阶段名集中archive/legacy/checkpoints，旧best路径由action4_checkpoint_locations_v001.json精确映射；load_bundle和身份校验已接解析，默认目录不包含历史或说明文件。详见[action4_checkpoint_layout](action4_checkpoint_layout.md)。前文v001和旧路径仅代表历史布局，不作为新的直接文件入口。
+
+
+### 精选历史权重留存修订
+
+最新默认登记v003、推理profile action4_default_v002；默认两文件仍models/default/A0.pt与B0.pt。用户指定历史最优/有价值对照仅保留9份至models/archive，其余checkpoint已删除。当前历史解析表action4_checkpoint_locations_v002区分29保留引用和173已退役引用，删除路径明确拒绝、不回退默认。归档不同架构使用对应加载器；早期分离ROI网络需prepare_checkpoint_topology。详见action4_checkpoint_layout.md，旧布局描述仅作历史。

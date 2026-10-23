@@ -17,3 +17,5 @@ r071整理：archive/legacy/organization_v002保存25组旧输出与60组旧合�
 本轮无用空文件清理及两份旧大日志无损压缩见outputs/action4_best_identity_v001/CLEANED.jsonl；压缩日志保留同目录同名.log.gz，已验证解压内容一致。失败报告与历史模型未因清理删除。
 
 留档checkpoint已统一到archive/legacy/checkpoints，命名为原mtime时间＋阶段名，不保留best文件名。默认权重仅在models/default/A0.pt、B0.pt；完整旧路径映射为configs/model/action4_checkpoint_locations_v001.json。含工程夹具的归档不能作默认训练权重，迁移证据outputs/action4_checkpoint_layout_v001。
+
+用户最新checkpoint专属规则覆盖前述位置：历史权重精选9份移入models/archive，其余109条旧权重/别名已删除，不再放archive/legacy/checkpoints。普通运行报告/失败证据仍保存在archive/legacy。当前权重解析表configs/model/action4_checkpoint_locations_v002.json，留存索引configs/model/action4_archive_registry_v001.json。
