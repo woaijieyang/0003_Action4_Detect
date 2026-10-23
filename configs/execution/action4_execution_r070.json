@@ -1,0 +1,20 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r070",
+  "status": "END_TO_END_ENGINEERING_INTEGRATION_RUNNING",
+  "parent_authority": "configs/execution/action4_execution_r069.json",
+  "scope": "existing-data two-update A0/B0 training/recovery/eval/bundle/video interface verification only",
+  "dispatch": "outputs/action4_stage2_integration_v001/DISPATCH.json",
+  "formal_stage2_training_started": false,
+  "new_data_generation": false,
+  "stage1_models_unchanged": true,
+  "GPU": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "CPU": 32,
+  "no_subagents": true,
+  "accuracy_accepted": false
+}

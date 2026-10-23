@@ -10,3 +10,6 @@ Git只跟踪本索引，历史资产和过程产物不上传。要恢复归档�
 本轮在线RGB整理：archive/legacy/release_r067，保留原相对布局；逐项清单与日志在outputs/action4_online_rgb_release_v001。当前选择以models/CURRENT_RESEARCH.json与r067为准，前述models/B0/best.pt为历史父模型。已合并视频分片及过期claim、非best/last只在消费者退出和覆盖核对后删除；数据及模型父依赖未删。
 
 r069整理：document_snapshots/r069保留完整旧plan/conclusion/架构文档；rejected_box_constraint_v001保留用户撤回候选及预检；r069/outputs/action4_a0_roi_contract_v001/predicted_roi_maps保留旧CPU评估缓存。当前输出只留部署一致缓存和必要报告；恢复旧缓存只供历史重放，不得作为第二阶段默认输入。
+
+
+r071整理：archive/legacy/organization_v002保存25组旧输出与60组旧合成预览/失败候选，原相对路径完整保留；outputs/action4_organization_v002/MOVED.jsonl提供精确迁移映射。8段已完成视频集中outputs/videos。冻结来源及phrase2并行任务依赖不搬动。当前模型以models/CURRENT_RESEARCH.json为准，历史“当前”描述不能作为启动依据。

@@ -1,6 +1,6 @@
 # Action4 模型与数据接口说明
 
-本文说明**现有实现**的调用合同、坐标、产物及基本检验，不另立执行计划。任务顺序、数据准入、训练预算及停止条件以 `docs/stages/2026-10-19-1-plan-Action4角点复现增补.md` 及其后续用户修订为准。本接口检查没有启动正式训练、GPU 作业或队列。
+本文保留历史接口并在末尾记录r071当前入口；顶部旧配置不是当前启动配置。本文说明**现有实现**的调用合同、坐标、产物及基本检验，不另立执行计划。任务顺序、数据准入、训练预算及停止条件以 `docs/stages/2026-10-19-1-plan-Action4角点复现增补.md` 及其后续用户修订为准。本接口检查没有启动正式训练、GPU 作业或队列。
 
 本次核对配置为 `configs/model/action4_pilot2000_v002.json`，其 SHA-256 为 `9d328f71d0ffd8ef7e66180bfcb25919fe059e4903f518ebedd2ad8d08d6f20c`。配置指向未来接受后的 2,000 张数据（train/eval/test=1,600/200/200）；**配置路径存在不代表数据已经生成或接受**。任何后续改动须重新核对当前配置与证据，不用本文中的历史哈希冒充当前状态。
 
@@ -247,3 +247,23 @@ GPU1当前原slot0-6七个cached评估加v002一个aux评估；原slot7有意退
 新数据集或冻结backbone/surface/B0变化时必须重建缓存并绑定新identity。若surface/backbone参与训练更新，应对每个checkpoint执行当前RGB网络，不使用冻结maps加速。旧model.training.action4_online_pose_dispatch为历史运行入口，不会自动切换新worker；第二阶段编排须显式配置并核对，避免暗改已完成实验。
 
 不加入“红色八点必须位于绿色检测框内”的硬规则。B0框提供ROI，A0保持固定CAD几何预测，框和角点的误差分别报告。
+
+
+## 在线裁剪下的表面监督接口（隔离候选，未接正式训练）
+
+src/data/action4_online_surface_targets.py复用prepare_pose_rgb的RGB裁剪、K变换与八点几何目标；读取已准入surface_v002的native_pixels与xyz_object_m，按本次ROI仿射得到连续heatmap坐标。物体坐标XYZ、region身份不随裁剪改变；visible/amodal mask从原掩码按新ROI重新采样，不搬用旧GT-ROI掩码。
+
+src/model/action4_sparse_surface_losses.py在这些连续坐标上双线性读取预测XYZ/region logits，计算已有XYZ L1、region CE和mask BCE。采样实现支持严格确定性CUDA梯度；位置与标签不参与模型输入、不将不同物体表面的GT XYZ直接插值为新真值。整数网格下与原dense surface loss及梯度一致。
+
+训练调用顺序应是prepare_online_surface_batch → model(RGB_features,K,canonical) → sparse_surface_losses(output.surface,targets) + geometry_losses(output,geometry)。geometry中的真实R/t、角点与visibility只进入损失。若surface要参与学习，不能继续用OnlinePoseRGB中冻结surface的设置；目前没有暗改该正式模型或启动新训练。
+
+本接口当前绑定已准入的data/{split}/surface_v002_candidate及对应review，只在既有4个真实合成目标上完成实际投影/反向检查。第二阶段的新数据必须先生成并验收其表面sidecar、显式绑定新版本入口；不能把本轮检查当成新数据准入。验证见outputs/action4_online_surface_contract_v001/REPORT.json、REVIEW.json。若surface或backbone更新，必须用当前checkpoint重做RGB评估，不使用静态maps。
+
+
+## r071：当前独立角色编排与动态RGB评估
+
+当前调用链以action4_stage2_pair → action4_stage2_dispatch → action4_stage2_train/eval → action4_stage2_finalize为准；历史专属调度器保留作重放，不能混入新运行。
+A0使用JointSurfaceRGB，联合表面预测与几何损失；独立B0使用原完整框训练损失。数据入口action4_stage2_data明确role/split、表面sidecar版本和manifest，在线surface_targets保证ROI仿射后标签同步。
+所有新角色配置必须绑定parent_bundle/parent_best_step、独占output、validation_receipt、准入receipt、实际训练/评估数量和source_files。工程模式允许少量真实训练单位；full_training要求完整新数据准入、surface标签身份与至少80轮，不可拿integration gate代替。
+A0每25step、B0每20step异步评估；初始和最终快照也评估。评估结束即删除已消费非best快照，选优临时别名按锁收敛，终态best_only_retention移除恢复last及冗余别名。后续改进从best权重初始化新优化器；同run故障恢复才用匹配模型/优化器/RNG完整状态。
+本轮已验证DDP真实更新/恢复/全200开发eval/独立封装/16帧视频，模型和优化器恢复与连续运行逐值相同。工程短试验best仍为父权重，重复工程模型已退役并保留记录。正式视频入口校验80轮完成回执，工程模型不可冒充正式达标输出。

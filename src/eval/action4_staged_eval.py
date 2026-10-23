@@ -7,10 +7,22 @@ from eval.action4_staged_pipeline import load_pipeline
 from eval.action4_bbox_metrics import score_boxes
 from model.training.action4_runtime import atomic_json
 
-def run(selection,output,split="eval",validation_receipt="outputs/required/DATA_VALIDATED_ALL_SPLITS.json"):
+def validate_reused_data(data, validation_receipt, split):
+    """Reuse only the exact worker-validated receipt and requested full-image split."""
+    from data.action4_paths import contained_path
+    expected = contained_path(R, validation_receipt, exists=True)
+    if getattr(data, "_validation_receipt", None) != expected:
+        raise ValueError("Reused evaluation data receipt identity mismatch")
+    if data.role != "B0" or not data.records or any(r["split"] != split for r in data.records):
+        raise ValueError("Full-image evaluation dataset role/split mismatch")
+
+
+def run(selection,output,split="eval",validation_receipt="outputs/required/DATA_VALIDATED_ALL_SPLITS.json",validated_data=None):
+    if validated_data is not None:
+        validate_reused_data(validated_data, validation_receipt, split)
     torch.set_num_threads(2);cfg=json.loads((R/selection).read_text());out=R/output;out.mkdir(exist_ok=False)
     pipeline=load_pipeline(cfg)
-    data=ComponentData(validation_receipt,split,"B0")
+    data=ComponentData(validation_receipt,split,"B0") if validated_data is None else validated_data
     cad=np.array(json.loads((R/"data/DJI_Action4_construct/r3_v001/asset_manifest.json").read_text())["corners_3d_mm"])/1000
     predictions=[];box_predictions=[];references=[]
     for i in range(len(data)):

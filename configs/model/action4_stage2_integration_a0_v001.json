@@ -1,0 +1,94 @@
+{
+  "mode": "integration",
+  "validation_receipt": "outputs/required/DATA_VALIDATED_ALL_SPLITS.json",
+  "epochs": 1,
+  "batch": 2,
+  "micro": 1,
+  "world_size": 2,
+  "loader_workers": 2,
+  "threads": 2,
+  "expected_units": 3,
+  "expected_eval_images": 200,
+  "seed": 20261025,
+  "reserved_cpu_budget": 13,
+  "project_total_reserved_cpu": 32,
+  "max_pending": 4,
+  "min_free_mib": 12000,
+  "source_identity": {
+    "src/model/action4_joint_surface_rgb.py": "47b0f34a17affc95e2a7c560c08ea4aa48831f62201fef5546975543583af922",
+    "src/model/training/action4_stage2_core.py": "cf0d5fe05c5b22a716ed73680677dcb7d796f7be237d8173e90c8ecd65c3f84d",
+    "src/model/training/action4_stage2_train.py": "3511e4ee1e1730b88da2b5d802cf678a0a5a86f7a8037e8bee1295e87c453d68",
+    "src/model/training/action4_stage2_dispatch.py": "2b6591361e16092f9ce4814d17e8fd36c465885de55d24a0de8321634358bbf0",
+    "src/eval/action4_stage2_eval.py": "dc1e90538c9ed2755fe6f15775c1da3b69c7071813736b512893616f311ae21d",
+    "src/eval/action4_staged_eval.py": "bb5ef283e198f7c8fcdb7abf49537e9284824457c715d519d3a16df1ae0be8c5",
+    "src/data/action4_stage2_data.py": "6cfe2f5fae3a846b45236bcbaa555377f1bfbe99f88f30eff711300c6e03694f",
+    "src/data/action4_online_surface_targets.py": "be71dac2910399246364ffa881ff2c6318266f5aa6ea024511470c849abff18e",
+    "src/model/action4_sparse_surface_losses.py": "7f2b54f496bd78a4371b000d8eb79424912854f2333c2ccade52573d8013a45b",
+    "src/model/action4_gdr_pose.py": "227d79ad1f97710389eafbc250aab2ef7cd9b865608fc1a5bfd928062d5abc47",
+    "src/model/action4_pose_maps.py": "8e83f8c7469aa1a8f930383dd8c7924ecbb15fa2959a6c2909c6a56ac62a4f36",
+    "src/data/action4_pose_rgb_batch.py": "cc22ac2c2c8660e696307a737bc067af48ac8363f1a71c7bb0f0818073fa8f4f",
+    "src/model/training/action4_online_b0_batch.py": "511d05442779502643444edab81e55f7ab4ebf20da143baf81f3d3da6b92649e",
+    "src/model/action4_online_b0.py": "2af5cff0bf1553027ecf43cc451140f9a735c5a052c742e3cb3ca48a2c9d8db4",
+    "src/model/training/action4_async_recovery.py": "14f658c20aa71cc8728762e3855ea8a69cadadc7f97156cba0112fcc99b68bad"
+  },
+  "integration_or_admission_receipt": "outputs/action4_stage2_integration_v001/LAUNCH_GATE.json",
+  "photometric": {
+    "probability": 0.8,
+    "operation_probability": 0.5,
+    "add_range": [
+      -0.09803921568627451,
+      0.09803921568627451
+    ],
+    "multiply_range": [
+      0.6,
+      1.4
+    ],
+    "contrast_range": [
+      0.5,
+      2.2
+    ],
+    "blur_sigma_max": 1.2
+  },
+  "selection_scope": "engineering integration on existing data, not formal second-stage training",
+  "role": "A0",
+  "output": "outputs/action4_stage2_integration_v001/A0",
+  "parent_bundle": "models/candidates/a0_online_rgb_v001/best.pt",
+  "parent_best_step": 14000,
+  "train_backbone": false,
+  "surface_lr": 1e-05,
+  "lr": 5e-05,
+  "lr_backbone": 1e-06,
+  "eval_every": 25,
+  "train_indices": [
+    0,
+    1,
+    33
+  ],
+  "roi_jitter": {
+    "center_fraction": 0.15,
+    "scale_range": [
+      0.65,
+      1.35
+    ]
+  },
+  "surface_source": {
+    "admission": "outputs/action4_surface_labels_v002/ROOT_VISUAL_REVIEW.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/train/surface_v002_candidate",
+      "eval": "data/eval/surface_v002_candidate",
+      "test": "data/test/surface_v002_candidate"
+    }
+  },
+  "training_gpus": [
+    4,
+    5
+  ],
+  "eval_gpus": [
+    4,
+    5
+  ],
+  "evaluation_counterpart_bundle": "models/candidates/b0_photometric_v001/best.pt",
+  "b0_scoring_policy": "center",
+  "integration_resume_step": 1
+}

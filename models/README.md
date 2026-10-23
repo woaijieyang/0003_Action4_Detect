@@ -11,3 +11,5 @@
 继续训练从各实验best权重初始化新优化器；best不含完整优化器历史，不能冒称精确中断恢复。在线RGB冻结策略用src/model/action4_online_pose_rgb.py及其训练器。
 原输出目录只保留各run best及同inode选优别名、完成回执和评估证据，非最佳过程权重已清理。
 本轮封存清单：outputs/action4_online_rgb_release_v001/SEALED_MODELS.json。权重不进入普通Git提交。
+
+本轮工程集成没有产生更优模型：A0/B0均选step0，与上述父best参数逐值一致。恢复last、非best控制快照、预检包与重复工程封装权重在所有消费者结束后删除；工程selection/SEALED历史回执由ARTIFACTS_RETIRED.json标明已退役，不能作为活动权重入口。正式新实验从best权重开始；同实验意外中断才使用临时完整状态做精确恢复，终态清理该临时状态。
