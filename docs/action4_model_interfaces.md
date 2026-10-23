@@ -267,3 +267,9 @@ A0使用JointSurfaceRGB，联合表面预测与几何损失；独立B0使用原�
 所有新角色配置必须绑定parent_bundle/parent_best_step、独占output、validation_receipt、准入receipt、实际训练/评估数量和source_files。工程模式允许少量真实训练单位；full_training要求完整新数据准入、surface标签身份与至少80轮，不可拿integration gate代替。
 A0每25step、B0每20step异步评估；初始和最终快照也评估。评估结束即删除已消费非best快照，选优临时别名按锁收敛，终态best_only_retention移除恢复last及冗余别名。后续改进从best权重初始化新优化器；同run故障恢复才用匹配模型/优化器/RNG完整状态。
 本轮已验证DDP真实更新/恢复/全200开发eval/独立封装/16帧视频，模型和优化器恢复与连续运行逐值相同。工程短试验best仍为父权重，重复工程模型已退役并保留记录。正式视频入口校验80轮完成回执，工程模型不可冒充正式达标输出。
+
+
+### 新geometry sidecar的显式衔接
+
+若生成器将每实例NPZ保存为data/phrase2/{split}/geometry/{sample_id}_i{instance_id}.npz，训练配置surface_source.label_roots必须显式指向这些目录；同时提供admission（candidate_training_allowed须通过真实审核）、regions（冻结64区域中心）、manifest_sha256（train/eval/test与validation_receipt一致）。NPZ字段xyz_object_m、native_pixels、K、object_to_capture按当前在线监督接口读取；不将深度/XYZ/GT mask作为模型推理输入。
+候选渲染结果尚未准入时，可用eval.action4_candidate_record_eval做独立train预览诊断，不借此生成正式训练gate。--gt-roi-baseline是显式oracle控制，仅供定因，不可混入B0框成绩或实际部署结果。

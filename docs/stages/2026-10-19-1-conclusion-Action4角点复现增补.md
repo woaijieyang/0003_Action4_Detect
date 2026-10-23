@@ -2015,3 +2015,13 @@ A0从best14000、B0从best3220独立加载，每角色使用原准入数据3个�
 
 用户随后指定第一阶段合成数据统一data/phrase1三个文件夹，已通过原子目录交换迁入train/eval/test；旧根路径只保留项目内部兼容链接，避免并行消费者查询空窗。17,211文件的device/inode/size/mtime/ctime逐项相同，三份manifest内容SHA不变。重新加载所有split数量1600/200/200、首尾实际RGB及4个训练目标2855点的在线表面监督成功，最大重投影误差1.261308e-6 heatmap像素。没有重复复制或重新合成数据。记录PHRASE1_MIGRATION.json与PHRASE1_POSTCHECK.json。
 最终代码复核补强了复用eval对象的准入身份检查：不只核对B0/split，还要求同一已验证receipt；在构造模型前拒绝来源不符。正确实际数据复用通过，五类错误身份/角色/split/空数据回归拒绝。这是集成运行后加入的输入防线，未改变损失或预测算子，未声称重新执行完整训练。
+
+
+## 2026-10-23T11:50:18.179932+08:00 第二阶段候选训练场景的冻结模型诊断
+
+仅只读消费另一任务已完成benchmark中的3个32sample训练预览，sample_id为p2_train_03929/01941/03428；未读取test、未修改对方数据、状态或源码，未把候选标为准入。使用固定A0best14000/B0best3220，RGB、内参和固定canonical8为预测输入，GT框/位姿/可见性只用于独立计分与对照。
+B0三图双机匹配3/3，6TP/0FP/0FN，IoU≥.5；这不是精准完整框已达标，也不是总体双机召回率估计。A0固定ID全部8点误差≤.05真实框对角线为0/6。新候选图像可被当前模型读取，但A0未能准确适配这些视角。
+单独用GT框裁剪定位诊断仍0/6。为检验是否仅是ID错配，计算8点任意一对一重排下的最小最大误差（仅诊断，不改变正式ID/评分）；6个目标全部仍>.05，范围.083785–.352189。GT ROI下35个可见点平均归一化误差.110682，13个不可见点.178217。证据仅支持这6例的误差不只来自B0裁剪或角点排列，不能凭小样本归因唯一根源或宣称泛化精度。
+主控查看全部3张标签/预测对照图，红色立体框仍有位置、范围或方向偏移，黑色侧面/衣物场景更明显。手臂外观/比例仍由另一任务继续审核，本诊断不代替其视觉准入。
+因此下一轮继续已实现的surface+pose联合更新与同步ROI监督，不采用仅重排ID、限制红框在绿框内或单靠增加PnP拟合的补丁。正式训练必须等待新数据完整准入及对应geometry标签绑定。新geometry目录需显式映射surface_source.label_roots、准入admission、规范regions和三份manifest_sha256，禁止回落旧phrase1标签。当前data/phrase2完整清单尚未发布，未启动正式新训练。
+证据outputs/action4_next_data_baseline_v001/REPORT.json、oracle_roi/REPORT.json、CAUSE_COMPARISON.json和VISUAL_REVIEW.json。新增可复用诊断入口eval.action4_candidate_record_eval，只允许非准入train预览；实际候选通过，test、已准入状态、canonical点序、位姿不一致及错误SHA共五类反例被拒绝。没有更改best、阈值或正式推理。

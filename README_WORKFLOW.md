@@ -107,3 +107,8 @@ A0在线RGB完成80轮15120step/606eval，缓存选优best14000；完整RGB开�
 原plan/conclusion持续增补，当前入口r071。发布只包含本线程源码、配置、tests与文档，不含资产；本文写入时尚未推送，实际提交与远端main以outputs/action4_organization_v002/PUBLISHED.json为准，真实验收仍失败。
 
 发布前按最新要求将第一阶段数据迁至data/phrase1/{train,eval,test}，原路径为内部兼容链接，所有17,211文件身份及manifest哈希保持。真实数据/在线表面接口复核通过。补强eval复用对象的receipt身份验证，五类错误输入拒绝；另一任务仍隔离。
+
+
+## 2026-10-23T11:50:18.179932+08:00 新训练预览冻结模型定因
+
+只读另一任务3个完成train预览，保持其工作隔离。固定模型B0双机匹配3/3但A0八点0/6；GT框与任意ID重排控制均未修复。新增明确train-only诊断接口和五类反例，更新原conclusion及接口绑定说明。没有新训练、模型替换或数据准入；本次发布状态以outputs/action4_next_data_baseline_v001/PUBLISHED.json为准。

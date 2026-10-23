@@ -68,3 +68,9 @@ archive/legacy/organization_v002/outputs/action4_surface_domain_audit_v001记录
 - outputs/videos/20261023-041716-historical-final.mp4（原 outputs/action4_final_video_v001/comparison.mp4）
 
 第一阶段数据现已物理归类到data/phrase1/{train,eval,test}，旧三个根路径仅作兼容链接。原manifest、所有文件stat身份及2855表面点重投影复核通过；新阶段沿用原接口时可解析兼容路径，不能误把phrase1计为新增样本。
+
+
+## 候选数据诊断（未启动新训练）
+
+outputs/action4_next_data_baseline_v001：只读3个已完成train预览，当前best双机框IoU≥.5为3/3，但固定ID八点0/6；GT框裁剪及任意角点重排诊断均未达到八点门槛。不要把3图成绩当总体精度或用GT ROI成绩代替真实推理。下一步是等待独立数据任务发布新清单和geometry准入，按既有stage2训练器显式绑定surface_source与manifest，再进行联合surface/pose训练。
+另一任务接口中的geometry目录与本线程默认phrase1/surface_v002不同，必须显式指定label_roots；同名/存在不表示身份绑定成功。正式launch gate还要求三split manifest SHA一致，不能只传一个admission布尔值。

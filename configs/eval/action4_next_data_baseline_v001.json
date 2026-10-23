@@ -1,0 +1,29 @@
+{
+  "scope": "three completed TRAIN benchmark previews; frozen weights; no admission or threshold tuning",
+  "selection": {
+    "a0_bundle": "models/candidates/a0_online_rgb_v001/best.pt",
+    "b0_bundle": "models/candidates/b0_photometric_v001/best.pt",
+    "b0_scoring_policy": "center",
+    "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+    "demo_reference": "data/action4_reference/demo_standard.mp4",
+    "training_completion_receipts": [
+      "outputs/action4_a0_online_rgb_v001/TRAIN_COMPLETE.json",
+      "outputs/action4_b0_photometric_v001/TRAIN_COMPLETE.json"
+    ],
+    "scope": "complete online-crop candidate; frozen best, no automatic promotion"
+  },
+  "records": [
+    {
+      "path": "outputs/phrase2_generation_v001/render_benchmark_v003/wall_32/runtime/samples/p2_train_03929/record.json",
+      "sha256": "899f6713c73f53035115d2ae1c2abb7a1ebe1b8dfb33ea95ba88c97b29361eb4"
+    },
+    {
+      "path": "outputs/phrase2_generation_v001/render_benchmark_v003/table_full_garment_32/runtime/samples/p2_train_01941/record.json",
+      "sha256": "624bdb5a39c3e3943e608e31b2b12e9e13858eb6f8cbee9b96a44bb88dc19db8"
+    },
+    {
+      "path": "outputs/phrase2_generation_v001/render_benchmark_v003/cloth_lift10_full_garment_32/runtime/samples/p2_train_03428/record.json",
+      "sha256": "3434bf32d2b87c8c4b2db03dc0cbd887bf33f95861ec6490dd848e2d1a779344"
+    }
+  ]
+}
