@@ -19,3 +19,8 @@ r071整理：archive/legacy/organization_v002保存25组旧输出与60组旧合�
 留档checkpoint已统一到archive/legacy/checkpoints，命名为原mtime时间＋阶段名，不保留best文件名。默认权重仅在models/default/A0.pt、B0.pt；完整旧路径映射为configs/model/action4_checkpoint_locations_v001.json。含工程夹具的归档不能作默认训练权重，迁移证据outputs/action4_checkpoint_layout_v001。
 
 用户最新checkpoint专属规则覆盖前述位置：历史权重精选9份移入models/archive，其余109条旧权重/别名已删除，不再放archive/legacy/checkpoints。普通运行报告/失败证据仍保存在archive/legacy。当前权重解析表configs/model/action4_checkpoint_locations_v002.json，留存索引configs/model/action4_archive_registry_v001.json。
+
+
+## 2026-10-29 暂停整理
+
+pause_20261029/document_snapshots保存替换前的README和执行导航。历史研究证据优先留在原位置保持引用有效，不通过批量搬动制造断链。可重建缓存和无用中间权重直接删除，逐项清单见outputs/action4_pause_cleanup_20261029。当前暂停权威r147，所有旧“当前”状态仅属历史。

@@ -1,0 +1,36 @@
+{
+  "schema": "action4.selected_parent_registry.v1",
+  "purpose": "explicit10epoch continuation from sealed50best, fresh optimizer",
+  "entries": {
+    "A0": {
+      "role": "A0",
+      "path": "models/candidates/action4_improvement/roi15_prediction50_completed_20261026/A0.pt",
+      "sha256": "d86147adaf8cd76506ae9470e8fea9d8e23d0aa3a89800b4b0bd1a84146e157a",
+      "selected_step": 10125,
+      "config_id": "5edfe8dc76ff76a097b123e84cdf16d759430509eeb8ef58ee3791a89e67df1d",
+      "training_config_id": "5edfe8dc76ff76a097b123e84cdf16d759430509eeb8ef58ee3791a89e67df1d",
+      "architecture": "joint_pose",
+      "pose_method": "network",
+      "bytes": 178762381,
+      "seal": {
+        "path": "models/candidates/action4_improvement/roi15_prediction50_completed_20261026/SEALED_ROLE.json",
+        "sha256": "08e2e0fc2aaee4fcae3596dccdeb72685c0ffd3e25c0a37e809c38411934eef0"
+      }
+    },
+    "B0": {
+      "role": "B0",
+      "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/B0.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "selected_step": 9500,
+      "config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "training_config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "architecture": "online_b0",
+      "pose_method": null,
+      "bytes": 140031313,
+      "seal": {
+        "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/SEALED_ROLE.json",
+        "sha256": "2b7f27bc78d33db585437824d876d5eb79bb5f55875a629f6a0e5953c51f6913"
+      }
+    }
+  }
+}

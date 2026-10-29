@@ -1,63 +1,46 @@
-# DJI Action4 双机检测与八角点定位
+# DJI Action4 双机检测、八角点定位与视频跟踪
 
-本项目从原始真实视频出发，利用固定尺寸 DJI Action4 模型生成合成数据，分别训练 B0 完整机身检测器和 A0 八角点/几何模型，输出逐帧标注与 demo 对照视频。
+**2026-10-29 状态：用户暂停研究、训练与评估；本次仅整理和发布代码。真实全视频的角点准确性和稳定性尚未验收。**
 
-**当前状态：本轮 A0/B0 训练、eval/test、完整真实视频、独立模型封存和文件整理已完成；真实画面精度仍未通过任务验收。** 当前执行登记为 r067，已结束运行不会自动重启。
+项目复用固定尺寸 DJI Action4、canonical8 点序与已发布合成数据，采用 B0 完整机身检测 → 实例 ROI → A0 姿态/角点 → 几何与视频跟踪链路。数据、模型、环境和运行产物保留在服务器，普通 Git 只发布源码、配置、测试和文档。
 
-B0 摄影增强80轮候选 `configs/eval/action4_photometric_best_v001.json` 使用best3220：开发双机178/184、历史test196/200；完整视频中2773个可判定demo包络帧的双机参考一致性为2268/2773（81.79%），77帧不可评分。demo是参考可视化，不能把这个数当认证真实召回率或把合成成绩当真实达到90%。
+## 当前可靠入口
 
-A0 在线RGB裁剪训练已完成80轮/15120step/606次异步eval，best14000与B0组合的入口为 `configs/eval/action4_a0_online_rgb_best_v001.json`。完整RGB开发八点全部正确171/378、历史test201/400，低于保留PnP基线221/378、253/400；但真实视频双机投影包络一致性由273/2773升至1356/2773，减少巨大漂移，仍有角点方向与检测错误。包络一致性不能证明角点ID正确。因此两种A0研究选择分开保留，无全面达标模型。
+- [执行与文件索引](docs/action4_execution_index.md)
+- [第二阶段主计划](docs/stages/2026-10-24-1-plan-Action4第二阶段识别与八角点增强.md)与[进行中结论](docs/stages/2026-10-24-1-conclusion-Action4第二阶段识别与八角点增强.md)
+- [结果登记](results/results.md)、[模型说明](models/README.md)、[输出索引](outputs/README.md)
+- 当前暂停权威：configs/execution/action4_active.json → action4_execution_user_paused_r147.json。历史配置及 PID 不是重启授权。
 
-2850帧同帧对照视频在服务器 `outputs/action4_a0_online_rgb_validation_v001/video/comparison.mp4`，逐帧预测、模型身份、视觉审查及失败说明同目录上级可查。源码发布不包含模型、数据和视频资产。
+## 模型与未完成工作
 
-## 当前入口
+B0 已封存 step9500；阶段四 A0 的研究选择为 step7300、ROI1.5、corner_candidate，完整650图开发集 All8@2%=1116/1300。阶段四由用户提前停止，不能称完成原定80轮；quality_ready=false，研究试用与部署准入分开。
 
-本轮链路修复与整理已到r069，第二阶段尚未启动。新增[执行与第二阶段交接索引](docs/action4_execution_index.md)。A0/B0保持独立权重、串联推理；用户已撤回红框硬包含约束，正式模型不接入。新的按原图分组GPU特征评估与完整RGB的372目标逐点误差完全一致，旧CPU缓存已归档。几何迭代在合成提高但真实退步，未推广。
+新 ROI1.15 的75轮适配在用户暂停时保留了完整 step400 状态，尚未完成训练与异步评估，也没有可替代1.5父模型的最终 best。评分入口和异步队列等待的修复有独立工程证据，不等于定位效果改善。models/default 未覆盖，仍保留历史默认组合；后续必须读取明确 selection，不能按文件修改时间挑权重。
 
-- [阶段计划](docs/stages/2026-10-19-1-plan-Action4角点复现增补.md)、[阶段结论](docs/stages/2026-10-19-1-conclusion-Action4角点复现增补.md)。
-- [代码与数据流](docs/ARCHITECTURE.md)、[模型接口及继续训练](docs/action4_model_interfaces.md)。
-- [结果表](results/results.md)、[发布记录](README_WORKFLOW.md)。
-- 当前执行身份由 `configs/execution/action4_active.json` 指向；不要按文件时间选择旧控制器。
+已有2850帧 B0＋SAM、A0/PnP、跟踪和平滑开发视频；V5减少了诊断中的旋转跳动，但方向、厚度和遮挡问题尚存，不能把平滑当准确。六面/材料跟踪研究候选尚未完成精度验收。相机内参仍为未标定假设，demo只作参考。
 
 ## 目录职责
 
 | 目录 | 内容 |
 |---|---|
-| `src/data` | 合成、角点/掩码数据、划分校验、视频抽帧和数据接口 |
-| `src/model` | 独立 A0/B0、几何模块和自包含权重包 |
-| `src/model/training` | 损失、训练、异步评估队列和恢复 |
-| `src/eval` | 框指标、八点指标、实际视频与可视化 |
-| `configs` | 训练、评估、采样与执行配置 |
-| `data/train,eval,test` | 1600/200/200 张已发布数据；test 全双机 |
-| `models` | CURRENT_RESEARCH登记独立A0/B0及候选；models/A0为合成基线，candidates/a0_online_rgb_v001为真实视频候选，candidates/b0_photometric_v001为当前B0 |
-| `outputs` | 必要的运行证据、预测、视频与仍被消费的缓存 |
-| `archive/legacy` | 历史方案与失败证据，按原相对路径归档 |
-| `docs`、`results` | 方案、结论与可核对成绩 |
+| src/data | 数据准入、预测框来源、ROI采样、K与标签变换 |
+| src/model | A0/B0、SAM辅助、角点、几何与跟踪 |
+| src/model/training | 优化器、有效监督分母、不可变运行、恢复和异步队列 |
+| src/eval | 数值评分、推理编排、逐帧保存与只读渲染 |
+| scripts / tests | 薄入口 / 工程验证 |
+| configs | 无凭据的可追溯配置；旧配置不代表当前授权 |
+| data/phrase1 | 历史2000张，1600/200/200 |
+| data/phrase2 | 已发布6500张，5200/650/650，未重新划分 |
+| models | 默认、封存候选、历史、外部预训练模型 |
+| outputs/videos | 按时间与阶段命名的视频 |
+| outputs | 需要保留的预测、缓存、回执和失败证据 |
+| archive/legacy | 历史说明及整理前文档快照 |
+| runtime / upstream | 项目内环境、不可变运行源码、外部实现 |
 
-模型权重、数据、Blender 场景、视频、运行缓存和历史归档不进入普通 Git；服务器保留这些资产。仓库克隆只得到源码与配置，必须自行配置合法数据和权重，不能把缺失资产解释为可直接复现全部成绩。
+服务器项目根：/data/zy/vln/a-test。每条命令先进入并验证真实路径。仅物理GPU4–7及CPU24–95（最多72逻辑核）曾获授权；**当前已暂停，资源额度不构成自动恢复授权**。未修改正式数据和并行数据生成任务的资产。
 
-## 运行约定
+## 复用与验证边界
 
-服务器项目根是 `/data/zy/vln/a-test`，以下命令均从该目录执行。项目输入输出必须留在项目内。现有运行时为 `.venv/bin/python`；OpenCV 补充依赖在 `runtime/surface_deps`，FFmpeg 在 `runtime/ffmpeg/bin`。
+仓库克隆不包含权重、6500张图像、SAM缓存和原视频。先按阶段文档核对数据/模型/依赖身份；不可通过旧控制器直接启动。训练、工程检查、开发成绩和真实验收分别报告。暂停后的恢复必须从记录的完整模型、optimizer、scheduler、RNG及数据位置继续，不能混接旧优化器。
 
-```bash
-export PYTHONPATH=runtime/surface_deps:src
-export TMPDIR="$PWD/runtime"
-export PYTHONDONTWRITEBYTECODE=1
-export OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 OPENBLAS_NUM_THREADS=1
-export CUBLAS_WORKSPACE_CONFIG=:4096:8
-# 先按最新授权选择有空闲资源的物理 GPU；GPU0 禁止使用。
-.venv/bin/python -m eval.action4_staged_eval \
-  --selection configs/eval/action4_photometric_best_v001.json \
-  --split eval --output outputs/new_development_evaluation
-```
-
-完整视频入口是 `eval.action4_staged_video_parallel`。它检查 2850 帧身份、顺序、时间戳、模型身份和合并后的帧数/时长；这些只证明视频工程完整性。当前真实相机内参仍为估计值，无跨帧训练或平滑。
-
-## 权重语义
-
-A0、B0 各自独立保存，A0 包含所需冻结 RGB backbone 和任务头，B0 包含检测器及质量/框修正头。继续改进以 best 权重初始化新实验；没有 best 时刻优化器状态的历史包只支持新优化器热启动，不能声称精确续接最后一次训练。示例配置 `action4_a0_continue_best_v001.json` / `action4_b0_continue_best_v001.json` 尚未启动，不能当作已完成的新实验。
-
-## 许可
-
-保留仓库 Apache-2.0 [LICENSE](LICENSE)。复用 GDR-Net 模块的许可证、来源及改动说明在 `src/model/heads/GDRNET_LICENSE.txt` 和相邻 provenance 文件中。第三方数据、模型与素材的授权不由本仓库代码许可证替代。
+保留 Apache-2.0 [LICENSE](LICENSE)。GDR-Net等复用部分遵守各自许可证及 provenance；第三方数据和权重授权不由本仓库许可证替代。

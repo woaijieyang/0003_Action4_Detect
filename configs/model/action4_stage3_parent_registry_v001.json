@@ -1,0 +1,38 @@
+{
+  "schema": "action4.selected_parent_registry.v1",
+  "purpose": "stage3 fresh optimizer initialization with fixed completed stage1 pair",
+  "deployment_selection_changed": false,
+  "created_at": "2026-10-25T23:42:37.575878+00:00",
+  "entries": {
+    "A0": {
+      "role": "A0",
+      "selected_step": 15770,
+      "architecture": "joint_pose",
+      "config_id": "77cf2cf59191ae0b1c6db3ab1ce89a9f21a52bcb2705e3ded614c8349f6f3b5b",
+      "path": "models/candidates/action4_improvement/stage1_A0_completed_20261026/A0.pt",
+      "sha256": "377907b421f55839e00706e20e621d0e52867336c9fc2d2f878ce9862181475d",
+      "bytes": 178749453,
+      "training_config_id": "77cf2cf59191ae0b1c6db3ab1ce89a9f21a52bcb2705e3ded614c8349f6f3b5b",
+      "pose_method": "network",
+      "seal": {
+        "path": "models/candidates/action4_improvement/stage1_A0_completed_20261026/SEALED_ROLE.json",
+        "sha256": "dcd05c91d9213d166953396e72ced835f9bdb22cfb2a65d6ca7c66dc5ae6f2b4"
+      }
+    },
+    "B0": {
+      "role": "B0",
+      "selected_step": 9500,
+      "architecture": "online_b0",
+      "config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/B0.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "bytes": 140031313,
+      "training_config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "pose_method": null,
+      "seal": {
+        "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/SEALED_ROLE.json",
+        "sha256": "2b7f27bc78d33db585437824d876d5eb79bb5f55875a629f6a0e5953c51f6913"
+      }
+    }
+  }
+}

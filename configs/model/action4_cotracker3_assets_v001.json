@@ -1,0 +1,18 @@
+{
+  "schema": "action4.cotracker3.assets.v1",
+  "source_root": "upstream/co-tracker",
+  "source_commit": "82e02e8029753ad4ef13cf06be7f4fc5facdda4d",
+  "weight": "models/external/cotracker3/scaled_offline.pth",
+  "weight_sha256": "2670d4562ed69326dda775a26e54883925cd11b6fc9b24cb7aa9f8078bce7834",
+  "HF_revision": "bf55ea50d4390e1820a267f131cd6587240fb2c5",
+  "model_hw": [
+    384,
+    512
+  ],
+  "window_len": 60,
+  "stride": 4,
+  "corr_radius": 3,
+  "iters": 6,
+  "runtime": "existing .venv read-only torch2.8; no newCUDA installation",
+  "GPU_admission": "separate required before GPU worker"
+}

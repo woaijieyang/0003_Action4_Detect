@@ -1,0 +1,154 @@
+{
+  "schema": "action4.coverage1000.v1",
+  "status": "FEASIBILITY_DRAFT_NOT_RENDER_FROZEN",
+  "batch_id": "coverage1000_v001",
+  "master_seed": 2026102304,
+  "dataset_root": "data/phrase2",
+  "candidate_root": "data/phrase2/.staging_batches/coverage1000_v001",
+  "output_root": "outputs/coverage1000_v001",
+  "existing_images": 5500,
+  "new_images": 1000,
+  "split_counts": {
+    "train": 800,
+    "eval": 100,
+    "test": 100
+  },
+  "final_split_counts": {
+    "train": 5200,
+    "eval": 650,
+    "test": 650
+  },
+  "groups": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "small_width_bands": [
+    [
+      0.04,
+      0.05
+    ],
+    [
+      0.05,
+      0.06
+    ],
+    [
+      0.06,
+      0.07
+    ],
+    [
+      0.07,
+      0.08
+    ]
+  ],
+  "ratio_bands": [
+    [
+      1.5,
+      1.8
+    ],
+    [
+      1.8,
+      2.1
+    ],
+    [
+      2.1,
+      2.4
+    ]
+  ],
+  "gap_bands": [
+    [
+      0.003,
+      0.01
+    ],
+    [
+      0.01,
+      0.02
+    ],
+    [
+      0.02,
+      0.03
+    ]
+  ],
+  "high_occlusion_bands": [
+    [
+      0.4,
+      0.5
+    ],
+    [
+      0.5,
+      0.6
+    ],
+    [
+      0.6,
+      0.75
+    ]
+  ],
+  "position_ranges": {
+    "left": {
+      "u": [
+        0.01,
+        0.99
+      ],
+      "v": [
+        0.01,
+        0.99
+      ]
+    },
+    "right": {
+      "u": [
+        0.01,
+        0.99
+      ],
+      "v": [
+        0.01,
+        0.99
+      ]
+    }
+  },
+  "position_policy": "Draft test of broader inframe domains; inherited old ranges were not requested for coverage1000. All actual body/arm/table/occlusion/close rules unchanged.",
+  "depth_range_m": [
+    0.24,
+    1.4
+  ],
+  "far_target_minima": {
+    "Z_ge_080": 100,
+    "Z_ge_100": 30,
+    "Z_120_to_140": 10
+  },
+  "depth_assignment_status": "Assign eligible A/B low-occlusion slots only after actual feasibility map; do not claim coverage from allowed bounds.",
+  "scene_counts": {
+    "table_full_garment": 700,
+    "cloth_lift10_full_garment": 200,
+    "wall": 100
+  },
+  "width": 3248,
+  "height": 2464,
+  "rgb_samples": 32,
+  "mask_samples": 1,
+  "denoiser": "OPTIX",
+  "max_attempts_per_claim": 8,
+  "max_total_attempts_per_slot": 64000,
+  "preview_count": 128,
+  "preview_train_only": true,
+  "train_enabled": false,
+  "default_models_immutable": true,
+  "max_larger_width": 0.23,
+  "close_center_max": 0.2,
+  "body_size_frozen": true,
+  "intrinsics_frozen": true,
+  "installation_frozen": true,
+  "cpu_total": 72,
+  "scene_asset_root": "data/action4_scene_templates/phrase2_v003",
+  "existing_parameter_catalog": "outputs/coverage1000_v001/ORIENTATION_CATALOG_v001.json",
+  "metric_definition": "Full-body bbox width/W; 2D Euclidean bbox edge gap/W and center gap/W; masks actual visible/amodal; Z and norm(CAD origin translation) separate.",
+  "shared_size_tail_class": false,
+  "close_modes": [
+    "horizontal_with_vertical_slide",
+    "vertical_with_horizontal_slide",
+    "corner_diagonal"
+  ],
+  "formal_rgb_allowed": false,
+  "feasibility_attempts_per_slot": 16
+}

@@ -1,0 +1,14 @@
+{
+  "schema": "action4.native_float32_se3_representation.v1",
+  "source": "native_float32_values",
+  "rotation_conversion": "SVD_nearest_positive_determinant_rotation",
+  "max_orthogonality_error": 3.814697265625e-06,
+  "max_determinant_error": 3.814697265625e-06,
+  "max_singular_value_error": 3.814697265625e-06,
+  "max_rotation_element_change": 1.9073486328125e-06,
+  "max_corner_projection_change_px": 0.01,
+  "translation_changed": false,
+  "native_state_changed": false,
+  "existing_geometry_gate_changed": false,
+  "accuracy_gain_claimed": false
+}

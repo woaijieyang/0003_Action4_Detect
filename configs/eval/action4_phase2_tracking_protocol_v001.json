@@ -1,0 +1,62 @@
+{
+  "schema": "action4_phase2_tracking_protocol_v001",
+  "status": "cpu_protocol_preparation_not_stage6_or_stage7_effect_acceptance",
+  "identity": ["track_id", "anchor_id", "generation", "frame_id"],
+  "window_identity": ["track_id", "track_generation", "window_id", "start", "end"],
+  "generation_semantics": "track_generation_is_distinct_from_per_material_anchor_generation",
+  "heldout": {
+    "binding_registry": "immutable_full_identity_with_xyz_source_binding_frame_binding_quality",
+    "excluded_consumers": ["RANSAC", "PnP", "LM", "temporal_fitting", "candidate_acceptance", "inlier_count", "degeneracy", "per_frame_fallback"],
+    "fit_min_points_after_exclusion": 12,
+    "fit_min_grids_after_exclusion": 4,
+    "fit_packet_instance_count_max": 1,
+    "same_frame_material_generation_uniqueness": "at_most_one_generation_per_track_id_anchor_id",
+    "A0_xyz_interpretation": "fixed_estimated_binding_2d_consistency_not_true_3d_gt"
+  },
+  "coordinates": {
+    "working_space": "native_pixels_for_geometry_and_scoring",
+    "model_hw": [384, 512],
+    "crop": "integer_x0_y0_width_height_with_negative_padding",
+    "align_corners": true,
+    "crop_min_dimension": 2,
+    "x_model": "(x_native-x0)*511/(width-1)",
+    "y_model": "(y_native-y0)*383/(height-1)",
+    "reverse_time": "T-1-local_query_index",
+    "support_grid": {"shape": [6, 6], "x_endpoints": [8, 504], "y_endpoints": [8, 376], "query_local_t": 0, "padding_filter": true, "cad_xyz": false},
+    "raw_preserved": true,
+    "adapter_candidate_mask": "nonquery_candidate_mask_is_not_an_observed_gate",
+    "invalid_probability_policy": "preserve_raw_and_report_finite_in_range_masks",
+    "query_correction": "separate_array_and_is_query_mask",
+    "single_frame_temporal_observed": false,
+    "tail_frame_duplication": false
+  },
+  "scoring": {
+    "own_domain": "annotation_valid & ~registered_query",
+    "common_domain": "annotation_valid & ~(Q_C0 | Q_C1 | Q_C2)",
+    "missing_predictions": "retained_in_visible_denominator_as_failures",
+    "native_pck_px": [2, 5, 10],
+    "distance_comparison": "strict_less_than",
+    "normalized_scale_source": "independent_visible_bbox_annotation_only",
+    "missing_normalized_scale": "not_measured",
+    "tap_native_to_256": ["x*256/full_image_width", "y*256/full_image_height"],
+    "tap_thresholds": [1, 2, 4, 8, 16],
+    "tap_jaccard": "TP/(GT_visible+FP)",
+    "tap_false_positive": "domain & predicted_visible & (~gt_visible | ~prediction_available_finite | ~within_threshold)",
+    "unknown": "excluded_not_occluded",
+    "new_candidate_query_union": "rescore_all_runs"
+    ,"expected_runs": ["C0", "C1", "C2"]
+    ,"additional_candidate": "explicit_expected_run_names_superset_required"
+    ,"occlusion_accuracy_domain": "score_domain & visibility_response_available"
+    ,"missing_response": "report_response_coverage_and_count_not_occlusion_success"
+    ,"required_group_precision_evidence": "must_have_common_GT_visible_rows"
+    ,"manifest_identities": ["common_annotation_manifest_id", "query_union_manifest_id", "common_mask_identity"]
+    ,"system_seed_failure_counts": "provided_metadata_or_not_measured"
+  },
+  "gate_scale": {"sources": ["full", "history", "candidate_support"], "provenance": ["kind", "source_frame", "valid", "upstream_identity"], "sigma": "max(2,0.005*d_gate)", "gt_allowed": false},
+  "tracking_seams": {"owner_boundary": "floor((next_start+previous_end)/2)", "minimum_common_nonquery_frames": 3, "normalized_difference": "uv_distance/max(2,0.005*d_gate_t)", "median_max": 1, "p95_max": 2, "unknown_or_conflict": "deny_carry_no_average", "cycle_unavailable": "null_not_zero"},
+  "pose_windows": {"length": 15, "stride": 5, "last_end": "min(start+15,segment_end)", "first_commit_start": "segment_start", "other_commit_start": "window_start+5", "last_commit_end": "segment_end", "other_commit_end": "window_start+10", "split_at": ["lost", "identity", "gap"], "gap_threshold": "2*registered_normal_interval"},
+  "pose_seam_diagnostics": {"rotation_deg_trigger_gt": 5, "translation_over_cad_diagonal_trigger_gt": 0.05, "projection_median_trigger_gt": "max(2,0.005*d_gate)", "projection_materials": "explicit_preregistered_fixed_nonheldout_F_manifest_and_same_XYZ_K", "missing_any_fixed_material": "not_measured_with_missing_IDs_never_smaller_intersection", "fixed_material_set_absent": "not_measured", "rotation_validation_atol": 1e-7, "rotation_validation_rtol": 0, "precision_acceptance": false, "automatic_smoothing": false},
+  "temporal": {"units": ["meters", "radians", "seconds"], "acceleration_interval": "difference_of_adjacent_velocity_midpoint_times", "interpretation": "relative_capture_pose_not_world_motion"},
+  "observability": {"material_only": true, "rotation_scale_rad": "5*pi/180", "translation_scale_m": "0.05*cad_diagonal", "relative_svd_tolerance": 1e-8, "rank_required": 6, "h_obs_condition_max": 100000000, "prior_and_damping_excluded": true},
+  "limitations": ["no_CoTracker_or_SAM_inference", "no_solver_or_optimization", "no_real_tracking_accuracy", "no_hidden_corner_improvement_claim"]
+}

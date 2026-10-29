@@ -1,0 +1,107 @@
+{
+  "role": "B0",
+  "mode": "full_training",
+  "output": "outputs/action4_improvement/stage1_baseline/p2_b0_formal80_v001",
+  "dataset_root": "data/phrase2",
+  "seed": 20261024,
+  "validation_receipt": "outputs/action4_phase2_stage1_v001/data/PHRASE2_VALIDATED.json",
+  "expected_units": 5200,
+  "expected_eval_images": 650,
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 2.25
+  },
+  "parent_bundle": "models/default/B0.pt",
+  "parent_best_step": 3220,
+  "parent_registry": "configs/model/action4_best_registry_v003.json",
+  "parent_bundle_sha256": "dba8eefbcda8d30df348fcaa9aec8f2e9deaed375313b44a21d7c47784b64362",
+  "epochs": 80,
+  "batch": 32,
+  "micro": 8,
+  "world_size": 3,
+  "threads": 2,
+  "loader_workers": 4,
+  "training_gpus": [
+    4,
+    5,
+    6
+  ],
+  "eval_gpus": [
+    0,
+    7,
+    0,
+    7
+  ],
+  "eval_loader_workers": 4,
+  "reserved_cpu_budget": 43,
+  "project_total_reserved_cpu": 43,
+  "min_free_mib": 18000,
+  "max_pending": 8,
+  "weight_decay": 0.0001,
+  "eval_every": 20,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "surface_lr": 1e-05,
+  "lr": 5e-05,
+  "train_backbone": false,
+  "roi_jitter": {
+    "center_fraction": 0.15,
+    "scale_range": [
+      0.65,
+      1.35
+    ]
+  },
+  "surface_source": {
+    "admission": "data/phrase2/GEOMETRY_ADMISSION.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/phrase2/train/geometry",
+      "eval": "data/phrase2/eval/geometry",
+      "test": "data/phrase2/test/geometry"
+    },
+    "manifest_sha256": {
+      "train": "d7e0bdffba0b119e7d7adaaae45d5105ff13fb5a97e7bb55c8cb13d0d217501f",
+      "eval": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+      "test": "132e147ab4afdf3095a08e0d208f56992b38319c7b15334efea7e88ac3c5b13f"
+    }
+  },
+  "evaluation_scoring_policy": "center",
+  "b0_scoring_policy": "center",
+  "source_identity": {},
+  "score_schema": "action4.bbox.v1",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "scope": "formal stage1B: all5200 train images x80 epochs; eval650 every20 actual optimizer steps; no test/video/default promotion",
+  "independent_head_dependencies": [],
+  "geometry_batch_policy": "instancewise_head_v1",
+  "execution_gate": "outputs/action4_phase2_stage1_v001/B0_EXECUTION_GATE.json",
+  "tested_project_code_sha256": "d9a147b9ece22a50864a5af5c5756f92340f925a588d8f815fe5f53de7a1f525",
+  "integration_or_admission_receipt": "outputs/action4_improvement/stage1_baseline/p2_b0_formal80_v001/ADMISSION.json",
+  "photometric": {
+    "probability": 0.8,
+    "operation_probability": 0.5,
+    "add_range": [
+      -0.09803921568627451,
+      0.09803921568627451
+    ],
+    "multiply_range": [
+      0.6,
+      1.4
+    ],
+    "contrast_range": [
+      0.5,
+      2.2
+    ],
+    "blur_sigma_max": 1.2
+  }
+}

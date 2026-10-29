@@ -1,0 +1,99 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r086",
+  "parent_authority": "configs/execution/action4_execution_r085.json",
+  "status": "PHRASE2_6500_DELIVERED",
+  "configuration": "configs/data/action4_coverage1000_v001.json",
+  "protocol_id": "eb52151d8bdcf6698e89b35c98eef6c2db606ae0f3c042d84478d00b582cbe25",
+  "dataset_root": "data/phrase2",
+  "candidate_root": "data/phrase2/.staging_batches/coverage1000_v001",
+  "slot_plan": "outputs/coverage1000_v001/SLOTS.json",
+  "progress": "outputs/coverage1000_v001/PIPELINE_STATUS.json",
+  "source_freeze": "outputs/coverage1000_v001/SOURCE_FREEZE_MERGED_v001.json",
+  "target_images": 6500,
+  "split_counts": {
+    "train": 5200,
+    "eval": 650,
+    "test": 650
+  },
+  "total_after_merge": 6500,
+  "final_split_counts": {
+    "train": 5200,
+    "eval": 650,
+    "test": 650
+  },
+  "current_formal_images": 6500,
+  "current_formal_split_counts": {
+    "train": 4400,
+    "eval": 550,
+    "test": 550
+  },
+  "existing5500_immutable": true,
+  "completion": "data/phrase2/DATASET_COMPLETE.json",
+  "formal_dataset_release_complete": true,
+  "current5500_release_still_usable": true,
+  "train_enabled": false,
+  "default_models_immutable": {
+    "A0": {
+      "path": "models/default/A0.pt",
+      "step": 14000
+    },
+    "B0": {
+      "path": "models/default/B0.pt",
+      "step": 3220
+    }
+  },
+  "GPU": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "authorized_GPU": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "GPU0_forbidden": true,
+  "GPU1_reserved_evaluation": true,
+  "CPU_total_budget": 72,
+  "no_subagents": true,
+  "occlusion_mode": "arm_geometry",
+  "generation_policy_revision": "coverage1000_conditional_rigid_inclination_v001",
+  "queue": "outputs/coverage1000_v001/slots.sqlite3",
+  "pipeline": "src/data/action4_coverage1000_safe_dispatch.py",
+  "current_dispatch": "outputs/coverage1000_v001/CURRENT_RUN.json",
+  "render_processes": 32,
+  "render_processes_per_GPU": 8,
+  "quality_processes": 3,
+  "preview_visual_accepted": 128,
+  "monitor_automation_id": "action4-coverage1000",
+  "similarity_configuration": "configs/data/action4_phrase2_similarity_v001.json",
+  "arm_asset": "data/action4_scene_templates/coverage1000_arm_v002",
+  "arm_asset_review": "outputs/coverage1000_v001/arm_repair_v001/ROOT_ARM_VISUAL_REVIEW.json",
+  "baseline_identity": "outputs/coverage1000_v001/BASELINE_IDENTITY.json",
+  "user_arm_repair_decision": "Keep every group, split, scene and stratum quota; repair and admit continuous arm in an isolated version.",
+  "gates_remaining": [
+    "formal128_visual_review",
+    "all1000_actual_quota_and_geometry_audit",
+    "global6500_exact_and_near_duplicate_check",
+    "no_active_old_manifest_consumers",
+    "final_visual_review",
+    "actual_A0_B0_factory_read",
+    "atomic6500_publication"
+  ],
+  "current_capacity": "outputs/coverage1000_v001/runs/bulk_v001/CURRENT_CAPACITY.json",
+  "preview_completion": "outputs/coverage1000_v001/PREVIEW_PROMOTION_COMPLETE.json",
+  "geometry_attempt_cache": "outputs/coverage1000_v001/GEOMETRY_TAIL_APPLIED.json",
+  "batch_images": 1000,
+  "batch_split_counts": {
+    "train": 800,
+    "eval": 100,
+    "test": 100
+  },
+  "consumer_configuration": "configs/data/action4_phrase2_consumer_v001.json",
+  "original5500_release": "data/phrase2/releases/base5500_v001/DATASET_COMPLETE.json"
+}

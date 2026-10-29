@@ -1,0 +1,212 @@
+{
+  "schema": "action4.phrase2_generation.v1",
+  "master_seed": 2026102302,
+  "dataset_root": "data/phrase2",
+  "output_root": "outputs/phrase2_generation_v001",
+  "split_counts": {
+    "train": 4000,
+    "eval": 500,
+    "test": 500
+  },
+  "scene_counts": {
+    "wall": 500,
+    "table_full_garment": 3500,
+    "cloth_lift10_full_garment": 1000
+  },
+  "scene_counts_by_split": {
+    "train": [
+      400,
+      2800,
+      800
+    ],
+    "eval": [
+      50,
+      350,
+      100
+    ],
+    "test": [
+      50,
+      350,
+      100
+    ]
+  },
+  "coordinate_convention": "u=x/W,v=y/H,top_left_origin; bottom-up input ranges already converted once",
+  "position_ranges": {
+    "A": {
+      "total": [
+        0.15,
+        0.65
+      ],
+      "core": [
+        0.25,
+        0.55
+      ]
+    },
+    "B": {
+      "total": [
+        0.3,
+        0.9
+      ],
+      "core": [
+        0.45,
+        0.75
+      ]
+    },
+    "C": {
+      "total": [
+        0.4,
+        1.0
+      ],
+      "core": [
+        0.45,
+        0.7
+      ]
+    },
+    "D": {
+      "total": [
+        0.3,
+        0.99
+      ],
+      "core": [
+        0.45,
+        0.75
+      ]
+    }
+  },
+  "joint_position_quotas": {
+    "train": {
+      "": 2600,
+      "A": 160,
+      "B": 480,
+      "C": 280,
+      "D": 280,
+      "AB": 16,
+      "AC": 12,
+      "AD": 12,
+      "BC": 52,
+      "BD": 52,
+      "CD": 56
+    },
+    "eval": {
+      "": 325,
+      "A": 20,
+      "B": 60,
+      "C": 35,
+      "D": 35,
+      "AB": 1,
+      "AC": 2,
+      "AD": 2,
+      "BC": 7,
+      "BD": 7,
+      "CD": 6
+    },
+    "test": {
+      "": 325,
+      "A": 20,
+      "B": 60,
+      "C": 35,
+      "D": 35,
+      "AB": 1,
+      "AC": 2,
+      "AD": 2,
+      "BC": 7,
+      "BD": 7,
+      "CD": 6
+    }
+  },
+  "occlusion_quota_by_side_by_split": {
+    "train": [
+      3680,
+      200,
+      120
+    ],
+    "eval": [
+      460,
+      25,
+      15
+    ],
+    "test": [
+      460,
+      25,
+      15
+    ]
+  },
+  "occlusion_intervals": [
+    [
+      0,
+      0.35
+    ],
+    [
+      0.35,
+      0.5
+    ],
+    [
+      0.5,
+      0.7
+    ]
+  ],
+  "occlusion_mode": "arm_geometry",
+  "target_presence": [
+    true,
+    true
+  ],
+  "projected_width": {
+    "core": [
+      0.08,
+      0.14
+    ],
+    "total": [
+      0.06,
+      0.23
+    ],
+    "core_probability": 0.85
+  },
+  "depth_m": [
+    0.24,
+    1.4
+  ],
+  "rgb_samples_candidate": [
+    32,
+    64
+  ],
+  "rgb_samples": 32,
+  "mask_samples": 1,
+  "denoiser": "OPTIX",
+  "width": 3248,
+  "height": 2464,
+  "threads_per_render_worker": 2,
+  "cpu_total": 72,
+  "gpu0_prohibited": true,
+  "gpu1_reserved": true,
+  "max_attempts_per_claim": 8,
+  "train_enabled": false,
+  "preview_count": 128,
+  "frozen_installation": true,
+  "formal_RGB": "Blender only; no generated image edits",
+  "occlusion_catalog": "outputs/phrase2_generation_v001/OCCLUSION_CATALOG_v006.json",
+  "primary_occlusion_source_policy": {
+    "medium_heavy": "own_wrist_forearm",
+    "low": "own arm and physically fixed mount allowed"
+  },
+  "asset_metadata_root": "data/action4_scene_templates/phrase2_v003",
+  "arm_continuity_guard": "off-frame elbow seam and far terminal; no upperarm reentry",
+  "admission_authority": "ROOT_PREVIEW_ACCEPTED.json then final DATASET_COMPLETE.json, separate from frozen sampling configuration",
+  "render_profile": {
+    "samples": 32,
+    "denoiser": "OPTIX",
+    "native_wh": [
+      3248,
+      2464
+    ],
+    "mask_samples": 1,
+    "evidence": "outputs/phrase2_generation_v001/render_benchmark_v003/COMPLETE.json"
+  },
+  "max_total_attempts_per_slot": 64000,
+  "sampling_policy_revision": "v010_factored_side_parameters",
+  "max_orientation_proposals_per_side": 64,
+  "orientation_anchor_weight_sigma_uv": 0.22,
+  "primary_source_rule": "largest individual actual physical occluder; aggregate class shares reported separately",
+  "collision_volume_contract": "closed conservative core OBB + capped small planar link endpoints; rendered geometry frozen",
+  "per_side_budget_semantics": "bounded complete single-side parameter proposals; independent rejection with shared height/size latent; first feasible exits immediately",
+  "corner_visibility_semantics": "canonical8_front_facing_incident_face_AND_actual_scene_ray_clear_AND_inframe_v1"
+}

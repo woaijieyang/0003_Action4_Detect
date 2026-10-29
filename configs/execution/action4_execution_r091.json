@@ -1,0 +1,59 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r091",
+  "parent_authority": "configs/execution/action4_execution_r090.json",
+  "status": "PHRASE2_STAGE1_B0_FORMAL_RUNNING",
+  "dataset_root": "data/phrase2",
+  "dataset_release": "phrase2_6500_v001",
+  "split_counts": {
+    "train": 5200,
+    "eval": 650,
+    "test": 650
+  },
+  "train_enabled": true,
+  "current_job": "p2_b0_formal80_v001",
+  "role": "B0",
+  "epochs": 80,
+  "eval_every_optimizer_steps": 20,
+  "configuration": "runtime/action4_runs/p2_b0_formal80_v001/source/resolved_config.json",
+  "run_spec": "runtime/action4_runs/p2_b0_formal80_v001/RUN_SPEC.json",
+  "output": "outputs/action4_improvement/stage1_baseline/p2_b0_formal80_v001",
+  "execution_gate": "outputs/action4_phase2_stage1_v001/B0_EXECUTION_GATE.json",
+  "continuation": "outputs/action4_phase2_stage1_v001/CONTINUATION.json",
+  "training_gpus": [
+    4,
+    5,
+    6
+  ],
+  "evaluation_gpus": [
+    5,
+    6,
+    7
+  ],
+  "eval_workers": 4,
+  "cpu_reserved": 43,
+  "cpu_budget_limit": 72,
+  "authorized_training_gpu": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "gpu1_eval_only_max_workers": 8,
+  "GPU0_forbidden": true,
+  "default_models_unchanged": true,
+  "data_unchanged": true,
+  "no_subagents": false,
+  "plan": "docs/stages/2026-10-24-1-plan-Action4第二阶段识别与八角点增强.md",
+  "conclusion": "docs/stages/2026-10-24-1-conclusion-Action4第二阶段识别与八角点增强.md",
+  "monitor_policy": "30minutes; no duplicate jobs, no full video during training; A0 after completed1B and own throughput gate",
+  "time_unix": 1792821820.1695654,
+  "authorized_parallel_subagents": 2,
+  "parallel_preparation": "outputs/action4_parallel_preparation_v001/DISPATCH.json",
+  "total_reserved_cpu_with_parallel_preparation": 51,
+  "resource_dispatch": "outputs/action4_phase2_stage1_v001/gpu0_retirement_v001/RESOURCE_DISPATCH.json",
+  "resource_override_reason": "User revoked GPU0; frozen model config retained as historical run identity, actual GPU mapping is resource_dispatch",
+  "controller_pid": 3080406
+}

@@ -1,0 +1,282 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": 142,
+  "parent_authority": {
+    "path": "configs/execution/action4_execution_roi115_finetune75_r141.json",
+    "sha256": "9586c50dd9b0c905fe0ecb556d4d3ff00b54aeb4f6301fb8cfdd0b39fe94a380"
+  },
+  "status": "ROI115_FINETUNE75_TRAINING",
+  "current_job": "p2_a0_corner_roi115_finetune75_v001",
+  "role": "A0",
+  "epochs": 75,
+  "roi_expansion": 1.15,
+  "training_active": true,
+  "run_spec": "runtime/action4_runs/p2_a0_corner_roi115_finetune75_v001/RUN_SPEC.json",
+  "configuration": "runtime/action4_runs/p2_a0_corner_roi115_finetune75_v001/source/resolved_config.json",
+  "output": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v001",
+  "authorized_training_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "authorized_evaluation_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "forbidden_gpu_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "GPU0_forbidden": true,
+  "gpu1_eval_only_max_workers": 0,
+  "cpu_budget_limit": 72,
+  "cpu_policy": {
+    "logical_cpu_count": 96,
+    "physical_core_count": 48,
+    "allowed_logical_cpu_ids": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "max_logical_cpus": 72,
+    "allocation_order": "highest_id_first"
+  },
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "eval_0": [
+      24
+    ],
+    "eval_1": [
+      25
+    ],
+    "eval_2": [
+      26
+    ],
+    "eval_3": [
+      27
+    ],
+    "eval_4": [
+      28
+    ],
+    "eval_5": [
+      29
+    ],
+    "eval_6": [
+      30
+    ],
+    "eval_7": [
+      31
+    ],
+    "eval_8": [
+      32
+    ],
+    "eval_9": [
+      33
+    ],
+    "eval_10": [
+      34
+    ],
+    "eval_11": [
+      35
+    ],
+    "eval_12": [
+      36
+    ],
+    "eval_13": [
+      37
+    ],
+    "eval_14": [
+      38
+    ],
+    "eval_15": [
+      39
+    ],
+    "eval_16": [
+      40
+    ],
+    "eval_17": [
+      41
+    ],
+    "eval_18": [
+      42
+    ],
+    "eval_19": [
+      43
+    ],
+    "eval_20": [
+      44
+    ],
+    "eval_21": [
+      45
+    ],
+    "eval_22": [
+      46
+    ],
+    "eval_23": [
+      47
+    ],
+    "eval_24": [
+      48
+    ],
+    "eval_25": [
+      49
+    ],
+    "eval_26": [
+      50
+    ],
+    "eval_27": [
+      51
+    ],
+    "eval_28": [
+      52
+    ],
+    "eval_29": [
+      53
+    ],
+    "eval_30": [
+      54
+    ],
+    "eval_31": [
+      55
+    ]
+  },
+  "controller_cpu": [
+    56
+  ],
+  "root_preparation_cpu_pool": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "eval_workers": 32,
+  "planned_eval_schedule": {
+    "every": 10,
+    "step0": true,
+    "final": true
+  },
+  "dataset_unchanged": true,
+  "default_models_unchanged": true,
+  "old_stage4_resume_allowed": false,
+  "scope": "User authorized independent75epoch ROI1.15 lowLR adaptation from sealed7300; PnP/tracking/smoothing retained; no comparison video requested",
+  "execution_gate": {
+    "path": "outputs/action4_roi115_finetune_preparation_v001/EXECUTION_GATE.json",
+    "sha256": "19f86f58da5b3757abde5249837b6add5af00755e4d58432c63212fa75c2cca7"
+  },
+  "continuation": "outputs/action4_stage3_native_prediction_v001/CONTINUATION.json",
+  "time_unix": 1793243648.6943786,
+  "first_observed_progress": {
+    "path": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v001/FIRST_LIVE_PROGRESS.json",
+    "sha256": "f6c7a48daef84a24bf120820232906b2eb3289205a43495632fdf1dcf40f12db"
+  }
+}

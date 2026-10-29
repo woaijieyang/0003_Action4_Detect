@@ -1,0 +1,12 @@
+{
+  "schema": "action4.body_box_projection.v1",
+  "status": "development_candidate_not_accuracy_admitted",
+  "policy": {
+    "center_alpha": 0.65,
+    "log_size_alpha": 0.2,
+    "max_enclosure_side_ratio": 1.35,
+    "max_enclosure_area_ratio": 1.6,
+    "max_enclosure_center_shift_per_diagonal": 0.15
+  },
+  "scope": "video ROI output only; native/association/reanchor policy unchanged"
+}

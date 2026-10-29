@@ -1,0 +1,129 @@
+{
+  "input_lock": {
+    "path": "outputs/action4_sam80_fixed_video_v001/INPUT_LOCK.json",
+    "sha256": "826c335e2ee96b1a92f251ac86848c5861940e26c755ff6bacd894d6f42d305e"
+  },
+  "face_contract": {
+    "path": "configs/model/action4_six_face_anchor_contract_v001.json",
+    "sha256": "36a39d4ff84157480391112c60aec906f67177d51fb982c79ea1cd333f27cd30"
+  },
+  "patch_candidates": {
+    "path": "outputs/action4_six_face_anchor_preparation_v001/patch_candidates_v002/PATCH_CANDIDATES.json",
+    "sha256": "595772805b108c059b4a132b12ff7da8cba4938fe397731f01cfe0e3b49e278b"
+  },
+  "frames": [
+    4,
+    20,
+    180,
+    232,
+    808,
+    1180,
+    1195,
+    1289,
+    2489,
+    2778
+  ],
+  "cpus": [
+    60,
+    61,
+    62,
+    63
+  ],
+  "thresholds": {
+    "plane_distance_mm": 0.8,
+    "bounds_tolerance_mm": 1.0,
+    "minimum_support_cells": 12,
+    "minimum_point_distance_px": 80.0,
+    "positive_points": 4,
+    "adjacent_negative_points": 1,
+    "background_negative_points": 1
+  },
+  "output": "outputs/action4_sam80_saved_face_inputs_v001",
+  "support_policy": {
+    "schema": "action4.face_prompt_support_policy.v1",
+    "mode": "logical_face_consensus"
+  },
+  "surface_snapshots": [
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000004_e1.5_0.npz",
+      "sha256": "d9c0f38534209e6f1f10c6f910f9fe46de2feab8c41c68a9d00a002c531f27be"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000004_e1.5_1.npz",
+      "sha256": "673da291b711b66cfe8b848976d729706a949a6cc29a77a1c60ff4b6a07ad646"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000020_e1.5_0.npz",
+      "sha256": "b10319e0b4cd205eb5a19de80511908449a32c9c500bc3a2c83f9435d1bc88aa"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000020_e1.5_1.npz",
+      "sha256": "3c42a116af4515705fa4f134b1c59d076855da8f4038f7d238b4479b4559341f"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000180_e1.5_0.npz",
+      "sha256": "38b96d5382776de0daf04879efe390134b2df2b9de1bfb1e1c629091429a74cf"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000180_e1.5_1.npz",
+      "sha256": "1b05092ec57cd35b4c057c220a74bb669c07bd922eab776582645b6ce0f60e54"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000232_e1.5_0.npz",
+      "sha256": "df816631fedc460b54091f55bf2a8b28531a7cd22c935dd6c72b629aa2078e26"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_000/surface/frame_00000232_e1.5_1.npz",
+      "sha256": "d26a9285aa0e6c7e324715d52d323e4e8d39be122b3ebbc1412aa443be45bb38"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_002/surface/frame_00000808_e1.5_0.npz",
+      "sha256": "7e921dde170938276414b5b1100e0edae17ddbf8a4df9f550ef9db6891d28bf6"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_002/surface/frame_00000808_e1.5_1.npz",
+      "sha256": "fd218f66036bacbb7cbf3f40edbc8b17c89ec2b33d87f6139d6b84b0e8ab5692"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001180_e1.5_0.npz",
+      "sha256": "40eb3ffc858f129e52ded6dcba0b4a531b10b6ea443f208b971b8e61f1d43cbc"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001180_e1.5_1.npz",
+      "sha256": "e736f6490c9d665b87d8628c0927537ceebc4012e9d68778ab0e59d79ea0fe69"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001195_e1.5_0.npz",
+      "sha256": "9bb55e1a69364b45f3282343845a913b7bd7d51d4f6bfba02dce346448472e4d"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001195_e1.5_1.npz",
+      "sha256": "600d5553005067566e8fc9f89852ec9751c32f1a51b7fa04d4282cf3bd8222c7"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001289_e1.5_0.npz",
+      "sha256": "d991e44e75b8e61915d53f0776b56cd13fc0549e69fbcf737966ef7bd8e35dbb"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_003/surface/frame_00001289_e1.5_1.npz",
+      "sha256": "35ebfcbf2ef3efaeb43d80c8a70140f6de93a9300d90d073049bcb2732eed15d"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_006/surface/frame_00002489_e1.5_0.npz",
+      "sha256": "3bfdb11ea318447647f3a7e2c8d115af8a54292c9f29b8cc538c9d681cd1637b"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_006/surface/frame_00002489_e1.5_1.npz",
+      "sha256": "4c39f424db2d570ac298b65ac07e4fb2c96f79dc2b91f9b154e9a3a9500f1c92"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_007/surface/frame_00002778_e1.5_0.npz",
+      "sha256": "4bfae453ce370f854655d454720c9fc80d1593420f8136250cc3fc9f03f49318"
+    },
+    {
+      "path": "outputs/action4_sam80_fixed_video_v001/part_007/surface/frame_00002778_e1.5_1.npz",
+      "sha256": "ea88bf3f5472f1516a00c74f3c623c129fd4b45426e6e0b4feb318a43887aaa8"
+    }
+  ],
+  "scope": "Reuse actual selected SAM80 surface+current native masks; no model calls; hypotheses only"
+}

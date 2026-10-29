@@ -1,0 +1,253 @@
+{
+  "schema": "action4.full_zeroshot_dev.v2",
+  "scope": "REAL822_REFERENCE_650_SYNTHETIC_DEV_PLUS56_UNKNOWN_GT_REAL_DEV",
+  "dataset": {
+    "split": "eval",
+    "manifest": "data/phrase2/eval/annotations.jsonl",
+    "manifest_sha256": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+    "expected_images": 650,
+    "expected_original_gt": 1300,
+    "order": "manifest_line_order",
+    "keep_all_original_gt": true
+  },
+  "inference": {
+    "asset_config": "configs/model/action4_yoloe_assets_v001.json",
+    "runtime_lock": "configs/model/action4_yoloe_runtime_gpu1_v002.json",
+    "adapter": "src/model/action4_yoloe_adapter.py",
+    "predict_args": {
+      "imgsz": 1280,
+      "conf": 0.05,
+      "iou": 1,
+      "max_det": 300,
+      "nms": null,
+      "agnostic_nms": false,
+      "retina_masks": true,
+      "save": false,
+      "verbose": false
+    },
+    "mask_threshold": 0.5,
+    "native_cache_schema": "action4.full_zeroshot.native.v1",
+    "profile_status": "ROOT_REVIEWED_REFERENCE_CPU_REGISTERED_CANDIDATE_NOT_EVALUATED",
+    "shard_count": 4,
+    "max_cpu_threads": 4,
+    "execute_requires_explicit_run_mode": true,
+    "prediction_snapshot": "outputs/action4_full_zeroshot_realref_v002/predict_snapshot_v002/SNAPSHOT.json",
+    "prediction_snapshot_sha256": "188a7975808602809f5fdd3004dc945475be05ded8f39e5f19e2e30283be48a7",
+    "profile_names": [
+      "real822_bbox25",
+      "real822_mask25"
+    ],
+    "expected_native_tasks": 1412,
+    "startup_sequence": {
+      "initial_shards": [
+        0,
+        1
+      ],
+      "additional_shards": [
+        2,
+        3
+      ],
+      "root_must_observe_initial_peak_before_expansion": true,
+      "SAM_GPU_concurrent_with_four_YOLO": false
+    }
+  },
+  "class_protocol": {
+    "protocol_id": "camera_proxy_eval_known_action4_v1",
+    "frozen": true,
+    "prediction_class_map": {
+      "0": "camera",
+      "1": "camera",
+      "2": "smartwatch",
+      "3": "wristwatch",
+      "4": "wristband",
+      "5": "bracelet",
+      "6": "mobile phone"
+    },
+    "target_classes": [
+      "camera"
+    ],
+    "model_specificity": "UNVERIFIED_NO_OTHER_CAMERA_NEGATIVE_ANNOTATIONS"
+  },
+  "policies": [
+    {
+      "id": "real822_bbox25_conf025_supportdedup085",
+      "profiles": [
+        "real822_bbox25"
+      ],
+      "score_threshold": 0.25,
+      "mask_iou_dedup": 0.85,
+      "center_distance_small_diag": 0.05,
+      "prompt_padding_fraction": 0
+    },
+    {
+      "id": "real822_mask25_conf025_supportdedup085",
+      "profiles": [
+        "real822_mask25"
+      ],
+      "score_threshold": 0.25,
+      "mask_iou_dedup": 0.85,
+      "center_distance_small_diag": 0.05,
+      "prompt_padding_fraction": 0
+    }
+  ],
+  "groups": {
+    "protocol_id": "action4.full_dev_input_groups.v1",
+    "occlusion_source": "instance.occlusion_inframe; checked against actual visible mask pixels / area_inframe_amodal_px",
+    "occlusion_edges": [
+      0,
+      0.1,
+      0.4,
+      0.7,
+      1.0000001
+    ],
+    "heavy_occlusion_min": 0.4,
+    "severe_occlusion_min": 0.7,
+    "small_target_full_bbox_width_fraction": 0.06,
+    "visible_area_edges_px": [
+      0,
+      1024,
+      4096,
+      16384,
+      1000000000
+    ],
+    "pair_center_distance_basis": "full GT bbox center distance / smaller full GT bbox diagonal",
+    "pair_center_ratio_edges": [
+      0,
+      0.5,
+      1,
+      2,
+      1000000000
+    ],
+    "bbox_iou_edges": [
+      0,
+      0.1,
+      0.5,
+      1.0000001
+    ],
+    "near_pair_rule": "GT visible bbox gap <= .25 * smaller visible bbox short side OR positive intersection; unavailable if either visible mask empty",
+    "near_pair_gap_fraction": 0.25,
+    "mask_distance": "exact minimum foreground pixel-center Euclidean distance; empty support => null; intersection recorded separately",
+    "mask_distance_edges_px": [
+      0,
+      1.0000001,
+      8.0000001,
+      32.0000001,
+      1000000000
+    ],
+    "source_group": "background_source_id + scene_family; not an independence certificate"
+  },
+  "scoring": {
+    "module": "eval.action4_yolo_prompt_metrics",
+    "source": "src/eval/action4_yolo_prompt_metrics.py",
+    "expected_schema": "action4.yolo_prompt_metrics.v4",
+    "source_sha256": "45fa45f59780dc4df9d829a4c8ac6d393adb70afa444495d9e8e6851683b2469",
+    "contract": "visible_support_plus_prompt_joint_only_99",
+    "semantics_reviewed": true,
+    "full_bbox_iou": "DIAGNOSTIC_ONLY_NOT_99_GATE",
+    "observed_gate": 0.99,
+    "required_groups": [
+      "heavy_occlusion",
+      "near_pair",
+      "small_target",
+      "other_camera",
+      "pure_negative"
+    ],
+    "support_thresholds": {
+      "prompt_coverage": 0.95,
+      "prompt_area_ratio_max": 4,
+      "prompt_center_expand": 0.1,
+      "own": 0.5,
+      "purity": 0.95,
+      "other_instance_leak_max": 0.05,
+      "target_fraction": 0.8
+    }
+  },
+  "diagnostics": {
+    "two_to_one_merge": "one published mask covers >=.5 of at least two visible GT masks",
+    "one_to_two_duplicate": "at least two distinct published masks each cover >=.5 of the same visible GT mask",
+    "false_positive": "unmatched published prediction under scorer; reason categories retained, not automatically called non-DJI",
+    "missing_prediction": "not empty success; failed/pending sample retains all GT in completion denominators",
+    "pure_negative": "NOT_MEASURED_IF_NO_LABELED_PURE_NEGATIVE_IMAGES",
+    "other_camera": "NOT_MEASURED_IF_NO_OTHER_CAMERA_GT_OR_NEGATIVE_ANNOTATIONS",
+    "empty_gt_visible": "support_unmeasured; keep original GT and recognition diagnostic denominator"
+  },
+  "publication": {
+    "automatic_model_promotion": false,
+    "formal_99_acceptance": false,
+    "inference_started": false,
+    "launch_only_after_root_approval_and_v001_releases_GPU1": true
+  },
+  "prompt_split": {
+    "protocol_id": "action4.prompt_scene_family_split.v1",
+    "group_key": "scene_family",
+    "policy": "all previously exposed scene families stay dev; remaining entire families gate",
+    "exposed_dev_records": "outputs/action4_stage2_preparation_v001/development_probe_v001/selected_eval_records.json",
+    "exposed_dev_records_sha256": "31de1d6da1311dcd5efb662197eb6cd60c6030568dcb0153e2a1e07b43ff2433",
+    "external_exposed_dev": [
+      {
+        "frame_index": 822,
+        "source": "real video development; root-reported prior text/cloth false-selection review",
+        "part_of_this_650": false
+      }
+    ],
+    "no_forced_325_split": true,
+    "no_seed_subdivision_of_exposed_families": true
+  },
+  "output_root": "outputs/action4_full_zeroshot_realref_v002",
+  "profile_manifest": {
+    "path": "outputs/action4_stage2_preparation_v001/real822_reference_enrollment_v001/cpu_profiles_v001/PROFILE_MANIFEST.json",
+    "sha256": "288242690b2acd917d7b57bd3ae22bc1b09753567f8302a7687b945687c7a2f4",
+    "schema": "action4.yoloe.native_visual_profiles.v1",
+    "status": "CPU_REGISTERED_NOT_EVALUATED"
+  },
+  "reuse_cohort": {
+    "receipt": "outputs/action4_full_zeroshot_eval_v001/COHORT_RECEIPT.json",
+    "receipt_sha256": "772d82688967e3153a1ed8e26013016135e1147434778fef05696989f9ba6531",
+    "cohort_sha256": "ec9d897dec5fd6947d1e5b9b3d0217f6c2f1ace7c2fa24320d083e89e642218a",
+    "groups_sha256": "57038fb8184ed856e8a84cdb76fe55ac2a8835c820967fd6781a7b916d6f5030",
+    "preparer_source_sha256": "d6ea2b51b12687375cec7e91573edd84471edc02851cece7ab68effb566b06fc"
+  },
+  "real_dev": {
+    "frame_manifest": "data/action4_real/cache_v001/frames_manifest.json",
+    "frame_manifest_sha256": "4569006ba45e533ea665ed990e4bdf86e7112e4b8d8782e9d00ed942fe3c3326",
+    "expected_images": 56,
+    "frame_ranges_inclusive": [
+      [
+        870,
+        885
+      ],
+      [
+        1237,
+        1250
+      ],
+      [
+        2467,
+        2479
+      ],
+      [
+        2801,
+        2813
+      ]
+    ],
+    "excluded_enrollment_frame_ids": [
+      820,
+      821,
+      822,
+      823,
+      824
+    ],
+    "annotation_status": "unknown",
+    "metrics_allowed": false,
+    "registered_inventory": {
+      "path": "outputs/action4_sam_session_preparation_v001/full_dev_review_v001/REAL_SEGMENT_AND_CACHE_INVENTORY.json",
+      "sha256": "c51a9d25796da2d1642f64ff2e3fa755eb89fbcacee00b0b81299efa83a5640d"
+    },
+    "source_independence": "same real source video; not cross-scene independent"
+  },
+  "previous_native_release": {
+    "launch": "outputs/action4_full_zeroshot_eval_v001/LAUNCH.json",
+    "cohort_receipt": "outputs/action4_full_zeroshot_eval_v001/COHORT_RECEIPT.json",
+    "expected_native_tasks": 4550,
+    "require_processes_exited": true
+  }
+}

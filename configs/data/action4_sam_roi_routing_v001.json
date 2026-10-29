@@ -1,0 +1,39 @@
+{
+  "schema": "action4.sam_roi_routing.v1",
+  "admission": "integration_only_not_calibrated",
+  "route_probabilities": {
+    "gt_jitter": 0.5,
+    "prediction": 0.3,
+    "extra_offset": 0.2
+  },
+  "prediction_requested_full_probability": 0.5,
+  "coarse_policy_ready": false,
+  "available_prediction_source": "completed_B0_full_only",
+  "gt_jitter": {
+    "center_fraction": 0.15,
+    "scale_range": [
+      0.65,
+      1.35
+    ]
+  },
+  "extra_offset": {
+    "center_fraction": 0.35,
+    "scale_range": [
+      0.65,
+      1.0
+    ]
+  },
+  "offset_units": "fraction_of_GT_full_box_width_height",
+  "RGB_expansion": 2.25,
+  "candidate_ranking": [
+    "predicted_score_desc",
+    "stable_candidate_id_asc"
+  ],
+  "fallback": [
+    "requested_prediction_route",
+    "other_prediction_route",
+    "gt_jitter"
+  ],
+  "SAM_input": "unchanged_fixed_supervision_association",
+  "rng": "PCG64_seed_epoch_image_GTinstance_v1"
+}

@@ -117,3 +117,7 @@ events.out.tfevents.*
 # Historical assets remain server-local; publish only the archive index.
 /archive/*
 !/archive/README.md
+
+# Generated integration fixture configs and local user instructions are not source release assets.
+/configs/model/action4_phrase2_corner_prepare_fixture_*.json
+/instruction_codex/

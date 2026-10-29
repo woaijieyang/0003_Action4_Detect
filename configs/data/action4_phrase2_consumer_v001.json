@@ -1,0 +1,41 @@
+{
+  "dataset_root": "data/phrase2",
+  "manifest_paths": {
+    "train": "data/phrase2/train/annotations.jsonl",
+    "eval": "data/phrase2/eval/annotations.jsonl",
+    "test": "data/phrase2/test/annotations.jsonl"
+  },
+  "expected_counts": {
+    "train": {
+      "images": 5200,
+      "targets": 10400
+    },
+    "eval": {
+      "images": 650,
+      "targets": 1300
+    },
+    "test": {
+      "images": 650,
+      "targets": 1300
+    }
+  },
+  "surface_source": {
+    "admission": "data/phrase2/GEOMETRY_ADMISSION.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/phrase2/train/geometry",
+      "eval": "data/phrase2/eval/geometry",
+      "test": "data/phrase2/test/geometry"
+    }
+  },
+  "data_class": "data.action4_phrase2_dataset.Phrase2Dataset",
+  "training_factory": "data.action4_stage2_data.Stage2Units",
+  "training_enabled": false,
+  "formal_read_requires": "data/phrase2/DATASET_COMPLETE.json status FORMAL_DATASET_USABLE",
+  "expected_A0_units": {
+    "train": 10400,
+    "eval": 1300,
+    "test": 1300
+  },
+  "dataset_release": "phrase2_6500_v001"
+}

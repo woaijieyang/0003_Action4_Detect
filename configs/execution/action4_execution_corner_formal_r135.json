@@ -1,0 +1,345 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": 135,
+  "parent_authority": {
+    "path": "configs/execution/action4_execution_corner_formal_r134.json",
+    "sha256": "f0ea904c611a26b311d85410a618dc24f3030f2f1c6514b554bfdcfe5baa0422"
+  },
+  "status": "CORNER_FORMAL80_V003_TRAIN_FIRST_INITIALIZATION",
+  "current_job": "p2_a0_corner_prediction15_formal80_v003",
+  "role": "A0",
+  "epochs": 80,
+  "output": "outputs/action4_improvement/stage4_corner/p2_a0_corner_prediction15_formal80_v003",
+  "run_spec": "runtime/action4_runs/p2_a0_corner_prediction15_formal80_v003/RUN_SPEC.json",
+  "configuration": "runtime/action4_runs/p2_a0_corner_prediction15_formal80_v003/source/resolved_config.json",
+  "formal_training_run": "p2_a0_corner_prediction15_formal80_v003",
+  "formal80_started": false,
+  "training_active": false,
+  "authorized_training_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "authorized_evaluation_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "forbidden_gpu_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "cpu_budget_limit": 72,
+  "runtime_cpu_note": "train64-95,32eval24-55,controller56;root57-63; no external preemption",
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "eval_0": [
+      24
+    ],
+    "eval_1": [
+      25
+    ],
+    "eval_2": [
+      26
+    ],
+    "eval_3": [
+      27
+    ],
+    "eval_4": [
+      28
+    ],
+    "eval_5": [
+      29
+    ],
+    "eval_6": [
+      30
+    ],
+    "eval_7": [
+      31
+    ],
+    "eval_8": [
+      32
+    ],
+    "eval_9": [
+      33
+    ],
+    "eval_10": [
+      34
+    ],
+    "eval_11": [
+      35
+    ],
+    "eval_12": [
+      36
+    ],
+    "eval_13": [
+      37
+    ],
+    "eval_14": [
+      38
+    ],
+    "eval_15": [
+      39
+    ],
+    "eval_16": [
+      40
+    ],
+    "eval_17": [
+      41
+    ],
+    "eval_18": [
+      42
+    ],
+    "eval_19": [
+      43
+    ],
+    "eval_20": [
+      44
+    ],
+    "eval_21": [
+      45
+    ],
+    "eval_22": [
+      46
+    ],
+    "eval_23": [
+      47
+    ],
+    "eval_24": [
+      48
+    ],
+    "eval_25": [
+      49
+    ],
+    "eval_26": [
+      50
+    ],
+    "eval_27": [
+      51
+    ],
+    "eval_28": [
+      52
+    ],
+    "eval_29": [
+      53
+    ],
+    "eval_30": [
+      54
+    ],
+    "eval_31": [
+      55
+    ]
+  },
+  "controller_cpu": [
+    56
+  ],
+  "root_preparation_cpu_pool": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "eval_workers": 32,
+  "planned_eval_schedule": {
+    "every": 25,
+    "step0": true,
+    "final": true
+  },
+  "data_unchanged": true,
+  "default_models_unchanged": true,
+  "no_subagents": true,
+  "baseline_extensions_allowed": false,
+  "continuation": "outputs/action4_stage3_native_prediction_v001/CONTINUATION.json",
+  "plan": "docs/stages/2026-10-24-1-plan-Action4第二阶段识别与八角点增强.md",
+  "conclusion": "docs/stages/2026-10-24-1-conclusion-Action4第二阶段识别与八角点增强.md",
+  "execution_gate": "outputs/action4_stage4_formal_admission_v001/EXECUTION_GATE.json",
+  "max_pending": 40,
+  "time_unix": 1793152538.131611,
+  "cpu_policy": {
+    "logical_cpu_count": 96,
+    "physical_core_count": 48,
+    "allowed_logical_cpu_ids": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "max_logical_cpus": 72,
+    "allocation_order": "highest_id_first"
+  },
+  "GPU0_forbidden": true,
+  "gpu1_eval_only_max_workers": 0,
+  "prelaunch_repair": "r131 lacked cpu_policy; failed before workers/updates; immutable model config unchanged",
+  "planned_formal_run": "p2_a0_corner_prediction15_formal80_v003",
+  "startup_probe": {
+    "pid": null,
+    "output": "outputs/action4_corner_startup_repair_v001",
+    "CPU": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "GPU": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "status": "COMPLETE_FULL10400_NCCL_PASS"
+  },
+  "native_bank3": {
+    "pid": null,
+    "output": "outputs/action4_m3t_translation_bank3_v001",
+    "CPU": [
+      60,
+      61,
+      62,
+      63
+    ],
+    "GPU": [],
+    "status": "COMPLETE_MIXED_RESULT_NOT_DEPLOYED"
+  },
+  "parallel_stage5_parent": {
+    "A0": "stage3 SAM sealed13180",
+    "B0": "sealed9500",
+    "ROI": 1.5,
+    "wait_for_stage4": false
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "schema": "action4.canonical_six_face_contract.v1",
+  "status": "TOPOLOGY_VERIFIED_ONLY_NOT_FACE_TRACKING_ACCEPTANCE",
+  "parent_asset": {
+    "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+    "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+  },
+  "canonical8_m": [
+    [
+      -0.03525027084350586,
+      -0.016211891174316408,
+      -0.022276109218597413
+    ],
+    [
+      0.03525027084350586,
+      -0.016211891174316408,
+      -0.022276109218597413
+    ],
+    [
+      0.03525027084350586,
+      0.016211891174316408,
+      -0.022276109218597413
+    ],
+    [
+      -0.03525027084350586,
+      0.016211891174316408,
+      -0.022276109218597413
+    ],
+    [
+      -0.03525027084350586,
+      -0.016211891174316408,
+      0.022276109218597413
+    ],
+    [
+      0.03525027084350586,
+      -0.016211891174316408,
+      0.022276109218597413
+    ],
+    [
+      0.03525027084350586,
+      0.016211891174316408,
+      0.022276109218597413
+    ],
+    [
+      -0.03525027084350586,
+      0.016211891174316408,
+      0.022276109218597413
+    ]
+  ],
+  "corner_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "faces": [
+    {
+      "face_id": 0,
+      "object_axis_name": "x_min",
+      "corner_ids": [
+        0,
+        4,
+        7,
+        3
+      ],
+      "outward_normal_object": [
+        -1,
+        0,
+        0
+      ]
+    },
+    {
+      "face_id": 1,
+      "object_axis_name": "x_max",
+      "corner_ids": [
+        1,
+        2,
+        6,
+        5
+      ],
+      "outward_normal_object": [
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "face_id": 2,
+      "object_axis_name": "y_min",
+      "corner_ids": [
+        0,
+        1,
+        5,
+        4
+      ],
+      "outward_normal_object": [
+        0,
+        -1,
+        0
+      ]
+    },
+    {
+      "face_id": 3,
+      "object_axis_name": "y_max",
+      "corner_ids": [
+        3,
+        7,
+        6,
+        2
+      ],
+      "outward_normal_object": [
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "face_id": 4,
+      "object_axis_name": "z_min",
+      "corner_ids": [
+        0,
+        3,
+        2,
+        1
+      ],
+      "outward_normal_object": [
+        0,
+        0,
+        -1
+      ]
+    },
+    {
+      "face_id": 5,
+      "object_axis_name": "z_max",
+      "corner_ids": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "outward_normal_object": [
+        0,
+        0,
+        1
+      ]
+    }
+  ],
+  "axes": {
+    "x": "width",
+    "+y": "rear screen",
+    "+z": "top buttons"
+  },
+  "geometry_semantics": "virtual bounding cuboid faces; not observed physical planar patches or SAM face ground truth",
+  "physical_surface_patch_registry": "not_yet_prepared",
+  "face_identity_key": [
+    "body_track_id",
+    "body_generation",
+    "face_id",
+    "face_generation"
+  ],
+  "first_execution": "after fixed50 A0 best sealing and body ROI chain gate, before CoTracker",
+  "current_training_modified": false
+}

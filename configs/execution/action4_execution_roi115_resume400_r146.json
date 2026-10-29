@@ -1,0 +1,296 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": 146,
+  "parent_authority": {
+    "path": "configs/execution/action4_execution_roi115_resumed_training_r145.json",
+    "sha256": "c45ae605cc915f21d7eafc47cbac48e0a43b6071acd5d5d199ea9edb1c48666c"
+  },
+  "status": "ROI115_HOST_BACKPRESSURE_REPAIR_RESUME400_AUTHORIZED",
+  "current_job": "p2_a0_corner_roi115_finetune75_v003",
+  "role": "A0",
+  "epochs": 75,
+  "roi_expansion": 1.15,
+  "training_active": false,
+  "run_spec": "runtime/action4_runs/p2_a0_corner_roi115_finetune75_v003/RUN_SPEC.json",
+  "configuration": "runtime/action4_runs/p2_a0_corner_roi115_finetune75_v003/source/resolved_config.json",
+  "output": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v003",
+  "authorized_training_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "authorized_evaluation_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "forbidden_gpu_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "GPU0_forbidden": true,
+  "gpu1_eval_only_max_workers": 0,
+  "cpu_budget_limit": 72,
+  "cpu_policy": {
+    "logical_cpu_count": 96,
+    "physical_core_count": 48,
+    "allowed_logical_cpu_ids": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "max_logical_cpus": 72,
+    "allocation_order": "highest_id_first"
+  },
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "eval_0": [
+      24
+    ],
+    "eval_1": [
+      25
+    ],
+    "eval_2": [
+      26
+    ],
+    "eval_3": [
+      27
+    ],
+    "eval_4": [
+      28
+    ],
+    "eval_5": [
+      29
+    ],
+    "eval_6": [
+      30
+    ],
+    "eval_7": [
+      31
+    ],
+    "eval_8": [
+      32
+    ],
+    "eval_9": [
+      33
+    ],
+    "eval_10": [
+      34
+    ],
+    "eval_11": [
+      35
+    ],
+    "eval_12": [
+      36
+    ],
+    "eval_13": [
+      37
+    ],
+    "eval_14": [
+      38
+    ],
+    "eval_15": [
+      39
+    ],
+    "eval_16": [
+      40
+    ],
+    "eval_17": [
+      41
+    ],
+    "eval_18": [
+      42
+    ],
+    "eval_19": [
+      43
+    ],
+    "eval_20": [
+      44
+    ],
+    "eval_21": [
+      45
+    ],
+    "eval_22": [
+      46
+    ],
+    "eval_23": [
+      47
+    ],
+    "eval_24": [
+      48
+    ],
+    "eval_25": [
+      49
+    ],
+    "eval_26": [
+      50
+    ],
+    "eval_27": [
+      51
+    ],
+    "eval_28": [
+      52
+    ],
+    "eval_29": [
+      53
+    ],
+    "eval_30": [
+      54
+    ],
+    "eval_31": [
+      55
+    ]
+  },
+  "controller_cpu": [
+    56
+  ],
+  "root_preparation_cpu_pool": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+  ],
+  "eval_workers": 32,
+  "planned_eval_schedule": {
+    "every": 10,
+    "step0": true,
+    "final": true
+  },
+  "dataset_unchanged": true,
+  "default_models_unchanged": true,
+  "old_stage4_resume_allowed": false,
+  "scope": "User authorized independent75epoch ROI1.15 lowLR adaptation from sealed7300; PnP/tracking/smoothing retained; no comparison video requested",
+  "execution_gate": {
+    "path": "outputs/action4_roi115_publication_repair_v001/EXECUTION_GATE_v003.json",
+    "sha256": "3b2b704a05a7891ddbb2b8f811dc9fa6089ef75db028ffd643f3ae368a1110a3"
+  },
+  "continuation": "outputs/action4_stage3_native_prediction_v001/CONTINUATION.json",
+  "time_unix": 1793252310.6763105,
+  "first_observed_progress": {
+    "path": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v001/FIRST_LIVE_PROGRESS.json",
+    "sha256": "f6c7a48daef84a24bf120820232906b2eb3289205a43495632fdf1dcf40f12db"
+  },
+  "recovery_checkpoint_step": 260,
+  "original_failure_preserved": true,
+  "resume_checkpoint": {
+    "path": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v002/last.pt",
+    "sha256": "f29eab4e4866def2fed92119543a97aa2888594928f4777c5fdcc6035859d6b0"
+  },
+  "resume_step": 400,
+  "old_failed_run_not_restarted": true,
+  "first_resumed_progress": {
+    "path": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v002/FIRST_RESUMED_PROGRESS.json",
+    "sha256": "59945cc20ebee525479646894fbbf7d7277965a3f51af7027fd5ae3220573317"
+  },
+  "host_publication_fence_enabled": true,
+  "scoring_ROI115_fixed": true
+}

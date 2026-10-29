@@ -36,3 +36,8 @@ model.action4_best_registry核对默认文件角色、架构、step、SHA和配�
 configs/model/action4_checkpoint_locations_v002.json区分保留路径迁移与明确删除。resolve_checkpoint只解析已登记的保留项；已删除项明确报intentionally retired，不静默回退默认模型。历史权重存在不同架构，应使用对应历史加载器，不把历史包直接套到当前网络。
 保留的5个阶段模型不是全都优于当前默认；4份对照也不能作为默认。真实视频精度仍未通过。
 清理证据outputs/action4_checkpoint_retention_v001，目录与接口说明docs/action4_checkpoint_layout.md。
+
+
+## 2026-10-29 当前封存与暂停
+
+前文9份历史留档及默认组合继续保留。新增阶段封存集中models/candidates/action4_improvement，各目录SEALED_ROLE/SEALED_RESEARCH为实际身份；不按mtime挑选。当前阶段五B09500/A07300来自封存候选，默认未覆盖。ROI1.15尚无最终best，完整step400恢复状态保留在原v002运行last.pt。完整模型索引见configs/model/action4_pause_asset_registry_20261029.json。暂停状态不允许自动启动。

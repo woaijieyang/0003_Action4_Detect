@@ -1,0 +1,24 @@
+{
+  "version": "foreground_geometry_ssim_v001",
+  "max_center_delta_uv": 0.035,
+  "max_relative_size_difference": 0.15,
+  "max_normalized_corner_rms": 0.1,
+  "max_occlusion_difference": 0.08,
+  "minimum_body_ssim": 0.94,
+  "minimum_full_ssim": 0.96,
+  "full_size": [
+    128,
+    96
+  ],
+  "body_context_size": [
+    96,
+    64
+  ],
+  "context_padding_fraction": 0.15,
+  "ssim_window": 7,
+  "scope": "global across and within train/eval/test",
+  "exact_duplicate_policy": "reuse already bound RGB sha; contradictory geometry is engineering failure",
+  "near_duplicate_policy": "all four image center coordinates, both target sizes and normalized canonical8 shapes, occlusion and both body context SSIM must agree; global background alone is insufficient",
+  "replacement": "same slot split scene quota; preserve attempt counter and increment through normal sampler",
+  "threshold_basis": "Engineering definition of excessive similarity for this batch, frozen before full audit; not a measured real-video distribution or a claim of universal perceptual uniqueness."
+}

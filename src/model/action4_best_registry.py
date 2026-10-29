@@ -52,3 +52,24 @@ def verify_loaded(entry, state):
         raise ValueError("Loaded source training identity differs")
     if state.get("pose_method") != entry.get("pose_method"):
         raise ValueError("Loaded pose decoder differs")
+
+
+def selected_entry_from_bundle(role, checkpoint, expected_sha256, expected_step):
+    """Build the complete existing registry contract from the actual selected bundle."""
+    import torch
+    path=resolve_checkpoint(checkpoint)
+    identity=_identity(path)
+    if _digest(path,identity)!=expected_sha256:
+        raise ValueError("Selected parent SHA mismatch")
+    state=torch.load(path,map_location="cpu",weights_only=True)
+    if state.get("role")!=role or state.get("selected_step")!=expected_step:
+        raise ValueError("Selected parent role/step mismatch")
+    for field in ("architecture","config_id"):
+        if field not in state:raise ValueError("Selected parent lacks "+field)
+    entry=dict(path=str(path.relative_to(R)),sha256=expected_sha256,bytes=identity[2],
+        role=role,selected_step=expected_step,architecture=state["architecture"],
+        config_id=state["config_id"],training_config_id=state.get("training_config_id",state["config_id"]),
+        pose_method=state.get("pose_method"))
+    verify_loaded(entry,state)
+    if _identity(path)!=identity:raise ValueError("Parent changed during registry construction")
+    return entry

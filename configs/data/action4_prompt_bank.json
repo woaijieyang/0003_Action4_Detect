@@ -1,0 +1,28 @@
+{
+  "schema": "action4.prompt_bank.v1",
+  "foundation_config": "configs/data/action4_global_rig_init_v001.json",
+  "output": "data/action4_prompt_bank",
+  "preview_output": "outputs/action4_stage2_preparation_v001/bank_preview_v002",
+  "gray_backgrounds": [
+    64,
+    128,
+    192
+  ],
+  "active_views": [
+    "front",
+    "back",
+    "left",
+    "right",
+    "frontupper",
+    "backupper"
+  ],
+  "review_status": "UNREVIEWED",
+  "formal_use_allowed": false,
+  "color_management": {
+    "view_transform": "Standard",
+    "look": "None",
+    "exposure": 0,
+    "gamma": 1,
+    "reason": "Match exact sRGB gray64/128/192; source render uses Standard with different contrast look"
+  }
+}

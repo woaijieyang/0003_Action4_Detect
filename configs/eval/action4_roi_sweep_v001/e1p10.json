@@ -1,0 +1,89 @@
+{
+  "schema": "action4.roi_development_sweep.v1",
+  "status": "DEFINED_AWAITING_INPUT_LOCK_AND_225_BASELINE",
+  "purpose": "development_sweep",
+  "formal_pair_gate": {
+    "path": "outputs/action4_roi_sweep_v001/FROZEN_SELECTION.json",
+    "sha256": "ecf99870a679979221cdf3cda86ceebfb7eae7851ccee2823254b504213f3a6e"
+  },
+  "models": {
+    "A0": {
+      "path": "models/candidates/action4_improvement/stage1_A0_completed_20261026/A0.pt",
+      "sha256": "377907b421f55839e00706e20e621d0e52867336c9fc2d2f878ce9862181475d",
+      "selected_step": 15770,
+      "architecture": "joint_pose",
+      "config_id": "77cf2cf59191ae0b1c6db3ab1ce89a9f21a52bcb2705e3ded614c8349f6f3b5b",
+      "pose_method": "network"
+    },
+    "B0": {
+      "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/B0.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "selected_step": 9500,
+      "architecture": "online_b0",
+      "config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "pose_method": null
+    }
+  },
+  "roi_expansion": 1.1,
+  "roi_size": 448,
+  "score_schema": "action4.pose_projection_all8_002.v1",
+  "image_eval": {
+    "split": "eval",
+    "annotations": {
+      "path": "data/phrase2/eval/annotations.jsonl",
+      "sha256": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da"
+    },
+    "tracking": false,
+    "B0_source": "same_frozen_raw_prediction_cache",
+    "no_GT_or_history_recovery": true
+  },
+  "video": {
+    "frames": {
+      "path": "data/action4_real/cache_v001/frames_manifest.json",
+      "sha256": "4569006ba45e533ea665ed990e4bdf86e7112e4b8d8782e9d00ed942fe3c3326"
+    },
+    "K": {
+      "path": "outputs/action4_video_trial_preparation_v001/p2_video_trial_a0_4270_20261025_084137/INTRINSICS.json",
+      "sha256": "8a41d87760b610cea031b742c027f5de0c01a132e5445ad079e8b521fb96f81f"
+    },
+    "tracking": true,
+    "common_track_replay": {
+      "run_root": "outputs/action4_sam_reanchor_full2850_v003",
+      "completion_ref": {
+        "path": "outputs/action4_sam_reanchor_full2850_v003/run/COMPLETE.json",
+        "sha256": "d1d6bb399fedad8b4e868eb5d47ad2f7ed00838ad000c3c15c859057afc90d1f"
+      },
+      "predictions_ref": {
+        "path": "outputs/action4_sam_reanchor_full2850_v003/run/FUSED_BOXES.jsonl",
+        "sha256": "f063de1c71bf957476a0809e8efa3c4d4d0629a84b700cf98a448eb61657d90a"
+      },
+      "source_manifest_ref": {
+        "path": "outputs/action4_sam_reanchor_full2850_v003/source/SNAPSHOT_MANIFEST.json",
+        "sha256": "891b20436d125faf50c848d5c87cb6f2f65bd19139790648d5f5592ca64dabb7"
+      },
+      "b0_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3"
+    },
+    "A0_temporal_smoothing": false,
+    "source_roi": "bbox_for_a0",
+    "no_per_ratio_tracking": true
+  },
+  "CAD": {
+    "path": "data/DJI_Action4_construct/r3_v001/asset_manifest.json",
+    "sha256": "39f2b1d1cbf875eac4710089a384d5ad35dbcfd686a4ff68be682c06ff3400cb"
+  },
+  "canonical_corner_ids": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "input_lock_required": "outputs/action4_roi_sweep_v001/INPUT_LOCK.json",
+  "single_variable": "fixed_roi_expansion_given_same_input_box_source",
+  "new_detector_or_architecture": false,
+  "default_weights_changed": false,
+  "outputs": "outputs/action4_roi_sweep_v001/ratio_1p1"
+}

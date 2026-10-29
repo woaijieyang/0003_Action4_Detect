@@ -1,0 +1,71 @@
+{
+  "schema": "action4.sam.single_image_native.v1",
+  "manifest": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/inputs/PREDICTION_ONLY_PROMPTS.jsonl",
+  "manifest_sha256": "99ff3123c9bbf02d246d8f0597b5089cdc70d53bce6c4289e0f0b8a9b857e64a",
+  "input_contract": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/inputs/SAM_NATIVE_INPUT_CONTRACT.json",
+  "output": "outputs/action4_sam_full_dev_eval_v001/r096_v002/run",
+  "expected_images": 650,
+  "expected_saved_candidates": 1300,
+  "expected_prompts": 1298,
+  "native": {
+    "source_root": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/upstream/sam3",
+    "source_commit": "7f473cfd983d5eb43040ff608f66bff0d7bdcb53",
+    "source_receipt": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/inputs/SOURCE_ACQUISITION.json",
+    "weight": "models/external/sam3/sam3.1_multiplex.pt",
+    "asset_receipt": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/inputs/ASSET_VALIDATION.json",
+    "text": "camera",
+    "builder_kwargs": {
+      "compile": false,
+      "warm_up": false,
+      "use_fa3": false,
+      "use_rope_real": false,
+      "async_loading_frames": false,
+      "max_num_objects": 16,
+      "multiplex_count": 16
+    }
+  },
+  "resources": {
+    "gpu_uuid": "GPU-a68477c3-1c2a-d557-58f5-405d80e5383e",
+    "fresh_free_mib": 24576,
+    "allocator_gib": 14,
+    "cpu_affinity": [
+      47,
+      48
+    ],
+    "torch_threads": 2,
+    "processes": 1,
+    "concurrent_sessions": 1,
+    "physical_gpu": 7
+  },
+  "binding": {
+    "bbox_iou_min": 0.5,
+    "unique_margin": 0.15,
+    "mask_in_box_min": 0.8,
+    "multi_target_support_min": 0.7
+  },
+  "code_files": [
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/data/__init__.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/data/action4_adapter.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/data/action4_paths.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/eval/__init__.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/eval/action4_sam_image_eval.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/__init__.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/action4_sam_native_compat.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/action4_sam_response_adapter.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/action4_sam_session_contracts.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/training/__init__.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/src/model/training/action4_resource_policy.py",
+    "outputs/action4_sam_full_dev_eval_v001/r096_v002/source/scripts/run_action4_sam_full_dev.py"
+  ],
+  "upstream_role": "frozen_B0_parent_step0_post_soft_nms",
+  "retry_attempt_limit": 2,
+  "K_contract": {
+    "K": null,
+    "status": "not_supplied_not_consumed_by_native_SAM"
+  },
+  "source_snapshot": "outputs/action4_sam_full_dev_eval_v001/r096_v002/source",
+  "authority_ref": {
+    "path": "configs/execution/action4_execution_r096.json",
+    "sha256": "7da9a77e0d9e31f27025cdd76e89b190a80e67604e6c903159d168cb75ca5c8a"
+  }
+}

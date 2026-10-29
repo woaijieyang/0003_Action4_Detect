@@ -1,0 +1,141 @@
+{
+  "role": "A0",
+  "mode": "full_training",
+  "output": "outputs/action4_improvement/stage1_baseline/p2_a0_parallel80_eval10_v001",
+  "dataset_root": "data/phrase2",
+  "seed": 20261024,
+  "validation_receipt": "outputs/action4_phase2_stage1_v001/data/PHRASE2_VALIDATED.json",
+  "expected_units": 10400,
+  "expected_eval_images": 650,
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 2.25
+  },
+  "parent_bundle": "models/default/A0.pt",
+  "parent_best_step": 14000,
+  "parent_registry": "configs/model/action4_best_registry_v003.json",
+  "parent_bundle_sha256": "d576655c7d9a4870e73033c1b7cd9886df1b0a61a5b8e6359403fa6c14d39d78",
+  "epochs": 80,
+  "batch": 48,
+  "micro": 2,
+  "world_size": 1,
+  "threads": 2,
+  "loader_workers": 4,
+  "training_gpus": [
+    7
+  ],
+  "eval_gpus": [
+    4,
+    6,
+    7,
+    7
+  ],
+  "eval_loader_workers": 2,
+  "reserved_cpu_budget": 23,
+  "project_total_reserved_cpu": 69,
+  "min_free_mib": 8192,
+  "max_pending": 8,
+  "weight_decay": 0.0001,
+  "eval_every": 10,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "surface_lr": 1e-05,
+  "lr": 5e-05,
+  "train_backbone": false,
+  "roi_jitter": {
+    "center_fraction": 0.15,
+    "scale_range": [
+      0.65,
+      1.35
+    ]
+  },
+  "surface_source": {
+    "admission": "data/phrase2/GEOMETRY_ADMISSION.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/phrase2/train/geometry",
+      "eval": "data/phrase2/eval/geometry",
+      "test": "data/phrase2/test/geometry"
+    },
+    "manifest_sha256": {
+      "train": "d7e0bdffba0b119e7d7adaaae45d5105ff13fb5a97e7bb55c8cb13d0d217501f",
+      "eval": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+      "test": "132e147ab4afdf3095a08e0d208f56992b38319c7b15334efea7e88ac3c5b13f"
+    }
+  },
+  "evaluation_scoring_policy": "center",
+  "b0_scoring_policy": "center",
+  "source_identity": {},
+  "score_schema": "action4.pose_projection_all8_002.v1",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "scope": "80epochs full10400instances; originalA0 structure; parallelB0; full650eval every10steps; immutable selected interimB0 counterpart",
+  "independent_head_dependencies": [],
+  "geometry_batch_policy": "instancewise_head_v1",
+  "execution_gate": "outputs/action4_a0_parallel_admission_v001/A0_EXECUTION_GATE.json",
+  "tested_project_code_sha256": "46b9d3ed97808a75b98f7aeb5d22eb93bad1ab9f1592c0c55a133a8fb183e91e",
+  "integration_or_admission_receipt": "outputs/action4_improvement/stage1_baseline/p2_a0_parallel80_eval10_v001/ADMISSION.json",
+  "loss_weights": {
+    "xyz": 1.0,
+    "region": 0.1,
+    "visible_mask": 0.5,
+    "amodal_mask": 0.5,
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0
+  },
+  "evaluation_counterpart_bundle": "outputs/action4_a0_parallel_admission_v001/B0_fixed_step9500.pt",
+  "evaluation_counterpart_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+  "counterpart_scope": "user_authorized_parallel_fixed_interim_B0",
+  "training_allocator_budget_mib": 12288,
+  "evaluation_allocator_budget_mib": 2560,
+  "uncommitted_gpu_margin_mib": 8192,
+  "process_cpu_affinity": {
+    "train": [
+      48,
+      49,
+      50,
+      51,
+      52,
+      53
+    ],
+    "eval_0": [
+      44,
+      45,
+      46,
+      47
+    ],
+    "eval_1": [
+      40,
+      41,
+      42,
+      43
+    ],
+    "eval_2": [
+      28,
+      29,
+      30,
+      31
+    ],
+    "eval_3": [
+      32,
+      33,
+      34,
+      35
+    ]
+  },
+  "parallel_counterpart_receipt": "outputs/action4_a0_parallel_admission_v001/FIXED_B0_COUNTERPART.json"
+}

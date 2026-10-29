@@ -1,0 +1,35 @@
+{
+  "schema": "action4.camera_contract.v1",
+  "pixel_space_id": "head_left_native_pinhole_assumed_v1",
+  "image_is_rectified": false,
+  "distortion_model": "unknown_assumed_pinhole",
+  "distortion_coefficients": null,
+  "calibration_source": "outputs/action4_execution_source_release_v006/source_context.json",
+  "calibration_status": "unverified_intrinsics",
+  "native_to_working_transform": "identity",
+  "working_to_native_projection_policy": "identity_under_pinhole_assumption",
+  "K": [
+    [
+      2639,
+      0,
+      1623.5
+    ],
+    [
+      0,
+      2639,
+      1231.5
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "image_size": [
+    3248,
+    2464
+  ],
+  "pixel_centers": "integers",
+  "continuous_image_bounds": "[-0.5,W-0.5] x [-0.5,H-0.5]",
+  "scope": "real capture assumption; synthetic records retain their own exact rendering K; no claim of measured calibration"
+}

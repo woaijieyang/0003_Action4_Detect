@@ -1,0 +1,131 @@
+{
+  "schema": "action4.yoloe_runtime_gpu1.v1",
+  "environment_prefix": "/data/zy/vln/a-test/.venv/yoloe",
+  "python": "3.12",
+  "modules": {
+    "torch": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/torch/__init__.py",
+      "version": "2.8.0+cu128"
+    },
+    "torchvision": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/torchvision/__init__.py",
+      "version": "0.23.0+cu128"
+    },
+    "numpy": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/numpy/__init__.py",
+      "version": "2.5.2"
+    },
+    "PIL": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/PIL/__init__.py",
+      "version": "12.3.0"
+    },
+    "scipy": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/scipy/__init__.py",
+      "version": "1.18.1"
+    },
+    "cv2": {
+      "path": "/data/zy/vln/a-test/runtime/surface_deps/cv2/__init__.py",
+      "version": "4.13.0"
+    },
+    "yaml": {
+      "path": "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages/yaml/__init__.py",
+      "version": "6.0.3"
+    },
+    "requests": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/requests/__init__.py",
+      "version": "2.34.2"
+    },
+    "psutil": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/psutil/__init__.py",
+      "version": "7.2.2"
+    },
+    "ftfy": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/ftfy/__init__.py",
+      "version": "6.3.1"
+    },
+    "regex": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/regex/__init__.py",
+      "version": "2026.9.29"
+    },
+    "tqdm": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/tqdm/__init__.py",
+      "version": "4.70.1"
+    },
+    "matplotlib": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/matplotlib/__init__.py",
+      "version": "3.11.2"
+    },
+    "polars": {
+      "path": "/data/zy/vln/a-test/runtime/yoloe_deps/polars/__init__.py",
+      "version": "2.0.0"
+    },
+    "clip": {
+      "path": "/data/zy/vln/a-test/upstream/ultralytics_clip/clip/__init__.py",
+      "version": "unknown"
+    },
+    "ultralytics": {
+      "path": "/data/zy/vln/a-test/upstream/ultralytics/ultralytics/__init__.py",
+      "version": "8.4.184"
+    }
+  },
+  "sys_path_additions": [
+    "/data/zy/vln/a-test/src",
+    "/data/zy/vln/a-test/runtime/yoloe_deps",
+    "/data/zy/vln/a-test/upstream/ultralytics",
+    "/data/zy/vln/a-test/upstream/ultralytics_clip",
+    "/data/zy/vln/a-test/.venv/lib/python3.12/site-packages",
+    "/data/zy/vln/a-test/runtime/surface_deps"
+  ],
+  "cpu_only": false,
+  "max_cpu_threads": 4,
+  "borrowed_main_packages_read_only": true,
+  "source_commits": {
+    "ultralytics": "e6d5fc5918f57d4d39fadb43fc5b2a1aea132ac8",
+    "clip": "7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40"
+  },
+  "new_distributions": {
+    "wcwidth": "0.9.3",
+    "urllib3": "2.8.0",
+    "tqdm": "4.70.1",
+    "regex": "2026.9.29",
+    "psutil": "7.2.2",
+    "idna": "3.20",
+    "charset-normalizer": "3.5.2",
+    "certifi": "2026.10.23",
+    "requests": "2.34.2",
+    "ftfy": "6.3.1",
+    "ultralytics-thop": "2.2.3",
+    "six": "1.17.0",
+    "python-dateutil": "3.0.0",
+    "pyparsing": "3.3.3",
+    "polars-runtime-32": "2.0.0",
+    "polars": "2.0.0",
+    "matplotlib": "3.11.2",
+    "kiwisolver": "1.5.1",
+    "fonttools": "4.67.0",
+    "cycler": "0.12.1",
+    "contourpy": "1.4.0",
+    "packaging": "26.3"
+  },
+  "validated_receipt": "outputs/action4_stage2_preparation_v001/runtime_cpu_attempt4/RECEIPT.json",
+  "accuracy": "NOT_MEASURED",
+  "gpu_mapping": {
+    "physical_index": 1,
+    "physical_uuid": "GPU-a77a9d4c-7642-7112-698c-b02673d254cb",
+    "logical_device": "cuda:0"
+  },
+  "max_gpu_memory_gib": 8,
+  "torch_allocator_budget_gib": 7,
+  "required_minimum_free_before_start_gib": 24,
+  "max_concurrent_yolo_workers": 4,
+  "approval_state": "ROOT_REVIEWED_GPU1_ONLY",
+  "root_approval": "r095: realref v002 only after v001 native exit; launch2 and inspect actual peaks then expand2; max4 YOLO,8GiB each,CPU4 each; no simultaneous SAM GPU with four YOLO; GPU0 forbidden.",
+  "authority": {
+    "revision": "r095",
+    "parent": "r094",
+    "path": "configs/execution/action4_execution_r095.json",
+    "sha256": "0fac06f71b25d49d3c83bf606dbc54e82b89d532bbed9bd07d685aba665eecf4",
+    "active_pointer": "configs/execution/action4_active.json",
+    "cpu_accounting": "43 training/eval +16 YOLO +4 previous CPU scoring +up to9 control/preparation <=72"
+  }
+}

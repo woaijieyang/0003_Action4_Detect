@@ -83,3 +83,43 @@ Auxiliary full-video reference consistency:2850 frames,2773eligible77unscorable,
 SameB0photometric3220/A0online14000, full200development378GT, no test selection: network171/378 heavy20/164; network-initialized iterativePnP228/378 heavy47/164; surfacePnP218/378 heavy40/164. Protocol fixedID8each≤.05GTdiag, missed/invalidfail. Prespecified60real demo-reference frames: bothboxes48/60 unchanged; bothposeenvelopes network26/60,iterative9/60,surfacePnP7/60. This proxy does not establish cornerID accuracy or whole-video performance; iterative not promoted. Source: src/eval/action4_pose_decoder_audit.py; data: data/eval/annotations.jsonl, exact identity inherited from unchanged accepted2000; artifacts: outputs/action4_pose_decoder_audit_v001/{development,real60}/*_REPORT.json.
 
 Exact image-grouped GPU cache replay reproduces all372 matched target errors and171/378 decisions exactly (maxdifference0). This is an engineering contract repair, not a new accuracy gain or training result.
+
+## phrase2 开发集：SAM 原生分割支持辅助测评（2026-10-25，Asia/Singapore）
+
+任务范围为冻结B0提示下的可见机身mask支持，不是Action4类别精确率、A0八角点或真实视频验收。完整650图/1300原始GT保留，包括上游漏提示；不以条件域丢弃失败。严格support要求可见机身coverage≥0.5、target_fraction≥0.8、camera_purity≥0.95且另一机身leakage≤0.05，按预登记一对一协议计分。两次SAM权重/官方实现相同，B0提示来源不同。
+
+| Record ID | Scope / Samples | Group / Model / Version | Status | 支持覆盖↑ | 严格support↑ | 双机同时严格support↑ | Model code path（服务器） | Dataset/manifest path |
+|---|---|---|---|---:|---:|---:|---|---|
+| [p2-sam-parent-b0-full650-20261025](#p2-sam-parent-b0-full650-20261025) | full650图 / 1300GT | 旧父B0 step0 + SAM3.1；官方commit `7f473cfd983d` | complete；仅辅助测评 | 1296/1300 | 615/1300 | 152/650 | `/data/zy/vln/a-test/outputs/action4_sam_full_dev_eval_v001/r096_v005/source/src/eval/action4_sam_image_eval.py` | `/data/zy/vln/a-test/data/phrase2/eval/annotations.jsonl` |
+| [p2-sam-completed-b0-step9500-full650-20261025](#p2-sam-completed-b0-step9500-full650-20261025) | full650图 / 1300GT | 完成80轮B0 step9500 + SAM3.1；官方commit `7f473cfd983d` | complete；仅辅助测评 | 1300/1300 | 709/1300 | 205/650 | `/data/zy/vln/a-test/outputs/action4_sam_selectedB0_eval_v001/source/src/eval/action4_sam_image_eval.py` | `/data/zy/vln/a-test/data/phrase2/eval/annotations.jsonl` |
+
+Benchmark cohort SHA-256：`ec9d897dec5fd6947d1e5b9b3d0217f6c2f1ace7c2fa24320d083e89e642218a`。发布eval annotation SHA-256：`5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da`。SAM权重：`0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6`；新B0 bundle：`ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3`。原生兼容层`action4_sam_native_compat.py`身份包含在对应source snapshot中。
+
+同一1265个可配对目标：平均mask IoU从0.7778189升至0.8049935，绝对差+0.0271746；新增35个上游合法目标不混入该配对差。新完整域中591个mask仍被诊断为机身夹带背景/配件；没有可用非DJI类别GT，类别specificity保持未测。该正结果不能替代SAM辅助A0训练或最终精度准入。
+
+原始artifact（服务器）：旧`outputs/action4_sam_full_dev_eval_v001/scorer_v001/full_v001/{RESULT.json,PER_IMAGE.jsonl}`；新`outputs/action4_sam_selectedB0_metrics_preparation_v001/full_v001/{RESULT.json,PER_IMAGE.jsonl,ROOT_ANALYSIS.json}`。实际scorer源码SHA：`f94ec285b337c92618a4afda5fc243e44d5544245d45cca62839c9782e272d35`。实现过程、失败修复与后续边界见[本阶段结论](../docs/stages/2026-10-24-1-conclusion-Action4第二阶段识别与八角点增强.md)。
+
+<a id="p2-sam-parent-b0-full650-20261025"></a>
+
+**p2-sam-parent-b0-full650-20261025 证据：** 服务器artifact为`/data/zy/vln/a-test/outputs/action4_sam_full_dev_eval_v001/scorer_v001/full_v001/RESULT.json`；native配置与父模型、权重、source身份见`/data/zy/vln/a-test/outputs/action4_sam_full_dev_eval_v001/r096_v005/run/RUN_LOCK.json`。该行是旧B0父模型提示，不能当作80轮新B0。
+
+<a id="p2-sam-completed-b0-step9500-full650-20261025"></a>
+
+**p2-sam-completed-b0-step9500-full650-20261025 证据：** 服务器artifact为`/data/zy/vln/a-test/outputs/action4_sam_selectedB0_metrics_preparation_v001/full_v001/RESULT.json`及`ROOT_ANALYSIS.json`；native配置与完整模型source合同见`/data/zy/vln/a-test/outputs/action4_sam_selectedB0_eval_v001/run/RUN_LOCK.json`，B0选定step9500封存回执见`models/candidates/action4_improvement/stage1_B0_completed_20261024/SEALED_ROLE.json`。
+
+
+## phrase2开发集：固定A0/B0预测与面内对应几何候选（2026-10-27T05:04:55.956360+08:00）
+
+完整650图、1300非ignore GT，评分action4.pose_projection_all8_002.v1；一对一匹配、固定canonical8 ID、失败分母不变。图像模式不使用track。新行是缓存神经预测后的完整开发候选测评，不是新增训练、最终test或真实视频准入。
+
+| Record ID | Scope / Samples | Group / Model / Version | Status | All8@2% ↑ | All8@5% ↑ | FP / FN@2% ↓ | 有效匹配角点P95 px ↓ | Δ All8@2% pp | Benchmark SHA | Model code path（服务器） | Dataset/manifest path |
+|---|---|---|---|---:|---:|---:|---:|---:|---|---|---|
+| p2-roi15-best1450-full650-20261027 | full650 / 1300GT | A0 step1450 + B0 step9500 / ROI1.5 | complete；开发基线重放 | 900/1300 | 94.615% | 400 / 400 | 16.196564 | — | 5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da | /data/zy/vln/a-test/runtime/action4_runs/p2_a0_roi15_best_extension10_b64_e10_v001/source/src/eval/action4_staged_pipeline.py | /data/zy/vln/a-test/data/phrase2/eval/annotations.jsonl |
+| p2-marker-geometry-shadow-full650-20261027 | full650 / 1300GT | 同权重＋estimated display-marker geometry / frozen policy v001 | complete；未部署 | 955/1300 | 94.692% | 345 / 345 | 15.406371 | +4.231 | 5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da | /data/zy/vln/a-test/outputs/action4_marker_geometry_full650_v001/source/src/eval/action4_marker_geometry_development_eval.py | /data/zy/vln/a-test/data/phrase2/eval/annotations.jsonl |
+
+
+证据artifact：服务器outputs/action4_marker_geometry_full650_v001/results/{BASELINE_REPORT.json,CANDIDATE_REPORT.json,PREDICTIONS.json,OBSERVATION_AUDIT.json,PAIRED_DELTA.json,COMPLETE.json}。配置为同run的CONFIG.json，源码为source/SOURCE_MANIFEST.json，identity=b51864bac7be7f6ff7b72eef10e6e117da57fa5d2a1750f0cb4d96075799dac5。A0 SHA=528e4d3c0b66cceb624f2b714885bdd003462c293c6e0aa95cc9a2013e0068b2，B0 SHA=ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3；默认模型未变。
+
+565个预测采用候选几何；逐GT修复59、退化4。高遮挡仍44/192，小目标高遮挡仍0/40；不能把整体净增55掩盖困难组未改善。全域无非有限发布、1300输出保留；数据与K从白名单输入，GT仅在worker候选保存后计分，未用于选择对应或pose。检测器与template binding固定为OpenCV4.13.0/36h11/default NONE，不与SUBPIX混用。
+
+该binding是既有appearance纹理映射估计，不是实物metric标定；真实帧独立区域审查已发现marker拟合低误差但整机偏移的反例。因此本记录不构成真实视频替换A0的证据，也不代表冻结神经网络自身性能提高。详细过程和后续门见2026-10-26-1-conclusion-A0六档ROI扩张与B0预测框条件化微调.md。

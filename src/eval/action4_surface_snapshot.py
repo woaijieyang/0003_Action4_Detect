@@ -1,0 +1,26 @@
+"""Compatibility exports; snapshot contracts and storage belong to data."""
+from data.action4_surface_snapshot import (
+    SCHEMA,
+    VIDEO_SCHEMA,
+    SHAPES,
+    META_KEYS,
+    SEMANTICS,
+    VIDEO_SEMANTICS,
+    SurfaceSnapshot,
+    ROOT,
+    DataAdapter,
+    _video_context_identity,
+    _validate_video_identity,
+    _canonical,
+    _stat,
+    bind_model_file,
+    check_model_file,
+    model_identities,
+    checked_frame,
+    roi_identity,
+    _validate_coordinate_contract,
+    validate_snapshot,
+    make_snapshot,
+    save_snapshot,
+    load_snapshot
+)

@@ -1,0 +1,39 @@
+{
+  "schema": "action4.native_rgb_variant_policy.v1",
+  "variants": [
+    "original",
+    "light",
+    "blur"
+  ],
+  "probability": 0.8,
+  "operation_probability": 0.5,
+  "add_range": [
+    -0.098,
+    0.098
+  ],
+  "multiply_range": [
+    0.6,
+    1.4
+  ],
+  "contrast_range": [
+    0.5,
+    2.2
+  ],
+  "blur_sigma_range": [
+    0.05,
+    1.2
+  ],
+  "light_order": [
+    "add",
+    "multiply",
+    "contrast"
+  ],
+  "channel_mode": "shared_rgb",
+  "contrast_center": 0.5,
+  "blur_algorithm": "separable_gaussian_radius_ceil3sigma_reflect101_float64",
+  "quantization": "clip_then_numpy_rint_uint8",
+  "selection": "sha256_image_epoch_uniform_three_v1",
+  "epoch_numbering": "one_based",
+  "decode": "Pillow_RGB_RGBA_to_RGB_discard_alpha_no_exif_transform",
+  "scope": "native_train_only_preparation_not_integrated"
+}

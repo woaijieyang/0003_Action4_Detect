@@ -122,11 +122,12 @@ def _map_detection(detection,inverse):
             "bbox_full_xyxy":DataAdapter.transform_points(box.reshape(2,2),inverse).reshape(4).tolist()}
 
 @torch.no_grad()
-def candidate_union(dense,affine,config):
+def candidate_union(dense,affine,config,*,topk=20):
+    if type(topk) is not int or not 1<=topk<=300:raise ValueError("Candidate topK must be explicitly bounded1..300")
     product=dict(dense);product['center_logits']=torch.logit((dense['center_logits'].sigmoid()*dense['quality_logits'].sigmoid()).clamp(1e-7,1-1e-7))
     unique={}
     for outputs in [dense,product]:
-        pool=decode_candidate_pool(outputs,image_size=tuple(config['preprocess']['full_size']),score_threshold=0.,topk=20,max_detections=20)[0]
+        pool=decode_candidate_pool(outputs,image_size=tuple(config['preprocess']['full_size']),score_threshold=0.,topk=topk,max_detections=topk)[0]
         for item in pool:unique.setdefault(item['grid_index'],item)
     rows=[];boxes=[];center=dense['center_logits'].sigmoid().flatten();quality=dense['quality_logits'].sigmoid().flatten()
     for index,item in unique.items():

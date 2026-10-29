@@ -1,0 +1,38 @@
+{
+  "schema": "action4.selected_parent_registry.v1",
+  "purpose": "independent SAM enhancement from actual sealed ROI1.5 baseline best",
+  "deployment_selection_changed": false,
+  "created_at": "2026-10-27T10:31:00.653852+08:00",
+  "entries": {
+    "A0": {
+      "role": "A0",
+      "selected_step": 1450,
+      "architecture": "joint_pose",
+      "config_id": "6dd9095910c1c8cd92830311427021910468d5e4f082073b6302722661b109c5",
+      "path": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/A0.pt",
+      "sha256": "528e4d3c0b66cceb624f2b714885bdd003462c293c6e0aa95cc9a2013e0068b2",
+      "bytes": 178771341,
+      "training_config_id": "6dd9095910c1c8cd92830311427021910468d5e4f082073b6302722661b109c5",
+      "pose_method": "network",
+      "seal": {
+        "path": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/SEALED_ROLE.json",
+        "sha256": "f31f6718d628b0aa5bf597800f1c3b1fa98dee2abdea4297784b61ed5d5d849d"
+      }
+    },
+    "B0": {
+      "role": "B0",
+      "selected_step": 9500,
+      "architecture": "online_b0",
+      "config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/B0.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "bytes": 140031313,
+      "training_config_id": "bd704e10f9335f31268d3135d3fec69927a1a6a2214b1cc23f7af6f40997719e",
+      "pose_method": null,
+      "seal": {
+        "path": "models/candidates/action4_improvement/stage1_B0_completed_20261024/SEALED_ROLE.json",
+        "sha256": "2b7f27bc78d33db585437824d876d5eb79bb5f55875a629f6a0e5953c51f6913"
+      }
+    }
+  }
+}

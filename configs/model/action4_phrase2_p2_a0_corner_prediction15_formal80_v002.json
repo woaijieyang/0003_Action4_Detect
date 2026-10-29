@@ -1,0 +1,518 @@
+{
+  "role": "A0",
+  "mode": "full_training",
+  "output": "outputs/action4_improvement/stage4_corner/p2_a0_corner_prediction15_formal80_v002",
+  "dataset_root": "data/phrase2",
+  "seed": 20261024,
+  "validation_receipt": "outputs/action4_phase2_stage1_v001/data/PHRASE2_VALIDATED.json",
+  "expected_units": 10400,
+  "expected_eval_images": 650,
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 1.5
+  },
+  "parent_bundle": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/A0.pt",
+  "parent_best_step": 13180,
+  "parent_bundle_sha256": "a6e2c9dc88322bf27283de898ccd75f484edfe91bc1586824d7ed923f0f960bd",
+  "epochs": 80,
+  "batch": 48,
+  "micro": 2,
+  "world_size": 4,
+  "threads": 2,
+  "loader_workers": 6,
+  "training_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "eval_gpus": [
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7,
+    7
+  ],
+  "eval_loader_workers": 0,
+  "reserved_cpu_budget": 65,
+  "project_total_reserved_cpu": 72,
+  "min_free_mib": 16384,
+  "max_pending": 40,
+  "weight_decay": 0.0001,
+  "eval_every": 25,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "surface_lr": 1e-05,
+  "lr": 5e-05,
+  "train_backbone": false,
+  "roi_jitter": null,
+  "surface_source": {
+    "admission": "data/phrase2/GEOMETRY_ADMISSION.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/phrase2/train/geometry",
+      "eval": "data/phrase2/eval/geometry",
+      "test": "data/phrase2/test/geometry"
+    },
+    "manifest_sha256": {
+      "train": "d7e0bdffba0b119e7d7adaaae45d5105ff13fb5a97e7bb55c8cb13d0d217501f",
+      "eval": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+      "test": "132e147ab4afdf3095a08e0d208f56992b38319c7b15334efea7e88ac3c5b13f"
+    }
+  },
+  "evaluation_scoring_policy": "center",
+  "b0_scoring_policy": "center",
+  "score_schema": "action4.pose_projection_all8_002.v1",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "scope": "Formal stage4 enhancedC5 corner FPN80; sealed SAM13180/B09500/native prediction ROI1.5; full650 each25; no final test/video during training",
+  "independent_head_dependencies": [
+    {
+      "parameter_prefixes": [
+        "head.surface"
+      ],
+      "losses": [
+        "xyz",
+        "region",
+        "visible_mask",
+        "amodal_mask",
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "head.pose"
+      ],
+      "losses": [
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "sam_adapter.encoder",
+        "sam_adapter.projection"
+      ],
+      "losses": [
+        "xyz",
+        "region",
+        "visible_mask",
+        "amodal_mask",
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth",
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll",
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "sam_adapter.quality_head"
+      ],
+      "losses": [
+        "sam_mask_quality"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.localization.p5",
+        "corner_head.localization.lateral4",
+        "corner_head.localization.lateral3",
+        "corner_head.localization.lateral2",
+        "corner_head.localization.localization"
+      ],
+      "losses": [
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll",
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.localization.heatmap"
+      ],
+      "losses": [
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.valid_head"
+      ],
+      "losses": [
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.scale_head"
+      ],
+      "losses": [
+        "corner_laplace_nll"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.quality_head"
+      ],
+      "losses": [
+        "corner_quality_bce"
+      ]
+    }
+  ],
+  "geometry_batch_policy": "instancewise_head_v1",
+  "loss_weights": {
+    "xyz": 1.0,
+    "region": 0.1,
+    "visible_mask": 0.5,
+    "amodal_mask": 0.5,
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0,
+    "sam_mask_quality": 0.1,
+    "corner_heatmap_kl": 1.0,
+    "corner_coordinate": 1.0,
+    "corner_laplace_nll": 0.1,
+    "corner_valid_bce": 0.1,
+    "corner_quality_bce": 0.2
+  },
+  "evaluation_counterpart_bundle": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/source/inputs/B0_counterpart.pt",
+  "evaluation_counterpart_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+  "counterpart_scope": "completed formal B0 frozen for all train/eval predictions",
+  "training_allocator_budget_mib": 12288,
+  "evaluation_allocator_budget_mib": 3072,
+  "uncommitted_gpu_margin_mib": 8192,
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "eval_0": [
+      24
+    ],
+    "eval_1": [
+      25
+    ],
+    "eval_2": [
+      26
+    ],
+    "eval_3": [
+      27
+    ],
+    "eval_4": [
+      28
+    ],
+    "eval_5": [
+      29
+    ],
+    "eval_6": [
+      30
+    ],
+    "eval_7": [
+      31
+    ],
+    "eval_8": [
+      32
+    ],
+    "eval_9": [
+      33
+    ],
+    "eval_10": [
+      34
+    ],
+    "eval_11": [
+      35
+    ],
+    "eval_12": [
+      36
+    ],
+    "eval_13": [
+      37
+    ],
+    "eval_14": [
+      38
+    ],
+    "eval_15": [
+      39
+    ],
+    "eval_16": [
+      40
+    ],
+    "eval_17": [
+      41
+    ],
+    "eval_18": [
+      42
+    ],
+    "eval_19": [
+      43
+    ],
+    "eval_20": [
+      44
+    ],
+    "eval_21": [
+      45
+    ],
+    "eval_22": [
+      46
+    ],
+    "eval_23": [
+      47
+    ],
+    "eval_24": [
+      48
+    ],
+    "eval_25": [
+      49
+    ],
+    "eval_26": [
+      50
+    ],
+    "eval_27": [
+      51
+    ],
+    "eval_28": [
+      52
+    ],
+    "eval_29": [
+      53
+    ],
+    "eval_30": [
+      54
+    ],
+    "eval_31": [
+      55
+    ]
+  },
+  "validation_receipt_sha256": "6012262112953bc7ee9524cb374e499b64f81998922ba41c3664a3baa4beacf6",
+  "training_protocol": "action4.corner_prediction_roi_enhancement.native_v1",
+  "a0_variant": "a0_corner_image",
+  "sam_enabled": true,
+  "roi_source": "frozen_b0_prediction",
+  "roi_expansion": 1.5,
+  "roi_size": 448,
+  "photometric": false,
+  "prediction_roi_manifest": {
+    "summary": {
+      "path": "outputs/action4_roi_sweep_v001/prediction_training_manifest_v001/SUMMARY.json",
+      "sha256": "6659713957fb25fc1aaba869e7c384972d519f76e0d474eb7ea3930db312410f"
+    },
+    "rows": {
+      "path": "outputs/action4_roi_sweep_v001/prediction_training_manifest_v001/CANDIDATE_ROWS.jsonl",
+      "sha256": "5e6d0c36ba04f937755359dc0c2317dfc043f383257ab6f387767c3db6a3fd55"
+    }
+  },
+  "pose_lr": 5e-05,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "grad_clip_norm": 1.0,
+  "eta_min": 1e-07,
+  "formal_epochs": 80,
+  "frozen_eval_b0_predictions": {
+    "path": "outputs/action4_improvement/stage1_baseline/p2_a0_loader12_eval8_v001/eval_runs/step_00015770_faa19818781a4ebb82b0ff8ca11e5fbe_6/rgb/BOX_PREDICTIONS.json",
+    "sha256": "e02169350abf56db3a3a227ae7b8fbfd8199e758331f18170756e2bd2a96f5e6"
+  },
+  "a0_selection_contract": "full_all8_training_candidate_v1",
+  "training_data_mode": "independent_images",
+  "stage3_parent_seal": {
+    "path": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/SEALED_ROLE.json",
+    "sha256": "f31f6718d628b0aa5bf597800f1c3b1fa98dee2abdea4297784b61ed5d5d849d"
+  },
+  "sam_protocol_id": "action4.sam_feature.c5.v001",
+  "sam_adapter_lr": 1e-05,
+  "sam_quality_lr": 0.0001,
+  "formal_training_units": 10400,
+  "sam_cache": {
+    "manifest": {
+      "path": "outputs/action4_sam_selectedB0_train_cache_v001/train/INDEX.json",
+      "sha256": "8ab59349c274a07b4e9ff28d108cfa3d279fd18d251bc5b6877d8404d9bbd62f"
+    },
+    "expected_sources": {
+      "upstream_mode": "b0_completed_native_receipt_v2",
+      "b0_model_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "b0_source_sha256": "d9a147b9ece22a50864a5af5c5756f92340f925a588d8f815fe5f53de7a1f525",
+      "sam_model_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "sam_source_sha256": "e8f28f524038085ffed5593c809cefb5c476cf6cf6a85a045e63471dcd47891f",
+      "sam_prompt_sha256": "c50a57a4f38fe558f80e8e2bc1d6cc7bc77e4764f43fb555dea5fbe3f27d6778",
+      "postprocess_sha256": "41f6f17b45d13de21d2a0112313edbfa5bf1b159aff27c13438f1d1fc5f995a1"
+    }
+  },
+  "sam_eval_cache": {
+    "manifest": {
+      "path": "outputs/action4_sam_selectedB0_cache_v001/eval/INDEX.json",
+      "sha256": "328fe7f4e057b22426b97882aaab14a7b967f9d498094a1f765108211a613654"
+    },
+    "expected_sources": {
+      "upstream_mode": "b0_completed_native_receipt_v2",
+      "b0_model_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "b0_source_sha256": "d9a147b9ece22a50864a5af5c5756f92340f925a588d8f815fe5f53de7a1f525",
+      "sam_model_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "sam_source_sha256": "5c15705e25f5ffe44196afbfe1d3d3ad6bc59fb828603fef1bf6a0d82208d337",
+      "sam_prompt_sha256": "7953013e3fa58e3817a584fe331d88df68c48ff38728826ad6e825abd0907607",
+      "postprocess_sha256": "41f6f17b45d13de21d2a0112313edbfa5bf1b159aff27c13438f1d1fc5f995a1"
+    }
+  },
+  "sam_training_associations": {
+    "path": "outputs/action4_sam_selectedB0_train_cache_v001/TRAIN_ASSOCIATIONS.json",
+    "sha256": "a8f287d1bbd773095492c8557f422e75c539f79bb17e07a9e8758507b25183ec"
+  },
+  "sam_mask_augmentation": {
+    "path": "configs/data/action4_sam_mask_augmentation_v001.json",
+    "sha256": "ae2494a0787e271ec76daf8fd015e935cd6570cb49ba473ee1e9bee8a98e9e02"
+  },
+  "eval_threads": 1,
+  "sam_cache_validation_workers": 8,
+  "sam_eval_cache_validation_workers": 1,
+  "roi_sampling_device": "cpu",
+  "corner_enabled": true,
+  "corner_protocol": {
+    "protocol_id": "action4.corner_candidate_model.v1",
+    "grid": 224,
+    "fixed_ids": 8,
+    "feature_path": "shared_enhancedC5_FPN128",
+    "quality_epoch_basis": "one_based",
+    "quality_warmup_epochs": 5,
+    "decoder_status": "pending",
+    "async_eval_status": "pending",
+    "quality_ready": false,
+    "deployment_admitted": false,
+    "output": "raw_pose_and_typed_corner_observations_only"
+  },
+  "corner_lr": 0.0001,
+  "corner_quality_lr": 0.0001,
+  "corner_softmax_bias_frozen": true,
+  "corner_refined_quality_bridge": {
+    "path": "outputs/action4_refined_quality_development_review_v002/QUALITY_BRIDGE.json",
+    "sha256": "42a8dbcd0762c332081ad4773db5e2556e5bc058067f7f49ea41ae698504052b"
+  },
+  "b0_full_box_quality_receipt": {
+    "path": "outputs/action4_refined_box_quality_calibration_v001/FULL_BOX_QUALITY_GATE.json",
+    "sha256": "e000e7db8188ad788bd6a3f39dc49f0eb9cc60ddc5e346bc729989a5a0cfba73"
+  },
+  "train_indices": null,
+  "eval_indices": null,
+  "eval_split": "eval",
+  "stage4_parent_seal": {
+    "path": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/SEALED_ROLE.json",
+    "sha256": "aef3468e615259c1e6274d2cd428fb9a147815c3b01624a1b92ef6c0c5255f52"
+  },
+  "corner_eval_engineering_fixture": false,
+  "controller_cpu": [
+    56
+  ],
+  "corner_counterpart": {
+    "B0": {
+      "path": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/source/inputs/B0_counterpart.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3"
+    },
+    "train_sam_cache": {
+      "path": "outputs/action4_sam_selectedB0_train_cache_v001/train/INDEX.json",
+      "sha256": "8ab59349c274a07b4e9ff28d108cfa3d279fd18d251bc5b6877d8404d9bbd62f"
+    },
+    "eval_sam_cache": {
+      "path": "outputs/action4_sam_selectedB0_cache_v001/eval/INDEX.json",
+      "sha256": "328fe7f4e057b22426b97882aaab14a7b967f9d498094a1f765108211a613654"
+    }
+  },
+  "project_code_sha256": "1b71eb7cf2e76b4e5232eb8bbfb7e2fe98abace6fe2364c62065a9cae7f2453d",
+  "tested_project_code_sha256": "1b71eb7cf2e76b4e5232eb8bbfb7e2fe98abace6fe2364c62065a9cae7f2453d",
+  "stage4_execution_gate": {
+    "path": "outputs/action4_corner_startup_repair_v001/EXECUTION_GATE_v002.json",
+    "sha256": "013573d13b38c2a4ab0c28c785a4a801a2c008f407c3e0b8e2c3b87fa283dc30"
+  },
+  "synchronize_data_preflight": true,
+  "wait_for_training_ready_before_eval": true,
+  "training_startup_timeout_s": 1800,
+  "parent_registry": "outputs/action4_improvement/stage4_corner/p2_a0_corner_prediction15_formal80_v002/PARENT_REGISTRY.json",
+  "integration_or_admission_receipt": "outputs/action4_improvement/stage4_corner/p2_a0_corner_prediction15_formal80_v002/ADMISSION.json"
+}

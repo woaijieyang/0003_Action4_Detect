@@ -1,0 +1,40 @@
+{
+  "input_lock": {
+    "path": "outputs/action4_sam80_fixed_video_v001/INPUT_LOCK.json",
+    "sha256": "826c335e2ee96b1a92f251ac86848c5861940e26c755ff6bacd894d6f42d305e"
+  },
+  "clip_predictions": [
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_1163/PREDICTIONS.jsonl",
+      "sha256": "066c58363ee9453c601125f53ba426c901d4c2bf74262b3d0d516d52d4d66117"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_1428/PREDICTIONS.jsonl",
+      "sha256": "8e91153ced9d22366225cee80decc01f2930796013754fd66623d0211a6d33d9"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_2777/PREDICTIONS.jsonl",
+      "sha256": "54ec22dcfdcbf8bde9c152af0afeff2df0da6042421c64eda9fa3f638771b5bc"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_2523/PREDICTIONS.jsonl",
+      "sha256": "e33f3d4f4cf905e188d28467198556f05bb574b2907fa71ba3d6d8b6aa527cb8"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_120/PREDICTIONS.jsonl",
+      "sha256": "7973219ee22dcb19bc5c727219f44152ef20f54a87134ed98741420d71991bef"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v002/event_180/PREDICTIONS.jsonl",
+      "sha256": "93260c052502c5188ea1d35daf0a3b44958af9cad469924bc774ac3e3173657c"
+    }
+  ],
+  "output": "outputs/action4_reference_shape_audit_v001",
+  "support_policy": {
+    "min_visible_coverage": 0.9,
+    "min_visible_over_projection": 0.4,
+    "tolerance_diagonal_fraction": 0.01,
+    "min_mask_pixels": 32
+  },
+  "scope": "All132 preregistered core instances, same raw A0/baseline/held candidates, diagnostic no selection or published change"
+}

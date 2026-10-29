@@ -1,0 +1,113 @@
+{
+  "schema": "action4.sam_feature_protocol.v001",
+  "implementation": "model.action4_sam_feature_adapter.SamFeatureAdapter",
+  "protocol_id": "action4.sam_feature.c5.v001",
+  "rgb_shape": [
+    "B",
+    3,
+    448,
+    448
+  ],
+  "visible_shape": [
+    "B",
+    1,
+    448,
+    448
+  ],
+  "distance_shape": [
+    "B",
+    1,
+    448,
+    448
+  ],
+  "available_shape": [
+    "B",
+    1,
+    1,
+    1
+  ],
+  "c5_shape": [
+    "B",
+    2048,
+    14,
+    14
+  ],
+  "distance_formula": "clip((EDT(M)-EDT(1-M))/16,-1,1)",
+  "missing": "M=D=0, available=0; original RGB C5 preserved exactly",
+  "encoder": {
+    "convolutions": [
+      {
+        "kernel": 3,
+        "in_channels": 2,
+        "out_channels": 32,
+        "padding": 1
+      },
+      {
+        "kernel": 3,
+        "in_channels": 32,
+        "out_channels": 64,
+        "padding": 1
+      }
+    ],
+    "normalization": "GroupNorm(8)",
+    "activation": "ReLU",
+    "resize": {
+      "size": [
+        14,
+        14
+      ],
+      "mode": "bilinear",
+      "align_corners": false
+    },
+    "projection": {
+      "kernel": 1,
+      "out_channels": 2048,
+      "weight_init": 0,
+      "bias_init": 0
+    }
+  },
+  "gate": "c5 + available * detach(q_mask) * residual",
+  "quality": {
+    "rgb_input": "detach(C5).mean(spatial)",
+    "statistics": [
+      "area",
+      "bbox_width",
+      "bbox_height",
+      "fill",
+      "perimeter",
+      "candidate_overlap",
+      "missing",
+      "dropout"
+    ],
+    "hidden": 128,
+    "output": "sigmoid",
+    "output_bias_init": 0,
+    "target": "IoU(actual post-crop post-perturbation predicted visible mask, GT visible)",
+    "loss": "SmoothL1 beta=1",
+    "weight": 0.1,
+    "return": "unweighted loss_sum and eligible count; global reduction in caller",
+    "ineligible": [
+      "missing",
+      "empty_prediction",
+      "dropout",
+      "supervised_false"
+    ],
+    "empty_gt_nonempty_prediction_target": 0,
+    "gradient": "quality_head only"
+  },
+  "identity_fields": [
+    "image_id",
+    "instance_id",
+    "roi_id",
+    "pixel_space_id"
+  ],
+  "downstream": "Enhanced C5 may feed current A0 and stage4 1x1->128 P5; caller reuses same backbone and C2-C4",
+  "gdr_pose_channels": 71,
+  "status": "independent_preparation_only",
+  "limitations": [
+    "No actual JointSurfaceRGB/trainer/eval/bundle integration in this change",
+    "No formal model training or actual pose/corner performance evaluation",
+    "Provided candidate_overlap is a predicted-side scalar [B,1], never GT IoU",
+    "ROI transforms, K and prediction-cache provenance remain caller responsibility"
+  ]
+}

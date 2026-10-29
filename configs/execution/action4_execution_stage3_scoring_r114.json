@@ -1,0 +1,330 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": 114,
+  "parent_authority": {
+    "path": "configs/execution/action4_execution_stage3_drained_r113.json",
+    "sha256": "ce1c9a147d0517c94b87bf259d9e68c052fc4d63055d0dd528c06812f2485219"
+  },
+  "status": "STAGE3_SAM_FORMAL80_DISPATCHED",
+  "training_active": true,
+  "train_enabled": true,
+  "current_job": "p2_a0_sam_prediction15_formal80_v001",
+  "output": "outputs/action4_improvement/stage3_a0_sam/p2_a0_sam_prediction15_formal80_v001",
+  "continuation": "outputs/action4_stage3_native_prediction_v001/CONTINUATION.json",
+  "formal_training_run": "p2_a0_sam_prediction15_formal80_v001",
+  "planned_formal_run": "p2_a0_sam_prediction15_formal80_v001",
+  "formal80_started": true,
+  "baseline_extensions_allowed": false,
+  "independent_planned_training_authorized": true,
+  "integration_complete": "outputs/action4_improvement/stage3_a0_sam/p2_a0_sam_prediction15_integration28_v001/CONTROLLER_COMPLETE.json",
+  "dataset_root": "data/phrase2",
+  "dataset_release": "phrase2_6500_v001",
+  "split_counts": {
+    "train": 5200,
+    "eval": 650,
+    "test": 650
+  },
+  "authorized_training_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "authorized_evaluation_gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "forbidden_gpu_ids": [
+    0,
+    1,
+    2,
+    3
+  ],
+  "GPU0_forbidden": true,
+  "gpu1_eval_only_max_workers": 0,
+  "cpu_policy": {
+    "logical_cpu_count": 96,
+    "physical_core_count": 48,
+    "allowed_logical_cpu_ids": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "max_logical_cpus": 72,
+    "allocation_order": "highest_id_first"
+  },
+  "cpu_budget_limit": 72,
+  "data_unchanged": true,
+  "default_models_unchanged": true,
+  "authorized_parallel_subagents": 0,
+  "no_subagents": true,
+  "planned_eval_schedule": {
+    "switch_after_epochs": 30,
+    "before_every": 25,
+    "after_every": 10,
+    "step_alignment": "global_optimizer_step"
+  },
+  "plan": "docs/stages/2026-10-24-1-plan-Action4第二阶段识别与八角点增强.md",
+  "conclusion": "docs/stages/2026-10-24-1-conclusion-Action4第二阶段识别与八角点增强.md",
+  "note": "Independent SAM enhancement from baseline sealed1450/B09500, no baseline extension; actual startup/updates must be checked in run receipts.",
+  "monitor_policy": "30minute actual receipts; no duplicate launches/no videos during training/no final test/no agent spawn from heartbeat",
+  "time_unix": 1793127618.116873,
+  "configuration": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/source/resolved_config.json",
+  "run_spec": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/RUN_SPEC.json",
+  "controller_pid": 1399656,
+  "role": "A0",
+  "epochs": 80,
+  "training_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "evaluation_gpus": [
+    4,
+    4,
+    4,
+    4,
+    5,
+    5,
+    5,
+    5,
+    6,
+    6,
+    6,
+    6,
+    7,
+    7,
+    7,
+    7
+  ],
+  "eval_workers": 16,
+  "cpu_reserved": 65,
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ],
+    "eval_0": [
+      62,
+      63
+    ],
+    "eval_1": [
+      60,
+      61
+    ],
+    "eval_2": [
+      58,
+      59
+    ],
+    "eval_3": [
+      56,
+      57
+    ],
+    "eval_4": [
+      54,
+      55
+    ],
+    "eval_5": [
+      52,
+      53
+    ],
+    "eval_6": [
+      50,
+      51
+    ],
+    "eval_7": [
+      48,
+      49
+    ],
+    "eval_8": [
+      46,
+      47
+    ],
+    "eval_9": [
+      44,
+      45
+    ],
+    "eval_10": [
+      42,
+      43
+    ],
+    "eval_11": [
+      40,
+      41
+    ],
+    "eval_12": [
+      38,
+      39
+    ],
+    "eval_13": [
+      36,
+      37
+    ],
+    "eval_14": [
+      34,
+      35
+    ],
+    "eval_15": [
+      32,
+      33
+    ]
+  },
+  "controller_cpu": [
+    31
+  ],
+  "execution_gate": {
+    "path": "outputs/action4_stage3_native_prediction_v001/FORMAL_EXECUTION_GATE_v001.json",
+    "sha256": "14cb7a16d1c8e27f30c0e497abf7c183864bbf740ea78183698a30f8f2d69fe7"
+  },
+  "resource_dispatch": "outputs/action4_improvement/stage3_a0_sam/p2_a0_sam_prediction15_formal80_v001/DISPATCH.json",
+  "latest_user_scope": "User explicitly requests no subagents; root alone continues all work. Existing owned training/eval jobs remain unchanged.",
+  "primary_eval_workers": 16,
+  "primary_run_cpu_reserved": 65,
+  "runtime_eval_extension": {
+    "path": "outputs/action4_eval_acceleration_v001/MANIFEST.json",
+    "sha256": "85cbf916bc5ff13e86f89ef85b8d7e2c2f25a3607207c23b92549326cb3b6f30"
+  },
+  "runtime_cpu_note": "Auxiliary workers16-19 completed and exited0. Primary training64-95/eval32-63/controller31 unchanged. Root preparation24-30, total72.",
+  "runtime_resource_extension_only": true,
+  "original_run_spec_unchanged": true,
+  "runtime_eval_extensions": [
+    {
+      "path": "outputs/action4_eval_acceleration_v001/MANIFEST.json",
+      "sha256": "85cbf916bc5ff13e86f89ef85b8d7e2c2f25a3607207c23b92549326cb3b6f30"
+    },
+    {
+      "path": "outputs/action4_eval_acceleration_v002/MANIFEST.json",
+      "sha256": "ae342b8f2d9156f95fcb60382dc5dc1137c41f572eeb6adb215b3ee3028a2d79"
+    }
+  ],
+  "runtime_shared_eval_cpu_pool": [],
+  "runtime_extra_eval_nice": 19,
+  "runtime_eval_extensions_status": "COMPLETE_DRAINED",
+  "root_preparation_cpu_pool": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30
+  ],
+  "parallel_offline_corner_scoring": {
+    "pid": 1695660,
+    "gpu": null,
+    "cpus": [
+      25,
+      26,
+      27,
+      28,
+      29,
+      30
+    ],
+    "output": "outputs/action4_corner_roi15_rescore_v003",
+    "model_forward_calls": 0,
+    "inference_source": "outputs/action4_stage4_full650_engineering_v004/full650",
+    "formal_admission": false
+  }
+}

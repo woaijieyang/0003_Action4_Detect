@@ -1,0 +1,600 @@
+{
+  "role": "A0",
+  "mode": "integration",
+  "output": "outputs/action4_improvement/stage3_a0_sam/p2_a0_sam_prediction15_formal80_v001",
+  "dataset_root": "data/phrase2",
+  "seed": 20261024,
+  "validation_receipt": "outputs/action4_phase2_stage1_v001/data/PHRASE2_VALIDATED.json",
+  "expected_units": 216,
+  "expected_eval_images": 650,
+  "network": {
+    "decoder_channels": 256,
+    "head_channels": 64,
+    "freeze_bn": true,
+    "corner_probability_bias": 0.1
+  },
+  "preprocess": {
+    "full_size": [
+      1024,
+      768
+    ],
+    "roi_size": 448,
+    "roi_expansion": 1.5
+  },
+  "parent_bundle": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/A0.pt",
+  "parent_best_step": 13180,
+  "parent_bundle_sha256": "a6e2c9dc88322bf27283de898ccd75f484edfe91bc1586824d7ed923f0f960bd",
+  "epochs": 6,
+  "batch": 48,
+  "micro": 2,
+  "world_size": 4,
+  "threads": 2,
+  "loader_workers": 6,
+  "training_gpus": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "eval_gpus": [],
+  "eval_loader_workers": 1,
+  "reserved_cpu_budget": 33,
+  "project_total_reserved_cpu": 72,
+  "min_free_mib": 16384,
+  "max_pending": 3,
+  "weight_decay": 0.0001,
+  "eval_every": 25,
+  "lr_backbone": 1e-05,
+  "lr_detector": 5e-05,
+  "lr_refiner": 0.0001,
+  "surface_lr": 1e-05,
+  "lr": 5e-05,
+  "train_backbone": false,
+  "roi_jitter": null,
+  "surface_source": {
+    "admission": "data/phrase2/GEOMETRY_ADMISSION.json",
+    "regions": "data/action4_surface_regions_v001/centers.json",
+    "label_roots": {
+      "train": "data/phrase2/train/geometry",
+      "eval": "data/phrase2/eval/geometry",
+      "test": "data/phrase2/test/geometry"
+    },
+    "manifest_sha256": {
+      "train": "d7e0bdffba0b119e7d7adaaae45d5105ff13fb5a97e7bb55c8cb13d0d217501f",
+      "eval": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+      "test": "132e147ab4afdf3095a08e0d208f56992b38319c7b15334efea7e88ac3c5b13f"
+    }
+  },
+  "evaluation_scoring_policy": "center",
+  "b0_scoring_policy": "center",
+  "score_schema": "action4.pose_projection_all8_002.v1",
+  "intrinsics_context": "outputs/action4_execution_source_release_v006/source_context.json",
+  "scope": "bounded stop20 actual-trainer timing only; not a completed training stage, no best selected",
+  "independent_head_dependencies": [
+    {
+      "parameter_prefixes": [
+        "head.surface"
+      ],
+      "losses": [
+        "xyz",
+        "region",
+        "visible_mask",
+        "amodal_mask",
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "head.pose"
+      ],
+      "losses": [
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "sam_adapter.encoder",
+        "sam_adapter.projection"
+      ],
+      "losses": [
+        "xyz",
+        "region",
+        "visible_mask",
+        "amodal_mask",
+        "rotation_point_matching",
+        "centroid",
+        "relative_depth",
+        "visible_corners",
+        "hidden_corners",
+        "positive_depth",
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll",
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "sam_adapter.quality_head"
+      ],
+      "losses": [
+        "sam_mask_quality"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.localization.p5",
+        "corner_head.localization.lateral4",
+        "corner_head.localization.lateral3",
+        "corner_head.localization.lateral2",
+        "corner_head.localization.localization"
+      ],
+      "losses": [
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll",
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.localization.heatmap"
+      ],
+      "losses": [
+        "corner_heatmap_kl",
+        "corner_coordinate",
+        "corner_laplace_nll"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.valid_head"
+      ],
+      "losses": [
+        "corner_valid_bce"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.scale_head"
+      ],
+      "losses": [
+        "corner_laplace_nll"
+      ]
+    },
+    {
+      "parameter_prefixes": [
+        "corner_head.quality_head"
+      ],
+      "losses": [
+        "corner_quality_bce"
+      ]
+    }
+  ],
+  "geometry_batch_policy": "instancewise_head_v1",
+  "loss_weights": {
+    "xyz": 1.0,
+    "region": 0.1,
+    "visible_mask": 0.5,
+    "amodal_mask": 0.5,
+    "rotation_point_matching": 1.0,
+    "centroid": 1.0,
+    "relative_depth": 1.0,
+    "visible_corners": 1.0,
+    "hidden_corners": 1.0,
+    "positive_depth": 1.0,
+    "sam_mask_quality": 0.1,
+    "corner_heatmap_kl": 1.0,
+    "corner_coordinate": 1.0,
+    "corner_laplace_nll": 0.1,
+    "corner_valid_bce": 0.1,
+    "corner_quality_bce": 0.2
+  },
+  "evaluation_counterpart_bundle": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/source/inputs/B0_counterpart.pt",
+  "evaluation_counterpart_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+  "counterpart_scope": "completed formal B0 frozen for all train/eval predictions",
+  "training_allocator_budget_mib": 12288,
+  "evaluation_allocator_budget_mib": 8192,
+  "uncommitted_gpu_margin_mib": 8192,
+  "process_cpu_affinity": {
+    "train": [
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95
+    ]
+  },
+  "validation_receipt_sha256": "6012262112953bc7ee9524cb374e499b64f81998922ba41c3664a3baa4beacf6",
+  "training_protocol": "action4.corner_prediction_roi_enhancement.native_v1",
+  "a0_variant": "a0_corner_image",
+  "sam_enabled": true,
+  "roi_source": "frozen_b0_prediction",
+  "roi_expansion": 1.5,
+  "roi_size": 448,
+  "photometric": false,
+  "prediction_roi_manifest": {
+    "summary": {
+      "path": "outputs/action4_roi_sweep_v001/prediction_training_manifest_v001/SUMMARY.json",
+      "sha256": "6659713957fb25fc1aaba869e7c384972d519f76e0d474eb7ea3930db312410f"
+    },
+    "rows": {
+      "path": "outputs/action4_roi_sweep_v001/prediction_training_manifest_v001/CANDIDATE_ROWS.jsonl",
+      "sha256": "5e6d0c36ba04f937755359dc0c2317dfc043f383257ab6f387767c3db6a3fd55"
+    }
+  },
+  "pose_lr": 5e-05,
+  "betas": [
+    0.9,
+    0.999
+  ],
+  "eps": 1e-08,
+  "grad_clip_norm": 1.0,
+  "eta_min": 1e-07,
+  "formal_epochs": 80,
+  "frozen_eval_b0_predictions": {
+    "path": "outputs/action4_improvement/stage1_baseline/p2_a0_loader12_eval8_v001/eval_runs/step_00015770_faa19818781a4ebb82b0ff8ca11e5fbe_6/rgb/BOX_PREDICTIONS.json",
+    "sha256": "e02169350abf56db3a3a227ae7b8fbfd8199e758331f18170756e2bd2a96f5e6"
+  },
+  "a0_selection_contract": "full_all8_training_candidate_v1",
+  "training_data_mode": "independent_images",
+  "stage3_parent_seal": {
+    "path": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/SEALED_ROLE.json",
+    "sha256": "f31f6718d628b0aa5bf597800f1c3b1fa98dee2abdea4297784b61ed5d5d849d"
+  },
+  "sam_protocol_id": "action4.sam_feature.c5.v001",
+  "sam_adapter_lr": 1e-05,
+  "sam_quality_lr": 0.0001,
+  "formal_training_units": 10400,
+  "sam_cache": {
+    "manifest": {
+      "path": "outputs/action4_sam_selectedB0_train_cache_v001/train/INDEX.json",
+      "sha256": "8ab59349c274a07b4e9ff28d108cfa3d279fd18d251bc5b6877d8404d9bbd62f"
+    },
+    "expected_sources": {
+      "upstream_mode": "b0_completed_native_receipt_v2",
+      "b0_model_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "b0_source_sha256": "d9a147b9ece22a50864a5af5c5756f92340f925a588d8f815fe5f53de7a1f525",
+      "sam_model_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "sam_source_sha256": "e8f28f524038085ffed5593c809cefb5c476cf6cf6a85a045e63471dcd47891f",
+      "sam_prompt_sha256": "c50a57a4f38fe558f80e8e2bc1d6cc7bc77e4764f43fb555dea5fbe3f27d6778",
+      "postprocess_sha256": "41f6f17b45d13de21d2a0112313edbfa5bf1b159aff27c13438f1d1fc5f995a1"
+    }
+  },
+  "sam_eval_cache": {
+    "manifest": {
+      "path": "outputs/action4_sam_selectedB0_cache_v001/eval/INDEX.json",
+      "sha256": "328fe7f4e057b22426b97882aaab14a7b967f9d498094a1f765108211a613654"
+    },
+    "expected_sources": {
+      "upstream_mode": "b0_completed_native_receipt_v2",
+      "b0_model_sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "b0_source_sha256": "d9a147b9ece22a50864a5af5c5756f92340f925a588d8f815fe5f53de7a1f525",
+      "sam_model_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "sam_source_sha256": "5c15705e25f5ffe44196afbfe1d3d3ad6bc59fb828603fef1bf6a0d82208d337",
+      "sam_prompt_sha256": "7953013e3fa58e3817a584fe331d88df68c48ff38728826ad6e825abd0907607",
+      "postprocess_sha256": "41f6f17b45d13de21d2a0112313edbfa5bf1b159aff27c13438f1d1fc5f995a1"
+    }
+  },
+  "sam_training_associations": {
+    "path": "outputs/action4_sam_selectedB0_train_cache_v001/TRAIN_ASSOCIATIONS.json",
+    "sha256": "a8f287d1bbd773095492c8557f422e75c539f79bb17e07a9e8758507b25183ec"
+  },
+  "sam_mask_augmentation": {
+    "path": "configs/data/action4_sam_mask_augmentation_v001.json",
+    "sha256": "ae2494a0787e271ec76daf8fd015e935cd6570cb49ba473ee1e9bee8a98e9e02"
+  },
+  "eval_threads": 1,
+  "sam_cache_validation_workers": 8,
+  "sam_eval_cache_validation_workers": 1,
+  "roi_sampling_device": "cpu",
+  "corner_enabled": true,
+  "corner_protocol": {
+    "protocol_id": "action4.corner_candidate_model.v1",
+    "grid": 224,
+    "fixed_ids": 8,
+    "feature_path": "shared_enhancedC5_FPN128",
+    "quality_epoch_basis": "one_based",
+    "quality_warmup_epochs": 5,
+    "decoder_status": "pending",
+    "async_eval_status": "pending",
+    "quality_ready": false,
+    "deployment_admitted": false,
+    "output": "raw_pose_and_typed_corner_observations_only"
+  },
+  "corner_lr": 0.0001,
+  "corner_quality_lr": 0.0001,
+  "corner_softmax_bias_frozen": true,
+  "corner_refined_quality_bridge": {
+    "path": "outputs/action4_refined_quality_development_review_v002/QUALITY_BRIDGE.json",
+    "sha256": "42a8dbcd0762c332081ad4773db5e2556e5bc058067f7f49ea41ae698504052b"
+  },
+  "b0_full_box_quality_receipt": {
+    "path": "outputs/action4_refined_box_quality_calibration_v001/FULL_BOX_QUALITY_GATE.json",
+    "sha256": "e000e7db8188ad788bd6a3f39dc49f0eb9cc60ddc5e346bc729989a5a0cfba73"
+  },
+  "train_indices": [
+    89,
+    108,
+    190,
+    252,
+    280,
+    319,
+    348,
+    369,
+    382,
+    413,
+    445,
+    493,
+    541,
+    552,
+    605,
+    624,
+    627,
+    653,
+    738,
+    792,
+    807,
+    868,
+    880,
+    897,
+    925,
+    1144,
+    1178,
+    1181,
+    1330,
+    1407,
+    1432,
+    1494,
+    1496,
+    1510,
+    1522,
+    1564,
+    1615,
+    1675,
+    1735,
+    1751,
+    1810,
+    1994,
+    2024,
+    2066,
+    2077,
+    2090,
+    2119,
+    2254,
+    2304,
+    2331,
+    2490,
+    2664,
+    2734,
+    2740,
+    2743,
+    2849,
+    2902,
+    2997,
+    3014,
+    3055,
+    3072,
+    3073,
+    3169,
+    3182,
+    3209,
+    3210,
+    3250,
+    3254,
+    3264,
+    3313,
+    3319,
+    3362,
+    3394,
+    3443,
+    3455,
+    3501,
+    3549,
+    3712,
+    3737,
+    3753,
+    3784,
+    3796,
+    3825,
+    3859,
+    3940,
+    3977,
+    3983,
+    4015,
+    4054,
+    4081,
+    4136,
+    4146,
+    4213,
+    4263,
+    4293,
+    4434,
+    4448,
+    4655,
+    4699,
+    4720,
+    4775,
+    4806,
+    4829,
+    4846,
+    4952,
+    4966,
+    4974,
+    4994,
+    4995,
+    5142,
+    5173,
+    5289,
+    5332,
+    5398,
+    5404,
+    5443,
+    5485,
+    5496,
+    5507,
+    5594,
+    5630,
+    5698,
+    5722,
+    5728,
+    5729,
+    5783,
+    5802,
+    5812,
+    5866,
+    5915,
+    5954,
+    5956,
+    5973,
+    5988,
+    6006,
+    6066,
+    6200,
+    6219,
+    6345,
+    6366,
+    6494,
+    6635,
+    6639,
+    6757,
+    6789,
+    6884,
+    6916,
+    6924,
+    6931,
+    6941,
+    6960,
+    6972,
+    7091,
+    7118,
+    7122,
+    7144,
+    7162,
+    7207,
+    7220,
+    7245,
+    7318,
+    7327,
+    7353,
+    7435,
+    7439,
+    7593,
+    7972,
+    7975,
+    8000,
+    8017,
+    8032,
+    8039,
+    8052,
+    8097,
+    8142,
+    8216,
+    8275,
+    8286,
+    8291,
+    8433,
+    8441,
+    8515,
+    8678,
+    8915,
+    9061,
+    9123,
+    9216,
+    9227,
+    9319,
+    9335,
+    9352,
+    9374,
+    9401,
+    9440,
+    9453,
+    9509,
+    9544,
+    9618,
+    9664,
+    9704,
+    9743,
+    9771,
+    9774,
+    9802,
+    9819,
+    9994,
+    10143,
+    10165,
+    10173,
+    10234,
+    10262,
+    10268,
+    10294,
+    10311,
+    10344,
+    10392
+  ],
+  "eval_indices": null,
+  "eval_split": "eval",
+  "stage4_parent_seal": {
+    "path": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/SEALED_ROLE.json",
+    "sha256": "aef3468e615259c1e6274d2cd428fb9a147815c3b01624a1b92ef6c0c5255f52"
+  },
+  "corner_eval_engineering_fixture": false,
+  "controller_cpu": [
+    57
+  ],
+  "corner_counterpart": {
+    "B0": {
+      "path": "runtime/action4_runs/p2_a0_sam_prediction15_formal80_v001/source/inputs/B0_counterpart.pt",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3"
+    },
+    "train_sam_cache": {
+      "path": "outputs/action4_sam_selectedB0_train_cache_v001/train/INDEX.json",
+      "sha256": "8ab59349c274a07b4e9ff28d108cfa3d279fd18d251bc5b6877d8404d9bbd62f"
+    },
+    "eval_sam_cache": {
+      "path": "outputs/action4_sam_selectedB0_cache_v001/eval/INDEX.json",
+      "sha256": "328fe7f4e057b22426b97882aaab14a7b967f9d498094a1f765108211a613654"
+    }
+  },
+  "joint_capacity_probe": true,
+  "joint_capacity_eval_output": "outputs/action4_corner_capacity32_v001",
+  "joint_capacity_eval_run_spec": "runtime/action4_runs/p2_corner_capacity32_v001/RUN_SPEC.json",
+  "joint_capacity_eval_run_spec_sha256": "1e745001c49f06ee2c77060d11551ef921e9b3ac22dfb1e4dced56d4e7865573",
+  "joint_probe_attempt": "e2f3a2c87b1b4859bba14e1845586082"
+}

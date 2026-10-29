@@ -9,10 +9,29 @@ from eval.action4_staged_pipeline import load_pipeline
 from eval.action4_video import draw_cuboids
 from model.training.action4_runtime import atomic_json
 
-def run(selection,output,limit=None,start=0,end=None):
+def run(selection,output,limit=None,start=0,end=None,cache_manifest=None):
     torch.set_num_threads(2)
     selection=contained_path(R,selection,exists=True)
     cfg=json.loads(selection.read_text())
+    from eval.action4_video_contract import validate_selection, validate_worker_environment, digest, active_authority, validate_cpu_affinity
+    frozen_identity=validate_selection(cfg)
+    trial = cfg.get("video_mode")=="research_trial"
+    if trial:
+        from model.training.action4_run_snapshot import verify_running_snapshot
+        if not cfg.get("require_immutable_source"):raise ValueError("Trial video requires immutable producer source")
+        verify_running_snapshot(cfg)
+    if cache_manifest is None:
+        validate_worker_environment()
+        if trial:
+            import os
+            if os.environ.get("CUDA_VISIBLE_DEVICES")!=cfg["trial_gpu_uuid"]:
+                raise ValueError("Trial worker GPU differs from explicit allocation")
+            if sorted(os.sched_getaffinity(0)) not in [sorted(x) for x in cfg["trial_worker_cpu_groups"]]:
+                raise ValueError("Trial worker CPU differs from explicit allocation")
+    else:
+        import os
+        cpus=set(os.sched_getaffinity(0))
+        validate_cpu_affinity(cpus,active_authority())
     out=contained_path(R,output,exists=False);out.mkdir(exist_ok=False)
     manifest=json.loads((R/"data/action4_real/cache_v001/frames_manifest.json").read_text())
     frames=manifest["frames"];source=manifest["source"]
@@ -25,7 +44,24 @@ def run(selection,output,limit=None,start=0,end=None):
     end=start+limit if limit is not None else (len(frames) if end is None else end)
     if not 0<=start<end<=len(frames):raise ValueError("Invalid frame interval")
     frames=frames[start:end]
-    pipeline=load_pipeline(cfg)
+    if cache_manifest is None:
+        if trial:
+            total=torch.cuda.get_device_properties(0).total_memory
+            torch.cuda.set_per_process_memory_fraction(cfg["worker_memory_budget_mib"]*1024**2/total,0)
+        pipeline=load_pipeline(cfg)
+        if trial:
+            receipt=json.loads(contained_path(R,cfg["trial_receipt"]["path"],exists=True).read_text())
+            for role in ("A0","B0"):
+                if (pipeline.identity[role+"_step"]!=receipt["models"][role]["selected_step"]
+                        or pipeline.identity[role+"_config_id"]!=receipt["models"][role]["config_id"]):
+                    raise ValueError("Loaded trial model metadata differs")
+        if pipeline.a0_kind=="joint_pose_sam":
+            raise ValueError("Enhanced A0 requires an explicit SAM/session video adapter; baseline only")
+        pipeline.identity.update(frozen_identity, temporal_mode="independent_frames_baseline")
+        prediction_identity=pipeline.identity
+    else:
+        from eval.action4_video_contract import load_prediction_cache, cached_prediction
+        cache_rows,prediction_identity=load_prediction_cache(cache_manifest,frozen_identity,selection_sha256=digest(selection))
     K=np.array(json.loads(contained_path(R,cfg["intrinsics_context"],exists=True).read_text())["K_native"])
     cad=np.array(json.loads((R/"data/DJI_Action4_construct/r3_v001/asset_manifest.json").read_text())["corners_3d_mm"])/1000
     ffmpeg=str(R/"runtime/ffmpeg/bin/ffmpeg");ffprobe=str(R/"runtime/ffmpeg/bin/ffprobe")
@@ -35,11 +71,11 @@ def run(selection,output,limit=None,start=0,end=None):
     if (ref_probe["width"],ref_probe["height"])!=(950,720) or Fraction(ref_probe["avg_frame_rate"])!=Fraction(fps) or int(ref_probe["nb_frames"])!=2850:
         raise ValueError("Demo reference geometry/timing mismatch")
     partial=out/"comparison.partial.mp4"
-    encode=[ffmpeg,"-v","error","-nostdin","-n","-f","rawvideo","-pix_fmt","rgb24","-s","1900x750","-r",fps,
+    encode=[ffmpeg,"-filter_threads","2","-filter_complex_threads","2","-v","error","-nostdin","-n","-f","rawvideo","-pix_fmt","rgb24","-s","1900x750","-r",fps,
             "-i","pipe:0","-an","-c:v","libx264","-threads","2","-preset","fast","-crf","18","-pix_fmt","yuv420p",
             "-video_track_timescale","11988","-movie_timescale","11988","-movflags","+faststart",str(partial)]
-    decode=[ffmpeg,"-v","error","-nostdin","-threads","2","-i",str(reference),"-map","0:v:0","-vf",f"select='between(n,{start},{end-1})'","-fps_mode","passthrough","-frames:v",str(len(frames)),"-f","rawvideo","-pix_fmt","rgb24","-threads","2","pipe:1"]
-    atomic_json(out/"SELECTION.json",dict(cfg,actual_identity=pipeline.identity,scope="fixed-weight video; accuracy not inferred from encoding"))
+    decode=[ffmpeg,"-filter_threads","2","-filter_complex_threads","2","-v","error","-nostdin","-threads","2","-i",str(reference),"-map","0:v:0","-vf",f"select='between(n,{start},{end-1})'","-fps_mode","passthrough","-frames:v",str(len(frames)),"-f","rawvideo","-pix_fmt","rgb24","-threads","2","pipe:1"]
+    atomic_json(out/"SELECTION.json",dict(cfg,actual_identity=prediction_identity,scope="fixed-weight video; accuracy not inferred from encoding",cpu_affinity=sorted(__import__("os").sched_getaffinity(0)),child_affinity="inherited unchanged",ffmpeg_threads=2,ffmpeg_filter_threads=2))
     begin=time.monotonic();invalid=0
     with (out/"encode.log").open("x") as elog,(out/"decode.log").open("x") as dlog,(out/"predictions.jsonl").open("x") as predictions:
         decoder=subprocess.Popen(decode,stdout=subprocess.PIPE,stderr=dlog)
@@ -50,11 +86,17 @@ def run(selection,output,limit=None,start=0,end=None):
                 raw=decoder.stdout.read(950*720*3)
                 if len(raw)!=950*720*3:raise RuntimeError("Demo ended before paired source frame")
                 demo=Image.frombytes("RGB",(950,720),raw)
-                with Image.open(contained_path(R,frame["image"],exists=True)) as im:rgb=im.convert("RGB")
+                frame_path=contained_path(R,frame["image"],exists=True)
+                frame_sha=digest(frame_path)
+                if frame_sha!=frame["image_sha256"]:raise ValueError("Real frame differs from frozen extraction manifest")
+                with Image.open(frame_path) as im:rgb=im.convert("RGB")
                 if rgb.size!=(3248,2464):raise ValueError("Source frame dimensions changed")
-                result=pipeline.predict(torch.from_numpy(np.array(rgb)).permute(2,0,1),K,cad)
+                if cache_manifest is None:
+                    result=pipeline.predict(torch.from_numpy(np.array(rgb)).permute(2,0,1),K,cad)
+                else:
+                    result=cached_prediction(cache_rows,frame,source["time_base"],contained_path(R,frame["image"],exists=True))
                 invalid+=sum(not p["pose_valid"] for p in result["instances"])
-                predictions.write(json.dumps({"frame_id":frame["frame_id"],"pts":frame["pts"],"time_base":source["time_base"],"prediction":result},allow_nan=False)+"\n")
+                predictions.write(json.dumps({"frame_id":frame["frame_id"],"pts":frame["pts"],"time_base":source["time_base"],"rgb_sha256":frame_sha,"prediction":result},allow_nan=False)+"\n")
                 visible=[p for p in result["instances"] if p["corners_px"] is not None]
                 rendered=draw_cuboids(rgb,visible,line_width=6).resize((950,720))
                 draw=ImageDraw.Draw(rendered);scale=np.array([950/rgb.width,720/rgb.height]*2)
@@ -63,7 +105,7 @@ def run(selection,output,limit=None,start=0,end=None):
                     if not p["pose_valid"]:draw.text((box[0],box[1]),"POSE UNAVAILABLE",fill="yellow")
                 panel=Image.new("RGB",(1900,750));panel.paste(demo,(0,30));panel.paste(rendered,(950,30))
                 title=ImageDraw.Draw(panel);title.text((8,8),f"Demo reference | frame {frame['frame_id']}",fill="white")
-                title.text((958,8),f"Model prediction | frame {frame['frame_id']}",fill="white")
+                title.text((958,8),f"{'Research trial' if trial else 'Model prediction'} | frame {frame['frame_id']}",fill="white")
                 encoder.stdin.write(panel.tobytes())
                 if i==0 or (i+1)%25==0 or i+1==len(frames):
                     predictions.flush();atomic_json(out/"STATUS.json",{"completed_frames":i+1,"total_frames":len(frames),"elapsed_seconds":time.monotonic()-begin})
@@ -85,12 +127,12 @@ def run(selection,output,limit=None,start=0,end=None):
     partial.rename(out/"comparison.mp4")
     atomic_json(out/"COMPLETE.json",{"status":"VIDEO_IO_COMPLETE_NOT_ACCURACY_ACCEPTED","full_video":len(frames)==2850,
         "frames":len(frames),"start_frame":start,"end_frame_exclusive":end,"probe":stream,"invalid_pose_detections":invalid,"demo_is_GT":False,
-        "assumed_intrinsics":True,"temporal_smoothing":False,"identity":pipeline.identity})
+        "assumed_intrinsics":True,"temporal_smoothing":False,"identity":prediction_identity})
 
 if __name__=="__main__":
     import argparse,traceback
-    p=argparse.ArgumentParser();p.add_argument("--selection",required=True);p.add_argument("--output",required=True);p.add_argument("--limit",type=int);p.add_argument("--start",type=int,default=0);p.add_argument("--end",type=int);a=p.parse_args()
-    try:run(a.selection,a.output,a.limit,a.start,a.end)
+    p=argparse.ArgumentParser();p.add_argument("--selection",required=True);p.add_argument("--output",required=True);p.add_argument("--limit",type=int);p.add_argument("--start",type=int,default=0);p.add_argument("--end",type=int);p.add_argument("--cache-manifest");a=p.parse_args()
+    try:run(a.selection,a.output,a.limit,a.start,a.end,a.cache_manifest)
     except BaseException:
         out=contained_path(R,a.output,exists=False)
         if out.exists():atomic_json(out/"FAILURE.json",{"traceback":traceback.format_exc()})

@@ -1,0 +1,217 @@
+{
+  "schema": "action4.full_zeroshot_dev.v1",
+  "scope": "FULL_650_DEVELOPMENT_ONLY_NOT_TEST_OR_LOCKED_OR_INDEPENDENT_GATE",
+  "dataset": {
+    "split": "eval",
+    "manifest": "data/phrase2/eval/annotations.jsonl",
+    "manifest_sha256": "5cc8cb48f504039ada59847fda3768fc53b19572fda7e5d7508e7770f56d30da",
+    "expected_images": 650,
+    "expected_original_gt": 1300,
+    "order": "manifest_line_order",
+    "keep_all_original_gt": true
+  },
+  "inference": {
+    "asset_config": "configs/model/action4_yoloe_assets_v001.json",
+    "runtime_lock": "configs/model/action4_yoloe_runtime_gpu1_v001.json",
+    "adapter": "src/model/action4_yoloe_adapter.py",
+    "profile_receipt": "outputs/action4_stage2_preparation_v001/development_probe_v002_execution/visual_six_bbox25/PROFILE_RECEIPT.json",
+    "text_profile": {
+      "name": "text_fixed7",
+      "reference_id": "text_fixed7",
+      "path": "outputs/action4_stage2_preparation_v001/runtime_cpu_attempt4/text.npz",
+      "sha256": "92b2227d9df7a79eb6daa953afd423205009ab9cc7a2611052e394c31768cc1c",
+      "text": true
+    },
+    "visual_profiles": [
+      "front",
+      "back",
+      "left",
+      "right",
+      "frontupper",
+      "backupper"
+    ],
+    "predict_args": {
+      "imgsz": 1280,
+      "conf": 0.05,
+      "iou": 1,
+      "max_det": 300,
+      "nms": null,
+      "agnostic_nms": false,
+      "retina_masks": true,
+      "save": false,
+      "verbose": false
+    },
+    "mask_threshold": 0.5,
+    "native_cache_schema": "action4.full_zeroshot.native.v1",
+    "profile_status": "FIXED_DEVELOPMENT_CANDIDATE_NOT_FORMALLY_ACCEPTED",
+    "shard_count": 2,
+    "max_cpu_threads": 4,
+    "execute_requires_explicit_run_mode": true,
+    "prediction_snapshot": "outputs/action4_full_zeroshot_eval_v001/predict_snapshot_v002/SNAPSHOT.json",
+    "prediction_snapshot_sha256": "144d5e2c69f6fa257d3d42b6be1fe34f94eadfac15ad7a57755fbfe695e7aaaf"
+  },
+  "class_protocol": {
+    "protocol_id": "camera_proxy_eval_known_action4_v1",
+    "frozen": true,
+    "prediction_class_map": {
+      "0": "camera",
+      "1": "camera",
+      "2": "smartwatch",
+      "3": "wristwatch",
+      "4": "wristband",
+      "5": "bracelet",
+      "6": "mobile phone"
+    },
+    "target_classes": [
+      "camera"
+    ],
+    "model_specificity": "UNVERIFIED_NO_OTHER_CAMERA_NEGATIVE_ANNOTATIONS"
+  },
+  "policies": [
+    {
+      "id": "text_fixed7_conf025_supportdedup085",
+      "profiles": [
+        "text_fixed7"
+      ],
+      "score_threshold": 0.25,
+      "mask_iou_dedup": 0.85,
+      "center_distance_small_diag": 0.05,
+      "prompt_padding_fraction": 0
+    },
+    {
+      "id": "visual_front_bbox25_conf025_supportdedup085",
+      "profiles": [
+        "front"
+      ],
+      "score_threshold": 0.25,
+      "mask_iou_dedup": 0.85,
+      "center_distance_small_diag": 0.05,
+      "prompt_padding_fraction": 0
+    },
+    {
+      "id": "visual_six_bbox25_conf025_supportdedup085",
+      "profiles": [
+        "front",
+        "back",
+        "left",
+        "right",
+        "frontupper",
+        "backupper"
+      ],
+      "score_threshold": 0.25,
+      "mask_iou_dedup": 0.85,
+      "center_distance_small_diag": 0.05,
+      "prompt_padding_fraction": 0
+    }
+  ],
+  "groups": {
+    "protocol_id": "action4.full_dev_input_groups.v1",
+    "occlusion_source": "instance.occlusion_inframe; checked against actual visible mask pixels / area_inframe_amodal_px",
+    "occlusion_edges": [
+      0,
+      0.1,
+      0.4,
+      0.7,
+      1.0000001
+    ],
+    "heavy_occlusion_min": 0.4,
+    "severe_occlusion_min": 0.7,
+    "small_target_full_bbox_width_fraction": 0.06,
+    "visible_area_edges_px": [
+      0,
+      1024,
+      4096,
+      16384,
+      1000000000
+    ],
+    "pair_center_distance_basis": "full GT bbox center distance / smaller full GT bbox diagonal",
+    "pair_center_ratio_edges": [
+      0,
+      0.5,
+      1,
+      2,
+      1000000000
+    ],
+    "bbox_iou_edges": [
+      0,
+      0.1,
+      0.5,
+      1.0000001
+    ],
+    "near_pair_rule": "GT visible bbox gap <= .25 * smaller visible bbox short side OR positive intersection; unavailable if either visible mask empty",
+    "near_pair_gap_fraction": 0.25,
+    "mask_distance": "exact minimum foreground pixel-center Euclidean distance; empty support => null; intersection recorded separately",
+    "mask_distance_edges_px": [
+      0,
+      1.0000001,
+      8.0000001,
+      32.0000001,
+      1000000000
+    ],
+    "source_group": "background_source_id + scene_family; not an independence certificate"
+  },
+  "scoring": {
+    "module": "eval.action4_yolo_prompt_metrics",
+    "source": "src/eval/action4_yolo_prompt_metrics.py",
+    "expected_schema": "action4.yolo_prompt_metrics.v4",
+    "source_sha256": "45fa45f59780dc4df9d829a4c8ac6d393adb70afa444495d9e8e6851683b2469",
+    "contract": "visible_support_plus_prompt_joint_only_99",
+    "semantics_reviewed": true,
+    "full_bbox_iou": "DIAGNOSTIC_ONLY_NOT_99_GATE",
+    "observed_gate": 0.99,
+    "required_groups": [
+      "heavy_occlusion",
+      "near_pair",
+      "small_target",
+      "other_camera",
+      "pure_negative"
+    ],
+    "support_thresholds": {
+      "prompt_coverage": 0.95,
+      "prompt_area_ratio_max": 4,
+      "prompt_center_expand": 0.1,
+      "own": 0.5,
+      "purity": 0.95,
+      "other_instance_leak_max": 0.05,
+      "target_fraction": 0.8
+    }
+  },
+  "diagnostics": {
+    "two_to_one_merge": "one published mask covers >=.5 of at least two visible GT masks",
+    "one_to_two_duplicate": "at least two distinct published masks each cover >=.5 of the same visible GT mask",
+    "false_positive": "unmatched published prediction under scorer; reason categories retained, not automatically called non-DJI",
+    "missing_prediction": "not empty success; failed/pending sample retains all GT in completion denominators",
+    "pure_negative": "NOT_MEASURED_IF_NO_LABELED_PURE_NEGATIVE_IMAGES",
+    "other_camera": "NOT_MEASURED_IF_NO_OTHER_CAMERA_GT_OR_NEGATIVE_ANNOTATIONS",
+    "empty_gt_visible": "support_unmeasured; keep original GT and recognition diagnostic denominator"
+  },
+  "publication": {
+    "automatic_model_promotion": false,
+    "formal_99_acceptance": false,
+    "inference_started": false
+  },
+  "prompt_split": {
+    "protocol_id": "action4.prompt_scene_family_split.v1",
+    "group_key": "scene_family",
+    "policy": "all previously exposed scene families stay dev; remaining entire families gate",
+    "exposed_dev_records": "outputs/action4_stage2_preparation_v001/development_probe_v001/selected_eval_records.json",
+    "exposed_dev_records_sha256": "31de1d6da1311dcd5efb662197eb6cd60c6030568dcb0153e2a1e07b43ff2433",
+    "external_exposed_dev": [
+      {
+        "frame_index": 822,
+        "source": "real video development; root-reported prior text/cloth false-selection review",
+        "part_of_this_650": false
+      }
+    ],
+    "no_forced_325_split": true,
+    "no_seed_subdivision_of_exposed_families": true
+  },
+  "legacy_cache": {
+    "policy": "AUDIT_EXISTING_RAW_BEFORE_REUSE_OR_RECOMPUTE",
+    "candidate_root": "outputs/action4_stage2_preparation_v001/development_probe_v002_execution/visual_six_bbox25",
+    "automatic_import": false,
+    "reason": "Legacy NPZ has arrays but lacks full per-response source/runtime/model identity receipt; no implicit successful import",
+    "recompute_unverifiable_legacy": true,
+    "recompute_authorization": "Root explicitly approved recomputation of36 known visual tasks with missing per-response identity; old raw retained. Exact new-identity completions must be reused."
+  }
+}

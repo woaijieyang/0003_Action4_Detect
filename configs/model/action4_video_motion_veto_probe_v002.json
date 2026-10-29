@@ -1,0 +1,36 @@
+{
+  "schema": "action4.video_motion_probe_replay.v1",
+  "parent_complete": {
+    "path": "outputs/action4_video_motion_veto_probe_v001/COMPLETE.json",
+    "sha256": "e8b368a813479ad033902b4a96ef52ba12752a1161b8f1e2a98b461cff2b8120"
+  },
+  "hold_frames": 5,
+  "output": "outputs/action4_video_motion_veto_probe_v002",
+  "clip_predictions": [
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_1163/PREDICTIONS.jsonl",
+      "sha256": "e5b5c1b7834c1bf196e86f90d6a4f1944c43e18bc76a9528750613a4c8425adc"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_1428/PREDICTIONS.jsonl",
+      "sha256": "dd9b7712fe346a75b545c99177522d28cc17382f27ef1619de346999adcaab30"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_2777/PREDICTIONS.jsonl",
+      "sha256": "2e159ebd45a6f4a553f0b6e84358428a371e0bc61631196ab88335827c4cecfe"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_2523/PREDICTIONS.jsonl",
+      "sha256": "feb02701fadc2a48d3af94477a65822024925373211e3f9acc9761f8b48032b1"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_120/PREDICTIONS.jsonl",
+      "sha256": "09fd56f54e71abac96042d766f377fda4860688f5a4183c00a1e8dd8fcddfa37"
+    },
+    {
+      "path": "outputs/action4_video_motion_veto_probe_v001/event_180/PREDICTIONS.jsonl",
+      "sha256": "e93bf0c0c2c00fd614ae4be5e75ac59dab7ab843921943cf338d196d383aab6b"
+    }
+  ],
+  "reason": "V001 visual review: admitted image veto followed by unknown texture immediately allowed a fresh raw jump. V002 holds rotation only for <=5 frames after last actual veto; current translation remains; uncertainty and expiry explicit."
+}

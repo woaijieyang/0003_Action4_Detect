@@ -1,0 +1,17 @@
+{
+  "schema": "action4.sam_training_association_policy.v1",
+  "published_score_min": 0.3,
+  "complete_bbox_iou_min": 0.5,
+  "multiple_gt_candidate": "ambiguous_not_usable",
+  "unique_gt_candidate_ranking": [
+    "predicted_score_desc",
+    "stable_candidate_id_asc"
+  ],
+  "ignored_gt": "excluded_from_units_and_matching",
+  "invalid_gt_bbox": "unknown",
+  "native_availability": "independent_of_supervision_ownership",
+  "GT_masks_used": false,
+  "GT_corners_used": false,
+  "native_mask_selection_changed": false,
+  "scope": "native_original_full_box_supervision_ownership_only"
+}

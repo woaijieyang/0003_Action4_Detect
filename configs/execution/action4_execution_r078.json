@@ -1,0 +1,40 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r078",
+  "status": "PHRASE2_5000_BULK_RUNNING",
+  "parent_authority": "configs/execution/action4_execution_r077.json",
+  "configuration": "configs/data/action4_phrase2_v001.json",
+  "dataset_root": "data/phrase2",
+  "slot_plan": "outputs/phrase2_generation_v001/SLOTS.json",
+  "progress": "outputs/phrase2_generation_v001/STATUS.json",
+  "source_freeze": "outputs/phrase2_generation_v001/SOURCE_FREEZE_v009.json",
+  "target_images": 5000,
+  "split_counts": {
+    "train": 4000,
+    "eval": 500,
+    "test": 500
+  },
+  "two_instances_every_image": true,
+  "train_enabled": false,
+  "original2000_immutable": true,
+  "GPU": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "CPU_total_budget": 72,
+  "no_subagents": true,
+  "occlusion_mode": "arm_geometry",
+  "generation_policy_revision": "v010_factored_side_parameters",
+  "preview_visual_accepted": 128,
+  "queue": "outputs/phrase2_generation_v001/slots.sqlite3",
+  "bulk_dispatch": "outputs/phrase2_generation_v001/DISPATCH_BULK.json",
+  "capacity_dispatch": "outputs/phrase2_generation_v001/CAPACITY_DISPATCH_v001.json",
+  "capacity_status": "outputs/phrase2_generation_v001/CAPACITY_STATUS.json",
+  "render_processes": 48,
+  "render_processes_per_GPU": 12,
+  "CPU_affinity_evidence": "outputs/phrase2_generation_v001/CPU_AFFINITY_CLOSURE.json",
+  "monitor_automation_id": "action4-phrase2",
+  "formal_dataset_release_complete": false
+}

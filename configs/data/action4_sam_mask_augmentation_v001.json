@@ -1,0 +1,24 @@
+{
+  "schema": "action4.sam_mask_augmentation.v1",
+  "pixel_units": "roi448",
+  "dropout_probability": 0.2,
+  "perturb_probability_given_retained": 0.25,
+  "operations": [
+    "erosion",
+    "dilation",
+    "translation",
+    "holes"
+  ],
+  "morphology_radius_min": 1,
+  "morphology_radius_max": 3,
+  "morphology_metric": "square_chebyshev",
+  "translation_max_each_axis": 3,
+  "translation_nonzero": true,
+  "holes_count_min": 1,
+  "holes_count_max": 3,
+  "holes_radius_min": 1,
+  "holes_radius_max": 3,
+  "holes_shape": "disk",
+  "holes_centres": "uniform_foreground_without_replacement",
+  "rng": "numpy_PCG64_sha256_seed_image_instance_v1"
+}

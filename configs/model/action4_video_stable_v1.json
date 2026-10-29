@@ -1,0 +1,42 @@
+{
+  "schema": "action4.video_stable_v1.config",
+  "mode": "video_development",
+  "output": "outputs/action4_stage5_stable_v1",
+  "input_lock": {
+    "path": "outputs/action4_sam80_fixed_video_v001/INPUT_LOCK.json",
+    "sha256": "826c335e2ee96b1a92f251ac86848c5861940e26c755ff6bacd894d6f42d305e"
+  },
+  "raw_predictions": {
+    "path": "outputs/action4_sam80_fixed_video_v001/e1p50/predictions.jsonl",
+    "sha256": "7f81c14b31a9ffbad36c7688f8dc8e61022aedffbf96d9a6d4814415850c10c8"
+  },
+  "demo_reference": {
+    "path": "data/action4_reference/demo_standard.mp4",
+    "sha256": "2d932e2928d6cacfc06b7b5f6e701fdb87f8a61c2b8cc0d851464d642eddb392"
+  },
+  "filter": {
+    "window": 5,
+    "rotation_min_cutoff_hz": 3.0,
+    "rotation_beta": 0.5,
+    "coordinate_min_cutoff_hz": 3.0,
+    "coordinate_beta": 0.5,
+    "derivative_cutoff_hz": 1.0,
+    "rotation_cost_cap_rad": 0.7853981633974483,
+    "recency_weight": 0.8,
+    "max_gap_seconds": 0.25
+  },
+  "reference": "https://gery.casiez.net/1euro/",
+  "resource": {
+    "CPU": [
+      59,
+      60,
+      61,
+      62,
+      63
+    ],
+    "GPU": [],
+    "encoder": "libx264",
+    "encoder_threads": 2
+  },
+  "interpretation": "5 historical poses plus current; rigid pose processing, no independent corner smoothing; original video development, not GT accuracy"
+}

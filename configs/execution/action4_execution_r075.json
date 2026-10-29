@@ -1,0 +1,30 @@
+{
+  "schema": "action4.execution_authority.v1",
+  "revision": "r075",
+  "status": "PHRASE2_PREVIEW127_RETAINED_MULTI_ANCHOR_SAMPLING",
+  "parent_authority": "configs/execution/action4_execution_r074.json",
+  "configuration": "configs/data/action4_phrase2_v001.json",
+  "dataset_root": "data/phrase2",
+  "slot_plan": "outputs/phrase2_generation_v001/SLOTS.json",
+  "progress": "outputs/phrase2_generation_v001/STATUS.json",
+  "source_freeze": "outputs/phrase2_generation_v001/SOURCE_FREEZE_v007.json",
+  "target_images": 5000,
+  "split_counts": {
+    "train": 4000,
+    "eval": 500,
+    "test": 500
+  },
+  "two_instances_every_image": true,
+  "train_enabled": false,
+  "original2000_immutable": true,
+  "GPU": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "CPU_total_budget": 72,
+  "no_subagents": true,
+  "occlusion_mode": "arm_geometry",
+  "generation_policy_revision": "v009_cached_distance_weighted_multi_anchor"
+}

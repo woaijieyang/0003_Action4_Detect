@@ -1,0 +1,13 @@
+{
+  "schema": "action4.body_box_projection.v1",
+  "status": "development_candidate_not_accuracy_admitted",
+  "policy": {
+    "center_alpha": 0.65,
+    "log_size_alpha": 0.2,
+    "max_enclosure_side_ratio": 2.2,
+    "max_enclosure_area_ratio": 3.0,
+    "max_enclosure_center_shift_per_diagonal": 0.25
+  },
+  "reason": "v001 wrongly rejected actual1195 front-view height1.759x after rotation; preserve this negative and compare broader bounds, while rejecting1636 area6.267x/center.663diag outlier",
+  "selection_domain": "original video development; no GT metrics"
+}

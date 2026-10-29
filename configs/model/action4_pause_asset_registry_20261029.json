@@ -1,0 +1,101 @@
+{
+  "schema": "action4.paused_asset_registry.v1",
+  "status": "USER_PAUSED",
+  "entries": [
+    {
+      "role": "A0",
+      "selected_step": 1450,
+      "bundle": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/A0.pt",
+      "archive_alias": "models/archive/20261029-roi15_extension10_b64_e10_completed_20261026-A0-step1450.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "528e4d3c0b66cceb624f2b714885bdd003462c293c6e0aa95cc9a2013e0068b2",
+      "seal": "models/candidates/action4_improvement/roi15_extension10_b64_e10_completed_20261026/SEALED_ROLE.json",
+      "formal_training_complete": true,
+      "quality_ready": null,
+      "default_replaced": false
+    },
+    {
+      "role": "A0",
+      "selected_step": 10125,
+      "bundle": "models/candidates/action4_improvement/roi15_prediction50_completed_20261026/A0.pt",
+      "archive_alias": "models/archive/20261029-roi15_prediction50_completed_20261026-A0-step10125.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "d86147adaf8cd76506ae9470e8fea9d8e23d0aa3a89800b4b0bd1a84146e157a",
+      "seal": "models/candidates/action4_improvement/roi15_prediction50_completed_20261026/SEALED_ROLE.json",
+      "formal_training_complete": true,
+      "quality_ready": null,
+      "default_replaced": false
+    },
+    {
+      "role": "A0",
+      "selected_step": 15770,
+      "bundle": "models/candidates/action4_improvement/stage1_A0_completed_20261026/A0.pt",
+      "archive_alias": "models/archive/20261029-stage1_A0_completed_20261026-A0-step15770.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "377907b421f55839e00706e20e621d0e52867336c9fc2d2f878ce9862181475d",
+      "seal": "models/candidates/action4_improvement/stage1_A0_completed_20261026/SEALED_ROLE.json",
+      "formal_training_complete": true,
+      "quality_ready": null,
+      "default_replaced": false
+    },
+    {
+      "role": "B0",
+      "selected_step": 9500,
+      "bundle": "models/candidates/action4_improvement/stage1_B0_completed_20261024/B0.pt",
+      "archive_alias": "models/archive/20261029-stage1_B0_completed_20261024-B0-step9500.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "ce6ba1a58e9f16608d4a44923c5e36914fc764f05b4ba8764f2e9c6c0e5f2ca3",
+      "seal": "models/candidates/action4_improvement/stage1_B0_completed_20261024/SEALED_ROLE.json",
+      "formal_training_complete": true,
+      "quality_ready": null,
+      "default_replaced": false
+    },
+    {
+      "role": "A0",
+      "selected_step": 13180,
+      "bundle": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/A0.pt",
+      "archive_alias": "models/archive/20261029-stage3_sam80_completed_20261028-A0-step13180.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "a6e2c9dc88322bf27283de898ccd75f484edfe91bc1586824d7ed923f0f960bd",
+      "seal": "models/candidates/action4_improvement/stage3_sam80_completed_20261028/SEALED_ROLE.json",
+      "formal_training_complete": true,
+      "quality_ready": null,
+      "default_replaced": false
+    },
+    {
+      "role": "A0",
+      "selected_step": 7300,
+      "bundle": "models/candidates/action4_improvement/stage4_user_stopped_all8_20261028/A0.pt",
+      "archive_alias": "models/archive/20261029-stage4_user_stopped_all8_20261028-A0-step7300.pt",
+      "archive_method": "hardlink; no additional payload or source path change",
+      "sha256": "b8ce72185e7ce46be29a1b62cf8d7086bb6167669959a76f870365b6f09e70b9",
+      "seal": "models/candidates/action4_improvement/stage4_user_stopped_all8_20261028/SEALED_RESEARCH.json",
+      "formal_training_complete": false,
+      "quality_ready": false,
+      "default_replaced": false
+    },
+    {
+      "role": "A0",
+      "purpose": "unchanged historical default",
+      "bundle": "models/default/A0.pt",
+      "sha256": "d576655c7d9a4870e73033c1b7cd9886df1b0a61a5b8e6359403fa6c14d39d78",
+      "selected_step": 14000
+    },
+    {
+      "role": "B0",
+      "purpose": "unchanged historical default",
+      "bundle": "models/default/B0.pt",
+      "sha256": "dba8eefbcda8d30df348fcaa9aec8f2e9deaed375313b44a21d7c47784b64362",
+      "selected_step": 3220
+    },
+    {
+      "role": "A0",
+      "purpose": "full recovery only; not best",
+      "bundle": "outputs/action4_improvement/stage4_corner/p2_a0_corner_roi115_finetune75_v002/last.pt",
+      "step": 400,
+      "sha256": "f29eab4e4866def2fed92119543a97aa2888594928f4777c5fdcc6035859d6b0"
+    }
+  ],
+  "default_changed": false,
+  "canonical_source_paths_preserved": true
+}

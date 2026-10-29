@@ -1,0 +1,258 @@
+{
+  "version": "numa_cached_v002",
+  "gpu": [
+    4,
+    5,
+    6,
+    7
+  ],
+  "CPU_budget": 72,
+  "render_workers": [
+    {
+      "gpu": 4,
+      "cpu": [
+        24,
+        72
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        25,
+        73
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        26,
+        74
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        27,
+        75
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        28,
+        76
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        29,
+        77
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        30,
+        78
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        31,
+        79
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        32,
+        80
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        33,
+        81
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        34,
+        82
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        35,
+        83
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        36,
+        84
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        37,
+        85
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        38,
+        86
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        39,
+        87
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        40,
+        88
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        41,
+        89
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        42,
+        90
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        43,
+        91
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        44,
+        92
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        45,
+        93
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        46,
+        94
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        47,
+        95
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        0,
+        1
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        2,
+        3
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        4,
+        5
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        6,
+        7
+      ]
+    },
+    {
+      "gpu": 4,
+      "cpu": [
+        8,
+        9
+      ]
+    },
+    {
+      "gpu": 5,
+      "cpu": [
+        10,
+        11
+      ]
+    },
+    {
+      "gpu": 6,
+      "cpu": [
+        12,
+        13
+      ]
+    },
+    {
+      "gpu": 7,
+      "cpu": [
+        14,
+        15
+      ]
+    }
+  ],
+  "quality_cpu": [
+    [
+      16,
+      17
+    ],
+    [
+      18,
+      19
+    ],
+    [
+      20,
+      21
+    ]
+  ],
+  "controller_cpu": [
+    22,
+    23
+  ],
+  "renderers_per_card": 8,
+  "principle": "24 render workers on GPU-local NUMA1 physical cores and SMT siblings, eight remote; fixed scenes; retained Cycles data and device setup.",
+  "proof": "outputs/phrase2_generation_v001/persistent_probe_v002/HOST_VALIDATION.json",
+  "does_not_change_geometry_or_sample_settings": true
+}

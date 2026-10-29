@@ -1,0 +1,26 @@
+{
+  "schema": "action4.yoloe_assets.v1",
+  "sources": [
+    {
+      "path": "upstream/ultralytics",
+      "commit": "e6d5fc5918f57d4d39fadb43fc5b2a1aea132ac8"
+    },
+    {
+      "path": "upstream/ultralytics_clip",
+      "commit": "7ffa84b3bfa40c42ecc1c77147a855e69cb2dd40"
+    }
+  ],
+  "assets": {
+    "detector": {
+      "path": "models/external/yoloe/yoloe-26x-seg.pt",
+      "sha256": "d08d390a08f98195f7c87807839fe4ff93a5491645fef1bc3bf0700efafdd639"
+    },
+    "text_encoder": {
+      "path": "models/external/yoloe/mobileclip2_b.ts",
+      "sha256": "35d7f213e4d75f38514e4656ad3cb91158bd33e3805d8ac349f23b186f66982f"
+    }
+  },
+  "environment": ".venv/yoloe",
+  "status": "PREPARATION_ONLY",
+  "performance_verified": false
+}

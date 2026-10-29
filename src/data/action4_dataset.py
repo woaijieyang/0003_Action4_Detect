@@ -174,27 +174,31 @@ def virtual_roi(box, expansion=1.25):
     return [centre[0] - side / 2, centre[1] - side / 2, centre[0] + side / 2, centre[1] + side / 2]
 
 
-def prepare_rois(images, boxes, image_indices, roi_size=256, expansion=1.25, device='cpu'):
+def prepare_rois(images, boxes, image_indices, roi_size=256, expansion=1.25, device='cpu', *, return_specs=False):
     """Sample virtual square ROIs without clipping, return RGB and original->ROI."""
     torch = _torch()
     import torch.nn.functional as F
     import numpy as np
     if len(boxes) != len(image_indices) or type(roi_size) is not int or roi_size <= 0 or roi_size % 32:
         raise ValueError('Bad ROI inputs or size')
+    if type(return_specs) is not bool:raise ValueError('Explicit return_specs boolean required')
+    from data.action4_roi_contract import RoiSpec
+    specs=[RoiSpec.from_full_box(box,expansion,roi_size) for box in boxes]
     if len(boxes) == 0:
-        return torch.empty((0, 3, roi_size, roi_size), device=device), []
+        empty=(torch.empty((0, 3, roi_size, roi_size), device=device), [])
+        return (*empty,specs) if return_specs else empty
     outputs, matrices, cache = [], [], {}
     yy, xx = torch.meshgrid(torch.arange(roi_size, device=device, dtype=torch.float32),
                             torch.arange(roi_size, device=device, dtype=torch.float32), indexing='ij')
     destination = torch.stack((xx, yy, torch.ones_like(xx)), dim=-1)
-    for box, index in zip(boxes, image_indices):
+    for spec, index in zip(specs, image_indices):
         index = int(index)
         if not 0 <= index < len(images):
             raise ValueError('ROI image index outside batch')
         if index not in cache:
             cache[index] = _rgb_tensor(images[index], device)
         source = cache[index]
-        matrix = DataAdapter.crop_affine(virtual_roi(box, expansion), (roi_size, roi_size))
+        matrix = spec.affine()
         inverse = torch.as_tensor(np.linalg.inv(matrix), dtype=torch.float32, device=device)
         # Pixel coordinates must not be rounded by the model's outer AMP scope.
         # Large native-image translations lose subpixel accuracy in FP16 and
@@ -206,7 +210,8 @@ def prepare_rois(images, boxes, image_indices, roi_size=256, expansion=1.25, dev
             sampled = F.grid_sample(source.float()[None], grid[None], mode='bilinear', padding_mode='zeros', align_corners=False)[0]
         outputs.append(_normalize(sampled))
         matrices.append(matrix)
-    return torch.stack(outputs), matrices
+    result=(torch.stack(outputs), matrices)
+    return (*result,specs) if return_specs else result
 
 
 def _gaussian_radius(height, width, overlap=.7):
